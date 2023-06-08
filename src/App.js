@@ -1,22 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [turnOn, setTurnOn] = useState(false);
   return (
-    <div className="App">
+    <div className="App" style={{ width: "300px" }}>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => {
+            setTurnOn(!turnOn);
+          }}
         >
-          Learn React
-        </a>
+          블로그 미리보기 활성화: {turnOn ? "ON" : "OFF"}
+        </button>
+        <button>
+          <a href="http://localhost:5500">로그인 하러가기</a>
+        </button>
       </header>
     </div>
   );
