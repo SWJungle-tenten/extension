@@ -1,23 +1,16 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
+react-chrome-app/node_modules
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+react-chrome-app/.env.local
+react-chrome-app/.env.development.local
+react-chrome-app/.env.test.local
+react-chrome-app/.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Apple
+.DS_Store
+react-chrome-app/.DS_Store
+
+react-chrome-app/npm-debug.log*
+react-chrome-app/yarn-debug.log*
+react-chrome-app/yarn-error.log*
