@@ -17,10 +17,24 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+      {
+        test: /\.css?$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          },
+          {
+            loader: "postcss-loader",
+          },
+        ],
+      },
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
   },
   output: {
     filename: "content.js",
