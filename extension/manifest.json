@@ -1,11 +1,14 @@
 {
-  "name": "React Chrome Extension",
-  "version": "1.0.0",
+  "name": "F/extension",
+  "version": "1.0.1",
   "manifest_version": 3,
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
 }
