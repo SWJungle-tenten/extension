@@ -13,7 +13,6 @@ const curPathname = window.location.pathname;
 // let renderTarget = null;
 
 if (curOrigin === "https://search.naver.com") {
-  console.log("detected NAVER");
   document.querySelector("#sub_pack").append(rootElement);
   root.render(
     <React.StrictMode>
@@ -30,7 +29,6 @@ if (curOrigin === "https://search.naver.com") {
     main.append(rootElement);
     main.style.flexWrap = "nowrap";
   }
-  console.log("detected GOOGLE");
   root.render(
     <React.StrictMode>
       <Google />

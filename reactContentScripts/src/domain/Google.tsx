@@ -8,14 +8,12 @@ function Google() {
     "mouseover",
     (e) => {
       const eventTarget = e.target;
+
       setTimeout(() => {
-        switch (eventTarget?.className) {
-          case "LC20lb MBeuO DKV0Md":
-            setPreviewUrl(eventTarget.parentElement.href);
-            break;
-          case "HiHjCd":
-            setPreviewUrl(eventTarget.href);
-            break;
+        if (eventTarget?.className === "LC20lb MBeuO DKV0Md") {
+          setPreviewUrl(eventTarget.parentElement.href);
+        } else if ((eventTarget.tagName === "A") & (eventTarget.className === "") & (eventTarget.id === "")) {
+          setPreviewUrl(eventTarget.href);
         }
       }, 600);
     },
