@@ -1,11 +1,14 @@
 {
-  "name": "텐텐",
+  "name": "Googling Helper",
   "version": "1.0.0",
+  "description": "We help you googling by previewing websites and archieve them easily",
   "manifest_version": 3,
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["content.js"],
+      "run_at": "document_end",
+      "all_frames": true
     }
   ],
   "action": {
