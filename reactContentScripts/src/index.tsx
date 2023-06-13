@@ -16,7 +16,7 @@ const changeDomainComponent = () => {
     document.querySelector("#sub_pack").append(rootElement);
     return <Naver />;
   } else if (curOrigin + curPathname === "https://www.google.com/search") {
-    const sidebar = document.querySelector(".TQc1id rhstc4");
+    const sidebar = document.querySelector(".TQc1id");
     if (sidebar) {
       sidebar.appendChild(rootElement);
     } else {

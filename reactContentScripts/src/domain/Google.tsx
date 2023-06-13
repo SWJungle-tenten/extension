@@ -15,13 +15,13 @@ function Google() {
         } else if ((eventTarget.tagName === "A") & (eventTarget.className === "") & (eventTarget.id === "")) {
           setPreviewUrl(eventTarget.href);
         }
-      }, 600);
+      }, 700);
     },
     { capture: true }
   );
 
   return (
-    <div style={{ width: "800px", marginLeft: "160px", height: "700px", top: "0", position: "sticky" }}>
+    <div style={{ width: "40vw", marginLeft: "35px", height: "70vh", top: "0", position: "sticky" }}>
       <iframe id="previewer" title="previewer" src={previewUrl} style={{ width: "100%", height: "100%" }}></iframe>
     </div>
   );
