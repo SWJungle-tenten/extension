@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Route, Routes, useParams, useLocation } from "react-router-dom";
 import StorageHome from "./StorageHome";
-import StoragePosts from "./StoragePosts";
+// import StoragePosts from "./StoragePosts";
 
 function MyComponent({ data }) {
   const [scrapData, setData] = useState(null);
@@ -20,22 +20,23 @@ function MyComponent({ data }) {
                   <li key={`date-${index}`}>{item.date}</li>
                   {item.keywords.map((keyword, keywordIndex) => (
                     <ul key={`keyword-${index}-${keywordIndex}`}>
-                      <li>
-                        {keyword.keyWord}
-                        {/* {console.log(keywordIndex)} */}
-                      </li>
+                      <Link
+                        key={`link1-${index}-${keywordIndex}`}
+                        to={`/scrap/${keyword.keyWord}`}
+                        state={{ titles: keyword.data }} // keyword.data를 state로 전달
+                      >
+                        <li>{keyword.keyWord}</li>
+                      </Link>
                       {keyword.data &&
                         keyword.data.map((title, titleIndex) => (
                           <ul
                             key={`title-${index}-${keywordIndex}-${titleIndex}`}
                           >
-                            {/* {console.log(titleIndex)} */}
                             <Link
-                              key={`link-${index}-${keywordIndex}-${titleIndex}`}
-                              to={`/scrap/${keyword.keyWord}`}
+                              key={`link2-${index}-${keywordIndex}-${titleIndex}`}
+                              to={`/scrap/${keyword.keyWord}/${title.title}`}
                               state={{ url: title.url }}
                             >
-                              {console.log("link:", keyword.keyWord)}
                               <li>{title.title}</li>
                             </Link>
                           </ul>
@@ -52,27 +53,49 @@ function MyComponent({ data }) {
       <Routes>
         <Route path="/" element={<StorageHome />} />
         <Route path="/scrap" element={<StoragePosts />} />
-        <Route
-          path="/scrap/:id"
-          element={<SubComponent scrapData={scrapData} />}
-        />
+        <Route path="/scrap/:id" element={<StoragePosts />} /> {/* /scrap/:id에 대한 라우트 추가 */}
+        <Route path="/scrap/:id/:title" element={<SubComponent />} />
       </Routes>
+
     </div>
   );
 }
+
 
 function SubComponent() {
-  const { keyword, id } = useParams();
+  const { title } = useParams();
   const url = useLocation().state;
-  console.log("id:", id);
-  console.log("key", keyword);
+
   return (
     <div>
-      <h2>{id}</h2>
-      <iframe src={url.url}></iframe>
+      <h2>스크랩 한 글 : {title}</h2>
+      <iframe title={`${title}`} src={url.url}></iframe>
     </div>
   );
 }
 
+function StoragePosts() {
+  const { id } = useParams();
+  const location = useLocation();
+  const titles = location.state?.titles;
+
+  return (
+    <div>
+      <h1>검색어: {id}</h1>
+      {titles && (
+        <ul>
+          {titles.map((title, index) => (
+            <div key={index}>
+              {title.title}
+              <p>
+              <iframe title={`iframe-${index}`} src={title.url} />
+              </p>
+            </div>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export default MyComponent;
