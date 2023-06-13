@@ -1,27 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, Route, Routes, useParams } from "react-router-dom";
-import PropTypes from "prop-types";
 import StorageHome from "./StorageHome";
 import StoragePosts from "./StoragePosts";
 
-function MyComponent() {
+function MyComponent({ data }) {
   const [scrapData, setData] = useState(null);
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts/"
-      );
-      const scrapData = await response.json();
-      setData(scrapData);
-    } catch (error) {
-      console.log("Error getting scrapData:", error);
-    }
-  };
+    setData(data);
+  }, [data]);
 
   return (
     <div style={{ display: "flex" }}>
@@ -57,23 +44,22 @@ function MyComponent() {
   );
 }
 
-MyComponent.propTypes = {
-  url: PropTypes.string.isRequired,
-  date: PropTypes.instanceOf(Date).isRequired,
-  head: PropTypes.string.isRequired,
-};
-
 function SubComponent({ scrapData }) {
   const { id } = useParams();
-  const post = scrapData?.find((item) => item.id.toString() === id);
-  const body = post?.body;
+  const posts = scrapData?.filter((item) => item.id.toString() === id);
 
   return (
     <div>
       <h2>Post ID: {id}</h2>
-      {body && <p>Body: {body}</p>}
+      {posts &&
+        posts.map((post, index) => (
+          <iframe key={index}>
+            <p>Body: {post.body}</p>
+          </iframe>
+        ))}
     </div>
   );
 }
+
 
 export default MyComponent;
