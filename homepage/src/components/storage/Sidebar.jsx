@@ -10,7 +10,7 @@ const Sidebar = () => {
 
   const fetchMemberInfo = async () => {
     try {
-      const response = await fetch("API_URL");
+      const response = await fetch("http://localhost:8080/scrap");
       const userData = await response.json();
 
       setMemberId(userData.member_id);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { Link, Route, Routes, useParams, useLocation } from "react-router-dom";
 import StorageHome from "./StorageHome";
 import StoragePosts from "./StoragePosts";
 
@@ -9,34 +9,51 @@ function MyComponent({ data }) {
   useEffect(() => {
     setData(data);
   }, [data]);
-
   return (
     <div style={{ display: "flex" }}>
       <div>
-        {scrapData && (
-          <div>
-            {scrapData.map((item, index) => (
-              <ul key={index}>
-                {index === 0 || item.userId !== scrapData[index - 1].userId ? (
-                  <li>{item.userId}</li>
-                ) : null}
-                {item.title && (
-                  <Link to={`/posts/${item.id}`} state={{ body: item.body }}>
-                    {item.title}
-                  </Link>
-                )}
-              </ul>
-            ))}
-          </div>
-        )}
+        {scrapData &&
+          scrapData.map((item, index) => (
+            <div key={index}>
+              {index === 0 || item.date !== scrapData[index - 1].date ? (
+                <ul>
+                  <li key={`date-${index}`}>{item.date}</li>
+                  {item.keywords.map((keyword, keywordIndex) => (
+                    <ul key={`keyword-${index}-${keywordIndex}`}>
+                      <li>
+                        {keyword.keyWord}
+                        {/* {console.log(keywordIndex)} */}
+                      </li>
+                      {keyword.data &&
+                        keyword.data.map((title, titleIndex) => (
+                          <ul
+                            key={`title-${index}-${keywordIndex}-${titleIndex}`}
+                          >
+                            {/* {console.log(titleIndex)} */}
+                            <Link
+                              key={`link-${index}-${keywordIndex}-${titleIndex}`}
+                              to={`/scrap/${keyword.keyWord}`}
+                              state={{ url: title.url }}
+                            >
+                              {console.log("link:", keyword.keyWord)}
+                              <li>{title.title}</li>
+                            </Link>
+                          </ul>
+                        ))}
+                    </ul>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ))}
       </div>
 
       {/* 하위 컴포넌트를 라우트로 설정 */}
       <Routes>
         <Route path="/" element={<StorageHome />} />
-        <Route path="/posts" element={<StoragePosts />} />
+        <Route path="/scrap" element={<StoragePosts />} />
         <Route
-          path="/posts/:id"
+          path="/scrap/:id"
           element={<SubComponent scrapData={scrapData} />}
         />
       </Routes>
@@ -44,19 +61,15 @@ function MyComponent({ data }) {
   );
 }
 
-function SubComponent({ scrapData }) {
-  const { id } = useParams();
-  const posts = scrapData?.filter((item) => item.id.toString() === id);
-
+function SubComponent() {
+  const { keyword, id } = useParams();
+  const url = useLocation().state;
+  console.log("id:", id);
+  console.log("key", keyword);
   return (
     <div>
-      <h2>Post ID: {id}</h2>
-      {posts &&
-        posts.map((post, index) => (
-          <iframe key={index}>
-            <p>Body: {post.body}</p>
-          </iframe>
-        ))}
+      <h2>{id}</h2>
+      <iframe src={url.url}></iframe>
     </div>
   );
 }
