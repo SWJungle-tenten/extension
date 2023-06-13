@@ -1,10 +1,12 @@
 {
-  "name": "텐텐",
+  "name": "Googling Helper",
   "version": "1.0.0",
+  "description": "We help you googling by previewing websites and archieve them easily",
   "manifest_version": 3,
+  "icons": [{ "src": "./icon.png", "type": "image/png", "sizes": "96x96" }],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["https://www.google.com/*", "https://www.search.naver.com/*"],
       "js": ["content.js"]
     }
   ],
