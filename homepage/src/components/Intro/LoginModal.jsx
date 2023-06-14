@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import SignIn from "./SignIn";
 
 const style = {
   position: "absolute",
