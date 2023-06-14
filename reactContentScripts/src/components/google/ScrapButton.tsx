@@ -30,7 +30,7 @@ function ScrapButton() {
             keyWord: document.querySelector("#APjFqb").innerHTML,
           };
 
-          const response = await axios({ url: "http://localhost:8080/saveUserScrap", method: "post", data });
+          const response = await axios({ url: `${process.env.SERVER_ADDR}/saveUserScrap`, method: "post", data });
           if (response.status === 200) {
             event.target.innerText = "스크랩 완료";
             event.target.disabled = true;
