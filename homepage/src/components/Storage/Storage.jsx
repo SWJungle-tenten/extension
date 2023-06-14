@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Scrap from "./Scrap";
 import { useCookies } from "react-cookie";
-import { BrowserRouter } from "react-router-dom";
 
 export default function Storage() {
   const [data, setData] = useState(null);
@@ -36,10 +35,10 @@ export default function Storage() {
   
   return (
     <div style={{ display: "flex" }}>
-      <div style={{ border: "1px solid black", padding: "10px" }}>
+      <div style={{ border: "1px solid black", padding: "10px", flexShrink: 0 }}>
         <Sidebar data={data} />
       </div>
-      <div>
+      <div style={{ flexGrow: 1 }}>
         <Scrap scrapdata={data} />
       </div>
     </div>
