@@ -23,7 +23,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 chrome.runtime.sendMessage({ action: "getToken" }, (response) => {
   if (response.accessToken) {
     innerMessage = "환영합니다 ㅇㅇㅇ님!";
-    buttonLink = HOMEPAGE_ADDR;
+    buttonLink = HOMEPAGE_ADDR + "/storage";
     buttonText = "보관함 가기";
   }
   document.querySelector("#welcome-message").innerText = innerMessage;
