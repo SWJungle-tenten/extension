@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, Route, Routes, useParams, useLocation } from "react-router-dom";
-import StorageHome from "./StorageHome";
 
 function MyComponent({ scrapdata }) {
   const [scrapData, setData] = useState(null);
@@ -59,13 +58,10 @@ function MyComponent({ scrapdata }) {
       
 
       {/* 하위 컴포넌트를 라우트로 설정 */}
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<StorageHome />} />
-        <Route path="/storage" element={<StorageHome />} />
-        <Route path="/storage/:id" element={<StoragePosts />} />{" "}
-        {/* /storage/:id에 대한 라우트 추가 */}
-        <Route path="/storage/:id/:title" element={<SubComponent />} />
-      </Routes>
+        
+      </Routes> */}
     </div>
   );
 }
