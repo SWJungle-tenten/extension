@@ -1,8 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginModal from "./LoginModal";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export default function Intro() {
   const [open, setOpen] = useState(false);
+  const [cookies] = useCookies("accessToken");
+  const go = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_ADDR}/api/auth`, {
+        headers: {
+          "x-auth-token": cookies.accessToken,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        go("/main");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
 
   const modalToggle = () => {
     setOpen(!open);

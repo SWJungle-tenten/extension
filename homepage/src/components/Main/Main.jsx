@@ -4,13 +4,13 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 export default function Main() {
-  const [cookies, removeCookie] = useCookies("accessToken");
+  const [cookies, setCookie ,removeCookie] = useCookies("accessToken");
   const go = useNavigate();
 
   console.log(cookies.accessToken);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/auth", {
+      .get(`${process.env.REACT_APP_SERVER_ADDR}/api/auth`, {
         headers: {
           "x-auth-token": cookies.accessToken,
         },
@@ -21,7 +21,7 @@ export default function Main() {
       .catch((error) => {
         console.log(error);
         removeCookie("accessToken");
-        alert("로그인이 필요합니다.")
+        alert("로그인이 필요합니다.");
         go("/");
       });
   }, []);

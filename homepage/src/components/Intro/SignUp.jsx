@@ -22,7 +22,7 @@ export default function SignUp(prop) {
 
     await axios
       .post(
-        "http://localhost:8080/api/register",
+        `${process.env.REACT_APP_SERVER_ADDR}/api/register`,
         { name: name, email: email, password: password },
         {
           headers: {
