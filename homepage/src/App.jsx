@@ -12,7 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Intro />} />
           <Route path="/main" element={<Main />} />
-          <Route path="/storage" element={<Storage />} />
+          <Route path="/storage/*" element={<Storage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
