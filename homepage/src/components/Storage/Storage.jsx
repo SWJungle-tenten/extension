@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Scrap from "./Scrap";
 import { useCookies } from "react-cookie";
-import { BrowserRouter } from "react-router-dom";
 
 export default function Storage() {
   const [data, setData] = useState(null);
