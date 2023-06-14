@@ -32,7 +32,7 @@ export default function SignIn(prop) {
     event.preventDefault();
     await axios
       .post(
-        "http://localhost:8080/api/login",
+        `${process.env.REACT_APP_SERVER_ADDR}/api/login`,
         {},
         {
           headers: {
