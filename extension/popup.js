@@ -6,7 +6,7 @@ let buttonText = "로그인 하러가기";
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "updateToken") {
-    if (message.token) {
+    if (message.accessToken) {
       innerMessage = "환영합니다 ㅇㅇㅇ님!";
       buttonLink = HOMEPAGE_ADDR + "/storage";
       buttonText = "보관함 바로가기";

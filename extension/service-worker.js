@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 chrome.cookies.onChanged.addListener(({ cause, cookie, removed }) => {
   if (cookie.name === "accessToken") {
     chrome.cookies.get({ url: SERVER_ADDR, name: "accessToken" }).then((response) => {
-      chrome.runtime.sendMessage({ action: "updateToken", token: response?.value });
+      chrome.runtime.sendMessage({ action: "updateToken", accessToken: response?.value });
     });
   }
 });
