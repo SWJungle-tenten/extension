@@ -8,7 +8,6 @@ export default function Scrap({ scrapdata }) {
   const [currentTitle, setCurrentTitle] = useState(null);
   const [showKeywords, setShowKeywords] = useState(false);
   const [cookies] = useCookies(["accessToken"]);
-  console.log("cookies", cookies);
   useEffect(() => {
     setData(scrapdata);
   }, [scrapdata]);
@@ -25,13 +24,11 @@ export default function Scrap({ scrapdata }) {
           body: JSON.stringify({ userToken: cookies.accessToken }),
         }
       );
-      console.log("response", response);
       // 추가된 부분: 응답의 상태를 체크합니다.
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log("data", data);
       setData(data);
     } catch (error) {
       console.log("Error getting data:", error);
@@ -39,14 +36,13 @@ export default function Scrap({ scrapdata }) {
   };
 
   const deleteKeyword = async (keyWord, userToken, date) => {
-    const response = await fetch("http://localhost:8080/api/deleteKeyWord", {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_ADDR}/api/deleteKeyWord`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ keyWord, date, userToken }),
     });
-    console.log("key", keyWord, date, userToken);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -55,7 +51,7 @@ export default function Scrap({ scrapdata }) {
   };
 
   const deleteTitle = async (title, userToken, date, url) => {
-    const response = await fetch("http://localhost:8080/api/deleteUserScrap", {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_ADDR}/api/deleteUserScrap`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -109,7 +105,6 @@ export default function Scrap({ scrapdata }) {
                     >
                       검색어: {keyword.keyWord}
                     </button>
-                    {console.log("keyword", keyword.keyWord)}
                     <button
                       className="ml-2"
                       onClick={() => {
