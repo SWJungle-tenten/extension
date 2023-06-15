@@ -5,6 +5,7 @@ export default function Scrap({ scrapdata }) {
   const [currentPath, setCurrentPath] = useState(null);
   const [currentKeyword, setCurrentKeyword] = useState(null);
   const [currentTitle, setCurrentTitle] = useState(null);
+  const [showKeywords, setShowKeywords] = useState(false);
 
   useEffect(() => {
     setData(scrapdata);
@@ -21,15 +22,52 @@ export default function Scrap({ scrapdata }) {
     setCurrentTitle(title);
   };
 
+  const handleToggleKeywordClick = (keyword) => {
+    setCurrentKeyword(currentKeyword === keyword ? null : keyword);
+    setCurrentTitle(null);
+  };
+
   return (
     <div className="h-screen flex overflow-auto">
       <div className="px-4 w-2/5 border-2 border-black overflow-auto">
-        <div className="text-right">
-          <button className="px-2 py-2 rounded-sm bg-blue-500 text-white">
-            검색어로 보기
+        <div className="py-3 text-right">
+          <button
+            className="px-4 py-2 bg-blue-500 text-white"
+            onClick={() => setShowKeywords(!showKeywords)}
+          >
+            {showKeywords ? "날짜별로 보기" : "검색어별로 보기"}
           </button>
         </div>
-        {scrapData &&
+        {showKeywords &&
+          scrapData &&
+          scrapData.map((item, index) => (
+            <ul key={index}>
+              {item.keywords.map((keyword, keywordIndex) => (
+                <li key={`keyword-${index}-${keywordIndex}`}>
+                  <button
+                    className="mt-2 font-semibold block px-4 py-2 text-xl hover:bg-gray-100 hover:text-gray-900"
+                    onClick={() => handleToggleKeywordClick(keyword.keyWord)}
+                  >
+                    
+                    검색어: {keyword.keyWord}
+                  </button>
+                  {currentKeyword === keyword.keyWord &&
+                    keyword.data.map((title, titleIndex) => (
+                      <div key={`title-${index}-${keywordIndex}-${titleIndex}`}>
+                        <button
+                          className="mt-1 font-medium block px-4 text-sm hover:bg-gray-100 hover:text-gray-900"
+                          onClick={() => handleTitleClick(title.title)}
+                        >
+                          {title.title}
+                        </button>
+                      </div>
+                    ))}
+                </li>
+              ))}
+            </ul>
+          ))}
+        {!showKeywords &&
+          scrapData &&
           scrapData.map((item, index) => (
             <div key={index}>
               {index === 0 || item.date !== scrapData[index - 1].date ? (
@@ -44,7 +82,9 @@ export default function Scrap({ scrapdata }) {
                           className="mt-2 font-semibold block px-4 py-2 text-xl hover:bg-gray-100 hover:text-gray-900"
                           onClick={() => handleKeywordClick(keyword.keyWord)}
                         >
-                          검색어: {keyword.keyWord}
+                          {currentKeyword === keyword.keyWord
+                            ? keyword.keyWord
+                            : `검색어: ${keyword.keyWord}`}
                         </button>
                       </li>
                       {keyword.data &&
@@ -81,6 +121,7 @@ export default function Scrap({ scrapdata }) {
     </div>
   );
 }
+
 function Detail({ title, scrapData }) {
   const titleData = getTitleData(title, scrapData);
 
@@ -88,7 +129,11 @@ function Detail({ title, scrapData }) {
     <div className="py-8 border-2 border-gray-400 h-screen">
       <p className="px-4 py-2 text-center text-2xl font-bold">{title}</p>
       <div>
-        <iframe title={title} src={titleData.url} className="h-96 w-full px-4 py-2 border-spacing-4 border-4 border-gray-400">
+        <iframe
+          title={title}
+          src={titleData.url}
+          className="h-96 w-full px-4 py-2 border-spacing-4 border-4 border-gray-400"
+        >
           <p>이 브라우저는 iframe을 지원하지 않습니다.</p>
         </iframe>
       </div>
@@ -101,7 +146,7 @@ function StoragePosts({ id, scrapData }) {
 
   return (
     <div className="py-4 border-2 border-gray-400 h-screen overflow-auto">
-      <h1 className="px-4 py-2 text-2xl text-center font-bold">검색어: {id}</h1>
+      <h1 className="px-4 py-2 text-2xl text-center font-bold">{id ? `검색어: ${id}` : ``}</h1>
       {keywordData && (
         <ul className="h-full overflow-auto p-6">
           {keywordData.map((title, index) => (
@@ -123,8 +168,6 @@ function StoragePosts({ id, scrapData }) {
     </div>
   );
 }
-
-
 
 function getTitleData(title, scrapData) {
   for (const item of scrapData) {
