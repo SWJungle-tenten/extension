@@ -99,7 +99,7 @@ export default function SignIn(prop) {
           </button>
         </p>
       </form>
-      <button
+      {/* <button
         className="border border-black text-black "
         onClick={() => {
           removeCookie("accessToken");
@@ -120,7 +120,7 @@ export default function SignIn(prop) {
         onClick={() => go("/main")}
       >
         go to main
-      </button>
+      </button> */}
     </div>
   );
 }
