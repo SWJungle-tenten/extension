@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 
-const Sidebar = ({ userData }) => {
+export default function Sidebar( userData ) {
   console.log('user',userData);
   return (
     <div>
@@ -10,4 +10,3 @@ const Sidebar = ({ userData }) => {
   );
 };
 
-export default Sidebar;
