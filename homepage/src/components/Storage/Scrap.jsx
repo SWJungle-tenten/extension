@@ -22,8 +22,8 @@ export default function Scrap({ scrapdata }) {
   };
 
   return (
-    <div className="h-screen flex px-5 ">
-      <div className="px-4 w-1/3 border-2 border-black">
+    <div className="h-screen flex overflow-auto">
+      <div className="px-4 w-2/5 border-2 border-black overflow-auto">
         <div className="text-right">
           <button className="px-2 py-2 rounded-sm bg-blue-500 text-white">
             검색어로 보기
@@ -34,17 +34,17 @@ export default function Scrap({ scrapdata }) {
             <div key={index}>
               {index === 0 || item.date !== scrapData[index - 1].date ? (
                 <ul>
-                  <li className="flex font-bold px-10" key={`date-${index}`}>
+                  <li className="flex font-bold px-4" key={`date-${index}`}>
                     {item.date}
                   </li>
                   {item.keywords.map((keyword, keywordIndex) => (
                     <ul key={`keyword-${index}-${keywordIndex}`}>
                       <li>
                         <button
-                          className="mt-2 block text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                          className="mt-2 font-semibold block px-4 py-2 text-xl hover:bg-gray-100 hover:text-gray-900"
                           onClick={() => handleKeywordClick(keyword.keyWord)}
                         >
-                          {keyword.keyWord}
+                          검색어: {keyword.keyWord}
                         </button>
                       </li>
                       {keyword.data &&
@@ -54,6 +54,7 @@ export default function Scrap({ scrapdata }) {
                           >
                             <li>
                               <button
+                                className="mt-1 font-medium px-4 text-sm hover:bg-gray-100 hover:text-gray-900"
                                 onClick={() => handleTitleClick(title.title)}
                               >
                                 {title.title}
@@ -69,7 +70,7 @@ export default function Scrap({ scrapdata }) {
           ))}
       </div>
       {currentPath && (
-        <div className="flex-1">
+        <div className="flex-1 ">
           {currentTitle ? (
             <Detail title={currentTitle} scrapData={scrapData} />
           ) : (
@@ -80,15 +81,14 @@ export default function Scrap({ scrapdata }) {
     </div>
   );
 }
-
 function Detail({ title, scrapData }) {
   const titleData = getTitleData(title, scrapData);
 
   return (
-    <div className="py-8 border-2 border-black">
-      <p className="text-center text-2xl font-bold">{title}</p>
+    <div className="py-8 border-2 border-gray-400 h-screen">
+      <p className="px-4 py-2 text-center text-2xl font-bold">{title}</p>
       <div>
-        <iframe title={title} src={titleData.url} className="h-96 w-full">
+        <iframe title={title} src={titleData.url} className="h-96 w-full px-4 py-2 border-spacing-4 border-4 border-gray-400">
           <p>이 브라우저는 iframe을 지원하지 않습니다.</p>
         </iframe>
       </div>
@@ -100,18 +100,18 @@ function StoragePosts({ id, scrapData }) {
   const keywordData = getKeywordData(id, scrapData);
 
   return (
-    <div className="py-8 border-2 border-black">
-      <h1 className="text-2xl text-center font-bold">검색어: {id}</h1>
+    <div className="py-4 border-2 border-gray-400 h-screen overflow-auto">
+      <h1 className="px-4 py-2 text-2xl text-center font-bold">검색어: {id}</h1>
       {keywordData && (
-        <ul className="h-full overflow-auto ">
+        <ul className="h-full overflow-auto p-6">
           {keywordData.map((title, index) => (
             <div key={index}>
-              <div className="text-left text-xl">{title.title}</div>
+              <div className="px-4 py-2 text-left text-xl">{title.title}</div>
               <div>
                 <iframe
                   title={`iframe-${index}`}
                   src={title.url}
-                  className="w-full h-60"
+                  className="w-full h-60 px-4 py-2 border-2 border-gray-400"
                 >
                   <p>이 브라우저는 iframe을 지원하지 않습니다.</p>
                 </iframe>
@@ -123,6 +123,8 @@ function StoragePosts({ id, scrapData }) {
     </div>
   );
 }
+
+
 
 function getTitleData(title, scrapData) {
   for (const item of scrapData) {
