@@ -48,7 +48,6 @@ export default function Scrap({ scrapdata }) {
                     className="mt-2 font-semibold block px-4 py-2 text-xl hover:bg-gray-100 hover:text-gray-900"
                     onClick={() => handleToggleKeywordClick(keyword.keyWord)}
                   >
-                    
                     검색어: {keyword.keyWord}
                   </button>
                   {currentKeyword === keyword.keyWord &&
@@ -82,9 +81,7 @@ export default function Scrap({ scrapdata }) {
                           className="mt-2 font-semibold block px-4 py-2 text-xl hover:bg-gray-100 hover:text-gray-900"
                           onClick={() => handleKeywordClick(keyword.keyWord)}
                         >
-                          {currentKeyword === keyword.keyWord
-                            ? keyword.keyWord
-                            : `검색어: ${keyword.keyWord}`}
+                          검색어: {keyword.keyWord}
                         </button>
                       </li>
                       {keyword.data &&
@@ -146,7 +143,9 @@ function StoragePosts({ id, scrapData }) {
 
   return (
     <div className="py-4 border-2 border-gray-400 h-screen overflow-auto">
-      <h1 className="px-4 py-2 text-2xl text-center font-bold">{id ? `검색어: ${id}` : ``}</h1>
+      <h1 className="px-4 py-2 text-2xl text-center font-bold">
+        {id ? `검색어: ${id}` : ``}
+      </h1>
       {keywordData && (
         <ul className="h-full overflow-auto p-6">
           {keywordData.map((title, index) => (
