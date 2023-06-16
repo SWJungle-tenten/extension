@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import CreateGroup from "./CreateGroup";
 import { createTheme } from "@mui/material";
+import InviteGroup from "./InviteGroup";
 
 const theme = createTheme({
   zIndex: {
@@ -11,8 +12,11 @@ const theme = createTheme({
 })
 
 export default function GroupModal(prop) {
-    const { open, modaltoggle } = prop;
+    const { open, modaltoggle, change } = prop;
 
+    const title = change==="group" ? "그룹 생성하기" : "그룹으로 초대하기";
+    const contents = change==="group" ? <CreateGroup/> : <InviteGroup/>;
+    
   return (
     <div>
       <Modal
@@ -32,9 +36,9 @@ export default function GroupModal(prop) {
             X
           </button>
           <div className="font-semibold text-center text-3xl text-orange-400">
-            그룹 생성하기
+            {title}
           </div>
-          <CreateGroup/>
+          {contents}
         </Box>
       </Modal>
     </div>

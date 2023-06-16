@@ -10,15 +10,17 @@ export default function Main() {
   const [cookies, setCookie, removeCookie] = useCookies("accessToken");
   const go = useNavigate();
 
+  const [change, setChange] = useState("");
   // 그룹 생성 모달
   const [groupOpen, setGroupOpen] = useState(false);
   const groupModalToggle = () => {
     setGroupOpen(!groupOpen);
+    setChange("group");
   };
   // 친구 초대 모달
-  const [inviteOpen, setInviteOpen] = useState(false);
   const inviteModalToggle = () => {
-    setInviteOpen(!inviteOpen);
+    setGroupOpen(!groupOpen);
+    setChange("invite");
   };
   // 그룹 제거
   const removeGroup = () => {
@@ -124,26 +126,22 @@ export default function Main() {
         >
           그룹 생성
         </button>
-        <GroupModal
-          open={groupOpen}
-          modaltoggle={groupModalToggle}
-        ></GroupModal>
         <button
           onClick={inviteModalToggle}
           className="text-white bg-orange-400 hover:bg-oragne-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
         >
           친구 초대
         </button>
-        <InviteModal
-          open={inviteOpen}
-          modaltoggle={inviteModalToggle}
-        ></InviteModal>
+        <GroupModal
+          open={groupOpen}
+          modaltoggle={groupModalToggle}
+          change={change}
+        ></GroupModal>
         <button
           onClick={removeGroup}
           className="text-white bg-orange-400 hover:bg-oragne-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
         >
-          {" "}
-          그룹 제거{" "}
+          그룹 제거
         </button>
       </div>
     </>
