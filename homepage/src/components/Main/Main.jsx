@@ -7,7 +7,7 @@ export default function Main() {
   const [cookies, setCookie ,removeCookie] = useCookies("accessToken");
   const go = useNavigate();
 
-  console.log(cookies.accessToken);
+  // console.log(cookies.accessToken);
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_ADDR}/api/auth`, {

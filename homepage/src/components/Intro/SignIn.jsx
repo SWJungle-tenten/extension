@@ -11,6 +11,7 @@ export default function SignIn(prop) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [expire, setExpire] = useState();
 
   const handleCheckboxChange = () => {
     setShowPassword(!showPassword);
@@ -18,7 +19,10 @@ export default function SignIn(prop) {
 
   const handleCookie = (data) => {
     const expireDate = new Date();
+    // 360분
     expireDate.setMinutes(expireDate.getMinutes() + 360);
+    setExpire(expireDate);
+    console.log(expireDate);
     setCookie("accessToken", data, {
       path: "/",
       expires: expireDate,
@@ -136,6 +140,8 @@ export default function SignIn(prop) {
         >
           go to main
         </button>
+        <button onClick={()=> {console.log(expire)}}>button</button>
+
       </div>
     </div>
   );
