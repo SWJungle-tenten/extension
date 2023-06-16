@@ -22,7 +22,6 @@ export default function SignIn(prop) {
     // 360분
     expireDate.setMinutes(expireDate.getMinutes() + 360);
     setExpire(expireDate);
-    console.log(expireDate);
     setCookie("accessToken", data, {
       path: "/",
       expires: expireDate,
@@ -52,8 +51,8 @@ export default function SignIn(prop) {
         }
       )
       .then(function (response) {
-        console.log("success");
-        console.log(response.data.token);
+        // console.log("success");
+        // console.log(response.data.token);
         handleCookie(response.data.token);
         go("/main");
       })

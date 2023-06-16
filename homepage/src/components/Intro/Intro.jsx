@@ -10,21 +10,22 @@ export default function Intro() {
   const go = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_ADDR}/api/auth`, {
-        headers: {
-          "x-auth-token": cookies.accessToken,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        // go("/main");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (cookies.accessToken) {
+      axios
+        .get(`${process.env.REACT_APP_SERVER_ADDR}/api/auth`, {
+          headers: {
+            "x-auth-token": cookies.accessToken,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          go("/main");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }, []);
-
 
   const modalToggle = () => {
     setOpen(!open);
