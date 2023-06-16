@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+
 
 export default function SignIn(prop) {
   const go = useNavigate();
@@ -11,7 +13,6 @@ export default function SignIn(prop) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [expire, setExpire] = useState();
 
   const handleCheckboxChange = () => {
     setShowPassword(!showPassword);
@@ -19,9 +20,8 @@ export default function SignIn(prop) {
 
   const handleCookie = (data) => {
     const expireDate = new Date();
-    // 360분
-    expireDate.setMinutes(expireDate.getMinutes() + 360);
-    setExpire(expireDate);
+    // 동적으로 바꾸기
+    expireDate.setMinutes(expireDate.getMinutes() + 60);
     setCookie("accessToken", data, {
       path: "/",
       expires: expireDate,
@@ -50,19 +50,37 @@ export default function SignIn(prop) {
           },
         }
       )
-      .then(function (response) {
+      .then((res) => {
         // console.log("success");
         // console.log(response.data.token);
-        handleCookie(response.data.token);
+        handleCookie(res.data.token);
         go("/main");
       })
       .catch((error) => {
         console.log("Error");
-        console.log(error);
-        alert("이메일 또는 비밀번호가 일치하지 않습니다.");
+        // console.log(error);
+        if(error.message === "Network Error"){
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "네트워크 에러!",
+          }); 
+        }
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "이메일 또는 비밀번호가 일치하지 않습니다.",
+        });
       });
   };
 
+  const alertHandle = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "이메일 또는 비밀번호가 일치하지 않습니다.?",
+    });
+  }
   return (
     <div className="p-6 pb-0">
       <form className="space-y-1" onSubmit={submitHandler}>
@@ -71,7 +89,7 @@ export default function SignIn(prop) {
             Email
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
             placeholder="name@gmail.com"
             onChange={emailHandler}
           />
@@ -83,7 +101,7 @@ export default function SignIn(prop) {
           <input
             placeholder="••••••••"
             type={showPassword ? "text" : "password"}
-            className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
             onChange={passwordHandler}
           />
         </div>
@@ -139,7 +157,7 @@ export default function SignIn(prop) {
         >
           go to main
         </button>
-        <button onClick={()=> {console.log(expire)}}>button</button>
+        <button onClick={alertHandle}>button</button>
 
       </div>
     </div>

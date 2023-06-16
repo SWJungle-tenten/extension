@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function SignUp(prop) {
   const { handleLogin } = prop;
@@ -35,18 +36,30 @@ export default function SignUp(prop) {
           },
         }
       )
-      .then(function (response) {
+      .then((res) => {
         // console.log(response);
         handleLogin();
-        alert("회원가입 완료");
+        Swal.fire({
+          icon: "success",
+          title: "회원가입 완료!",
+        });
 
       })
       .catch((error) => {
         if (error.response.status === 400) {
-          return alert("이미 존재하는 Email 입니다.")
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "이미 존재하는 Email 입니다.",
+          });
         }
         console.log("Error");
-        alert("회원가입 실패!");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "회원가입 실패!",
+          confirmButtonColor: "#0ea5e9",
+        });
       });
   };
   return (
@@ -57,7 +70,7 @@ export default function SignUp(prop) {
             Name
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
             placeholder="name"
             onChange={nameHandler}
           />
@@ -67,7 +80,7 @@ export default function SignUp(prop) {
             Email
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
             placeholder="name@gmail.com"
             onChange={emailHandler}
           />
@@ -79,7 +92,7 @@ export default function SignUp(prop) {
           <input
             placeholder="••••••••"
             type={showPassword ? "text" : "password"}
-            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
             onChange={passwordHandler}
           />
         </div>

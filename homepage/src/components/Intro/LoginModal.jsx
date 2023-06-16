@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
+import { createTheme } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -15,6 +16,11 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+const theme = createTheme({
+  zIndex: {
+    modal: 1060,
+  },
+})
 
 export default function LoginModal(prop) {
   const { open, openToggle } = prop;
@@ -30,6 +36,7 @@ export default function LoginModal(prop) {
     <div>
       <Modal
         open={open}
+        theme={theme}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
