@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import GroupModal from "../group/GroupModal";
-import InviteModal from "../group/InviteModal";
 import Swal from "sweetalert2";
 
 export default function Main() {
