@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
-import Intro from "./components/Intro/Intro";
-import Main from "./components/Main/Main";
-import Storage from "./components/Storage/Storage";
+import Intro from "./components/intro/Intro";
+import Main from "./components/main/Main";
+import Storage from "./components/storage/Storage";
 
 
 
