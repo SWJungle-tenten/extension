@@ -8,10 +8,7 @@ export default function Scrap({ scrapdata }) {
   const [currentTitle, setCurrentTitle] = useState(null);
   const [showKeywords, setShowKeywords] = useState(false);
   const [cookies] = useCookies(["accessToken"]);
-  useEffect(() => {
-    setData(scrapdata);
-  }, [scrapdata]);
-
+  
   const fetchData = async () => {
     try {
       const response = await fetch(
@@ -34,6 +31,10 @@ export default function Scrap({ scrapdata }) {
       console.log("Error getting data:", error);
     }
   };
+  useEffect(() => {
+    setData(scrapdata);
+    console.log('1234', scrapdata);
+  }, [scrapdata]);
 
   const deleteKeyword = async (keyWord, userToken, date) => {
     const response = await fetch(`${process.env.REACT_APP_SERVER_ADDR}/api/deleteKeyWord`, {
@@ -49,6 +50,7 @@ export default function Scrap({ scrapdata }) {
     fetchData();
     return await response.json();
   };
+
 
   const deleteTitle = async (title, userToken, date, url) => {
     const response = await fetch(`${process.env.REACT_APP_SERVER_ADDR}/api/deleteUserScrap`, {
@@ -114,7 +116,7 @@ export default function Scrap({ scrapdata }) {
                           item.date
                         )
                           .then((data) => {
-                            console.log(data);
+                            console.log('deletedata',data);
                           })
                           .catch((error) => {
                             // 에러 발생시 처리 로직을 여기에 작성합니다.
@@ -136,6 +138,7 @@ export default function Scrap({ scrapdata }) {
                             {title.title}
                           </button>
                           <button
+                          
                             onClick={() => {
                               deleteTitle(
                                 title.title,
@@ -144,7 +147,7 @@ export default function Scrap({ scrapdata }) {
                                 title.url
                               )
                                 .then((data) => {
-                                  console.log(data);
+                                  console.log('deletedata',data);
                                 })
                                 .catch((error) => {
                                   // 에러 발생시 처리 로직을 여기에 작성합니다.
@@ -191,7 +194,7 @@ export default function Scrap({ scrapdata }) {
                               )
                                 .then((data) => {
                                   // 삭제 성공시 처리 로직을 여기에 작성합니다.
-                                  console.log(data);
+                                  console.log('deletedata',data);
                                 })
                                 .catch((error) => {
                                   // 에러 발생시 처리 로직을 여기에 작성합니다.
@@ -226,7 +229,7 @@ export default function Scrap({ scrapdata }) {
                                       title.url
                                     )
                                       .then((data) => {
-                                        console.log(data);
+                                        console.log('deletedata',data);
                                       })
                                       .catch((error) => {
                                         // 에러 발생시 처리 로직을 여기에 작성합니다.

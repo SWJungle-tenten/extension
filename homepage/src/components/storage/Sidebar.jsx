@@ -7,7 +7,6 @@ export default function Sidebar() {
 
   useEffect(() => {
     const fetchUserName = async () => {
-      console.log('cookies.accessToken', cookies.accessToken);
       try {
         const response = await fetch(`${process.env.REACT_APP_SERVER_ADDR}/api/giveUserName`, {
           method: "POST",
@@ -22,7 +21,6 @@ export default function Sidebar() {
         }
 
         const data = await response.json();
-        console.log('data', data);
         setUserName(data.username);
       } catch (error) {
         console.error(error);
