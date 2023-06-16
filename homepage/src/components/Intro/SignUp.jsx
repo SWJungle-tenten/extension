@@ -6,6 +6,11 @@ export default function SignUp(prop) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setShowPassword(!showPassword);
+  };
 
   const emailHandler = (event) => {
     setEmail(event.target.value);
@@ -46,7 +51,7 @@ export default function SignUp(prop) {
   };
   return (
     <div className="p-6  pb-0">
-      <form className="space-y-2" onSubmit={submitHandler}>
+      <form className="space-y-1" onSubmit={submitHandler}>
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Name
@@ -73,9 +78,21 @@ export default function SignUp(prop) {
           </label>
           <input
             placeholder="••••••••"
+            type={showPassword ? "text" : "password"}
             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={passwordHandler}
           />
+        </div>
+        <div className="pt-1">
+          <label className="">
+            <input
+              className=""
+              type="checkbox"
+              checked={showPassword}
+              onChange={handleCheckboxChange}
+            />
+            <span className="pl-2">비밀번호 보기</span>
+          </label>
         </div>
         <div className="flex items-center justify-between"></div>
         <button
@@ -84,7 +101,7 @@ export default function SignUp(prop) {
         >
           회원가입
         </button>
-        <p className="text-sm font-light text-gray-600  dark:text-gray-400">
+        <p className="pt-2 text-sm font-light text-gray-600  dark:text-gray-400">
           이미 계정이 있으신가요? {""}
           <button
             onClick={handleLogin}

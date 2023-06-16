@@ -172,7 +172,7 @@ export default function Scrap({ scrapdata }) {
                     {item.date}
                   </li>
                   {item.keywords.map((keyword, keywordIndex) => (
-                    <ul key={`keyword-${index}-${keywordIndex}`}>
+                    <ul className="" key={`keyword-${index}-${keywordIndex}`}>
                       <li>
                         <div>
                           <button
@@ -206,6 +206,7 @@ export default function Scrap({ scrapdata }) {
                       {keyword.data &&
                         keyword.data.map((title, titleIndex) => (
                           <ul
+                            className="pl-4"
                             key={`title-${index}-${keywordIndex}-${titleIndex}`}
                           >
                             <li>
