@@ -50,14 +50,15 @@ export default function SignIn(prop) {
           },
         }
       )
-      .then(function (response) {
+      .then((res) => {
         // console.log("success");
         // console.log(response.data.token);
-        handleCookie(response.data.token);
+        handleCookie(res.data.token);
         go("/main");
       })
       .catch((error) => {
         console.log("Error");
+        // console.log(error);
         if(error.message === "Network Error"){
           return Swal.fire({
             icon: "error",

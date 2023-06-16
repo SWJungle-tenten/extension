@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import CreateGroup from "./CreateGroup";
@@ -15,7 +14,7 @@ export default function GroupModal(prop) {
     const { open, modaltoggle, change } = prop;
 
     const title = change==="group" ? "그룹 생성하기" : "그룹으로 초대하기";
-    const contents = change==="group" ? <CreateGroup/> : <InviteGroup/>;
+    const contents = change==="group" ? <CreateGroup modaltoggle={modaltoggle}/> : <InviteGroup modaltoggle={modaltoggle}/>;
     
   return (
     <div>

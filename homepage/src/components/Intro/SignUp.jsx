@@ -36,7 +36,7 @@ export default function SignUp(prop) {
           },
         }
       )
-      .then(function (response) {
+      .then((res) => {
         // console.log(response);
         handleLogin();
         Swal.fire({
