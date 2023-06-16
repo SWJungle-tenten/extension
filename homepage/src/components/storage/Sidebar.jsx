@@ -26,7 +26,6 @@ export default function Sidebar() {
         console.error(error);
       }
     };
-
     fetchUserName();
   }, [cookies.accessToken]);
 
