@@ -1,15 +1,41 @@
-import { ClassNames } from "@emotion/react";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 
-const Sidebar = ({ userData }) => {
+export default function Sidebar() {
+  const [cookies] = useCookies(["accessToken"]);
+  const [userName, setUserName] = useState(null);
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      console.log('cookies.accessToken', cookies.accessToken);
+      try {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_ADDR}/api/giveUserName`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userToken: cookies.accessToken }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('data', data);
+        setUserName(data.username);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserName();
+  }, [cookies.accessToken]);
+
   return (
     <div>
-      <p>Sidebar</p>
-      {/* 받아온 userData를 이용해서 회원 아이디와 닉네임 출력 */}
-      {/* <p>회원 아이디: {userData?.userId}</p> */}
-      <p>닉네임: {userData?.nickName}</p>
+      <p className="text-3xl font-bold">Sidebar</p>
+      <p className="text-2xl">반가워요 {userName} 님 !!!</p>
     </div>
   );
 };
-
-export default Sidebar;
