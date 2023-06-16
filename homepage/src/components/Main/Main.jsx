@@ -1,16 +1,61 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import GroupModal from "../group/GroupModal";
+import InviteModal from "../group/InviteModal";
+import Swal from "sweetalert2";
 
 export default function Main() {
   const [cookies, setCookie, removeCookie] = useCookies("accessToken");
   const go = useNavigate();
 
+  // 그룹 생성 모달
+  const [groupOpen, setGroupOpen] = useState(false);
+  const groupModalToggle = () => {
+    setGroupOpen(!groupOpen);
+  };
+  // 친구 초대 모달
+  const [inviteOpen, setInviteOpen] = useState(false);
+  const inviteModalToggle = () => {
+    setInviteOpen(!inviteOpen);
+  };
+  // 그룹 제거
+  const removeGroup = () => {
+    Swal.fire({
+      title: "그룹을 제거하시겠습니까?",
+      text: "다시 되돌릴 수 없습니다.",
+      icon: "warning",
+
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+
+      reverseButtons: true, // 버튼 순서 거꾸로
+    }).then((result) => {
+      // 만약 Promise리턴을 받으면,
+      if (result.isConfirmed) {
+        // 만약 모달창에서 confirm 버튼을 눌렀다면
+
+        Swal.fire({
+          icon: "success",
+          title: "제거 완료!",
+          text: "그룹이 제거되었습니다.",
+        });
+      }
+    });
+  };
+
   // console.log(cookies.accessToken);
   useEffect(() => {
     if (!cookies.accessToken) {
-      alert("로그인이 필요합니다.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "로그인이 필요합니다.",
+      });
       go("/");
     }
     // axios
@@ -72,6 +117,33 @@ export default function Main() {
           onClick={() => go("/storage")}
         >
           go to storage
+        </button>
+        <button
+          onClick={groupModalToggle}
+          className="text-white bg-orange-400 hover:bg-oragne-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+        >
+          그룹 생성
+        </button>
+        <GroupModal
+          open={groupOpen}
+          modaltoggle={groupModalToggle}
+        ></GroupModal>
+        <button
+          onClick={inviteModalToggle}
+          className="text-white bg-orange-400 hover:bg-oragne-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+        >
+          친구 초대
+        </button>
+        <InviteModal
+          open={inviteOpen}
+          modaltoggle={inviteModalToggle}
+        ></InviteModal>
+        <button
+          onClick={removeGroup}
+          className="text-white bg-orange-400 hover:bg-oragne-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+        >
+          {" "}
+          그룹 제거{" "}
         </button>
       </div>
     </>
