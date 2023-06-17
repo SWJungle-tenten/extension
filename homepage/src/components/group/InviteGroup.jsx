@@ -1,10 +1,14 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import InviteFriends from "./InviteFriends";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 
 export default function InviteGroup(prop) {
   const { modaltoggle } = prop;
   const [inviteEmail, setInviteEmail] = useState([]);
+  const [cookies] = useCookies("accessToken");
+
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -14,13 +18,28 @@ export default function InviteGroup(prop) {
     console.log(inviteEmail);
   };
 
-  const successInvite = () => {
-    console.log(inviteEmail);
-    Swal.fire({
-      icon: "success",
-      title: "친구 초대 완료!",
-    });
-    modaltoggle();
+  // API연결 해야 함
+  const successInvite = async () => {
+    // console.log(cookies.accessToken);
+    // await axios
+    //   .post(`${process.env.REACT_APP_SERVER_ADDR}/api/addGroupMember`, {
+    //     email: inviteEmail,
+    //     userToken: cookies.accessToken,
+    //     // groupName: ,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     Swal.fire({
+    //       icon: "success",
+    //       title: "친구 초대 완료!",
+    //     });
+    //     modaltoggle();
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    // console.log(inviteEmail);
   };
   return (
     <div className="p-6  pb-0">
