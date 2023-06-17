@@ -1,9 +1,11 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Scrap from "./Scrap";
 import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import io from "socket.io-client";
+
 
 export default function Storage() {
   const [data, setData] = useState(null);
@@ -11,35 +13,26 @@ export default function Storage() {
   const [isLoading, setIsLoading] = useState(false);
   const go = useNavigate();
   
-
-  const fetchData = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(`${process.env.REACT_APP_SERVER_ADDR}/api/keyWordByDate`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userToken: cookies.accessToken }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      // 데이터가 없을 때, 메세지 보내주면, 그걸로 처리해야함.
-      // const data_text = response.text();
-      // console.log('data_text', data_text);
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.log("Error getting data:", error);
-    }
-    setIsLoading(false);
-  }, [cookies.accessToken]);
-
+  
+  const [socket, setSocket] = useState(null);
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    const socket = io("ws://localhost:8080");
+    setSocket(socket);
+
+    socket.on("connect", () => {
+      console.log("socket.id", socket.id);
+      socket.emit("check storage request from client", {
+        userToken: cookies.accessToken,
+      });
+      socket.on("check storage respond from server", (data) => {
+        setData(data.dataToSend);
+      });
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (!cookies.accessToken) {
@@ -50,16 +43,19 @@ export default function Storage() {
       });
       go("/");
     }
-  },[fetchData]);
+  },[data]);
+
 
 
   return (
     <div className="flex">
-      <div className="flex border border-black p-3 flex-shrink-0">
-        {!isLoading&&<Sidebar data={data} />}
+      <div
+         className="flex border border-black p-3 flex-shrink-0">
+        {!isLoading && <Sidebar data={data} />}
       </div>
       <div className="flex-grow">
-        {!isLoading&&data&&<Scrap data={data} />}
+        {!isLoading && data && <Scrap userScrapData={data} socket={socket} />}
+
       </div>
     </div>
   );

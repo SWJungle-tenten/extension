@@ -1,19 +1,26 @@
-// ScrapListItem.js
-import React from 'react';
-import Keyword from './Keyword';
-import Title from './Title';
+import React from "react";
+import Keyword from "./Keyword";
+import Title from "./Title";
 
-export default function ScrapListItem({ item, handleToggleKeywordClick, deleteKeyword, cookies, currentKeyword, handleTitleClick, deleteTitle }) {
+export default function ScrapListItem({
+  item,
+  handleToggleKeywordClick,
+  deleteKeyword,
+  cookies,
+  currentKeyword,
+  handleTitleClick,
+  deleteTitle,
+}) {
   return (
     <ul>
       {item.keywords.map((keyword, keywordIndex) => (
         <li key={`keyword-${keywordIndex}`}>
-          <Keyword 
-            keyword={keyword} 
-            handleToggleKeywordClick={handleToggleKeywordClick} 
-            deleteKeyword={deleteKeyword} 
-            cookies={cookies} 
-            item={item} 
+          <Keyword
+            keyword={keyword}
+            handleToggleKeywordClick={handleToggleKeywordClick}
+            deleteKeyword={deleteKeyword}
+            cookies={cookies}
+            item={item}
           />
           {currentKeyword === keyword.keyWord &&
             keyword.data.map((title, titleIndex) => (
