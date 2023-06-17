@@ -38,7 +38,7 @@ export default function Intro() {
         </h1>
         <button
           onClick={modalToggle}
-          className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-2xl"
+          className="bg-orange-600 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-2xl"
           href="/signin"
         >
           시작하기

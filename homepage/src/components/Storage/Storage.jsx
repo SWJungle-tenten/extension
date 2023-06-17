@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Scrap from "./Scrap";
 import { useCookies } from "react-cookie";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
+
 
 export default function Storage() {
   const [data, setData] = useState(null);
   const [cookies] = useCookies(["accessToken"]);
   const [isLoading, setIsLoading] = useState(false);
+  const go = useNavigate();
+  
+  
   const [socket, setSocket] = useState(null);
   useEffect(() => {
     const socket = io("ws://localhost:8080");
@@ -28,15 +34,28 @@ export default function Storage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!cookies.accessToken) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "로그인이 필요합니다.",
+      });
+      go("/");
+    }
+  },[data]);
+
+
+
   return (
-    <div style={{ display: "flex" }}>
+    <div className="flex">
       <div
-        style={{ border: "1px solid black", padding: "10px", flexShrink: 0 }}
-      >
+         className="flex border border-black p-3 flex-shrink-0">
         {!isLoading && <Sidebar data={data} />}
       </div>
-      <div style={{ flexGrow: 1 }}>
+      <div className="flex-grow">
         {!isLoading && data && <Scrap userScrapData={data} socket={socket} />}
+
       </div>
     </div>
   );
