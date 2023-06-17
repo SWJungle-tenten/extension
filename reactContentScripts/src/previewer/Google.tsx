@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import ScrapButton from "../components/google/ScrapButton";
+import ScrapButton from "../components/ScrapButton";
 
 function Google() {
   const [previewUrl, setPreviewUrl] = useState(null);

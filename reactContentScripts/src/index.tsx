@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Naver from "./domain/Naver";
-import Google from "./domain/Google";
+import Naver from "./previewer/Naver";
+import Google from "./previewer/Google";
 
 const rootElement = document.createElement("div");
 rootElement.id = "react-chrome-app";
