@@ -14,23 +14,23 @@ export default function InviteFriends(prop) {
     if (email) {
       // 중복 확인
       if (!inviteEmail.includes(email)) {
-        await axios
-          .post(`${process.env.REACT_APP_SERVER_ADDR}/api/checkEmail`, {
-            email: email,
-          })
-          .then((res) => {
-            if (res.data.message === "없는 이메일") {
-              return Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "존재하지 않는 이메일입니다.",
-              });
-            }
+        // await axios
+        //   .post(`${process.env.REACT_APP_SERVER_ADDR}/api/checkEmail`, {
+        //     email: email,
+        //   })
+        //   .then((res) => {
+        //     if (res.data.message === "없는 이메일") {
+        //       return Swal.fire({
+        //         icon: "error",
+        //         title: "Oops...",
+        //         text: "존재하지 않는 이메일입니다.",
+        //       });
+        //     }
             setInviteEmail((prev) => [...prev, email]);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //   });
       } else {
         Swal.fire({
           icon: "error",

@@ -57,7 +57,7 @@ export default function Main() {
         title: "Oops...",
         text: "로그인이 필요합니다.",
       });
-      go("/");
+      // go("/");
     }
     // axios
     //   .get(`${process.env.REACT_APP_SERVER_ADDR}/api/auth`, {
@@ -77,23 +77,27 @@ export default function Main() {
     //   });
   }, []);
   const logout = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_SERVER_ADDR}/api/logout`, {
-        headers: {
-          "x-auth-token": cookies.accessToken,
-        },
-      })
-      .then((res) => {
-        // console.log(res);
-        removeCookie("accessToken");
-        // alert("로그아웃 완료.");
-        go("/");
-      })
-      .catch((error) => {
-        // console.log(error);
-        // removeCookie("accessToken");
-        // go("/");
-      });
+    if (cookies.accessToken) {
+      await axios
+        .get(`${process.env.REACT_APP_SERVER_ADDR}/api/logout`, {
+          headers: {
+            "x-auth-token": cookies.accessToken,
+          },
+        })
+        .then((res) => {
+          // console.log(res);
+          removeCookie("accessToken");
+          // alert("로그아웃 완료.");
+          go("/");
+        })
+        .catch((error) => {
+          // console.log(error);
+          removeCookie("accessToken");
+          go("/");
+        });
+    } else {
+      go("/");
+    }
   };
   return (
     <>
