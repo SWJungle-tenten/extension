@@ -1,7 +1,12 @@
-// Title.js
-import React from 'react';
+import React from "react";
 
-export default function Title({ title, handleTitleClick, deleteTitle, cookies, item }) {
+export default function Title({
+  title,
+  handleTitleClick,
+  deleteTitle,
+  cookies,
+  item,
+}) {
   return (
     <div>
       <button
@@ -12,18 +17,7 @@ export default function Title({ title, handleTitleClick, deleteTitle, cookies, i
       </button>
       <button
         onClick={() => {
-          deleteTitle(
-            title.title,
-            cookies.accessToken,
-            item.date,
-            title.url
-          )
-            .then((data) => {
-              console.log('deletedata',data);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
+          deleteTitle(title.title, cookies.accessToken, item.date, title.url);
         }}
         className="ml-2"
       >

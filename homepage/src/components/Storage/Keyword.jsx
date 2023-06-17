@@ -1,7 +1,12 @@
-// Keyword.js
-import React from 'react';
+import React from "react";
 
-export default function Keyword({ keyword, handleToggleKeywordClick, deleteKeyword, cookies, item }) {
+export default function Keyword({
+  keyword,
+  handleToggleKeywordClick,
+  deleteKeyword,
+  cookies,
+  item,
+}) {
   return (
     <div>
       <button
@@ -13,17 +18,7 @@ export default function Keyword({ keyword, handleToggleKeywordClick, deleteKeywo
       <button
         className="ml-2"
         onClick={() => {
-          deleteKeyword(
-            keyword.keyWord,
-            cookies.accessToken,
-            item.date
-          )
-            .then((data) => {
-              console.log('deletedata',data);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
+          deleteKeyword(keyword.keyWord, cookies.accessToken, item.date);
         }}
       >
         x
