@@ -2,11 +2,14 @@ import React, { useEffect, useState, useCallback } from "react";
 import Sidebar from "./Sidebar";
 import Scrap from "./Scrap";
 import { useCookies } from "react-cookie";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function Storage() {
   const [data, setData] = useState(null);
   const [cookies] = useCookies(["accessToken"]);
   const [isLoading, setIsLoading] = useState(false);
+  const go = useNavigate();
   
 
   const fetchData = useCallback(async () => {
@@ -33,15 +36,29 @@ export default function Storage() {
     }
     setIsLoading(false);
   }, [cookies.accessToken]);
+
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  useEffect(() => {
+    if (!cookies.accessToken) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "로그인이 필요합니다.",
+      });
+      go("/");
+    }
+  },[fetchData]);
+
+
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ border: "1px solid black", padding: "10px", flexShrink: 0 }}>
+    <div className="flex">
+      <div className="flex border border-black p-3 flex-shrink-0">
         {!isLoading&&<Sidebar data={data} />}
       </div>
-      <div style={{ flexGrow: 1 }}>
+      <div className="flex-grow">
         {!isLoading&&data&&<Scrap data={data} />}
       </div>
     </div>
