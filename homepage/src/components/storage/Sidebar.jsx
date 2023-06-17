@@ -8,13 +8,16 @@ export default function Sidebar() {
   useEffect(() => {
     const fetchUserName = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_ADDR}/api/giveUserName`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userToken: cookies.accessToken }),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_ADDR}/api/giveUserName`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userToken: cookies.accessToken }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -35,4 +38,4 @@ export default function Sidebar() {
       <p className="text-2xl">반가워요 {userName} 님 !!!</p>
     </div>
   );
-};
+}

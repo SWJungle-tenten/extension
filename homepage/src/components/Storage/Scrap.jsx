@@ -1,96 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import io from "socket.io-client";
 import Posts from "./Posts";
 import Detail from "./Detail";
 import ScrapListItem from "./ScrapListItem";
 import Keyword from "./Keyword";
 import Title from "./Title";
 
-export default function Scrap({ data }) {
-  const [scrapData, setScrapData] = useState(data);
+export default function Scrap({ socket, userScrapData }) {
+  const [scrapData, setScrapData] = useState(userScrapData);
   const [currentPath, setCurrentPath] = useState(true);
   const [currentKeyword, setCurrentKeyword] = useState(null);
   const [currentTitle, setCurrentTitle] = useState(null);
   const [showKeywords, setShowKeywords] = useState(false);
   const [cookies] = useCookies(["accessToken"]);
-  // // 소켓 클라이언트 생성
-  // const socket = io("ws://localhost:8080");
 
-  // // 소켓 이벤트 리스너
-  // socket.on("", () => {
-  //   console.log("소켓 연결됨");
-  // });
+  socket.on("deleteKeyWord respond from server", (data) => {
+    setScrapData(data.dataToSend);
+  });
+  socket.on("deleteUserScrap respond from server", (data) => {
+    setScrapData(data.dataToSend);
+  });
+  socket.on("saveUserScrap respond from server", (data) => {
+    setScrapData(data.dataToSend);
+  });
 
-  // socket.on("keyWordByDate", () => {
-  //   console.log("소켓 연결됨");c
-  // });
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_SERVER_ADDR}/api/keyWordByDate`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userToken: cookies.accessToken }),
-        }
-      );
-      // 추가된 부분: 응답의 상태를 체크합니다.
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setScrapData(data);
-    } catch (error) {
-      console.log("Error getting data:", error);
-    }
-  };
-  // useEffect(() => {}, [scrapData]);
-
-  const deleteKeyword = async (keyWord, userToken, date) => {
-    const response = await fetch(
-      `${process.env.REACT_APP_SERVER_ADDR}/api/deleteKeyWord`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ keyWord, date, userToken }),
-      }
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    fetchData();
-    // console.log("response", response);
-    // let newScrapData = await response.json();
-    // setScrapData(newScrapData);
-    // 삭제한 데이터 response로 업데이트
-    return;
+  const deleteKeyword = (keyWord, userToken, date) => {
+    socket.emit("deleteKeyWord request from client", {
+      keyWord,
+      userToken,
+      date,
+    });
+    socket.on("deleteKeyWord respond from server", (data) => {
+      setScrapData(data.dataToSend);
+    });
   };
 
-  const deleteTitle = async (title, userToken, date, url) => {
-    const response = await fetch(
-      `${process.env.REACT_APP_SERVER_ADDR}/api/deleteUserScrap`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, date, userToken, url }),
-      }
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    fetchData();
-    // let newScrapData = await response.json();
-    // setScrapData(newScrapData);
-    return;
-  };
+  const deleteTitle = (title, userToken, date, url) => {
+    socket.emit("deleteUserScrap request from client", {
+      title,
+      userToken,
+      date,
+      url,
+    });
 
+    socket.on("deleteUserScrap respond from server", (data) => {
+      setScrapData(data.dataToSend);
+    });
+  };
 
   const handleTitleClick = (title) => {
     setCurrentPath(`/storage/${currentKeyword}/${title}`);
@@ -163,12 +119,12 @@ export default function Scrap({ data }) {
             </div>
           ))}
       </div>
-      {currentPath && (
+      {scrapData && currentPath && (
         <div className="flex-1 ">
           {currentTitle ? (
-            <Detail title={currentTitle} scrapData={scrapData} />
+            <Detail title={currentTitle} userScrapData={scrapData} />
           ) : (
-            <Posts id={currentKeyword} scrapData={scrapData} />
+            <Posts id={currentKeyword} userScrapData={scrapData} />
           )}
         </div>
       )}
