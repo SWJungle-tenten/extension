@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import handlePreviewEvent from "../util/handlePreviewEvent";
 
 function Shortcuts({ setPreviewUrl }) {
@@ -9,14 +9,13 @@ function Shortcuts({ setPreviewUrl }) {
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
 
-      if (e.key === "s" || e.key === "w") {
+      if (e.code === "KeyS" || e.code === "KeyW") {
         e.preventDefault();
 
         const currentElement = document.activeElement;
         const curFocus = Array.from(focusable).indexOf(currentElement);
         let nextFocus;
-
-        if (e.key === "s") {
+        if (e.code === "KeyS") {
           nextFocus = curFocus < focusable.length - 1 ? curFocus + 1 : 0;
         } else {
           nextFocus = curFocus > 0 ? curFocus - 1 : focusable.length - 1;
