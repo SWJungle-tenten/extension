@@ -4,19 +4,23 @@ import handlePreviewEvent from "../util/handlePreviewEvent";
 
 function Shortcuts({ setPreviewUrl }) {
   const focusable = document.querySelectorAll(".LC20lb");
-  const [curFocus, setCurFocus] = useState(-1);
+
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
 
       if (e.key === "s" || e.key === "w") {
         e.preventDefault();
-        if (e.key === "s") {
-          const nextFocus = curFocus < focusable.length - 1 ? curFocus + 1 : 0;
-        } else {
-          const nextFocus = curFocus > 0 ? curFocus - 1 : focusable.length - 1;
-        }
 
+        const currentElement = document.activeElement;
+        const curFocus = Array.from(focusable).indexOf(currentElement);
+        let nextFocus;
+
+        if (e.key === "s") {
+          nextFocus = curFocus < focusable.length - 1 ? curFocus + 1 : 0;
+        } else {
+          nextFocus = curFocus > 0 ? curFocus - 1 : focusable.length - 1;
+        }
         focusable[nextFocus].setAttribute("tabindex", "0");
         focusable[nextFocus].focus();
         focusable[curFocus]?.parentElement.parentElement.parentElement?.parentElement?.parentElement.style.border = "";
@@ -24,18 +28,17 @@ function Shortcuts({ setPreviewUrl }) {
         focusable[nextFocus].parentElement.parentElement.parentElement?.parentElement?.parentElement.style.border =
           "solid 1px";
         focusable[curFocus]?.parentElement.parentElement.parentElement?.parentElement?.parentElement.style.top = "-2px";
-        setCurFocus(nextFocus);
       }
     };
     document.addEventListener("keypress", handleKeyPress);
 
     return () => document.removeEventListener("keypress", handleKeyPress);
-  }, [curFocus, focusable]);
+  }, [focusable]);
 
   document.addEventListener(
     "focus",
     async (e) => {
-      setPreviewUrl(await handlePreviewEvent(e, 300));
+      setPreviewUrl(await handlePreviewEvent(e));
     },
     { capture: true }
   );
