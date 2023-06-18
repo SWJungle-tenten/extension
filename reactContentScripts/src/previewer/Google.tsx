@@ -8,7 +8,14 @@ function Google() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
 
-  document.addEventListener("mouseover", (e) => setPreviewUrl(handlePreviewEvent(e)), { capture: true });
+  document.addEventListener(
+    "mouseover",
+    async (e) => {
+      setPreviewUrl(await handlePreviewEvent(e, 700));
+    },
+    { capture: true }
+  );
+
   useEffect(() => {
     chrome.runtime.sendMessage({ action: "getToken" }, (response) => {
       if (response.accessToken) {
@@ -25,9 +32,18 @@ function Google() {
 
   return (
     <>
-      <Shortcuts setPreviewUrl />
+      <Shortcuts setPreviewUrl={setPreviewUrl} />
       {accessToken && <ScrapButton accessToken={accessToken} />}
-      <div style={{ width: "40vw", marginLeft: "35px", height: "70vh", top: "0", position: "sticky" }}>
+      <div
+        style={{
+          width: "40vw",
+          marginLeft: "35px",
+          marginTop: "-30px",
+          height: "78vh",
+          top: "72px",
+          position: "sticky",
+        }}
+      >
         <iframe id="previewer" title="previewer" src={previewUrl} style={{ width: "100%", height: "100%" }}></iframe>
       </div>
     </>

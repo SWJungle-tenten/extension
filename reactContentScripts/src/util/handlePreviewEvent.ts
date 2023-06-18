@@ -1,17 +1,19 @@
 // @ts-nocheck
-const handlePreviewEvent = (e) => {
-  const eventTarget = e.target;
+const handlePreviewEvent = (event, time) => {
+  const eventTarget = event.target;
 
-  setTimeout(() => {
-    if (eventTarget?.className === "LC20lb MBeuO DKV0Md") {
-      return eventTarget.parentElement.href;
-    } else if (
-      (eventTarget.tagName === "A") &
-      (((eventTarget.className === "") & (eventTarget.id === "")) | (eventTarget.className === "l"))
-    ) {
-      return eventTarget.href;
-    }
-  }, 700);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (eventTarget?.className === "LC20lb MBeuO DKV0Md") {
+        resolve(eventTarget.parentElement.href);
+      } else if (
+        (eventTarget.tagName === "A") &
+        (((eventTarget.className === "") & (eventTarget.id === "")) | (eventTarget.className === "l"))
+      ) {
+        resolve(eventTarget.href);
+      }
+    }, time);
+  });
 };
 
 export default handlePreviewEvent;
