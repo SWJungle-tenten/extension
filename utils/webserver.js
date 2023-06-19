@@ -1,6 +1,7 @@
 process.env.BABEL_ENV = "development";
 process.env.NODE_ENV = "development";
 process.env.ASSET_PATH = "/";
+process.env.PORT = 5500;
 
 var WebpackDevServer = require("webpack-dev-server"),
   webpack = require("webpack"),
@@ -27,7 +28,7 @@ var compiler = webpack(config);
 var server = new WebpackDevServer(
   {
     https: false,
-    hot: false,
+    hot: true,
     liveReload: false,
     client: {
       webSocketTransport: "sockjs",
