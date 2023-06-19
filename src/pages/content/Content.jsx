@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import ScrapButton from "../components/google/ScrapButton";
+import ScrapButton from "./components/ScrapButton";
 
-function Google() {
+function Content() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
 
@@ -41,11 +41,20 @@ function Google() {
   return (
     <>
       {accessToken && <ScrapButton accessToken={accessToken} />}
-      <div style={{ width: "40vw", marginLeft: "35px", height: "70vh", top: "0", position: "sticky" }}>
+      <div
+        style={{
+          width: "40vw",
+          marginLeft: "35px",
+          marginTop: "-30px",
+          height: "78vh",
+          top: "60px",
+          position: "sticky",
+        }}
+      >
         <iframe id="previewer" title="previewer" src={previewUrl} style={{ width: "100%", height: "100%" }}></iframe>
       </div>
     </>
   );
 }
 
-export default Google;
+export default Content;

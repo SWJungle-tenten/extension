@@ -8,8 +8,8 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/*", "https://www.search.naver.com/*"],
-      "js": ["content.js"]
+      "matches": ["https://www.google.com/*"],
+      "js": ["contentScript.bundle.js"]
     }
   ],
   "permissions": ["cookies", "nativeMessaging", "tabs", "activeTab"],
@@ -18,7 +18,12 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "service_worker": "service-worker.js",
-    "type": "module"
-  }
+    "service_worker": "background.bundle.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icon.png"],
+      "matches": []
+    }
+  ]
 }
