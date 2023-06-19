@@ -25,7 +25,6 @@ function ScrapButton({ accessToken }) {
             event.preventDefault();
 
             const data = {
-              userToken: accessToken,
               keyWord: document.querySelector("#APjFqb").innerHTML,
               url: el.querySelector("a").href,
               title: el.querySelector("h3").innerText,
@@ -34,6 +33,9 @@ function ScrapButton({ accessToken }) {
             const response = await axios({
               url: `http://localhost:8080/api/saveUserScrap`,
               method: "post",
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
               data,
             });
             if (response.status === 200) {
