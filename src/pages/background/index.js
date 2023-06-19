@@ -1,4 +1,4 @@
-const SERVER_ADDR = "http://localhost:8080";
+import { SERVER_ADDR } from "/utils/env.js";
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "getToken") {
