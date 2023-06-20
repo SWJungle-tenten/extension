@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useEffect } from "react";
-import handlePreviewEvent from "../util/handlePreviewEvent";
+import handlePreviewEvent from "../utils/handlePreviewEvent";
 
 function Shortcuts({ setPreviewUrl }) {
   const focusable = document.querySelectorAll(".LC20lb");
@@ -22,11 +22,15 @@ function Shortcuts({ setPreviewUrl }) {
         }
         focusable[nextFocus].setAttribute("tabindex", "0");
         focusable[nextFocus].focus();
-        focusable[curFocus]?.parentElement.parentElement.parentElement?.parentElement?.parentElement.style.border = "";
-        focusable[curFocus]?.parentElement.parentElement.parentElement?.parentElement?.parentElement.style.top = "2px";
-        focusable[nextFocus].parentElement.parentElement.parentElement?.parentElement?.parentElement.style.border =
+        focusable[curFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty(
+          "border"
+        );
+        focusable[curFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty(
+          "top"
+        );
+        focusable[nextFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.border =
           "solid 1px";
-        focusable[curFocus]?.parentElement.parentElement.parentElement?.parentElement?.parentElement.style.top = "-2px";
+        focusable[curFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.top = "-2px";
       }
     };
     document.addEventListener("keypress", handleKeyPress);

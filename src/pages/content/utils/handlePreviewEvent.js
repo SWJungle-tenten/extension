@@ -1,4 +1,3 @@
-// @ts-nocheck
 const handlePreviewEvent = (event, time) => {
   const eventTarget = event.target;
 

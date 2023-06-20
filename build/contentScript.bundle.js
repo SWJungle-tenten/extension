@@ -36549,14 +36549,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../components/ScrapButton'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util/handlePreviewEvent'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../components/Shortcuts'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _components_ScrapButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/ScrapButton */ "./src/pages/content/components/ScrapButton.jsx");
+/* harmony import */ var _utils_handlePreviewEvent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/handlePreviewEvent */ "./src/pages/content/utils/handlePreviewEvent.js");
+/* harmony import */ var _components_Shortcuts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Shortcuts */ "./src/pages/content/components/Shortcuts.jsx");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
 var _s = __webpack_require__.$Refresh$.signature();
-// @ts-nocheck
 
 
 
@@ -36566,7 +36565,7 @@ function Content() {
   const [previewUrl, setPreviewUrl] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [accessToken, setAccessToken] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   document.addEventListener("mouseover", async e => {
-    setPreviewUrl(await Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util/handlePreviewEvent'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(e, 700));
+    setPreviewUrl(await (0,_utils_handlePreviewEvent__WEBPACK_IMPORTED_MODULE_2__["default"])(e, 700));
   }, {
     capture: true
   });
@@ -36584,9 +36583,9 @@ function Content() {
       setAccessToken(message.accessToken);
     }
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../components/Shortcuts'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Shortcuts__WEBPACK_IMPORTED_MODULE_3__["default"], {
     setPreviewUrl: setPreviewUrl
-  }), accessToken && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../components/ScrapButton'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
+  }), accessToken && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ScrapButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
     accessToken: accessToken
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
@@ -36612,6 +36611,207 @@ _c = Content;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Content);
 var _c;
 __webpack_require__.$Refresh$.register(_c, "Content");
+
+const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
+const $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
+	$ReactRefreshModuleId$
+);
+
+function $ReactRefreshModuleRuntime$(exports) {
+	if (true) {
+		let errorOverlay;
+		if (true) {
+			errorOverlay = false;
+		}
+		let testMode;
+		if (typeof __react_refresh_test__ !== 'undefined') {
+			testMode = __react_refresh_test__;
+		}
+		return __react_refresh_utils__.executeRuntime(
+			exports,
+			$ReactRefreshModuleId$,
+			module.hot,
+			errorOverlay,
+			testMode
+		);
+	}
+}
+
+if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
+	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
+} else {
+	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
+}
+
+/***/ }),
+
+/***/ "./src/pages/content/components/ScrapButton.jsx":
+/*!******************************************************!*\
+  !*** ./src/pages/content/components/ScrapButton.jsx ***!
+  \******************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
+
+var _s = __webpack_require__.$Refresh$.signature();
+// @ts-nocheck
+
+
+function ScrapButton({
+  accessToken
+}) {
+  _s();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (accessToken) {
+      const hyperlinks = document.querySelectorAll(".yuRUbf");
+      hyperlinks.forEach(el => {
+        const button = document.createElement("button");
+        button.textContent = "스크랩";
+        button.className = "scrap-btn";
+        button.style.position = "relative";
+        button.style.bottom = "6px";
+        button.style.marginLeft = "15px";
+        button.style.alignSelf = "flex-end";
+        el.style.display = "flex";
+        el.appendChild(button);
+        el.addEventListener("click", async event => {
+          if (event.target.className === "scrap-btn") {
+            event.stopPropagation();
+            event.preventDefault();
+            const data = {
+              keyWord: document.querySelector("#APjFqb").innerHTML,
+              url: el.querySelector("a").href,
+              title: el.querySelector("h3").innerText
+            };
+            const response = await (0,axios__WEBPACK_IMPORTED_MODULE_1__["default"])({
+              url: `http://localhost:8080/api/saveUserScrap`,
+              method: "post",
+              headers: {
+                Authorization: `Bearer ${accessToken}`
+              },
+              data
+            });
+            if (response.status === 200) {
+              event.target.innerText = "스크랩 완료";
+              event.target.disabled = true;
+            } else {
+              alert("스크랩 실패");
+            }
+          }
+        });
+      });
+    }
+  }, [accessToken]);
+}
+_s(ScrapButton, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+_c = ScrapButton;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ScrapButton);
+var _c;
+__webpack_require__.$Refresh$.register(_c, "ScrapButton");
+
+const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
+const $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
+	$ReactRefreshModuleId$
+);
+
+function $ReactRefreshModuleRuntime$(exports) {
+	if (true) {
+		let errorOverlay;
+		if (true) {
+			errorOverlay = false;
+		}
+		let testMode;
+		if (typeof __react_refresh_test__ !== 'undefined') {
+			testMode = __react_refresh_test__;
+		}
+		return __react_refresh_utils__.executeRuntime(
+			exports,
+			$ReactRefreshModuleId$,
+			module.hot,
+			errorOverlay,
+			testMode
+		);
+	}
+}
+
+if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
+	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
+} else {
+	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
+}
+
+/***/ }),
+
+/***/ "./src/pages/content/components/Shortcuts.jsx":
+/*!****************************************************!*\
+  !*** ./src/pages/content/components/Shortcuts.jsx ***!
+  \****************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_handlePreviewEvent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/handlePreviewEvent */ "./src/pages/content/utils/handlePreviewEvent.js");
+/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
+
+var _s = __webpack_require__.$Refresh$.signature();
+// @ts-nocheck
+
+
+function Shortcuts({
+  setPreviewUrl
+}) {
+  _s();
+  const focusable = document.querySelectorAll(".LC20lb");
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const handleKeyPress = e => {
+      if (document.activeElement?.tagName === "TEXTAREA") return;
+      if (e.code === "KeyS" || e.code === "KeyW") {
+        e.preventDefault();
+        const currentElement = document.activeElement;
+        const curFocus = Array.from(focusable).indexOf(currentElement);
+        let nextFocus;
+        if (e.code === "KeyS") {
+          nextFocus = curFocus < focusable.length - 1 ? curFocus + 1 : 0;
+        } else {
+          nextFocus = curFocus > 0 ? curFocus - 1 : focusable.length - 1;
+        }
+        focusable[nextFocus].setAttribute("tabindex", "0");
+        focusable[nextFocus].focus();
+        focusable[curFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty("border");
+        focusable[curFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty("top");
+        focusable[nextFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.border = "solid 1px";
+        focusable[curFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.top = "-2px";
+      }
+    };
+    document.addEventListener("keypress", handleKeyPress);
+    return () => document.removeEventListener("keypress", handleKeyPress);
+  }, [focusable]);
+  document.addEventListener("focus", async e => {
+    setPreviewUrl(await (0,_utils_handlePreviewEvent__WEBPACK_IMPORTED_MODULE_1__["default"])(e));
+  }, {
+    capture: true
+  });
+}
+_s(Shortcuts, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+_c = Shortcuts;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Shortcuts);
+var _c;
+__webpack_require__.$Refresh$.register(_c, "Shortcuts");
 
 const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
 const $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
@@ -36726,88 +36926,64 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 
 /***/ }),
 
-/***/ "./node_modules/webpack-dev-server/client/clients/SockJSClient.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/webpack-dev-server/client/clients/SockJSClient.js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./src/pages/content/utils/handlePreviewEvent.js":
+/*!*******************************************************!*\
+  !*** ./src/pages/content/utils/handlePreviewEvent.js ***!
+  \*******************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ SockJSClient)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _modules_sockjs_client_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/sockjs-client/index.js */ "./node_modules/webpack-dev-server/client/modules/sockjs-client/index.js");
-/* harmony import */ var _modules_sockjs_client_index_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_sockjs_client_index_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_log_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/log.js */ "./node_modules/webpack-dev-server/client/utils/log.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+const handlePreviewEvent = (event, time) => {
+  const eventTarget = event.target;
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (eventTarget?.className === "LC20lb MBeuO DKV0Md") {
+        resolve(eventTarget.parentElement.href);
+      } else if (eventTarget.tagName === "A" & (eventTarget.className === "" & eventTarget.id === "" | eventTarget.className === "l")) {
+        resolve(eventTarget.href);
+      }
+    }, time);
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handlePreviewEvent);
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
+const $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
+	$ReactRefreshModuleId$
+);
 
+function $ReactRefreshModuleRuntime$(exports) {
+	if (true) {
+		let errorOverlay;
+		if (true) {
+			errorOverlay = false;
+		}
+		let testMode;
+		if (typeof __react_refresh_test__ !== 'undefined') {
+			testMode = __react_refresh_test__;
+		}
+		return __react_refresh_utils__.executeRuntime(
+			exports,
+			$ReactRefreshModuleId$,
+			module.hot,
+			errorOverlay,
+			testMode
+		);
+	}
+}
 
-
-
-var SockJSClient = /*#__PURE__*/function () {
-  /**
-   * @param {string} url
-   */
-  function SockJSClient(url) {
-    _classCallCheck(this, SockJSClient);
-
-    // SockJS requires `http` and `https` protocols
-    this.sock = new (_modules_sockjs_client_index_js__WEBPACK_IMPORTED_MODULE_0___default())(url.replace(/^ws:/i, "http:").replace(/^wss:/i, "https:"));
-
-    this.sock.onerror =
-    /**
-     * @param {Error} error
-     */
-    function (error) {
-      _utils_log_js__WEBPACK_IMPORTED_MODULE_1__.log.error(error);
-    };
-  }
-  /**
-   * @param {(...args: any[]) => void} f
-   */
-
-
-  _createClass(SockJSClient, [{
-    key: "onOpen",
-    value: function onOpen(f) {
-      this.sock.onopen = f;
-    }
-    /**
-     * @param {(...args: any[]) => void} f
-     */
-
-  }, {
-    key: "onClose",
-    value: function onClose(f) {
-      this.sock.onclose = f;
-    } // call f with the message string as the first argument
-
-    /**
-     * @param {(...args: any[]) => void} f
-     */
-
-  }, {
-    key: "onMessage",
-    value: function onMessage(f) {
-      this.sock.onmessage =
-      /**
-       * @param {Error & { data: string }} e
-       */
-      function (e) {
-        f(e.data);
-      };
-    }
-  }]);
-
-  return SockJSClient;
-}();
-
-
+if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
+	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
+} else {
+	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
+}
 
 /***/ }),
 
@@ -36884,14 +37060,14 @@ var WebSocketClient = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=localhost&port=5500&pathname=%2Fws&logging=info&overlay=true&reconnect=10&hot=true&live-reload=false":
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=localhost&port=5500&pathname=%2Fws&logging=info&overlay=true&reconnect=10&hot=true&live-reload=false ***!
-  \**************************************************************************************************************************************************************************************/
+/***/ "./node_modules/webpack-dev-server/client/index.js?protocol=wss%3A&hostname=localhost&port=5500&pathname=%2Fws&logging=info&overlay=true&reconnect=10&hot=true&live-reload=false":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/webpack-dev-server/client/index.js?protocol=wss%3A&hostname=localhost&port=5500&pathname=%2Fws&logging=info&overlay=true&reconnect=10&hot=true&live-reload=false ***!
+  \***************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-var __resourceQuery = "?protocol=ws%3A&hostname=localhost&port=5500&pathname=%2Fws&logging=info&overlay=true&reconnect=10&hot=true&live-reload=false";
+var __resourceQuery = "?protocol=wss%3A&hostname=localhost&port=5500&pathname=%2Fws&logging=info&overlay=true&reconnect=10&hot=true&live-reload=false";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! webpack/hot/log.js */ "./node_modules/webpack/hot/log.js");
 /* harmony import */ var webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -38051,5699 +38227,6 @@ if(__nested_webpack_exports__.__esModule) Object.defineProperty(__webpack_export
 
 /***/ }),
 
-/***/ "./node_modules/webpack-dev-server/client/modules/sockjs-client/index.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/webpack-dev-server/client/modules/sockjs-client/index.js ***!
-  \*******************************************************************************/
-/***/ (function(module) {
-
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(true)
-		module.exports = factory();
-	else {}
-})((typeof self !== 'undefined' ? self : this), function() {
-return /******/ (function() { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./node_modules/inherits/inherits_browser.js":
-/*!***************************************************!*\
-  !*** ./node_modules/inherits/inherits_browser.js ***!
-  \***************************************************/
-/***/ (function(module) {
-
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor;
-      ctor.prototype = Object.create(superCtor.prototype, {
-        constructor: {
-          value: ctor,
-          enumerable: false,
-          writable: true,
-          configurable: true
-        }
-      });
-    }
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor;
-
-      var TempCtor = function TempCtor() {};
-
-      TempCtor.prototype = superCtor.prototype;
-      ctor.prototype = new TempCtor();
-      ctor.prototype.constructor = ctor;
-    }
-  };
-}
-
-/***/ }),
-
-/***/ "./node_modules/ms/index.js":
-/*!**********************************!*\
-  !*** ./node_modules/ms/index.js ***!
-  \**********************************/
-/***/ (function(module) {
-
-/**
- * Helpers.
- */
-var s = 1000;
-var m = s * 60;
-var h = m * 60;
-var d = h * 24;
-var w = d * 7;
-var y = d * 365.25;
-/**
- * Parse or format the given `val`.
- *
- * Options:
- *
- *  - `long` verbose formatting [false]
- *
- * @param {String|Number} val
- * @param {Object} [options]
- * @throws {Error} throw an error if val is not a non-empty string or a number
- * @return {String|Number}
- * @api public
- */
-
-module.exports = function (val, options) {
-  options = options || {};
-  var type = typeof val;
-
-  if (type === 'string' && val.length > 0) {
-    return parse(val);
-  } else if (type === 'number' && isFinite(val)) {
-    return options.long ? fmtLong(val) : fmtShort(val);
-  }
-
-  throw new Error('val is not a non-empty string or a valid number. val=' + JSON.stringify(val));
-};
-/**
- * Parse the given `str` and return milliseconds.
- *
- * @param {String} str
- * @return {Number}
- * @api private
- */
-
-
-function parse(str) {
-  str = String(str);
-
-  if (str.length > 100) {
-    return;
-  }
-
-  var match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(str);
-
-  if (!match) {
-    return;
-  }
-
-  var n = parseFloat(match[1]);
-  var type = (match[2] || 'ms').toLowerCase();
-
-  switch (type) {
-    case 'years':
-    case 'year':
-    case 'yrs':
-    case 'yr':
-    case 'y':
-      return n * y;
-
-    case 'weeks':
-    case 'week':
-    case 'w':
-      return n * w;
-
-    case 'days':
-    case 'day':
-    case 'd':
-      return n * d;
-
-    case 'hours':
-    case 'hour':
-    case 'hrs':
-    case 'hr':
-    case 'h':
-      return n * h;
-
-    case 'minutes':
-    case 'minute':
-    case 'mins':
-    case 'min':
-    case 'm':
-      return n * m;
-
-    case 'seconds':
-    case 'second':
-    case 'secs':
-    case 'sec':
-    case 's':
-      return n * s;
-
-    case 'milliseconds':
-    case 'millisecond':
-    case 'msecs':
-    case 'msec':
-    case 'ms':
-      return n;
-
-    default:
-      return undefined;
-  }
-}
-/**
- * Short format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-
-function fmtShort(ms) {
-  var msAbs = Math.abs(ms);
-
-  if (msAbs >= d) {
-    return Math.round(ms / d) + 'd';
-  }
-
-  if (msAbs >= h) {
-    return Math.round(ms / h) + 'h';
-  }
-
-  if (msAbs >= m) {
-    return Math.round(ms / m) + 'm';
-  }
-
-  if (msAbs >= s) {
-    return Math.round(ms / s) + 's';
-  }
-
-  return ms + 'ms';
-}
-/**
- * Long format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-
-function fmtLong(ms) {
-  var msAbs = Math.abs(ms);
-
-  if (msAbs >= d) {
-    return plural(ms, msAbs, d, 'day');
-  }
-
-  if (msAbs >= h) {
-    return plural(ms, msAbs, h, 'hour');
-  }
-
-  if (msAbs >= m) {
-    return plural(ms, msAbs, m, 'minute');
-  }
-
-  if (msAbs >= s) {
-    return plural(ms, msAbs, s, 'second');
-  }
-
-  return ms + ' ms';
-}
-/**
- * Pluralization helper.
- */
-
-
-function plural(ms, msAbs, n, name) {
-  var isPlural = msAbs >= n * 1.5;
-  return Math.round(ms / n) + ' ' + name + (isPlural ? 's' : '');
-}
-
-/***/ }),
-
-/***/ "./node_modules/querystringify/index.js":
-/*!**********************************************!*\
-  !*** ./node_modules/querystringify/index.js ***!
-  \**********************************************/
-/***/ (function(__unused_webpack_module, exports) {
-
-"use strict";
-
-
-var has = Object.prototype.hasOwnProperty,
-    undef;
-/**
- * Decode a URI encoded string.
- *
- * @param {String} input The URI encoded string.
- * @returns {String|Null} The decoded string.
- * @api private
- */
-
-function decode(input) {
-  try {
-    return decodeURIComponent(input.replace(/\+/g, ' '));
-  } catch (e) {
-    return null;
-  }
-}
-/**
- * Attempts to encode a given input.
- *
- * @param {String} input The string that needs to be encoded.
- * @returns {String|Null} The encoded string.
- * @api private
- */
-
-
-function encode(input) {
-  try {
-    return encodeURIComponent(input);
-  } catch (e) {
-    return null;
-  }
-}
-/**
- * Simple query string parser.
- *
- * @param {String} query The query string that needs to be parsed.
- * @returns {Object}
- * @api public
- */
-
-
-function querystring(query) {
-  var parser = /([^=?#&]+)=?([^&]*)/g,
-      result = {},
-      part;
-
-  while (part = parser.exec(query)) {
-    var key = decode(part[1]),
-        value = decode(part[2]); //
-    // Prevent overriding of existing properties. This ensures that build-in
-    // methods like `toString` or __proto__ are not overriden by malicious
-    // querystrings.
-    //
-    // In the case if failed decoding, we want to omit the key/value pairs
-    // from the result.
-    //
-
-    if (key === null || value === null || key in result) continue;
-    result[key] = value;
-  }
-
-  return result;
-}
-/**
- * Transform a query string to an object.
- *
- * @param {Object} obj Object that should be transformed.
- * @param {String} prefix Optional prefix.
- * @returns {String}
- * @api public
- */
-
-
-function querystringify(obj, prefix) {
-  prefix = prefix || '';
-  var pairs = [],
-      value,
-      key; //
-  // Optionally prefix with a '?' if needed
-  //
-
-  if ('string' !== typeof prefix) prefix = '?';
-
-  for (key in obj) {
-    if (has.call(obj, key)) {
-      value = obj[key]; //
-      // Edge cases where we actually want to encode the value to an empty
-      // string instead of the stringified value.
-      //
-
-      if (!value && (value === null || value === undef || isNaN(value))) {
-        value = '';
-      }
-
-      key = encode(key);
-      value = encode(value); //
-      // If we failed to encode the strings, we should bail out as we don't
-      // want to add invalid strings to the query.
-      //
-
-      if (key === null || value === null) continue;
-      pairs.push(key + '=' + value);
-    }
-  }
-
-  return pairs.length ? prefix + pairs.join('&') : '';
-} //
-// Expose the module.
-//
-
-
-exports.stringify = querystringify;
-exports.parse = querystring;
-
-/***/ }),
-
-/***/ "./node_modules/requires-port/index.js":
-/*!*********************************************!*\
-  !*** ./node_modules/requires-port/index.js ***!
-  \*********************************************/
-/***/ (function(module) {
-
-"use strict";
-
-/**
- * Check if we're required to add a port number.
- *
- * @see https://url.spec.whatwg.org/#default-port
- * @param {Number|String} port Port number we need to check
- * @param {String} protocol Protocol we need to check against.
- * @returns {Boolean} Is it a default port for the given protocol
- * @api private
- */
-
-module.exports = function required(port, protocol) {
-  protocol = protocol.split(':')[0];
-  port = +port;
-  if (!port) return false;
-
-  switch (protocol) {
-    case 'http':
-    case 'ws':
-      return port !== 80;
-
-    case 'https':
-    case 'wss':
-      return port !== 443;
-
-    case 'ftp':
-      return port !== 21;
-
-    case 'gopher':
-      return port !== 70;
-
-    case 'file':
-      return false;
-  }
-
-  return port !== 0;
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/entry.js":
-/*!*************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/entry.js ***!
-  \*************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_8830__) {
-
-"use strict";
-
-
-var transportList = __nested_webpack_require_8830__(/*! ./transport-list */ "./node_modules/sockjs-client/lib/transport-list.js");
-
-module.exports = __nested_webpack_require_8830__(/*! ./main */ "./node_modules/sockjs-client/lib/main.js")(transportList); // TODO can't get rid of this until all servers do
-
-if ('_sockjs_onload' in __nested_webpack_require_8830__.g) {
-  setTimeout(__nested_webpack_require_8830__.g._sockjs_onload, 1);
-}
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/event/close.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/event/close.js ***!
-  \*******************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_9560__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_9560__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    Event = __nested_webpack_require_9560__(/*! ./event */ "./node_modules/sockjs-client/lib/event/event.js");
-
-function CloseEvent() {
-  Event.call(this);
-  this.initEvent('close', false, false);
-  this.wasClean = false;
-  this.code = 0;
-  this.reason = '';
-}
-
-inherits(CloseEvent, Event);
-module.exports = CloseEvent;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/event/emitter.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/event/emitter.js ***!
-  \*********************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_10316__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_10316__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventTarget = __nested_webpack_require_10316__(/*! ./eventtarget */ "./node_modules/sockjs-client/lib/event/eventtarget.js");
-
-function EventEmitter() {
-  EventTarget.call(this);
-}
-
-inherits(EventEmitter, EventTarget);
-
-EventEmitter.prototype.removeAllListeners = function (type) {
-  if (type) {
-    delete this._listeners[type];
-  } else {
-    this._listeners = {};
-  }
-};
-
-EventEmitter.prototype.once = function (type, listener) {
-  var self = this,
-      fired = false;
-
-  function g() {
-    self.removeListener(type, g);
-
-    if (!fired) {
-      fired = true;
-      listener.apply(this, arguments);
-    }
-  }
-
-  this.on(type, g);
-};
-
-EventEmitter.prototype.emit = function () {
-  var type = arguments[0];
-  var listeners = this._listeners[type];
-
-  if (!listeners) {
-    return;
-  } // equivalent of Array.prototype.slice.call(arguments, 1);
-
-
-  var l = arguments.length;
-  var args = new Array(l - 1);
-
-  for (var ai = 1; ai < l; ai++) {
-    args[ai - 1] = arguments[ai];
-  }
-
-  for (var i = 0; i < listeners.length; i++) {
-    listeners[i].apply(this, args);
-  }
-};
-
-EventEmitter.prototype.on = EventEmitter.prototype.addListener = EventTarget.prototype.addEventListener;
-EventEmitter.prototype.removeListener = EventTarget.prototype.removeEventListener;
-module.exports.EventEmitter = EventEmitter;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/event/event.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/event/event.js ***!
-  \*******************************************************/
-/***/ (function(module) {
-
-"use strict";
-
-
-function Event(eventType) {
-  this.type = eventType;
-}
-
-Event.prototype.initEvent = function (eventType, canBubble, cancelable) {
-  this.type = eventType;
-  this.bubbles = canBubble;
-  this.cancelable = cancelable;
-  this.timeStamp = +new Date();
-  return this;
-};
-
-Event.prototype.stopPropagation = function () {};
-
-Event.prototype.preventDefault = function () {};
-
-Event.CAPTURING_PHASE = 1;
-Event.AT_TARGET = 2;
-Event.BUBBLING_PHASE = 3;
-module.exports = Event;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/event/eventtarget.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/event/eventtarget.js ***!
-  \*************************************************************/
-/***/ (function(module) {
-
-"use strict";
-
-/* Simplified implementation of DOM2 EventTarget.
- *   http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
- */
-
-function EventTarget() {
-  this._listeners = {};
-}
-
-EventTarget.prototype.addEventListener = function (eventType, listener) {
-  if (!(eventType in this._listeners)) {
-    this._listeners[eventType] = [];
-  }
-
-  var arr = this._listeners[eventType]; // #4
-
-  if (arr.indexOf(listener) === -1) {
-    // Make a copy so as not to interfere with a current dispatchEvent.
-    arr = arr.concat([listener]);
-  }
-
-  this._listeners[eventType] = arr;
-};
-
-EventTarget.prototype.removeEventListener = function (eventType, listener) {
-  var arr = this._listeners[eventType];
-
-  if (!arr) {
-    return;
-  }
-
-  var idx = arr.indexOf(listener);
-
-  if (idx !== -1) {
-    if (arr.length > 1) {
-      // Make a copy so as not to interfere with a current dispatchEvent.
-      this._listeners[eventType] = arr.slice(0, idx).concat(arr.slice(idx + 1));
-    } else {
-      delete this._listeners[eventType];
-    }
-
-    return;
-  }
-};
-
-EventTarget.prototype.dispatchEvent = function () {
-  var event = arguments[0];
-  var t = event.type; // equivalent of Array.prototype.slice.call(arguments, 0);
-
-  var args = arguments.length === 1 ? [event] : Array.apply(null, arguments); // TODO: This doesn't match the real behavior; per spec, onfoo get
-  // their place in line from the /first/ time they're set from
-  // non-null. Although WebKit bumps it to the end every time it's
-  // set.
-
-  if (this['on' + t]) {
-    this['on' + t].apply(this, args);
-  }
-
-  if (t in this._listeners) {
-    // Grab a reference to the listeners list. removeEventListener may alter the list.
-    var listeners = this._listeners[t];
-
-    for (var i = 0; i < listeners.length; i++) {
-      listeners[i].apply(this, args);
-    }
-  }
-};
-
-module.exports = EventTarget;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/event/trans-message.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/event/trans-message.js ***!
-  \***************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_15008__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_15008__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    Event = __nested_webpack_require_15008__(/*! ./event */ "./node_modules/sockjs-client/lib/event/event.js");
-
-function TransportMessageEvent(data) {
-  Event.call(this);
-  this.initEvent('message', false, false);
-  this.data = data;
-}
-
-inherits(TransportMessageEvent, Event);
-module.exports = TransportMessageEvent;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/facade.js":
-/*!**************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/facade.js ***!
-  \**************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_15733__) {
-
-"use strict";
-
-
-var iframeUtils = __nested_webpack_require_15733__(/*! ./utils/iframe */ "./node_modules/sockjs-client/lib/utils/iframe.js");
-
-function FacadeJS(transport) {
-  this._transport = transport;
-  transport.on('message', this._transportMessage.bind(this));
-  transport.on('close', this._transportClose.bind(this));
-}
-
-FacadeJS.prototype._transportClose = function (code, reason) {
-  iframeUtils.postMessage('c', JSON.stringify([code, reason]));
-};
-
-FacadeJS.prototype._transportMessage = function (frame) {
-  iframeUtils.postMessage('t', frame);
-};
-
-FacadeJS.prototype._send = function (data) {
-  this._transport.send(data);
-};
-
-FacadeJS.prototype._close = function () {
-  this._transport.close();
-
-  this._transport.removeAllListeners();
-};
-
-module.exports = FacadeJS;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/iframe-bootstrap.js":
-/*!************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/iframe-bootstrap.js ***!
-  \************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_16845__) {
-
-"use strict";
-
-
-var urlUtils = __nested_webpack_require_16845__(/*! ./utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    eventUtils = __nested_webpack_require_16845__(/*! ./utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
-    FacadeJS = __nested_webpack_require_16845__(/*! ./facade */ "./node_modules/sockjs-client/lib/facade.js"),
-    InfoIframeReceiver = __nested_webpack_require_16845__(/*! ./info-iframe-receiver */ "./node_modules/sockjs-client/lib/info-iframe-receiver.js"),
-    iframeUtils = __nested_webpack_require_16845__(/*! ./utils/iframe */ "./node_modules/sockjs-client/lib/utils/iframe.js"),
-    loc = __nested_webpack_require_16845__(/*! ./location */ "./node_modules/sockjs-client/lib/location.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_16845__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:iframe-bootstrap');
-}
-
-module.exports = function (SockJS, availableTransports) {
-  var transportMap = {};
-  availableTransports.forEach(function (at) {
-    if (at.facadeTransport) {
-      transportMap[at.facadeTransport.transportName] = at.facadeTransport;
-    }
-  }); // hard-coded for the info iframe
-  // TODO see if we can make this more dynamic
-
-  transportMap[InfoIframeReceiver.transportName] = InfoIframeReceiver;
-  var parentOrigin;
-  /* eslint-disable camelcase */
-
-  SockJS.bootstrap_iframe = function () {
-    /* eslint-enable camelcase */
-    var facade;
-    iframeUtils.currentWindowId = loc.hash.slice(1);
-
-    var onMessage = function onMessage(e) {
-      if (e.source !== parent) {
-        return;
-      }
-
-      if (typeof parentOrigin === 'undefined') {
-        parentOrigin = e.origin;
-      }
-
-      if (e.origin !== parentOrigin) {
-        return;
-      }
-
-      var iframeMessage;
-
-      try {
-        iframeMessage = JSON.parse(e.data);
-      } catch (ignored) {
-        debug('bad json', e.data);
-        return;
-      }
-
-      if (iframeMessage.windowId !== iframeUtils.currentWindowId) {
-        return;
-      }
-
-      switch (iframeMessage.type) {
-        case 's':
-          var p;
-
-          try {
-            p = JSON.parse(iframeMessage.data);
-          } catch (ignored) {
-            debug('bad json', iframeMessage.data);
-            break;
-          }
-
-          var version = p[0];
-          var transport = p[1];
-          var transUrl = p[2];
-          var baseUrl = p[3];
-          debug(version, transport, transUrl, baseUrl); // change this to semver logic
-
-          if (version !== SockJS.version) {
-            throw new Error('Incompatible SockJS! Main site uses:' + ' "' + version + '", the iframe:' + ' "' + SockJS.version + '".');
-          }
-
-          if (!urlUtils.isOriginEqual(transUrl, loc.href) || !urlUtils.isOriginEqual(baseUrl, loc.href)) {
-            throw new Error('Can\'t connect to different domain from within an ' + 'iframe. (' + loc.href + ', ' + transUrl + ', ' + baseUrl + ')');
-          }
-
-          facade = new FacadeJS(new transportMap[transport](transUrl, baseUrl));
-          break;
-
-        case 'm':
-          facade._send(iframeMessage.data);
-
-          break;
-
-        case 'c':
-          if (facade) {
-            facade._close();
-          }
-
-          facade = null;
-          break;
-      }
-    };
-
-    eventUtils.attachEvent('message', onMessage); // Start
-
-    iframeUtils.postMessage('s');
-  };
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/info-ajax.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/info-ajax.js ***!
-  \*****************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_20493__) {
-
-"use strict";
-
-
-var EventEmitter = (__nested_webpack_require_20493__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    inherits = __nested_webpack_require_20493__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    objectUtils = __nested_webpack_require_20493__(/*! ./utils/object */ "./node_modules/sockjs-client/lib/utils/object.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_20493__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:info-ajax');
-}
-
-function InfoAjax(url, AjaxObject) {
-  EventEmitter.call(this);
-  var self = this;
-  var t0 = +new Date();
-  this.xo = new AjaxObject('GET', url);
-  this.xo.once('finish', function (status, text) {
-    var info, rtt;
-
-    if (status === 200) {
-      rtt = +new Date() - t0;
-
-      if (text) {
-        try {
-          info = JSON.parse(text);
-        } catch (e) {
-          debug('bad json', text);
-        }
-      }
-
-      if (!objectUtils.isObject(info)) {
-        info = {};
-      }
-    }
-
-    self.emit('finish', info, rtt);
-    self.removeAllListeners();
-  });
-}
-
-inherits(InfoAjax, EventEmitter);
-
-InfoAjax.prototype.close = function () {
-  this.removeAllListeners();
-  this.xo.close();
-};
-
-module.exports = InfoAjax;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/info-iframe-receiver.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/info-iframe-receiver.js ***!
-  \****************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_22115__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_22115__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = (__nested_webpack_require_22115__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    XHRLocalObject = __nested_webpack_require_22115__(/*! ./transport/sender/xhr-local */ "./node_modules/sockjs-client/lib/transport/sender/xhr-local.js"),
-    InfoAjax = __nested_webpack_require_22115__(/*! ./info-ajax */ "./node_modules/sockjs-client/lib/info-ajax.js");
-
-function InfoReceiverIframe(transUrl) {
-  var self = this;
-  EventEmitter.call(this);
-  this.ir = new InfoAjax(transUrl, XHRLocalObject);
-  this.ir.once('finish', function (info, rtt) {
-    self.ir = null;
-    self.emit('message', JSON.stringify([info, rtt]));
-  });
-}
-
-inherits(InfoReceiverIframe, EventEmitter);
-InfoReceiverIframe.transportName = 'iframe-info-receiver';
-
-InfoReceiverIframe.prototype.close = function () {
-  if (this.ir) {
-    this.ir.close();
-    this.ir = null;
-  }
-
-  this.removeAllListeners();
-};
-
-module.exports = InfoReceiverIframe;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/info-iframe.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/info-iframe.js ***!
-  \*******************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_23484__) {
-
-"use strict";
-
-
-var EventEmitter = (__nested_webpack_require_23484__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    inherits = __nested_webpack_require_23484__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    utils = __nested_webpack_require_23484__(/*! ./utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
-    IframeTransport = __nested_webpack_require_23484__(/*! ./transport/iframe */ "./node_modules/sockjs-client/lib/transport/iframe.js"),
-    InfoReceiverIframe = __nested_webpack_require_23484__(/*! ./info-iframe-receiver */ "./node_modules/sockjs-client/lib/info-iframe-receiver.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_23484__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:info-iframe');
-}
-
-function InfoIframe(baseUrl, url) {
-  var self = this;
-  EventEmitter.call(this);
-
-  var go = function go() {
-    var ifr = self.ifr = new IframeTransport(InfoReceiverIframe.transportName, url, baseUrl);
-    ifr.once('message', function (msg) {
-      if (msg) {
-        var d;
-
-        try {
-          d = JSON.parse(msg);
-        } catch (e) {
-          debug('bad json', msg);
-          self.emit('finish');
-          self.close();
-          return;
-        }
-
-        var info = d[0],
-            rtt = d[1];
-        self.emit('finish', info, rtt);
-      }
-
-      self.close();
-    });
-    ifr.once('close', function () {
-      self.emit('finish');
-      self.close();
-    });
-  }; // TODO this seems the same as the 'needBody' from transports
-
-
-  if (!__nested_webpack_require_23484__.g.document.body) {
-    utils.attachEvent('load', go);
-  } else {
-    go();
-  }
-}
-
-inherits(InfoIframe, EventEmitter);
-
-InfoIframe.enabled = function () {
-  return IframeTransport.enabled();
-};
-
-InfoIframe.prototype.close = function () {
-  if (this.ifr) {
-    this.ifr.close();
-  }
-
-  this.removeAllListeners();
-  this.ifr = null;
-};
-
-module.exports = InfoIframe;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/info-receiver.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/info-receiver.js ***!
-  \*********************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_25748__) {
-
-"use strict";
-
-
-var EventEmitter = (__nested_webpack_require_25748__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    inherits = __nested_webpack_require_25748__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    urlUtils = __nested_webpack_require_25748__(/*! ./utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    XDR = __nested_webpack_require_25748__(/*! ./transport/sender/xdr */ "./node_modules/sockjs-client/lib/transport/sender/xdr.js"),
-    XHRCors = __nested_webpack_require_25748__(/*! ./transport/sender/xhr-cors */ "./node_modules/sockjs-client/lib/transport/sender/xhr-cors.js"),
-    XHRLocal = __nested_webpack_require_25748__(/*! ./transport/sender/xhr-local */ "./node_modules/sockjs-client/lib/transport/sender/xhr-local.js"),
-    XHRFake = __nested_webpack_require_25748__(/*! ./transport/sender/xhr-fake */ "./node_modules/sockjs-client/lib/transport/sender/xhr-fake.js"),
-    InfoIframe = __nested_webpack_require_25748__(/*! ./info-iframe */ "./node_modules/sockjs-client/lib/info-iframe.js"),
-    InfoAjax = __nested_webpack_require_25748__(/*! ./info-ajax */ "./node_modules/sockjs-client/lib/info-ajax.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_25748__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:info-receiver');
-}
-
-function InfoReceiver(baseUrl, urlInfo) {
-  debug(baseUrl);
-  var self = this;
-  EventEmitter.call(this);
-  setTimeout(function () {
-    self.doXhr(baseUrl, urlInfo);
-  }, 0);
-}
-
-inherits(InfoReceiver, EventEmitter); // TODO this is currently ignoring the list of available transports and the whitelist
-
-InfoReceiver._getReceiver = function (baseUrl, url, urlInfo) {
-  // determine method of CORS support (if needed)
-  if (urlInfo.sameOrigin) {
-    return new InfoAjax(url, XHRLocal);
-  }
-
-  if (XHRCors.enabled) {
-    return new InfoAjax(url, XHRCors);
-  }
-
-  if (XDR.enabled && urlInfo.sameScheme) {
-    return new InfoAjax(url, XDR);
-  }
-
-  if (InfoIframe.enabled()) {
-    return new InfoIframe(baseUrl, url);
-  }
-
-  return new InfoAjax(url, XHRFake);
-};
-
-InfoReceiver.prototype.doXhr = function (baseUrl, urlInfo) {
-  var self = this,
-      url = urlUtils.addPath(baseUrl, '/info');
-  debug('doXhr', url);
-  this.xo = InfoReceiver._getReceiver(baseUrl, url, urlInfo);
-  this.timeoutRef = setTimeout(function () {
-    debug('timeout');
-
-    self._cleanup(false);
-
-    self.emit('finish');
-  }, InfoReceiver.timeout);
-  this.xo.once('finish', function (info, rtt) {
-    debug('finish', info, rtt);
-
-    self._cleanup(true);
-
-    self.emit('finish', info, rtt);
-  });
-};
-
-InfoReceiver.prototype._cleanup = function (wasClean) {
-  debug('_cleanup');
-  clearTimeout(this.timeoutRef);
-  this.timeoutRef = null;
-
-  if (!wasClean && this.xo) {
-    this.xo.close();
-  }
-
-  this.xo = null;
-};
-
-InfoReceiver.prototype.close = function () {
-  debug('close');
-  this.removeAllListeners();
-
-  this._cleanup(false);
-};
-
-InfoReceiver.timeout = 8000;
-module.exports = InfoReceiver;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/location.js":
-/*!****************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/location.js ***!
-  \****************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_29005__) {
-
-"use strict";
-
-
-module.exports = __nested_webpack_require_29005__.g.location || {
-  origin: 'http://localhost:80',
-  protocol: 'http:',
-  host: 'localhost',
-  port: 80,
-  href: 'http://localhost/',
-  hash: ''
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/main.js":
-/*!************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/main.js ***!
-  \************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_29501__) {
-
-"use strict";
-
-
-__nested_webpack_require_29501__(/*! ./shims */ "./node_modules/sockjs-client/lib/shims.js");
-
-var URL = __nested_webpack_require_29501__(/*! url-parse */ "./node_modules/url-parse/index.js"),
-    inherits = __nested_webpack_require_29501__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    random = __nested_webpack_require_29501__(/*! ./utils/random */ "./node_modules/sockjs-client/lib/utils/random.js"),
-    escape = __nested_webpack_require_29501__(/*! ./utils/escape */ "./node_modules/sockjs-client/lib/utils/escape.js"),
-    urlUtils = __nested_webpack_require_29501__(/*! ./utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    eventUtils = __nested_webpack_require_29501__(/*! ./utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
-    transport = __nested_webpack_require_29501__(/*! ./utils/transport */ "./node_modules/sockjs-client/lib/utils/transport.js"),
-    objectUtils = __nested_webpack_require_29501__(/*! ./utils/object */ "./node_modules/sockjs-client/lib/utils/object.js"),
-    browser = __nested_webpack_require_29501__(/*! ./utils/browser */ "./node_modules/sockjs-client/lib/utils/browser.js"),
-    log = __nested_webpack_require_29501__(/*! ./utils/log */ "./node_modules/sockjs-client/lib/utils/log.js"),
-    Event = __nested_webpack_require_29501__(/*! ./event/event */ "./node_modules/sockjs-client/lib/event/event.js"),
-    EventTarget = __nested_webpack_require_29501__(/*! ./event/eventtarget */ "./node_modules/sockjs-client/lib/event/eventtarget.js"),
-    loc = __nested_webpack_require_29501__(/*! ./location */ "./node_modules/sockjs-client/lib/location.js"),
-    CloseEvent = __nested_webpack_require_29501__(/*! ./event/close */ "./node_modules/sockjs-client/lib/event/close.js"),
-    TransportMessageEvent = __nested_webpack_require_29501__(/*! ./event/trans-message */ "./node_modules/sockjs-client/lib/event/trans-message.js"),
-    InfoReceiver = __nested_webpack_require_29501__(/*! ./info-receiver */ "./node_modules/sockjs-client/lib/info-receiver.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_29501__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:main');
-}
-
-var transports; // follow constructor steps defined at http://dev.w3.org/html5/websockets/#the-websocket-interface
-
-function SockJS(url, protocols, options) {
-  if (!(this instanceof SockJS)) {
-    return new SockJS(url, protocols, options);
-  }
-
-  if (arguments.length < 1) {
-    throw new TypeError("Failed to construct 'SockJS: 1 argument required, but only 0 present");
-  }
-
-  EventTarget.call(this);
-  this.readyState = SockJS.CONNECTING;
-  this.extensions = '';
-  this.protocol = ''; // non-standard extension
-
-  options = options || {};
-
-  if (options.protocols_whitelist) {
-    log.warn("'protocols_whitelist' is DEPRECATED. Use 'transports' instead.");
-  }
-
-  this._transportsWhitelist = options.transports;
-  this._transportOptions = options.transportOptions || {};
-  this._timeout = options.timeout || 0;
-  var sessionId = options.sessionId || 8;
-
-  if (typeof sessionId === 'function') {
-    this._generateSessionId = sessionId;
-  } else if (typeof sessionId === 'number') {
-    this._generateSessionId = function () {
-      return random.string(sessionId);
-    };
-  } else {
-    throw new TypeError('If sessionId is used in the options, it needs to be a number or a function.');
-  }
-
-  this._server = options.server || random.numberString(1000); // Step 1 of WS spec - parse and validate the url. Issue #8
-
-  var parsedUrl = new URL(url);
-
-  if (!parsedUrl.host || !parsedUrl.protocol) {
-    throw new SyntaxError("The URL '" + url + "' is invalid");
-  } else if (parsedUrl.hash) {
-    throw new SyntaxError('The URL must not contain a fragment');
-  } else if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
-    throw new SyntaxError("The URL's scheme must be either 'http:' or 'https:'. '" + parsedUrl.protocol + "' is not allowed.");
-  }
-
-  var secure = parsedUrl.protocol === 'https:'; // Step 2 - don't allow secure origin with an insecure protocol
-
-  if (loc.protocol === 'https:' && !secure) {
-    // exception is 127.0.0.0/8 and ::1 urls
-    if (!urlUtils.isLoopbackAddr(parsedUrl.hostname)) {
-      throw new Error('SecurityError: An insecure SockJS connection may not be initiated from a page loaded over HTTPS');
-    }
-  } // Step 3 - check port access - no need here
-  // Step 4 - parse protocols argument
-
-
-  if (!protocols) {
-    protocols = [];
-  } else if (!Array.isArray(protocols)) {
-    protocols = [protocols];
-  } // Step 5 - check protocols argument
-
-
-  var sortedProtocols = protocols.sort();
-  sortedProtocols.forEach(function (proto, i) {
-    if (!proto) {
-      throw new SyntaxError("The protocols entry '" + proto + "' is invalid.");
-    }
-
-    if (i < sortedProtocols.length - 1 && proto === sortedProtocols[i + 1]) {
-      throw new SyntaxError("The protocols entry '" + proto + "' is duplicated.");
-    }
-  }); // Step 6 - convert origin
-
-  var o = urlUtils.getOrigin(loc.href);
-  this._origin = o ? o.toLowerCase() : null; // remove the trailing slash
-
-  parsedUrl.set('pathname', parsedUrl.pathname.replace(/\/+$/, '')); // store the sanitized url
-
-  this.url = parsedUrl.href;
-  debug('using url', this.url); // Step 7 - start connection in background
-  // obtain server info
-  // http://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html#section-26
-
-  this._urlInfo = {
-    nullOrigin: !browser.hasDomain(),
-    sameOrigin: urlUtils.isOriginEqual(this.url, loc.href),
-    sameScheme: urlUtils.isSchemeEqual(this.url, loc.href)
-  };
-  this._ir = new InfoReceiver(this.url, this._urlInfo);
-
-  this._ir.once('finish', this._receiveInfo.bind(this));
-}
-
-inherits(SockJS, EventTarget);
-
-function userSetCode(code) {
-  return code === 1000 || code >= 3000 && code <= 4999;
-}
-
-SockJS.prototype.close = function (code, reason) {
-  // Step 1
-  if (code && !userSetCode(code)) {
-    throw new Error('InvalidAccessError: Invalid code');
-  } // Step 2.4 states the max is 123 bytes, but we are just checking length
-
-
-  if (reason && reason.length > 123) {
-    throw new SyntaxError('reason argument has an invalid length');
-  } // Step 3.1
-
-
-  if (this.readyState === SockJS.CLOSING || this.readyState === SockJS.CLOSED) {
-    return;
-  } // TODO look at docs to determine how to set this
-
-
-  var wasClean = true;
-
-  this._close(code || 1000, reason || 'Normal closure', wasClean);
-};
-
-SockJS.prototype.send = function (data) {
-  // #13 - convert anything non-string to string
-  // TODO this currently turns objects into [object Object]
-  if (typeof data !== 'string') {
-    data = '' + data;
-  }
-
-  if (this.readyState === SockJS.CONNECTING) {
-    throw new Error('InvalidStateError: The connection has not been established yet');
-  }
-
-  if (this.readyState !== SockJS.OPEN) {
-    return;
-  }
-
-  this._transport.send(escape.quote(data));
-};
-
-SockJS.version = __nested_webpack_require_29501__(/*! ./version */ "./node_modules/sockjs-client/lib/version.js");
-SockJS.CONNECTING = 0;
-SockJS.OPEN = 1;
-SockJS.CLOSING = 2;
-SockJS.CLOSED = 3;
-
-SockJS.prototype._receiveInfo = function (info, rtt) {
-  debug('_receiveInfo', rtt);
-  this._ir = null;
-
-  if (!info) {
-    this._close(1002, 'Cannot connect to server');
-
-    return;
-  } // establish a round-trip timeout (RTO) based on the
-  // round-trip time (RTT)
-
-
-  this._rto = this.countRTO(rtt); // allow server to override url used for the actual transport
-
-  this._transUrl = info.base_url ? info.base_url : this.url;
-  info = objectUtils.extend(info, this._urlInfo);
-  debug('info', info); // determine list of desired and supported transports
-
-  var enabledTransports = transports.filterToEnabled(this._transportsWhitelist, info);
-  this._transports = enabledTransports.main;
-  debug(this._transports.length + ' enabled transports');
-
-  this._connect();
-};
-
-SockJS.prototype._connect = function () {
-  for (var Transport = this._transports.shift(); Transport; Transport = this._transports.shift()) {
-    debug('attempt', Transport.transportName);
-
-    if (Transport.needBody) {
-      if (!__nested_webpack_require_29501__.g.document.body || typeof __nested_webpack_require_29501__.g.document.readyState !== 'undefined' && __nested_webpack_require_29501__.g.document.readyState !== 'complete' && __nested_webpack_require_29501__.g.document.readyState !== 'interactive') {
-        debug('waiting for body');
-
-        this._transports.unshift(Transport);
-
-        eventUtils.attachEvent('load', this._connect.bind(this));
-        return;
-      }
-    } // calculate timeout based on RTO and round trips. Default to 5s
-
-
-    var timeoutMs = Math.max(this._timeout, this._rto * Transport.roundTrips || 5000);
-    this._transportTimeoutId = setTimeout(this._transportTimeout.bind(this), timeoutMs);
-    debug('using timeout', timeoutMs);
-    var transportUrl = urlUtils.addPath(this._transUrl, '/' + this._server + '/' + this._generateSessionId());
-    var options = this._transportOptions[Transport.transportName];
-    debug('transport url', transportUrl);
-    var transportObj = new Transport(transportUrl, this._transUrl, options);
-    transportObj.on('message', this._transportMessage.bind(this));
-    transportObj.once('close', this._transportClose.bind(this));
-    transportObj.transportName = Transport.transportName;
-    this._transport = transportObj;
-    return;
-  }
-
-  this._close(2000, 'All transports failed', false);
-};
-
-SockJS.prototype._transportTimeout = function () {
-  debug('_transportTimeout');
-
-  if (this.readyState === SockJS.CONNECTING) {
-    if (this._transport) {
-      this._transport.close();
-    }
-
-    this._transportClose(2007, 'Transport timed out');
-  }
-};
-
-SockJS.prototype._transportMessage = function (msg) {
-  debug('_transportMessage', msg);
-  var self = this,
-      type = msg.slice(0, 1),
-      content = msg.slice(1),
-      payload; // first check for messages that don't need a payload
-
-  switch (type) {
-    case 'o':
-      this._open();
-
-      return;
-
-    case 'h':
-      this.dispatchEvent(new Event('heartbeat'));
-      debug('heartbeat', this.transport);
-      return;
-  }
-
-  if (content) {
-    try {
-      payload = JSON.parse(content);
-    } catch (e) {
-      debug('bad json', content);
-    }
-  }
-
-  if (typeof payload === 'undefined') {
-    debug('empty payload', content);
-    return;
-  }
-
-  switch (type) {
-    case 'a':
-      if (Array.isArray(payload)) {
-        payload.forEach(function (p) {
-          debug('message', self.transport, p);
-          self.dispatchEvent(new TransportMessageEvent(p));
-        });
-      }
-
-      break;
-
-    case 'm':
-      debug('message', this.transport, payload);
-      this.dispatchEvent(new TransportMessageEvent(payload));
-      break;
-
-    case 'c':
-      if (Array.isArray(payload) && payload.length === 2) {
-        this._close(payload[0], payload[1], true);
-      }
-
-      break;
-  }
-};
-
-SockJS.prototype._transportClose = function (code, reason) {
-  debug('_transportClose', this.transport, code, reason);
-
-  if (this._transport) {
-    this._transport.removeAllListeners();
-
-    this._transport = null;
-    this.transport = null;
-  }
-
-  if (!userSetCode(code) && code !== 2000 && this.readyState === SockJS.CONNECTING) {
-    this._connect();
-
-    return;
-  }
-
-  this._close(code, reason);
-};
-
-SockJS.prototype._open = function () {
-  debug('_open', this._transport && this._transport.transportName, this.readyState);
-
-  if (this.readyState === SockJS.CONNECTING) {
-    if (this._transportTimeoutId) {
-      clearTimeout(this._transportTimeoutId);
-      this._transportTimeoutId = null;
-    }
-
-    this.readyState = SockJS.OPEN;
-    this.transport = this._transport.transportName;
-    this.dispatchEvent(new Event('open'));
-    debug('connected', this.transport);
-  } else {
-    // The server might have been restarted, and lost track of our
-    // connection.
-    this._close(1006, 'Server lost session');
-  }
-};
-
-SockJS.prototype._close = function (code, reason, wasClean) {
-  debug('_close', this.transport, code, reason, wasClean, this.readyState);
-  var forceFail = false;
-
-  if (this._ir) {
-    forceFail = true;
-
-    this._ir.close();
-
-    this._ir = null;
-  }
-
-  if (this._transport) {
-    this._transport.close();
-
-    this._transport = null;
-    this.transport = null;
-  }
-
-  if (this.readyState === SockJS.CLOSED) {
-    throw new Error('InvalidStateError: SockJS has already been closed');
-  }
-
-  this.readyState = SockJS.CLOSING;
-  setTimeout(function () {
-    this.readyState = SockJS.CLOSED;
-
-    if (forceFail) {
-      this.dispatchEvent(new Event('error'));
-    }
-
-    var e = new CloseEvent('close');
-    e.wasClean = wasClean || false;
-    e.code = code || 1000;
-    e.reason = reason;
-    this.dispatchEvent(e);
-    this.onmessage = this.onclose = this.onerror = null;
-    debug('disconnected');
-  }.bind(this), 0);
-}; // See: http://www.erg.abdn.ac.uk/~gerrit/dccp/notes/ccid2/rto_estimator/
-// and RFC 2988.
-
-
-SockJS.prototype.countRTO = function (rtt) {
-  // In a local environment, when using IE8/9 and the `jsonp-polling`
-  // transport the time needed to establish a connection (the time that pass
-  // from the opening of the transport to the call of `_dispatchOpen`) is
-  // around 200msec (the lower bound used in the article above) and this
-  // causes spurious timeouts. For this reason we calculate a value slightly
-  // larger than that used in the article.
-  if (rtt > 100) {
-    return 4 * rtt; // rto > 400msec
-  }
-
-  return 300 + rtt; // 300msec < rto <= 400msec
-};
-
-module.exports = function (availableTransports) {
-  transports = transport(availableTransports);
-
-  __nested_webpack_require_29501__(/*! ./iframe-bootstrap */ "./node_modules/sockjs-client/lib/iframe-bootstrap.js")(SockJS, availableTransports);
-
-  return SockJS;
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/shims.js":
-/*!*************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/shims.js ***!
-  \*************************************************/
-/***/ (function() {
-
-"use strict";
-/* eslint-disable */
-
-/* jscs: disable */
- // pulled specific shims from https://github.com/es-shims/es5-shim
-
-var ArrayPrototype = Array.prototype;
-var ObjectPrototype = Object.prototype;
-var FunctionPrototype = Function.prototype;
-var StringPrototype = String.prototype;
-var array_slice = ArrayPrototype.slice;
-var _toString = ObjectPrototype.toString;
-
-var isFunction = function isFunction(val) {
-  return ObjectPrototype.toString.call(val) === '[object Function]';
-};
-
-var isArray = function isArray(obj) {
-  return _toString.call(obj) === '[object Array]';
-};
-
-var isString = function isString(obj) {
-  return _toString.call(obj) === '[object String]';
-};
-
-var supportsDescriptors = Object.defineProperty && function () {
-  try {
-    Object.defineProperty({}, 'x', {});
-    return true;
-  } catch (e) {
-    /* this is ES3 */
-    return false;
-  }
-}(); // Define configurable, writable and non-enumerable props
-// if they don't exist.
-
-
-var defineProperty;
-
-if (supportsDescriptors) {
-  defineProperty = function defineProperty(object, name, method, forceAssign) {
-    if (!forceAssign && name in object) {
-      return;
-    }
-
-    Object.defineProperty(object, name, {
-      configurable: true,
-      enumerable: false,
-      writable: true,
-      value: method
-    });
-  };
-} else {
-  defineProperty = function defineProperty(object, name, method, forceAssign) {
-    if (!forceAssign && name in object) {
-      return;
-    }
-
-    object[name] = method;
-  };
-}
-
-var defineProperties = function defineProperties(object, map, forceAssign) {
-  for (var name in map) {
-    if (ObjectPrototype.hasOwnProperty.call(map, name)) {
-      defineProperty(object, name, map[name], forceAssign);
-    }
-  }
-};
-
-var toObject = function toObject(o) {
-  if (o == null) {
-    // this matches both null and undefined
-    throw new TypeError("can't convert " + o + ' to object');
-  }
-
-  return Object(o);
-}; //
-// Util
-// ======
-//
-// ES5 9.4
-// http://es5.github.com/#x9.4
-// http://jsperf.com/to-integer
-
-
-function toInteger(num) {
-  var n = +num;
-
-  if (n !== n) {
-    // isNaN
-    n = 0;
-  } else if (n !== 0 && n !== 1 / 0 && n !== -(1 / 0)) {
-    n = (n > 0 || -1) * Math.floor(Math.abs(n));
-  }
-
-  return n;
-}
-
-function ToUint32(x) {
-  return x >>> 0;
-} //
-// Function
-// ========
-//
-// ES-5 15.3.4.5
-// http://es5.github.com/#x15.3.4.5
-
-
-function Empty() {}
-
-defineProperties(FunctionPrototype, {
-  bind: function bind(that) {
-    // .length is 1
-    // 1. Let Target be the this value.
-    var target = this; // 2. If IsCallable(Target) is false, throw a TypeError exception.
-
-    if (!isFunction(target)) {
-      throw new TypeError('Function.prototype.bind called on incompatible ' + target);
-    } // 3. Let A be a new (possibly empty) internal list of all of the
-    //   argument values provided after thisArg (arg1, arg2 etc), in order.
-    // XXX slicedArgs will stand in for "A" if used
-
-
-    var args = array_slice.call(arguments, 1); // for normal call
-    // 4. Let F be a new native ECMAScript object.
-    // 11. Set the [[Prototype]] internal property of F to the standard
-    //   built-in Function prototype object as specified in 15.3.3.1.
-    // 12. Set the [[Call]] internal property of F as described in
-    //   15.3.4.5.1.
-    // 13. Set the [[Construct]] internal property of F as described in
-    //   15.3.4.5.2.
-    // 14. Set the [[HasInstance]] internal property of F as described in
-    //   15.3.4.5.3.
-
-    var binder = function binder() {
-      if (this instanceof bound) {
-        // 15.3.4.5.2 [[Construct]]
-        // When the [[Construct]] internal method of a function object,
-        // F that was created using the bind function is called with a
-        // list of arguments ExtraArgs, the following steps are taken:
-        // 1. Let target be the value of F's [[TargetFunction]]
-        //   internal property.
-        // 2. If target has no [[Construct]] internal method, a
-        //   TypeError exception is thrown.
-        // 3. Let boundArgs be the value of F's [[BoundArgs]] internal
-        //   property.
-        // 4. Let args be a new list containing the same values as the
-        //   list boundArgs in the same order followed by the same
-        //   values as the list ExtraArgs in the same order.
-        // 5. Return the result of calling the [[Construct]] internal
-        //   method of target providing args as the arguments.
-        var result = target.apply(this, args.concat(array_slice.call(arguments)));
-
-        if (Object(result) === result) {
-          return result;
-        }
-
-        return this;
-      } else {
-        // 15.3.4.5.1 [[Call]]
-        // When the [[Call]] internal method of a function object, F,
-        // which was created using the bind function is called with a
-        // this value and a list of arguments ExtraArgs, the following
-        // steps are taken:
-        // 1. Let boundArgs be the value of F's [[BoundArgs]] internal
-        //   property.
-        // 2. Let boundThis be the value of F's [[BoundThis]] internal
-        //   property.
-        // 3. Let target be the value of F's [[TargetFunction]] internal
-        //   property.
-        // 4. Let args be a new list containing the same values as the
-        //   list boundArgs in the same order followed by the same
-        //   values as the list ExtraArgs in the same order.
-        // 5. Return the result of calling the [[Call]] internal method
-        //   of target providing boundThis as the this value and
-        //   providing args as the arguments.
-        // equiv: target.call(this, ...boundArgs, ...args)
-        return target.apply(that, args.concat(array_slice.call(arguments)));
-      }
-    }; // 15. If the [[Class]] internal property of Target is "Function", then
-    //     a. Let L be the length property of Target minus the length of A.
-    //     b. Set the length own property of F to either 0 or L, whichever is
-    //       larger.
-    // 16. Else set the length own property of F to 0.
-
-
-    var boundLength = Math.max(0, target.length - args.length); // 17. Set the attributes of the length own property of F to the values
-    //   specified in 15.3.5.1.
-
-    var boundArgs = [];
-
-    for (var i = 0; i < boundLength; i++) {
-      boundArgs.push('$' + i);
-    } // XXX Build a dynamic function with desired amount of arguments is the only
-    // way to set the length property of a function.
-    // In environments where Content Security Policies enabled (Chrome extensions,
-    // for ex.) all use of eval or Function costructor throws an exception.
-    // However in all of these environments Function.prototype.bind exists
-    // and so this code will never be executed.
-
-
-    var bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this, arguments); }')(binder);
-
-    if (target.prototype) {
-      Empty.prototype = target.prototype;
-      bound.prototype = new Empty(); // Clean up dangling references.
-
-      Empty.prototype = null;
-    } // TODO
-    // 18. Set the [[Extensible]] internal property of F to true.
-    // TODO
-    // 19. Let thrower be the [[ThrowTypeError]] function Object (13.2.3).
-    // 20. Call the [[DefineOwnProperty]] internal method of F with
-    //   arguments "caller", PropertyDescriptor {[[Get]]: thrower, [[Set]]:
-    //   thrower, [[Enumerable]]: false, [[Configurable]]: false}, and
-    //   false.
-    // 21. Call the [[DefineOwnProperty]] internal method of F with
-    //   arguments "arguments", PropertyDescriptor {[[Get]]: thrower,
-    //   [[Set]]: thrower, [[Enumerable]]: false, [[Configurable]]: false},
-    //   and false.
-    // TODO
-    // NOTE Function objects created using Function.prototype.bind do not
-    // have a prototype property or the [[Code]], [[FormalParameters]], and
-    // [[Scope]] internal properties.
-    // XXX can't delete prototype in pure-js.
-    // 22. Return F.
-
-
-    return bound;
-  }
-}); //
-// Array
-// =====
-//
-// ES5 15.4.3.2
-// http://es5.github.com/#x15.4.3.2
-// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/isArray
-
-defineProperties(Array, {
-  isArray: isArray
-});
-var boxedString = Object('a');
-var splitString = boxedString[0] !== 'a' || !(0 in boxedString);
-
-var properlyBoxesContext = function properlyBoxed(method) {
-  // Check node 0.6.21 bug where third parameter is not boxed
-  var properlyBoxesNonStrict = true;
-  var properlyBoxesStrict = true;
-
-  if (method) {
-    method.call('foo', function (_, __, context) {
-      if (typeof context !== 'object') {
-        properlyBoxesNonStrict = false;
-      }
-    });
-    method.call([1], function () {
-      'use strict';
-
-      properlyBoxesStrict = typeof this === 'string';
-    }, 'x');
-  }
-
-  return !!method && properlyBoxesNonStrict && properlyBoxesStrict;
-};
-
-defineProperties(ArrayPrototype, {
-  forEach: function forEach(fun
-  /*, thisp*/
-  ) {
-    var object = toObject(this),
-        self = splitString && isString(this) ? this.split('') : object,
-        thisp = arguments[1],
-        i = -1,
-        length = self.length >>> 0; // If no callback function or if callback is not a callable function
-
-    if (!isFunction(fun)) {
-      throw new TypeError(); // TODO message
-    }
-
-    while (++i < length) {
-      if (i in self) {
-        // Invoke the callback function with call, passing arguments:
-        // context, property value, property key, thisArg object
-        // context
-        fun.call(thisp, self[i], i, object);
-      }
-    }
-  }
-}, !properlyBoxesContext(ArrayPrototype.forEach)); // ES5 15.4.4.14
-// http://es5.github.com/#x15.4.4.14
-// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
-
-var hasFirefox2IndexOfBug = Array.prototype.indexOf && [0, 1].indexOf(1, 2) !== -1;
-defineProperties(ArrayPrototype, {
-  indexOf: function indexOf(sought
-  /*, fromIndex */
-  ) {
-    var self = splitString && isString(this) ? this.split('') : toObject(this),
-        length = self.length >>> 0;
-
-    if (!length) {
-      return -1;
-    }
-
-    var i = 0;
-
-    if (arguments.length > 1) {
-      i = toInteger(arguments[1]);
-    } // handle negative indices
-
-
-    i = i >= 0 ? i : Math.max(0, length + i);
-
-    for (; i < length; i++) {
-      if (i in self && self[i] === sought) {
-        return i;
-      }
-    }
-
-    return -1;
-  }
-}, hasFirefox2IndexOfBug); //
-// String
-// ======
-//
-// ES5 15.5.4.14
-// http://es5.github.com/#x15.5.4.14
-// [bugfix, IE lt 9, firefox 4, Konqueror, Opera, obscure browsers]
-// Many browsers do not split properly with regular expressions or they
-// do not perform the split correctly under obscure conditions.
-// See http://blog.stevenlevithan.com/archives/cross-browser-split
-// I've tested in many browsers and this seems to cover the deviant ones:
-//    'ab'.split(/(?:ab)*/) should be ["", ""], not [""]
-//    '.'.split(/(.?)(.?)/) should be ["", ".", "", ""], not ["", ""]
-//    'tesst'.split(/(s)*/) should be ["t", undefined, "e", "s", "t"], not
-//       [undefined, "t", undefined, "e", ...]
-//    ''.split(/.?/) should be [], not [""]
-//    '.'.split(/()()/) should be ["."], not ["", "", "."]
-
-var string_split = StringPrototype.split;
-
-if ('ab'.split(/(?:ab)*/).length !== 2 || '.'.split(/(.?)(.?)/).length !== 4 || 'tesst'.split(/(s)*/)[1] === 't' || 'test'.split(/(?:)/, -1).length !== 4 || ''.split(/.?/).length || '.'.split(/()()/).length > 1) {
-  (function () {
-    var compliantExecNpcg = /()??/.exec('')[1] === void 0; // NPCG: nonparticipating capturing group
-
-    StringPrototype.split = function (separator, limit) {
-      var string = this;
-
-      if (separator === void 0 && limit === 0) {
-        return [];
-      } // If `separator` is not a regex, use native split
-
-
-      if (_toString.call(separator) !== '[object RegExp]') {
-        return string_split.call(this, separator, limit);
-      }
-
-      var output = [],
-          flags = (separator.ignoreCase ? 'i' : '') + (separator.multiline ? 'm' : '') + (separator.extended ? 'x' : '') + ( // Proposed for ES6
-      separator.sticky ? 'y' : ''),
-          // Firefox 3+
-      lastLastIndex = 0,
-          // Make `global` and avoid `lastIndex` issues by working with a copy
-      separator2,
-          match,
-          lastIndex,
-          lastLength;
-      separator = new RegExp(separator.source, flags + 'g');
-      string += ''; // Type-convert
-
-      if (!compliantExecNpcg) {
-        // Doesn't need flags gy, but they don't hurt
-        separator2 = new RegExp('^' + separator.source + '$(?!\\s)', flags);
-      }
-      /* Values for `limit`, per the spec:
-       * If undefined: 4294967295 // Math.pow(2, 32) - 1
-       * If 0, Infinity, or NaN: 0
-       * If positive number: limit = Math.floor(limit); if (limit > 4294967295) limit -= 4294967296;
-       * If negative number: 4294967296 - Math.floor(Math.abs(limit))
-       * If other: Type-convert, then use the above rules
-       */
-
-
-      limit = limit === void 0 ? -1 >>> 0 : // Math.pow(2, 32) - 1
-      ToUint32(limit);
-
-      while (match = separator.exec(string)) {
-        // `separator.lastIndex` is not reliable cross-browser
-        lastIndex = match.index + match[0].length;
-
-        if (lastIndex > lastLastIndex) {
-          output.push(string.slice(lastLastIndex, match.index)); // Fix browsers whose `exec` methods don't consistently return `undefined` for
-          // nonparticipating capturing groups
-
-          if (!compliantExecNpcg && match.length > 1) {
-            match[0].replace(separator2, function () {
-              for (var i = 1; i < arguments.length - 2; i++) {
-                if (arguments[i] === void 0) {
-                  match[i] = void 0;
-                }
-              }
-            });
-          }
-
-          if (match.length > 1 && match.index < string.length) {
-            ArrayPrototype.push.apply(output, match.slice(1));
-          }
-
-          lastLength = match[0].length;
-          lastLastIndex = lastIndex;
-
-          if (output.length >= limit) {
-            break;
-          }
-        }
-
-        if (separator.lastIndex === match.index) {
-          separator.lastIndex++; // Avoid an infinite loop
-        }
-      }
-
-      if (lastLastIndex === string.length) {
-        if (lastLength || !separator.test('')) {
-          output.push('');
-        }
-      } else {
-        output.push(string.slice(lastLastIndex));
-      }
-
-      return output.length > limit ? output.slice(0, limit) : output;
-    };
-  })(); // [bugfix, chrome]
-  // If separator is undefined, then the result array contains just one String,
-  // which is the this value (converted to a String). If limit is not undefined,
-  // then the output array is truncated so that it contains no more than limit
-  // elements.
-  // "0".split(undefined, 0) -> []
-
-} else if ('0'.split(void 0, 0).length) {
-  StringPrototype.split = function split(separator, limit) {
-    if (separator === void 0 && limit === 0) {
-      return [];
-    }
-
-    return string_split.call(this, separator, limit);
-  };
-} // ECMA-262, 3rd B.2.3
-// Not an ECMAScript standard, although ECMAScript 3rd Edition has a
-// non-normative section suggesting uniform semantics and it should be
-// normalized across all browsers
-// [bugfix, IE lt 9] IE < 9 substr() with negative value not working in IE
-
-
-var string_substr = StringPrototype.substr;
-var hasNegativeSubstrBug = ''.substr && '0b'.substr(-1) !== 'b';
-defineProperties(StringPrototype, {
-  substr: function substr(start, length) {
-    return string_substr.call(this, start < 0 ? (start = this.length + start) < 0 ? 0 : start : start, length);
-  }
-}, hasNegativeSubstrBug);
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport-list.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport-list.js ***!
-  \**********************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_59144__) {
-
-"use strict";
-
-
-module.exports = [// streaming transports
-__nested_webpack_require_59144__(/*! ./transport/websocket */ "./node_modules/sockjs-client/lib/transport/websocket.js"), __nested_webpack_require_59144__(/*! ./transport/xhr-streaming */ "./node_modules/sockjs-client/lib/transport/xhr-streaming.js"), __nested_webpack_require_59144__(/*! ./transport/xdr-streaming */ "./node_modules/sockjs-client/lib/transport/xdr-streaming.js"), __nested_webpack_require_59144__(/*! ./transport/eventsource */ "./node_modules/sockjs-client/lib/transport/eventsource.js"), __nested_webpack_require_59144__(/*! ./transport/lib/iframe-wrap */ "./node_modules/sockjs-client/lib/transport/lib/iframe-wrap.js")(__nested_webpack_require_59144__(/*! ./transport/eventsource */ "./node_modules/sockjs-client/lib/transport/eventsource.js")) // polling transports
-, __nested_webpack_require_59144__(/*! ./transport/htmlfile */ "./node_modules/sockjs-client/lib/transport/htmlfile.js"), __nested_webpack_require_59144__(/*! ./transport/lib/iframe-wrap */ "./node_modules/sockjs-client/lib/transport/lib/iframe-wrap.js")(__nested_webpack_require_59144__(/*! ./transport/htmlfile */ "./node_modules/sockjs-client/lib/transport/htmlfile.js")), __nested_webpack_require_59144__(/*! ./transport/xhr-polling */ "./node_modules/sockjs-client/lib/transport/xhr-polling.js"), __nested_webpack_require_59144__(/*! ./transport/xdr-polling */ "./node_modules/sockjs-client/lib/transport/xdr-polling.js"), __nested_webpack_require_59144__(/*! ./transport/lib/iframe-wrap */ "./node_modules/sockjs-client/lib/transport/lib/iframe-wrap.js")(__nested_webpack_require_59144__(/*! ./transport/xhr-polling */ "./node_modules/sockjs-client/lib/transport/xhr-polling.js")), __nested_webpack_require_59144__(/*! ./transport/jsonp-polling */ "./node_modules/sockjs-client/lib/transport/jsonp-polling.js")];
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/browser/abstract-xhr.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/browser/abstract-xhr.js ***!
-  \**************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_61229__) {
-
-"use strict";
-
-
-var EventEmitter = (__nested_webpack_require_61229__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    inherits = __nested_webpack_require_61229__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    utils = __nested_webpack_require_61229__(/*! ../../utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
-    urlUtils = __nested_webpack_require_61229__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    XHR = __nested_webpack_require_61229__.g.XMLHttpRequest;
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_61229__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:browser:xhr');
-}
-
-function AbstractXHRObject(method, url, payload, opts) {
-  debug(method, url);
-  var self = this;
-  EventEmitter.call(this);
-  setTimeout(function () {
-    self._start(method, url, payload, opts);
-  }, 0);
-}
-
-inherits(AbstractXHRObject, EventEmitter);
-
-AbstractXHRObject.prototype._start = function (method, url, payload, opts) {
-  var self = this;
-
-  try {
-    this.xhr = new XHR();
-  } catch (x) {// intentionally empty
-  }
-
-  if (!this.xhr) {
-    debug('no xhr');
-    this.emit('finish', 0, 'no xhr support');
-
-    this._cleanup();
-
-    return;
-  } // several browsers cache POSTs
-
-
-  url = urlUtils.addQuery(url, 't=' + +new Date()); // Explorer tends to keep connection open, even after the
-  // tab gets closed: http://bugs.jquery.com/ticket/5280
-
-  this.unloadRef = utils.unloadAdd(function () {
-    debug('unload cleanup');
-
-    self._cleanup(true);
-  });
-
-  try {
-    this.xhr.open(method, url, true);
-
-    if (this.timeout && 'timeout' in this.xhr) {
-      this.xhr.timeout = this.timeout;
-
-      this.xhr.ontimeout = function () {
-        debug('xhr timeout');
-        self.emit('finish', 0, '');
-
-        self._cleanup(false);
-      };
-    }
-  } catch (e) {
-    debug('exception', e); // IE raises an exception on wrong port.
-
-    this.emit('finish', 0, '');
-
-    this._cleanup(false);
-
-    return;
-  }
-
-  if ((!opts || !opts.noCredentials) && AbstractXHRObject.supportsCORS) {
-    debug('withCredentials'); // Mozilla docs says https://developer.mozilla.org/en/XMLHttpRequest :
-    // "This never affects same-site requests."
-
-    this.xhr.withCredentials = true;
-  }
-
-  if (opts && opts.headers) {
-    for (var key in opts.headers) {
-      this.xhr.setRequestHeader(key, opts.headers[key]);
-    }
-  }
-
-  this.xhr.onreadystatechange = function () {
-    if (self.xhr) {
-      var x = self.xhr;
-      var text, status;
-      debug('readyState', x.readyState);
-
-      switch (x.readyState) {
-        case 3:
-          // IE doesn't like peeking into responseText or status
-          // on Microsoft.XMLHTTP and readystate=3
-          try {
-            status = x.status;
-            text = x.responseText;
-          } catch (e) {// intentionally empty
-          }
-
-          debug('status', status); // IE returns 1223 for 204: http://bugs.jquery.com/ticket/1450
-
-          if (status === 1223) {
-            status = 204;
-          } // IE does return readystate == 3 for 404 answers.
-
-
-          if (status === 200 && text && text.length > 0) {
-            debug('chunk');
-            self.emit('chunk', status, text);
-          }
-
-          break;
-
-        case 4:
-          status = x.status;
-          debug('status', status); // IE returns 1223 for 204: http://bugs.jquery.com/ticket/1450
-
-          if (status === 1223) {
-            status = 204;
-          } // IE returns this for a bad port
-          // http://msdn.microsoft.com/en-us/library/windows/desktop/aa383770(v=vs.85).aspx
-
-
-          if (status === 12005 || status === 12029) {
-            status = 0;
-          }
-
-          debug('finish', status, x.responseText);
-          self.emit('finish', status, x.responseText);
-
-          self._cleanup(false);
-
-          break;
-      }
-    }
-  };
-
-  try {
-    self.xhr.send(payload);
-  } catch (e) {
-    self.emit('finish', 0, '');
-
-    self._cleanup(false);
-  }
-};
-
-AbstractXHRObject.prototype._cleanup = function (abort) {
-  debug('cleanup');
-
-  if (!this.xhr) {
-    return;
-  }
-
-  this.removeAllListeners();
-  utils.unloadDel(this.unloadRef); // IE needs this field to be a function
-
-  this.xhr.onreadystatechange = function () {};
-
-  if (this.xhr.ontimeout) {
-    this.xhr.ontimeout = null;
-  }
-
-  if (abort) {
-    try {
-      this.xhr.abort();
-    } catch (x) {// intentionally empty
-    }
-  }
-
-  this.unloadRef = this.xhr = null;
-};
-
-AbstractXHRObject.prototype.close = function () {
-  debug('close');
-
-  this._cleanup(true);
-};
-
-AbstractXHRObject.enabled = !!XHR; // override XMLHttpRequest for IE6/7
-// obfuscate to avoid firewalls
-
-var axo = ['Active'].concat('Object').join('X');
-
-if (!AbstractXHRObject.enabled && axo in __nested_webpack_require_61229__.g) {
-  debug('overriding xmlhttprequest');
-
-  XHR = function XHR() {
-    try {
-      return new __nested_webpack_require_61229__.g[axo]('Microsoft.XMLHTTP');
-    } catch (e) {
-      return null;
-    }
-  };
-
-  AbstractXHRObject.enabled = !!new XHR();
-}
-
-var cors = false;
-
-try {
-  cors = 'withCredentials' in new XHR();
-} catch (ignored) {// intentionally empty
-}
-
-AbstractXHRObject.supportsCORS = cors;
-module.exports = AbstractXHRObject;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/browser/eventsource.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/browser/eventsource.js ***!
-  \*************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_66820__) {
-
-module.exports = __nested_webpack_require_66820__.g.EventSource;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/browser/websocket.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/browser/websocket.js ***!
-  \***********************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_67261__) {
-
-"use strict";
-
-
-var Driver = __nested_webpack_require_67261__.g.WebSocket || __nested_webpack_require_67261__.g.MozWebSocket;
-
-if (Driver) {
-  module.exports = function WebSocketBrowserDriver(url) {
-    return new Driver(url);
-  };
-} else {
-  module.exports = undefined;
-}
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/eventsource.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/eventsource.js ***!
-  \*****************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_67873__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_67873__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    AjaxBasedTransport = __nested_webpack_require_67873__(/*! ./lib/ajax-based */ "./node_modules/sockjs-client/lib/transport/lib/ajax-based.js"),
-    EventSourceReceiver = __nested_webpack_require_67873__(/*! ./receiver/eventsource */ "./node_modules/sockjs-client/lib/transport/receiver/eventsource.js"),
-    XHRCorsObject = __nested_webpack_require_67873__(/*! ./sender/xhr-cors */ "./node_modules/sockjs-client/lib/transport/sender/xhr-cors.js"),
-    EventSourceDriver = __nested_webpack_require_67873__(/*! eventsource */ "./node_modules/sockjs-client/lib/transport/browser/eventsource.js");
-
-function EventSourceTransport(transUrl) {
-  if (!EventSourceTransport.enabled()) {
-    throw new Error('Transport created when disabled');
-  }
-
-  AjaxBasedTransport.call(this, transUrl, '/eventsource', EventSourceReceiver, XHRCorsObject);
-}
-
-inherits(EventSourceTransport, AjaxBasedTransport);
-
-EventSourceTransport.enabled = function () {
-  return !!EventSourceDriver;
-};
-
-EventSourceTransport.transportName = 'eventsource';
-EventSourceTransport.roundTrips = 2;
-module.exports = EventSourceTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/htmlfile.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/htmlfile.js ***!
-  \**************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_69389__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_69389__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    HtmlfileReceiver = __nested_webpack_require_69389__(/*! ./receiver/htmlfile */ "./node_modules/sockjs-client/lib/transport/receiver/htmlfile.js"),
-    XHRLocalObject = __nested_webpack_require_69389__(/*! ./sender/xhr-local */ "./node_modules/sockjs-client/lib/transport/sender/xhr-local.js"),
-    AjaxBasedTransport = __nested_webpack_require_69389__(/*! ./lib/ajax-based */ "./node_modules/sockjs-client/lib/transport/lib/ajax-based.js");
-
-function HtmlFileTransport(transUrl) {
-  if (!HtmlfileReceiver.enabled) {
-    throw new Error('Transport created when disabled');
-  }
-
-  AjaxBasedTransport.call(this, transUrl, '/htmlfile', HtmlfileReceiver, XHRLocalObject);
-}
-
-inherits(HtmlFileTransport, AjaxBasedTransport);
-
-HtmlFileTransport.enabled = function (info) {
-  return HtmlfileReceiver.enabled && info.sameOrigin;
-};
-
-HtmlFileTransport.transportName = 'htmlfile';
-HtmlFileTransport.roundTrips = 2;
-module.exports = HtmlFileTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/iframe.js":
-/*!************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/iframe.js ***!
-  \************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_70754__) {
-
-"use strict";
- // Few cool transports do work only for same-origin. In order to make
-// them work cross-domain we shall use iframe, served from the
-// remote domain. New browsers have capabilities to communicate with
-// cross domain iframe using postMessage(). In IE it was implemented
-// from IE 8+, but of course, IE got some details wrong:
-//    http://msdn.microsoft.com/en-us/library/cc197015(v=VS.85).aspx
-//    http://stevesouders.com/misc/test-postmessage.php
-
-var inherits = __nested_webpack_require_70754__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = (__nested_webpack_require_70754__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    version = __nested_webpack_require_70754__(/*! ../version */ "./node_modules/sockjs-client/lib/version.js"),
-    urlUtils = __nested_webpack_require_70754__(/*! ../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    iframeUtils = __nested_webpack_require_70754__(/*! ../utils/iframe */ "./node_modules/sockjs-client/lib/utils/iframe.js"),
-    eventUtils = __nested_webpack_require_70754__(/*! ../utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
-    random = __nested_webpack_require_70754__(/*! ../utils/random */ "./node_modules/sockjs-client/lib/utils/random.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_70754__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:transport:iframe');
-}
-
-function IframeTransport(transport, transUrl, baseUrl) {
-  if (!IframeTransport.enabled()) {
-    throw new Error('Transport created when disabled');
-  }
-
-  EventEmitter.call(this);
-  var self = this;
-  this.origin = urlUtils.getOrigin(baseUrl);
-  this.baseUrl = baseUrl;
-  this.transUrl = transUrl;
-  this.transport = transport;
-  this.windowId = random.string(8);
-  var iframeUrl = urlUtils.addPath(baseUrl, '/iframe.html') + '#' + this.windowId;
-  debug(transport, transUrl, iframeUrl);
-  this.iframeObj = iframeUtils.createIframe(iframeUrl, function (r) {
-    debug('err callback');
-    self.emit('close', 1006, 'Unable to load an iframe (' + r + ')');
-    self.close();
-  });
-  this.onmessageCallback = this._message.bind(this);
-  eventUtils.attachEvent('message', this.onmessageCallback);
-}
-
-inherits(IframeTransport, EventEmitter);
-
-IframeTransport.prototype.close = function () {
-  debug('close');
-  this.removeAllListeners();
-
-  if (this.iframeObj) {
-    eventUtils.detachEvent('message', this.onmessageCallback);
-
-    try {
-      // When the iframe is not loaded, IE raises an exception
-      // on 'contentWindow'.
-      this.postMessage('c');
-    } catch (x) {// intentionally empty
-    }
-
-    this.iframeObj.cleanup();
-    this.iframeObj = null;
-    this.onmessageCallback = this.iframeObj = null;
-  }
-};
-
-IframeTransport.prototype._message = function (e) {
-  debug('message', e.data);
-
-  if (!urlUtils.isOriginEqual(e.origin, this.origin)) {
-    debug('not same origin', e.origin, this.origin);
-    return;
-  }
-
-  var iframeMessage;
-
-  try {
-    iframeMessage = JSON.parse(e.data);
-  } catch (ignored) {
-    debug('bad json', e.data);
-    return;
-  }
-
-  if (iframeMessage.windowId !== this.windowId) {
-    debug('mismatched window id', iframeMessage.windowId, this.windowId);
-    return;
-  }
-
-  switch (iframeMessage.type) {
-    case 's':
-      this.iframeObj.loaded(); // window global dependency
-
-      this.postMessage('s', JSON.stringify([version, this.transport, this.transUrl, this.baseUrl]));
-      break;
-
-    case 't':
-      this.emit('message', iframeMessage.data);
-      break;
-
-    case 'c':
-      var cdata;
-
-      try {
-        cdata = JSON.parse(iframeMessage.data);
-      } catch (ignored) {
-        debug('bad json', iframeMessage.data);
-        return;
-      }
-
-      this.emit('close', cdata[0], cdata[1]);
-      this.close();
-      break;
-  }
-};
-
-IframeTransport.prototype.postMessage = function (type, data) {
-  debug('postMessage', type, data);
-  this.iframeObj.post(JSON.stringify({
-    windowId: this.windowId,
-    type: type,
-    data: data || ''
-  }), this.origin);
-};
-
-IframeTransport.prototype.send = function (message) {
-  debug('send', message);
-  this.postMessage('m', message);
-};
-
-IframeTransport.enabled = function () {
-  return iframeUtils.iframeEnabled;
-};
-
-IframeTransport.transportName = 'iframe';
-IframeTransport.roundTrips = 2;
-module.exports = IframeTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/jsonp-polling.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/jsonp-polling.js ***!
-  \*******************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_75465__) {
-
-"use strict";
- // The simplest and most robust transport, using the well-know cross
-// domain hack - JSONP. This transport is quite inefficient - one
-// message could use up to one http request. But at least it works almost
-// everywhere.
-// Known limitations:
-//   o you will get a spinning cursor
-//   o for Konqueror a dumb timer is needed to detect errors
-
-var inherits = __nested_webpack_require_75465__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    SenderReceiver = __nested_webpack_require_75465__(/*! ./lib/sender-receiver */ "./node_modules/sockjs-client/lib/transport/lib/sender-receiver.js"),
-    JsonpReceiver = __nested_webpack_require_75465__(/*! ./receiver/jsonp */ "./node_modules/sockjs-client/lib/transport/receiver/jsonp.js"),
-    jsonpSender = __nested_webpack_require_75465__(/*! ./sender/jsonp */ "./node_modules/sockjs-client/lib/transport/sender/jsonp.js");
-
-function JsonPTransport(transUrl) {
-  if (!JsonPTransport.enabled()) {
-    throw new Error('Transport created when disabled');
-  }
-
-  SenderReceiver.call(this, transUrl, '/jsonp', jsonpSender, JsonpReceiver);
-}
-
-inherits(JsonPTransport, SenderReceiver);
-
-JsonPTransport.enabled = function () {
-  return !!__nested_webpack_require_75465__.g.document;
-};
-
-JsonPTransport.transportName = 'jsonp-polling';
-JsonPTransport.roundTrips = 1;
-JsonPTransport.needBody = true;
-module.exports = JsonPTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/lib/ajax-based.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/lib/ajax-based.js ***!
-  \********************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_77180__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_77180__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    urlUtils = __nested_webpack_require_77180__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    SenderReceiver = __nested_webpack_require_77180__(/*! ./sender-receiver */ "./node_modules/sockjs-client/lib/transport/lib/sender-receiver.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_77180__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:ajax-based');
-}
-
-function createAjaxSender(AjaxObject) {
-  return function (url, payload, callback) {
-    debug('create ajax sender', url, payload);
-    var opt = {};
-
-    if (typeof payload === 'string') {
-      opt.headers = {
-        'Content-type': 'text/plain'
-      };
-    }
-
-    var ajaxUrl = urlUtils.addPath(url, '/xhr_send');
-    var xo = new AjaxObject('POST', ajaxUrl, payload, opt);
-    xo.once('finish', function (status) {
-      debug('finish', status);
-      xo = null;
-
-      if (status !== 200 && status !== 204) {
-        return callback(new Error('http status ' + status));
-      }
-
-      callback();
-    });
-    return function () {
-      debug('abort');
-      xo.close();
-      xo = null;
-      var err = new Error('Aborted');
-      err.code = 1000;
-      callback(err);
-    };
-  };
-}
-
-function AjaxBasedTransport(transUrl, urlSuffix, Receiver, AjaxObject) {
-  SenderReceiver.call(this, transUrl, urlSuffix, createAjaxSender(AjaxObject), Receiver, AjaxObject);
-}
-
-inherits(AjaxBasedTransport, SenderReceiver);
-module.exports = AjaxBasedTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/lib/buffered-sender.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/lib/buffered-sender.js ***!
-  \*************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_79176__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_79176__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = (__nested_webpack_require_79176__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter);
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_79176__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:buffered-sender');
-}
-
-function BufferedSender(url, sender) {
-  debug(url);
-  EventEmitter.call(this);
-  this.sendBuffer = [];
-  this.sender = sender;
-  this.url = url;
-}
-
-inherits(BufferedSender, EventEmitter);
-
-BufferedSender.prototype.send = function (message) {
-  debug('send', message);
-  this.sendBuffer.push(message);
-
-  if (!this.sendStop) {
-    this.sendSchedule();
-  }
-}; // For polling transports in a situation when in the message callback,
-// new message is being send. If the sending connection was started
-// before receiving one, it is possible to saturate the network and
-// timeout due to the lack of receiving socket. To avoid that we delay
-// sending messages by some small time, in order to let receiving
-// connection be started beforehand. This is only a halfmeasure and
-// does not fix the big problem, but it does make the tests go more
-// stable on slow networks.
-
-
-BufferedSender.prototype.sendScheduleWait = function () {
-  debug('sendScheduleWait');
-  var self = this;
-  var tref;
-
-  this.sendStop = function () {
-    debug('sendStop');
-    self.sendStop = null;
-    clearTimeout(tref);
-  };
-
-  tref = setTimeout(function () {
-    debug('timeout');
-    self.sendStop = null;
-    self.sendSchedule();
-  }, 25);
-};
-
-BufferedSender.prototype.sendSchedule = function () {
-  debug('sendSchedule', this.sendBuffer.length);
-  var self = this;
-
-  if (this.sendBuffer.length > 0) {
-    var payload = '[' + this.sendBuffer.join(',') + ']';
-    this.sendStop = this.sender(this.url, payload, function (err) {
-      self.sendStop = null;
-
-      if (err) {
-        debug('error', err);
-        self.emit('close', err.code || 1006, 'Sending error: ' + err);
-        self.close();
-      } else {
-        self.sendScheduleWait();
-      }
-    });
-    this.sendBuffer = [];
-  }
-};
-
-BufferedSender.prototype._cleanup = function () {
-  debug('_cleanup');
-  this.removeAllListeners();
-};
-
-BufferedSender.prototype.close = function () {
-  debug('close');
-
-  this._cleanup();
-
-  if (this.sendStop) {
-    this.sendStop();
-    this.sendStop = null;
-  }
-};
-
-module.exports = BufferedSender;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/lib/iframe-wrap.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/lib/iframe-wrap.js ***!
-  \*********************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_82058__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_82058__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    IframeTransport = __nested_webpack_require_82058__(/*! ../iframe */ "./node_modules/sockjs-client/lib/transport/iframe.js"),
-    objectUtils = __nested_webpack_require_82058__(/*! ../../utils/object */ "./node_modules/sockjs-client/lib/utils/object.js");
-
-module.exports = function (transport) {
-  function IframeWrapTransport(transUrl, baseUrl) {
-    IframeTransport.call(this, transport.transportName, transUrl, baseUrl);
-  }
-
-  inherits(IframeWrapTransport, IframeTransport);
-
-  IframeWrapTransport.enabled = function (url, info) {
-    if (!__nested_webpack_require_82058__.g.document) {
-      return false;
-    }
-
-    var iframeInfo = objectUtils.extend({}, info);
-    iframeInfo.sameOrigin = true;
-    return transport.enabled(iframeInfo) && IframeTransport.enabled();
-  };
-
-  IframeWrapTransport.transportName = 'iframe-' + transport.transportName;
-  IframeWrapTransport.needBody = true;
-  IframeWrapTransport.roundTrips = IframeTransport.roundTrips + transport.roundTrips - 1; // html, javascript (2) + transport - no CORS (1)
-
-  IframeWrapTransport.facadeTransport = transport;
-  return IframeWrapTransport;
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/lib/polling.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/lib/polling.js ***!
-  \*****************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_83622__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_83622__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = (__nested_webpack_require_83622__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter);
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_83622__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:polling');
-}
-
-function Polling(Receiver, receiveUrl, AjaxObject) {
-  debug(receiveUrl);
-  EventEmitter.call(this);
-  this.Receiver = Receiver;
-  this.receiveUrl = receiveUrl;
-  this.AjaxObject = AjaxObject;
-
-  this._scheduleReceiver();
-}
-
-inherits(Polling, EventEmitter);
-
-Polling.prototype._scheduleReceiver = function () {
-  debug('_scheduleReceiver');
-  var self = this;
-  var poll = this.poll = new this.Receiver(this.receiveUrl, this.AjaxObject);
-  poll.on('message', function (msg) {
-    debug('message', msg);
-    self.emit('message', msg);
-  });
-  poll.once('close', function (code, reason) {
-    debug('close', code, reason, self.pollIsClosing);
-    self.poll = poll = null;
-
-    if (!self.pollIsClosing) {
-      if (reason === 'network') {
-        self._scheduleReceiver();
-      } else {
-        self.emit('close', code || 1006, reason);
-        self.removeAllListeners();
-      }
-    }
-  });
-};
-
-Polling.prototype.abort = function () {
-  debug('abort');
-  this.removeAllListeners();
-  this.pollIsClosing = true;
-
-  if (this.poll) {
-    this.poll.abort();
-  }
-};
-
-module.exports = Polling;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/lib/sender-receiver.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/lib/sender-receiver.js ***!
-  \*************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_85528__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_85528__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    urlUtils = __nested_webpack_require_85528__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    BufferedSender = __nested_webpack_require_85528__(/*! ./buffered-sender */ "./node_modules/sockjs-client/lib/transport/lib/buffered-sender.js"),
-    Polling = __nested_webpack_require_85528__(/*! ./polling */ "./node_modules/sockjs-client/lib/transport/lib/polling.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_85528__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:sender-receiver');
-}
-
-function SenderReceiver(transUrl, urlSuffix, senderFunc, Receiver, AjaxObject) {
-  var pollUrl = urlUtils.addPath(transUrl, urlSuffix);
-  debug(pollUrl);
-  var self = this;
-  BufferedSender.call(this, transUrl, senderFunc);
-  this.poll = new Polling(Receiver, pollUrl, AjaxObject);
-  this.poll.on('message', function (msg) {
-    debug('poll message', msg);
-    self.emit('message', msg);
-  });
-  this.poll.once('close', function (code, reason) {
-    debug('poll close', code, reason);
-    self.poll = null;
-    self.emit('close', code, reason);
-    self.close();
-  });
-}
-
-inherits(SenderReceiver, BufferedSender);
-
-SenderReceiver.prototype.close = function () {
-  BufferedSender.prototype.close.call(this);
-  debug('close');
-  this.removeAllListeners();
-
-  if (this.poll) {
-    this.poll.abort();
-    this.poll = null;
-  }
-};
-
-module.exports = SenderReceiver;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/receiver/eventsource.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/receiver/eventsource.js ***!
-  \**************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_87454__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_87454__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = (__nested_webpack_require_87454__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    EventSourceDriver = __nested_webpack_require_87454__(/*! eventsource */ "./node_modules/sockjs-client/lib/transport/browser/eventsource.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_87454__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:receiver:eventsource');
-}
-
-function EventSourceReceiver(url) {
-  debug(url);
-  EventEmitter.call(this);
-  var self = this;
-  var es = this.es = new EventSourceDriver(url);
-
-  es.onmessage = function (e) {
-    debug('message', e.data);
-    self.emit('message', decodeURI(e.data));
-  };
-
-  es.onerror = function (e) {
-    debug('error', es.readyState, e); // ES on reconnection has readyState = 0 or 1.
-    // on network error it's CLOSED = 2
-
-    var reason = es.readyState !== 2 ? 'network' : 'permanent';
-
-    self._cleanup();
-
-    self._close(reason);
-  };
-}
-
-inherits(EventSourceReceiver, EventEmitter);
-
-EventSourceReceiver.prototype.abort = function () {
-  debug('abort');
-
-  this._cleanup();
-
-  this._close('user');
-};
-
-EventSourceReceiver.prototype._cleanup = function () {
-  debug('cleanup');
-  var es = this.es;
-
-  if (es) {
-    es.onmessage = es.onerror = null;
-    es.close();
-    this.es = null;
-  }
-};
-
-EventSourceReceiver.prototype._close = function (reason) {
-  debug('close', reason);
-  var self = this; // Safari and chrome < 15 crash if we close window before
-  // waiting for ES cleanup. See:
-  // https://code.google.com/p/chromium/issues/detail?id=89155
-
-  setTimeout(function () {
-    self.emit('close', null, reason);
-    self.removeAllListeners();
-  }, 200);
-};
-
-module.exports = EventSourceReceiver;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/receiver/htmlfile.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/receiver/htmlfile.js ***!
-  \***********************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_89709__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_89709__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    iframeUtils = __nested_webpack_require_89709__(/*! ../../utils/iframe */ "./node_modules/sockjs-client/lib/utils/iframe.js"),
-    urlUtils = __nested_webpack_require_89709__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    EventEmitter = (__nested_webpack_require_89709__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    random = __nested_webpack_require_89709__(/*! ../../utils/random */ "./node_modules/sockjs-client/lib/utils/random.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_89709__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:receiver:htmlfile');
-}
-
-function HtmlfileReceiver(url) {
-  debug(url);
-  EventEmitter.call(this);
-  var self = this;
-  iframeUtils.polluteGlobalNamespace();
-  this.id = 'a' + random.string(6);
-  url = urlUtils.addQuery(url, 'c=' + decodeURIComponent(iframeUtils.WPrefix + '.' + this.id));
-  debug('using htmlfile', HtmlfileReceiver.htmlfileEnabled);
-  var constructFunc = HtmlfileReceiver.htmlfileEnabled ? iframeUtils.createHtmlfile : iframeUtils.createIframe;
-  __nested_webpack_require_89709__.g[iframeUtils.WPrefix][this.id] = {
-    start: function start() {
-      debug('start');
-      self.iframeObj.loaded();
-    },
-    message: function message(data) {
-      debug('message', data);
-      self.emit('message', data);
-    },
-    stop: function stop() {
-      debug('stop');
-
-      self._cleanup();
-
-      self._close('network');
-    }
-  };
-  this.iframeObj = constructFunc(url, function () {
-    debug('callback');
-
-    self._cleanup();
-
-    self._close('permanent');
-  });
-}
-
-inherits(HtmlfileReceiver, EventEmitter);
-
-HtmlfileReceiver.prototype.abort = function () {
-  debug('abort');
-
-  this._cleanup();
-
-  this._close('user');
-};
-
-HtmlfileReceiver.prototype._cleanup = function () {
-  debug('_cleanup');
-
-  if (this.iframeObj) {
-    this.iframeObj.cleanup();
-    this.iframeObj = null;
-  }
-
-  delete __nested_webpack_require_89709__.g[iframeUtils.WPrefix][this.id];
-};
-
-HtmlfileReceiver.prototype._close = function (reason) {
-  debug('_close', reason);
-  this.emit('close', null, reason);
-  this.removeAllListeners();
-};
-
-HtmlfileReceiver.htmlfileEnabled = false; // obfuscate to avoid firewalls
-
-var axo = ['Active'].concat('Object').join('X');
-
-if (axo in __nested_webpack_require_89709__.g) {
-  try {
-    HtmlfileReceiver.htmlfileEnabled = !!new __nested_webpack_require_89709__.g[axo]('htmlfile');
-  } catch (x) {// intentionally empty
-  }
-}
-
-HtmlfileReceiver.enabled = HtmlfileReceiver.htmlfileEnabled || iframeUtils.iframeEnabled;
-module.exports = HtmlfileReceiver;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/receiver/jsonp.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/receiver/jsonp.js ***!
-  \********************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_92762__) {
-
-"use strict";
-
-
-var utils = __nested_webpack_require_92762__(/*! ../../utils/iframe */ "./node_modules/sockjs-client/lib/utils/iframe.js"),
-    random = __nested_webpack_require_92762__(/*! ../../utils/random */ "./node_modules/sockjs-client/lib/utils/random.js"),
-    browser = __nested_webpack_require_92762__(/*! ../../utils/browser */ "./node_modules/sockjs-client/lib/utils/browser.js"),
-    urlUtils = __nested_webpack_require_92762__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    inherits = __nested_webpack_require_92762__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = (__nested_webpack_require_92762__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter);
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_92762__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:receiver:jsonp');
-}
-
-function JsonpReceiver(url) {
-  debug(url);
-  var self = this;
-  EventEmitter.call(this);
-  utils.polluteGlobalNamespace();
-  this.id = 'a' + random.string(6);
-  var urlWithId = urlUtils.addQuery(url, 'c=' + encodeURIComponent(utils.WPrefix + '.' + this.id));
-  __nested_webpack_require_92762__.g[utils.WPrefix][this.id] = this._callback.bind(this);
-
-  this._createScript(urlWithId); // Fallback mostly for Konqueror - stupid timer, 35 seconds shall be plenty.
-
-
-  this.timeoutId = setTimeout(function () {
-    debug('timeout');
-
-    self._abort(new Error('JSONP script loaded abnormally (timeout)'));
-  }, JsonpReceiver.timeout);
-}
-
-inherits(JsonpReceiver, EventEmitter);
-
-JsonpReceiver.prototype.abort = function () {
-  debug('abort');
-
-  if (__nested_webpack_require_92762__.g[utils.WPrefix][this.id]) {
-    var err = new Error('JSONP user aborted read');
-    err.code = 1000;
-
-    this._abort(err);
-  }
-};
-
-JsonpReceiver.timeout = 35000;
-JsonpReceiver.scriptErrorTimeout = 1000;
-
-JsonpReceiver.prototype._callback = function (data) {
-  debug('_callback', data);
-
-  this._cleanup();
-
-  if (this.aborting) {
-    return;
-  }
-
-  if (data) {
-    debug('message', data);
-    this.emit('message', data);
-  }
-
-  this.emit('close', null, 'network');
-  this.removeAllListeners();
-};
-
-JsonpReceiver.prototype._abort = function (err) {
-  debug('_abort', err);
-
-  this._cleanup();
-
-  this.aborting = true;
-  this.emit('close', err.code, err.message);
-  this.removeAllListeners();
-};
-
-JsonpReceiver.prototype._cleanup = function () {
-  debug('_cleanup');
-  clearTimeout(this.timeoutId);
-
-  if (this.script2) {
-    this.script2.parentNode.removeChild(this.script2);
-    this.script2 = null;
-  }
-
-  if (this.script) {
-    var script = this.script; // Unfortunately, you can't really abort script loading of
-    // the script.
-
-    script.parentNode.removeChild(script);
-    script.onreadystatechange = script.onerror = script.onload = script.onclick = null;
-    this.script = null;
-  }
-
-  delete __nested_webpack_require_92762__.g[utils.WPrefix][this.id];
-};
-
-JsonpReceiver.prototype._scriptError = function () {
-  debug('_scriptError');
-  var self = this;
-
-  if (this.errorTimer) {
-    return;
-  }
-
-  this.errorTimer = setTimeout(function () {
-    if (!self.loadedOkay) {
-      self._abort(new Error('JSONP script loaded abnormally (onerror)'));
-    }
-  }, JsonpReceiver.scriptErrorTimeout);
-};
-
-JsonpReceiver.prototype._createScript = function (url) {
-  debug('_createScript', url);
-  var self = this;
-  var script = this.script = __nested_webpack_require_92762__.g.document.createElement('script');
-  var script2; // Opera synchronous load trick.
-
-  script.id = 'a' + random.string(8);
-  script.src = url;
-  script.type = 'text/javascript';
-  script.charset = 'UTF-8';
-  script.onerror = this._scriptError.bind(this);
-
-  script.onload = function () {
-    debug('onload');
-
-    self._abort(new Error('JSONP script loaded abnormally (onload)'));
-  }; // IE9 fires 'error' event after onreadystatechange or before, in random order.
-  // Use loadedOkay to determine if actually errored
-
-
-  script.onreadystatechange = function () {
-    debug('onreadystatechange', script.readyState);
-
-    if (/loaded|closed/.test(script.readyState)) {
-      if (script && script.htmlFor && script.onclick) {
-        self.loadedOkay = true;
-
-        try {
-          // In IE, actually execute the script.
-          script.onclick();
-        } catch (x) {// intentionally empty
-        }
-      }
-
-      if (script) {
-        self._abort(new Error('JSONP script loaded abnormally (onreadystatechange)'));
-      }
-    }
-  }; // IE: event/htmlFor/onclick trick.
-  // One can't rely on proper order for onreadystatechange. In order to
-  // make sure, set a 'htmlFor' and 'event' properties, so that
-  // script code will be installed as 'onclick' handler for the
-  // script object. Later, onreadystatechange, manually execute this
-  // code. FF and Chrome doesn't work with 'event' and 'htmlFor'
-  // set. For reference see:
-  //   http://jaubourg.net/2010/07/loading-script-as-onclick-handler-of.html
-  // Also, read on that about script ordering:
-  //   http://wiki.whatwg.org/wiki/Dynamic_Script_Execution_Order
-
-
-  if (typeof script.async === 'undefined' && __nested_webpack_require_92762__.g.document.attachEvent) {
-    // According to mozilla docs, in recent browsers script.async defaults
-    // to 'true', so we may use it to detect a good browser:
-    // https://developer.mozilla.org/en/HTML/Element/script
-    if (!browser.isOpera()) {
-      // Naively assume we're in IE
-      try {
-        script.htmlFor = script.id;
-        script.event = 'onclick';
-      } catch (x) {// intentionally empty
-      }
-
-      script.async = true;
-    } else {
-      // Opera, second sync script hack
-      script2 = this.script2 = __nested_webpack_require_92762__.g.document.createElement('script');
-      script2.text = "try{var a = document.getElementById('" + script.id + "'); if(a)a.onerror();}catch(x){};";
-      script.async = script2.async = false;
-    }
-  }
-
-  if (typeof script.async !== 'undefined') {
-    script.async = true;
-  }
-
-  var head = __nested_webpack_require_92762__.g.document.getElementsByTagName('head')[0];
-  head.insertBefore(script, head.firstChild);
-
-  if (script2) {
-    head.insertBefore(script2, head.firstChild);
-  }
-};
-
-module.exports = JsonpReceiver;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/receiver/xhr.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/receiver/xhr.js ***!
-  \******************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_99262__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_99262__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = (__nested_webpack_require_99262__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter);
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_99262__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:receiver:xhr');
-}
-
-function XhrReceiver(url, AjaxObject) {
-  debug(url);
-  EventEmitter.call(this);
-  var self = this;
-  this.bufferPosition = 0;
-  this.xo = new AjaxObject('POST', url, null);
-  this.xo.on('chunk', this._chunkHandler.bind(this));
-  this.xo.once('finish', function (status, text) {
-    debug('finish', status, text);
-
-    self._chunkHandler(status, text);
-
-    self.xo = null;
-    var reason = status === 200 ? 'network' : 'permanent';
-    debug('close', reason);
-    self.emit('close', null, reason);
-
-    self._cleanup();
-  });
-}
-
-inherits(XhrReceiver, EventEmitter);
-
-XhrReceiver.prototype._chunkHandler = function (status, text) {
-  debug('_chunkHandler', status);
-
-  if (status !== 200 || !text) {
-    return;
-  }
-
-  for (var idx = -1;; this.bufferPosition += idx + 1) {
-    var buf = text.slice(this.bufferPosition);
-    idx = buf.indexOf('\n');
-
-    if (idx === -1) {
-      break;
-    }
-
-    var msg = buf.slice(0, idx);
-
-    if (msg) {
-      debug('message', msg);
-      this.emit('message', msg);
-    }
-  }
-};
-
-XhrReceiver.prototype._cleanup = function () {
-  debug('_cleanup');
-  this.removeAllListeners();
-};
-
-XhrReceiver.prototype.abort = function () {
-  debug('abort');
-
-  if (this.xo) {
-    this.xo.close();
-    debug('close');
-    this.emit('close', null, 'user');
-    this.xo = null;
-  }
-
-  this._cleanup();
-};
-
-module.exports = XhrReceiver;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/sender/jsonp.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/sender/jsonp.js ***!
-  \******************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_101413__) {
-
-"use strict";
-
-
-var random = __nested_webpack_require_101413__(/*! ../../utils/random */ "./node_modules/sockjs-client/lib/utils/random.js"),
-    urlUtils = __nested_webpack_require_101413__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_101413__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:sender:jsonp');
-}
-
-var form, area;
-
-function createIframe(id) {
-  debug('createIframe', id);
-
-  try {
-    // ie6 dynamic iframes with target="" support (thanks Chris Lambacher)
-    return __nested_webpack_require_101413__.g.document.createElement('<iframe name="' + id + '">');
-  } catch (x) {
-    var iframe = __nested_webpack_require_101413__.g.document.createElement('iframe');
-    iframe.name = id;
-    return iframe;
-  }
-}
-
-function createForm() {
-  debug('createForm');
-  form = __nested_webpack_require_101413__.g.document.createElement('form');
-  form.style.display = 'none';
-  form.style.position = 'absolute';
-  form.method = 'POST';
-  form.enctype = 'application/x-www-form-urlencoded';
-  form.acceptCharset = 'UTF-8';
-  area = __nested_webpack_require_101413__.g.document.createElement('textarea');
-  area.name = 'd';
-  form.appendChild(area);
-  __nested_webpack_require_101413__.g.document.body.appendChild(form);
-}
-
-module.exports = function (url, payload, callback) {
-  debug(url, payload);
-
-  if (!form) {
-    createForm();
-  }
-
-  var id = 'a' + random.string(8);
-  form.target = id;
-  form.action = urlUtils.addQuery(urlUtils.addPath(url, '/jsonp_send'), 'i=' + id);
-  var iframe = createIframe(id);
-  iframe.id = id;
-  iframe.style.display = 'none';
-  form.appendChild(iframe);
-
-  try {
-    area.value = payload;
-  } catch (e) {// seriously broken browsers get here
-  }
-
-  form.submit();
-
-  var completed = function completed(err) {
-    debug('completed', id, err);
-
-    if (!iframe.onerror) {
-      return;
-    }
-
-    iframe.onreadystatechange = iframe.onerror = iframe.onload = null; // Opera mini doesn't like if we GC iframe
-    // immediately, thus this timeout.
-
-    setTimeout(function () {
-      debug('cleaning up', id);
-      iframe.parentNode.removeChild(iframe);
-      iframe = null;
-    }, 500);
-    area.value = ''; // It is not possible to detect if the iframe succeeded or
-    // failed to submit our form.
-
-    callback(err);
-  };
-
-  iframe.onerror = function () {
-    debug('onerror', id);
-    completed();
-  };
-
-  iframe.onload = function () {
-    debug('onload', id);
-    completed();
-  };
-
-  iframe.onreadystatechange = function (e) {
-    debug('onreadystatechange', id, iframe.readyState, e);
-
-    if (iframe.readyState === 'complete') {
-      completed();
-    }
-  };
-
-  return function () {
-    debug('aborted', id);
-    completed(new Error('Aborted'));
-  };
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/sender/xdr.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/sender/xdr.js ***!
-  \****************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_104514__) {
-
-"use strict";
-
-
-var EventEmitter = (__nested_webpack_require_104514__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    inherits = __nested_webpack_require_104514__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    eventUtils = __nested_webpack_require_104514__(/*! ../../utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
-    browser = __nested_webpack_require_104514__(/*! ../../utils/browser */ "./node_modules/sockjs-client/lib/utils/browser.js"),
-    urlUtils = __nested_webpack_require_104514__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_104514__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:sender:xdr');
-} // References:
-//   http://ajaxian.com/archives/100-line-ajax-wrapper
-//   http://msdn.microsoft.com/en-us/library/cc288060(v=VS.85).aspx
-
-
-function XDRObject(method, url, payload) {
-  debug(method, url);
-  var self = this;
-  EventEmitter.call(this);
-  setTimeout(function () {
-    self._start(method, url, payload);
-  }, 0);
-}
-
-inherits(XDRObject, EventEmitter);
-
-XDRObject.prototype._start = function (method, url, payload) {
-  debug('_start');
-  var self = this;
-  var xdr = new __nested_webpack_require_104514__.g.XDomainRequest(); // IE caches even POSTs
-
-  url = urlUtils.addQuery(url, 't=' + +new Date());
-
-  xdr.onerror = function () {
-    debug('onerror');
-
-    self._error();
-  };
-
-  xdr.ontimeout = function () {
-    debug('ontimeout');
-
-    self._error();
-  };
-
-  xdr.onprogress = function () {
-    debug('progress', xdr.responseText);
-    self.emit('chunk', 200, xdr.responseText);
-  };
-
-  xdr.onload = function () {
-    debug('load');
-    self.emit('finish', 200, xdr.responseText);
-
-    self._cleanup(false);
-  };
-
-  this.xdr = xdr;
-  this.unloadRef = eventUtils.unloadAdd(function () {
-    self._cleanup(true);
-  });
-
-  try {
-    // Fails with AccessDenied if port number is bogus
-    this.xdr.open(method, url);
-
-    if (this.timeout) {
-      this.xdr.timeout = this.timeout;
-    }
-
-    this.xdr.send(payload);
-  } catch (x) {
-    this._error();
-  }
-};
-
-XDRObject.prototype._error = function () {
-  this.emit('finish', 0, '');
-
-  this._cleanup(false);
-};
-
-XDRObject.prototype._cleanup = function (abort) {
-  debug('cleanup', abort);
-
-  if (!this.xdr) {
-    return;
-  }
-
-  this.removeAllListeners();
-  eventUtils.unloadDel(this.unloadRef);
-  this.xdr.ontimeout = this.xdr.onerror = this.xdr.onprogress = this.xdr.onload = null;
-
-  if (abort) {
-    try {
-      this.xdr.abort();
-    } catch (x) {// intentionally empty
-    }
-  }
-
-  this.unloadRef = this.xdr = null;
-};
-
-XDRObject.prototype.close = function () {
-  debug('close');
-
-  this._cleanup(true);
-}; // IE 8/9 if the request target uses the same scheme - #79
-
-
-XDRObject.enabled = !!(__nested_webpack_require_104514__.g.XDomainRequest && browser.hasDomain());
-module.exports = XDRObject;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/sender/xhr-cors.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/sender/xhr-cors.js ***!
-  \*********************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_107788__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_107788__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    XhrDriver = __nested_webpack_require_107788__(/*! ../driver/xhr */ "./node_modules/sockjs-client/lib/transport/browser/abstract-xhr.js");
-
-function XHRCorsObject(method, url, payload, opts) {
-  XhrDriver.call(this, method, url, payload, opts);
-}
-
-inherits(XHRCorsObject, XhrDriver);
-XHRCorsObject.enabled = XhrDriver.enabled && XhrDriver.supportsCORS;
-module.exports = XHRCorsObject;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/sender/xhr-fake.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/sender/xhr-fake.js ***!
-  \*********************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_108658__) {
-
-"use strict";
-
-
-var EventEmitter = (__nested_webpack_require_108658__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    inherits = __nested_webpack_require_108658__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
-
-function
-  /* method, url, payload, opts */
-XHRFake() {
-  var self = this;
-  EventEmitter.call(this);
-  this.to = setTimeout(function () {
-    self.emit('finish', 200, '{}');
-  }, XHRFake.timeout);
-}
-
-inherits(XHRFake, EventEmitter);
-
-XHRFake.prototype.close = function () {
-  clearTimeout(this.to);
-};
-
-XHRFake.timeout = 2000;
-module.exports = XHRFake;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/sender/xhr-local.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/sender/xhr-local.js ***!
-  \**********************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_109635__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_109635__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    XhrDriver = __nested_webpack_require_109635__(/*! ../driver/xhr */ "./node_modules/sockjs-client/lib/transport/browser/abstract-xhr.js");
-
-function XHRLocalObject(method, url, payload
-/*, opts */
-) {
-  XhrDriver.call(this, method, url, payload, {
-    noCredentials: true
-  });
-}
-
-inherits(XHRLocalObject, XhrDriver);
-XHRLocalObject.enabled = XhrDriver.enabled;
-module.exports = XHRLocalObject;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/websocket.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/websocket.js ***!
-  \***************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_110491__) {
-
-"use strict";
-
-
-var utils = __nested_webpack_require_110491__(/*! ../utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
-    urlUtils = __nested_webpack_require_110491__(/*! ../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    inherits = __nested_webpack_require_110491__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = (__nested_webpack_require_110491__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
-    WebsocketDriver = __nested_webpack_require_110491__(/*! ./driver/websocket */ "./node_modules/sockjs-client/lib/transport/browser/websocket.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_110491__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:websocket');
-}
-
-function WebSocketTransport(transUrl, ignore, options) {
-  if (!WebSocketTransport.enabled()) {
-    throw new Error('Transport created when disabled');
-  }
-
-  EventEmitter.call(this);
-  debug('constructor', transUrl);
-  var self = this;
-  var url = urlUtils.addPath(transUrl, '/websocket');
-
-  if (url.slice(0, 5) === 'https') {
-    url = 'wss' + url.slice(5);
-  } else {
-    url = 'ws' + url.slice(4);
-  }
-
-  this.url = url;
-  this.ws = new WebsocketDriver(this.url, [], options);
-
-  this.ws.onmessage = function (e) {
-    debug('message event', e.data);
-    self.emit('message', e.data);
-  }; // Firefox has an interesting bug. If a websocket connection is
-  // created after onunload, it stays alive even when user
-  // navigates away from the page. In such situation let's lie -
-  // let's not open the ws connection at all. See:
-  // https://github.com/sockjs/sockjs-client/issues/28
-  // https://bugzilla.mozilla.org/show_bug.cgi?id=696085
-
-
-  this.unloadRef = utils.unloadAdd(function () {
-    debug('unload');
-    self.ws.close();
-  });
-
-  this.ws.onclose = function (e) {
-    debug('close event', e.code, e.reason);
-    self.emit('close', e.code, e.reason);
-
-    self._cleanup();
-  };
-
-  this.ws.onerror = function (e) {
-    debug('error event', e);
-    self.emit('close', 1006, 'WebSocket connection broken');
-
-    self._cleanup();
-  };
-}
-
-inherits(WebSocketTransport, EventEmitter);
-
-WebSocketTransport.prototype.send = function (data) {
-  var msg = '[' + data + ']';
-  debug('send', msg);
-  this.ws.send(msg);
-};
-
-WebSocketTransport.prototype.close = function () {
-  debug('close');
-  var ws = this.ws;
-
-  this._cleanup();
-
-  if (ws) {
-    ws.close();
-  }
-};
-
-WebSocketTransport.prototype._cleanup = function () {
-  debug('_cleanup');
-  var ws = this.ws;
-
-  if (ws) {
-    ws.onmessage = ws.onclose = ws.onerror = null;
-  }
-
-  utils.unloadDel(this.unloadRef);
-  this.unloadRef = this.ws = null;
-  this.removeAllListeners();
-};
-
-WebSocketTransport.enabled = function () {
-  debug('enabled');
-  return !!WebsocketDriver;
-};
-
-WebSocketTransport.transportName = 'websocket'; // In theory, ws should require 1 round trip. But in chrome, this is
-// not very stable over SSL. Most likely a ws connection requires a
-// separate SSL connection, in which case 2 round trips are an
-// absolute minumum.
-
-WebSocketTransport.roundTrips = 2;
-module.exports = WebSocketTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/xdr-polling.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/xdr-polling.js ***!
-  \*****************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_114003__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_114003__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    AjaxBasedTransport = __nested_webpack_require_114003__(/*! ./lib/ajax-based */ "./node_modules/sockjs-client/lib/transport/lib/ajax-based.js"),
-    XdrStreamingTransport = __nested_webpack_require_114003__(/*! ./xdr-streaming */ "./node_modules/sockjs-client/lib/transport/xdr-streaming.js"),
-    XhrReceiver = __nested_webpack_require_114003__(/*! ./receiver/xhr */ "./node_modules/sockjs-client/lib/transport/receiver/xhr.js"),
-    XDRObject = __nested_webpack_require_114003__(/*! ./sender/xdr */ "./node_modules/sockjs-client/lib/transport/sender/xdr.js");
-
-function XdrPollingTransport(transUrl) {
-  if (!XDRObject.enabled) {
-    throw new Error('Transport created when disabled');
-  }
-
-  AjaxBasedTransport.call(this, transUrl, '/xhr', XhrReceiver, XDRObject);
-}
-
-inherits(XdrPollingTransport, AjaxBasedTransport);
-XdrPollingTransport.enabled = XdrStreamingTransport.enabled;
-XdrPollingTransport.transportName = 'xdr-polling';
-XdrPollingTransport.roundTrips = 2; // preflight, ajax
-
-module.exports = XdrPollingTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/xdr-streaming.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/xdr-streaming.js ***!
-  \*******************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_115466__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_115466__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    AjaxBasedTransport = __nested_webpack_require_115466__(/*! ./lib/ajax-based */ "./node_modules/sockjs-client/lib/transport/lib/ajax-based.js"),
-    XhrReceiver = __nested_webpack_require_115466__(/*! ./receiver/xhr */ "./node_modules/sockjs-client/lib/transport/receiver/xhr.js"),
-    XDRObject = __nested_webpack_require_115466__(/*! ./sender/xdr */ "./node_modules/sockjs-client/lib/transport/sender/xdr.js"); // According to:
-//   http://stackoverflow.com/questions/1641507/detect-browser-support-for-cross-domain-xmlhttprequests
-//   http://hacks.mozilla.org/2009/07/cross-site-xmlhttprequest-with-cors/
-
-
-function XdrStreamingTransport(transUrl) {
-  if (!XDRObject.enabled) {
-    throw new Error('Transport created when disabled');
-  }
-
-  AjaxBasedTransport.call(this, transUrl, '/xhr_streaming', XhrReceiver, XDRObject);
-}
-
-inherits(XdrStreamingTransport, AjaxBasedTransport);
-
-XdrStreamingTransport.enabled = function (info) {
-  if (info.cookie_needed || info.nullOrigin) {
-    return false;
-  }
-
-  return XDRObject.enabled && info.sameScheme;
-};
-
-XdrStreamingTransport.transportName = 'xdr-streaming';
-XdrStreamingTransport.roundTrips = 2; // preflight, ajax
-
-module.exports = XdrStreamingTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/xhr-polling.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/xhr-polling.js ***!
-  \*****************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_117116__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_117116__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    AjaxBasedTransport = __nested_webpack_require_117116__(/*! ./lib/ajax-based */ "./node_modules/sockjs-client/lib/transport/lib/ajax-based.js"),
-    XhrReceiver = __nested_webpack_require_117116__(/*! ./receiver/xhr */ "./node_modules/sockjs-client/lib/transport/receiver/xhr.js"),
-    XHRCorsObject = __nested_webpack_require_117116__(/*! ./sender/xhr-cors */ "./node_modules/sockjs-client/lib/transport/sender/xhr-cors.js"),
-    XHRLocalObject = __nested_webpack_require_117116__(/*! ./sender/xhr-local */ "./node_modules/sockjs-client/lib/transport/sender/xhr-local.js");
-
-function XhrPollingTransport(transUrl) {
-  if (!XHRLocalObject.enabled && !XHRCorsObject.enabled) {
-    throw new Error('Transport created when disabled');
-  }
-
-  AjaxBasedTransport.call(this, transUrl, '/xhr', XhrReceiver, XHRCorsObject);
-}
-
-inherits(XhrPollingTransport, AjaxBasedTransport);
-
-XhrPollingTransport.enabled = function (info) {
-  if (info.nullOrigin) {
-    return false;
-  }
-
-  if (XHRLocalObject.enabled && info.sameOrigin) {
-    return true;
-  }
-
-  return XHRCorsObject.enabled;
-};
-
-XhrPollingTransport.transportName = 'xhr-polling';
-XhrPollingTransport.roundTrips = 2; // preflight, ajax
-
-module.exports = XhrPollingTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/transport/xhr-streaming.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/transport/xhr-streaming.js ***!
-  \*******************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_118772__) {
-
-"use strict";
-
-
-var inherits = __nested_webpack_require_118772__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    AjaxBasedTransport = __nested_webpack_require_118772__(/*! ./lib/ajax-based */ "./node_modules/sockjs-client/lib/transport/lib/ajax-based.js"),
-    XhrReceiver = __nested_webpack_require_118772__(/*! ./receiver/xhr */ "./node_modules/sockjs-client/lib/transport/receiver/xhr.js"),
-    XHRCorsObject = __nested_webpack_require_118772__(/*! ./sender/xhr-cors */ "./node_modules/sockjs-client/lib/transport/sender/xhr-cors.js"),
-    XHRLocalObject = __nested_webpack_require_118772__(/*! ./sender/xhr-local */ "./node_modules/sockjs-client/lib/transport/sender/xhr-local.js"),
-    browser = __nested_webpack_require_118772__(/*! ../utils/browser */ "./node_modules/sockjs-client/lib/utils/browser.js");
-
-function XhrStreamingTransport(transUrl) {
-  if (!XHRLocalObject.enabled && !XHRCorsObject.enabled) {
-    throw new Error('Transport created when disabled');
-  }
-
-  AjaxBasedTransport.call(this, transUrl, '/xhr_streaming', XhrReceiver, XHRCorsObject);
-}
-
-inherits(XhrStreamingTransport, AjaxBasedTransport);
-
-XhrStreamingTransport.enabled = function (info) {
-  if (info.nullOrigin) {
-    return false;
-  } // Opera doesn't support xhr-streaming #60
-  // But it might be able to #92
-
-
-  if (browser.isOpera()) {
-    return false;
-  }
-
-  return XHRCorsObject.enabled;
-};
-
-XhrStreamingTransport.transportName = 'xhr-streaming';
-XhrStreamingTransport.roundTrips = 2; // preflight, ajax
-// Safari gets confused when a streaming ajax request is started
-// before onload. This causes the load indicator to spin indefinetely.
-// Only require body when used in a browser
-
-XhrStreamingTransport.needBody = !!__nested_webpack_require_118772__.g.document;
-module.exports = XhrStreamingTransport;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/browser-crypto.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/browser-crypto.js ***!
-  \****************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_120853__) {
-
-"use strict";
-
-
-if (__nested_webpack_require_120853__.g.crypto && __nested_webpack_require_120853__.g.crypto.getRandomValues) {
-  module.exports.randomBytes = function (length) {
-    var bytes = new Uint8Array(length);
-    __nested_webpack_require_120853__.g.crypto.getRandomValues(bytes);
-    return bytes;
-  };
-} else {
-  module.exports.randomBytes = function (length) {
-    var bytes = new Array(length);
-
-    for (var i = 0; i < length; i++) {
-      bytes[i] = Math.floor(Math.random() * 256);
-    }
-
-    return bytes;
-  };
-}
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/browser.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/browser.js ***!
-  \*********************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_121674__) {
-
-"use strict";
-
-
-module.exports = {
-  isOpera: function isOpera() {
-    return __nested_webpack_require_121674__.g.navigator && /opera/i.test(__nested_webpack_require_121674__.g.navigator.userAgent);
-  },
-  isKonqueror: function isKonqueror() {
-    return __nested_webpack_require_121674__.g.navigator && /konqueror/i.test(__nested_webpack_require_121674__.g.navigator.userAgent);
-  } // #187 wrap document.domain in try/catch because of WP8 from file:///
-  ,
-  hasDomain: function hasDomain() {
-    // non-browser client always has a domain
-    if (!__nested_webpack_require_121674__.g.document) {
-      return true;
-    }
-
-    try {
-      return !!__nested_webpack_require_121674__.g.document.domain;
-    } catch (e) {
-      return false;
-    }
-  }
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/escape.js":
-/*!********************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/escape.js ***!
-  \********************************************************/
-/***/ (function(module) {
-
-"use strict";
- // Some extra characters that Chrome gets wrong, and substitutes with
-// something else on the wire.
-// eslint-disable-next-line no-control-regex, no-misleading-character-class
-
-var extraEscapable = /[\x00-\x1f\ud800-\udfff\ufffe\uffff\u0300-\u0333\u033d-\u0346\u034a-\u034c\u0350-\u0352\u0357-\u0358\u035c-\u0362\u0374\u037e\u0387\u0591-\u05af\u05c4\u0610-\u0617\u0653-\u0654\u0657-\u065b\u065d-\u065e\u06df-\u06e2\u06eb-\u06ec\u0730\u0732-\u0733\u0735-\u0736\u073a\u073d\u073f-\u0741\u0743\u0745\u0747\u07eb-\u07f1\u0951\u0958-\u095f\u09dc-\u09dd\u09df\u0a33\u0a36\u0a59-\u0a5b\u0a5e\u0b5c-\u0b5d\u0e38-\u0e39\u0f43\u0f4d\u0f52\u0f57\u0f5c\u0f69\u0f72-\u0f76\u0f78\u0f80-\u0f83\u0f93\u0f9d\u0fa2\u0fa7\u0fac\u0fb9\u1939-\u193a\u1a17\u1b6b\u1cda-\u1cdb\u1dc0-\u1dcf\u1dfc\u1dfe\u1f71\u1f73\u1f75\u1f77\u1f79\u1f7b\u1f7d\u1fbb\u1fbe\u1fc9\u1fcb\u1fd3\u1fdb\u1fe3\u1feb\u1fee-\u1fef\u1ff9\u1ffb\u1ffd\u2000-\u2001\u20d0-\u20d1\u20d4-\u20d7\u20e7-\u20e9\u2126\u212a-\u212b\u2329-\u232a\u2adc\u302b-\u302c\uaab2-\uaab3\uf900-\ufa0d\ufa10\ufa12\ufa15-\ufa1e\ufa20\ufa22\ufa25-\ufa26\ufa2a-\ufa2d\ufa30-\ufa6d\ufa70-\ufad9\ufb1d\ufb1f\ufb2a-\ufb36\ufb38-\ufb3c\ufb3e\ufb40-\ufb41\ufb43-\ufb44\ufb46-\ufb4e\ufff0-\uffff]/g,
-    extraLookup; // This may be quite slow, so let's delay until user actually uses bad
-// characters.
-
-var unrollLookup = function unrollLookup(escapable) {
-  var i;
-  var unrolled = {};
-  var c = [];
-
-  for (i = 0; i < 65536; i++) {
-    c.push(String.fromCharCode(i));
-  }
-
-  escapable.lastIndex = 0;
-  c.join('').replace(escapable, function (a) {
-    unrolled[a] = "\\u" + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-    return '';
-  });
-  escapable.lastIndex = 0;
-  return unrolled;
-}; // Quote string, also taking care of unicode characters that browsers
-// often break. Especially, take care of unicode surrogates:
-// http://en.wikipedia.org/wiki/Mapping_of_Unicode_characters#Surrogates
-
-
-module.exports = {
-  quote: function quote(string) {
-    var quoted = JSON.stringify(string); // In most cases this should be very fast and good enough.
-
-    extraEscapable.lastIndex = 0;
-
-    if (!extraEscapable.test(quoted)) {
-      return quoted;
-    }
-
-    if (!extraLookup) {
-      extraLookup = unrollLookup(extraEscapable);
-    }
-
-    return quoted.replace(extraEscapable, function (a) {
-      return extraLookup[a];
-    });
-  }
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/event.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/event.js ***!
-  \*******************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_125325__) {
-
-"use strict";
-
-
-var random = __nested_webpack_require_125325__(/*! ./random */ "./node_modules/sockjs-client/lib/utils/random.js");
-
-var onUnload = {},
-    afterUnload = false // detect google chrome packaged apps because they don't allow the 'unload' event
-,
-    isChromePackagedApp = __nested_webpack_require_125325__.g.chrome && __nested_webpack_require_125325__.g.chrome.app && __nested_webpack_require_125325__.g.chrome.app.runtime;
-module.exports = {
-  attachEvent: function attachEvent(event, listener) {
-    if (typeof __nested_webpack_require_125325__.g.addEventListener !== 'undefined') {
-      __nested_webpack_require_125325__.g.addEventListener(event, listener, false);
-    } else if (__nested_webpack_require_125325__.g.document && __nested_webpack_require_125325__.g.attachEvent) {
-      // IE quirks.
-      // According to: http://stevesouders.com/misc/test-postmessage.php
-      // the message gets delivered only to 'document', not 'window'.
-      __nested_webpack_require_125325__.g.document.attachEvent('on' + event, listener); // I get 'window' for ie8.
-
-      __nested_webpack_require_125325__.g.attachEvent('on' + event, listener);
-    }
-  },
-  detachEvent: function detachEvent(event, listener) {
-    if (typeof __nested_webpack_require_125325__.g.addEventListener !== 'undefined') {
-      __nested_webpack_require_125325__.g.removeEventListener(event, listener, false);
-    } else if (__nested_webpack_require_125325__.g.document && __nested_webpack_require_125325__.g.detachEvent) {
-      __nested_webpack_require_125325__.g.document.detachEvent('on' + event, listener);
-      __nested_webpack_require_125325__.g.detachEvent('on' + event, listener);
-    }
-  },
-  unloadAdd: function unloadAdd(listener) {
-    if (isChromePackagedApp) {
-      return null;
-    }
-
-    var ref = random.string(8);
-    onUnload[ref] = listener;
-
-    if (afterUnload) {
-      setTimeout(this.triggerUnloadCallbacks, 0);
-    }
-
-    return ref;
-  },
-  unloadDel: function unloadDel(ref) {
-    if (ref in onUnload) {
-      delete onUnload[ref];
-    }
-  },
-  triggerUnloadCallbacks: function triggerUnloadCallbacks() {
-    for (var ref in onUnload) {
-      onUnload[ref]();
-      delete onUnload[ref];
-    }
-  }
-};
-
-var unloadTriggered = function unloadTriggered() {
-  if (afterUnload) {
-    return;
-  }
-
-  afterUnload = true;
-  module.exports.triggerUnloadCallbacks();
-}; // 'unload' alone is not reliable in opera within an iframe, but we
-// can't use `beforeunload` as IE fires it on javascript: links.
-
-
-if (!isChromePackagedApp) {
-  module.exports.attachEvent('unload', unloadTriggered);
-}
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/iframe.js":
-/*!********************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/iframe.js ***!
-  \********************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_128025__) {
-
-"use strict";
-
-
-var eventUtils = __nested_webpack_require_128025__(/*! ./event */ "./node_modules/sockjs-client/lib/utils/event.js"),
-    browser = __nested_webpack_require_128025__(/*! ./browser */ "./node_modules/sockjs-client/lib/utils/browser.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_128025__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:utils:iframe');
-}
-
-module.exports = {
-  WPrefix: '_jp',
-  currentWindowId: null,
-  polluteGlobalNamespace: function polluteGlobalNamespace() {
-    if (!(module.exports.WPrefix in __nested_webpack_require_128025__.g)) {
-      __nested_webpack_require_128025__.g[module.exports.WPrefix] = {};
-    }
-  },
-  postMessage: function postMessage(type, data) {
-    if (__nested_webpack_require_128025__.g.parent !== __nested_webpack_require_128025__.g) {
-      __nested_webpack_require_128025__.g.parent.postMessage(JSON.stringify({
-        windowId: module.exports.currentWindowId,
-        type: type,
-        data: data || ''
-      }), '*');
-    } else {
-      debug('Cannot postMessage, no parent window.', type, data);
-    }
-  },
-  createIframe: function createIframe(iframeUrl, errorCallback) {
-    var iframe = __nested_webpack_require_128025__.g.document.createElement('iframe');
-    var tref, unloadRef;
-
-    var unattach = function unattach() {
-      debug('unattach');
-      clearTimeout(tref); // Explorer had problems with that.
-
-      try {
-        iframe.onload = null;
-      } catch (x) {// intentionally empty
-      }
-
-      iframe.onerror = null;
-    };
-
-    var cleanup = function cleanup() {
-      debug('cleanup');
-
-      if (iframe) {
-        unattach(); // This timeout makes chrome fire onbeforeunload event
-        // within iframe. Without the timeout it goes straight to
-        // onunload.
-
-        setTimeout(function () {
-          if (iframe) {
-            iframe.parentNode.removeChild(iframe);
-          }
-
-          iframe = null;
-        }, 0);
-        eventUtils.unloadDel(unloadRef);
-      }
-    };
-
-    var onerror = function onerror(err) {
-      debug('onerror', err);
-
-      if (iframe) {
-        cleanup();
-        errorCallback(err);
-      }
-    };
-
-    var post = function post(msg, origin) {
-      debug('post', msg, origin);
-      setTimeout(function () {
-        try {
-          // When the iframe is not loaded, IE raises an exception
-          // on 'contentWindow'.
-          if (iframe && iframe.contentWindow) {
-            iframe.contentWindow.postMessage(msg, origin);
-          }
-        } catch (x) {// intentionally empty
-        }
-      }, 0);
-    };
-
-    iframe.src = iframeUrl;
-    iframe.style.display = 'none';
-    iframe.style.position = 'absolute';
-
-    iframe.onerror = function () {
-      onerror('onerror');
-    };
-
-    iframe.onload = function () {
-      debug('onload'); // `onload` is triggered before scripts on the iframe are
-      // executed. Give it few seconds to actually load stuff.
-
-      clearTimeout(tref);
-      tref = setTimeout(function () {
-        onerror('onload timeout');
-      }, 2000);
-    };
-
-    __nested_webpack_require_128025__.g.document.body.appendChild(iframe);
-    tref = setTimeout(function () {
-      onerror('timeout');
-    }, 15000);
-    unloadRef = eventUtils.unloadAdd(cleanup);
-    return {
-      post: post,
-      cleanup: cleanup,
-      loaded: unattach
-    };
-  }
-  /* eslint no-undef: "off", new-cap: "off" */
-  ,
-  createHtmlfile: function createHtmlfile(iframeUrl, errorCallback) {
-    var axo = ['Active'].concat('Object').join('X');
-    var doc = new __nested_webpack_require_128025__.g[axo]('htmlfile');
-    var tref, unloadRef;
-    var iframe;
-
-    var unattach = function unattach() {
-      clearTimeout(tref);
-      iframe.onerror = null;
-    };
-
-    var cleanup = function cleanup() {
-      if (doc) {
-        unattach();
-        eventUtils.unloadDel(unloadRef);
-        iframe.parentNode.removeChild(iframe);
-        iframe = doc = null;
-        CollectGarbage();
-      }
-    };
-
-    var onerror = function onerror(r) {
-      debug('onerror', r);
-
-      if (doc) {
-        cleanup();
-        errorCallback(r);
-      }
-    };
-
-    var post = function post(msg, origin) {
-      try {
-        // When the iframe is not loaded, IE raises an exception
-        // on 'contentWindow'.
-        setTimeout(function () {
-          if (iframe && iframe.contentWindow) {
-            iframe.contentWindow.postMessage(msg, origin);
-          }
-        }, 0);
-      } catch (x) {// intentionally empty
-      }
-    };
-
-    doc.open();
-    doc.write('<html><s' + 'cript>' + 'document.domain="' + __nested_webpack_require_128025__.g.document.domain + '";' + '</s' + 'cript></html>');
-    doc.close();
-    doc.parentWindow[module.exports.WPrefix] = __nested_webpack_require_128025__.g[module.exports.WPrefix];
-    var c = doc.createElement('div');
-    doc.body.appendChild(c);
-    iframe = doc.createElement('iframe');
-    c.appendChild(iframe);
-    iframe.src = iframeUrl;
-
-    iframe.onerror = function () {
-      onerror('onerror');
-    };
-
-    tref = setTimeout(function () {
-      onerror('timeout');
-    }, 15000);
-    unloadRef = eventUtils.unloadAdd(cleanup);
-    return {
-      post: post,
-      cleanup: cleanup,
-      loaded: unattach
-    };
-  }
-};
-module.exports.iframeEnabled = false;
-
-if (__nested_webpack_require_128025__.g.document) {
-  // postMessage misbehaves in konqueror 4.6.5 - the messages are delivered with
-  // huge delay, or not at all.
-  module.exports.iframeEnabled = (typeof __nested_webpack_require_128025__.g.postMessage === 'function' || typeof __nested_webpack_require_128025__.g.postMessage === 'object') && !browser.isKonqueror();
-}
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/log.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/log.js ***!
-  \*****************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_133816__) {
-
-"use strict";
-
-
-var logObject = {};
-['log', 'debug', 'warn'].forEach(function (level) {
-  var levelExists;
-
-  try {
-    levelExists = __nested_webpack_require_133816__.g.console && __nested_webpack_require_133816__.g.console[level] && __nested_webpack_require_133816__.g.console[level].apply;
-  } catch (e) {// do nothing
-  }
-
-  logObject[level] = levelExists ? function () {
-    return __nested_webpack_require_133816__.g.console[level].apply(__nested_webpack_require_133816__.g.console, arguments);
-  } : level === 'log' ? function () {} : logObject.log;
-});
-module.exports = logObject;
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/object.js":
-/*!********************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/object.js ***!
-  \********************************************************/
-/***/ (function(module) {
-
-"use strict";
-
-
-module.exports = {
-  isObject: function isObject(obj) {
-    var type = typeof obj;
-    return type === 'function' || type === 'object' && !!obj;
-  },
-  extend: function extend(obj) {
-    if (!this.isObject(obj)) {
-      return obj;
-    }
-
-    var source, prop;
-
-    for (var i = 1, length = arguments.length; i < length; i++) {
-      source = arguments[i];
-
-      for (prop in source) {
-        if (Object.prototype.hasOwnProperty.call(source, prop)) {
-          obj[prop] = source[prop];
-        }
-      }
-    }
-
-    return obj;
-  }
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/random.js":
-/*!********************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/random.js ***!
-  \********************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_135499__) {
-
-"use strict";
-
-
-var crypto = __nested_webpack_require_135499__(/*! crypto */ "./node_modules/sockjs-client/lib/utils/browser-crypto.js"); // This string has length 32, a power of 2, so the modulus doesn't introduce a
-// bias.
-
-
-var _randomStringChars = 'abcdefghijklmnopqrstuvwxyz012345';
-module.exports = {
-  string: function string(length) {
-    var max = _randomStringChars.length;
-    var bytes = crypto.randomBytes(length);
-    var ret = [];
-
-    for (var i = 0; i < length; i++) {
-      ret.push(_randomStringChars.substr(bytes[i] % max, 1));
-    }
-
-    return ret.join('');
-  },
-  number: function number(max) {
-    return Math.floor(Math.random() * max);
-  },
-  numberString: function numberString(max) {
-    var t = ('' + (max - 1)).length;
-    var p = new Array(t + 1).join('0');
-    return (p + this.number(max)).slice(-t);
-  }
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/transport.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/transport.js ***!
-  \***********************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_136668__) {
-
-"use strict";
-
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_136668__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:utils:transport');
-}
-
-module.exports = function (availableTransports) {
-  return {
-    filterToEnabled: function filterToEnabled(transportsWhitelist, info) {
-      var transports = {
-        main: [],
-        facade: []
-      };
-
-      if (!transportsWhitelist) {
-        transportsWhitelist = [];
-      } else if (typeof transportsWhitelist === 'string') {
-        transportsWhitelist = [transportsWhitelist];
-      }
-
-      availableTransports.forEach(function (trans) {
-        if (!trans) {
-          return;
-        }
-
-        if (trans.transportName === 'websocket' && info.websocket === false) {
-          debug('disabled from server', 'websocket');
-          return;
-        }
-
-        if (transportsWhitelist.length && transportsWhitelist.indexOf(trans.transportName) === -1) {
-          debug('not in whitelist', trans.transportName);
-          return;
-        }
-
-        if (trans.enabled(info)) {
-          debug('enabled', trans.transportName);
-          transports.main.push(trans);
-
-          if (trans.facadeTransport) {
-            transports.facade.push(trans.facadeTransport);
-          }
-        } else {
-          debug('disabled', trans.transportName);
-        }
-      });
-      return transports;
-    }
-  };
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/utils/url.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/utils/url.js ***!
-  \*****************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_138405__) {
-
-"use strict";
-
-
-var URL = __nested_webpack_require_138405__(/*! url-parse */ "./node_modules/url-parse/index.js");
-
-var debug = function debug() {};
-
-if (true) {
-  debug = __nested_webpack_require_138405__(/*! debug */ "./node_modules/sockjs-client/node_modules/debug/src/browser.js")('sockjs-client:utils:url');
-}
-
-module.exports = {
-  getOrigin: function getOrigin(url) {
-    if (!url) {
-      return null;
-    }
-
-    var p = new URL(url);
-
-    if (p.protocol === 'file:') {
-      return null;
-    }
-
-    var port = p.port;
-
-    if (!port) {
-      port = p.protocol === 'https:' ? '443' : '80';
-    }
-
-    return p.protocol + '//' + p.hostname + ':' + port;
-  },
-  isOriginEqual: function isOriginEqual(a, b) {
-    var res = this.getOrigin(a) === this.getOrigin(b);
-    debug('same', a, b, res);
-    return res;
-  },
-  isSchemeEqual: function isSchemeEqual(a, b) {
-    return a.split(':')[0] === b.split(':')[0];
-  },
-  addPath: function addPath(url, path) {
-    var qs = url.split('?');
-    return qs[0] + path + (qs[1] ? '?' + qs[1] : '');
-  },
-  addQuery: function addQuery(url, q) {
-    return url + (url.indexOf('?') === -1 ? '?' + q : '&' + q);
-  },
-  isLoopbackAddr: function isLoopbackAddr(addr) {
-    return /^127\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/i.test(addr) || /^\[::1\]$/.test(addr);
-  }
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/lib/version.js":
-/*!***************************************************!*\
-  !*** ./node_modules/sockjs-client/lib/version.js ***!
-  \***************************************************/
-/***/ (function(module) {
-
-module.exports = '1.6.1';
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/node_modules/debug/src/browser.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/sockjs-client/node_modules/debug/src/browser.js ***!
-  \**********************************************************************/
-/***/ (function(module, exports, __nested_webpack_require_140348__) {
-
-"use strict";
-
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-/* eslint-env browser */
-
-/**
- * This is the web browser implementation of `debug()`.
- */
-
-
-exports.log = log;
-exports.formatArgs = formatArgs;
-exports.save = save;
-exports.load = load;
-exports.useColors = useColors;
-exports.storage = localstorage();
-/**
- * Colors.
- */
-
-exports.colors = ['#0000CC', '#0000FF', '#0033CC', '#0033FF', '#0066CC', '#0066FF', '#0099CC', '#0099FF', '#00CC00', '#00CC33', '#00CC66', '#00CC99', '#00CCCC', '#00CCFF', '#3300CC', '#3300FF', '#3333CC', '#3333FF', '#3366CC', '#3366FF', '#3399CC', '#3399FF', '#33CC00', '#33CC33', '#33CC66', '#33CC99', '#33CCCC', '#33CCFF', '#6600CC', '#6600FF', '#6633CC', '#6633FF', '#66CC00', '#66CC33', '#9900CC', '#9900FF', '#9933CC', '#9933FF', '#99CC00', '#99CC33', '#CC0000', '#CC0033', '#CC0066', '#CC0099', '#CC00CC', '#CC00FF', '#CC3300', '#CC3333', '#CC3366', '#CC3399', '#CC33CC', '#CC33FF', '#CC6600', '#CC6633', '#CC9900', '#CC9933', '#CCCC00', '#CCCC33', '#FF0000', '#FF0033', '#FF0066', '#FF0099', '#FF00CC', '#FF00FF', '#FF3300', '#FF3333', '#FF3366', '#FF3399', '#FF33CC', '#FF33FF', '#FF6600', '#FF6633', '#FF9900', '#FF9933', '#FFCC00', '#FFCC33'];
-/**
- * Currently only WebKit-based Web Inspectors, Firefox >= v31,
- * and the Firebug extension (any Firefox version) are known
- * to support "%c" CSS customizations.
- *
- * TODO: add a `localStorage` variable to explicitly enable/disable colors
- */
-// eslint-disable-next-line complexity
-
-function useColors() {
-  // NB: In an Electron preload script, document will be defined but not fully
-  // initialized. Since we know we're in Chrome, we'll just detect this case
-  // explicitly
-  if (typeof window !== 'undefined' && window.process && (window.process.type === 'renderer' || window.process.__nwjs)) {
-    return true;
-  } // Internet Explorer and Edge do not support colors.
-
-
-  if (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
-    return false;
-  } // Is webkit? http://stackoverflow.com/a/16459606/376773
-  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
-
-
-  return typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // Is firebug? http://stackoverflow.com/a/398120/376773
-  typeof window !== 'undefined' && window.console && (window.console.firebug || window.console.exception && window.console.table) || // Is firefox >= v31?
-  // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-  typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
-  typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
-}
-/**
- * Colorize log arguments if enabled.
- *
- * @api public
- */
-
-
-function formatArgs(args) {
-  args[0] = (this.useColors ? '%c' : '') + this.namespace + (this.useColors ? ' %c' : ' ') + args[0] + (this.useColors ? '%c ' : ' ') + '+' + module.exports.humanize(this.diff);
-
-  if (!this.useColors) {
-    return;
-  }
-
-  var c = 'color: ' + this.color;
-  args.splice(1, 0, c, 'color: inherit'); // The final "%c" is somewhat tricky, because there could be other
-  // arguments passed either before or after the %c, so we need to
-  // figure out the correct index to insert the CSS into
-
-  var index = 0;
-  var lastC = 0;
-  args[0].replace(/%[a-zA-Z%]/g, function (match) {
-    if (match === '%%') {
-      return;
-    }
-
-    index++;
-
-    if (match === '%c') {
-      // We only are interested in the *last* %c
-      // (the user may have provided their own)
-      lastC = index;
-    }
-  });
-  args.splice(lastC, 0, c);
-}
-/**
- * Invokes `console.log()` when available.
- * No-op when `console.log` is not a "function".
- *
- * @api public
- */
-
-
-function log() {
-  var _console; // This hackery is required for IE8/9, where
-  // the `console.log` function doesn't have 'apply'
-
-
-  return (typeof console === "undefined" ? "undefined" : _typeof(console)) === 'object' && console.log && (_console = console).log.apply(_console, arguments);
-}
-/**
- * Save `namespaces`.
- *
- * @param {String} namespaces
- * @api private
- */
-
-
-function save(namespaces) {
-  try {
-    if (namespaces) {
-      exports.storage.setItem('debug', namespaces);
-    } else {
-      exports.storage.removeItem('debug');
-    }
-  } catch (error) {// Swallow
-    // XXX (@Qix-) should we be logging these?
-  }
-}
-/**
- * Load `namespaces`.
- *
- * @return {String} returns the previously persisted debug modes
- * @api private
- */
-
-
-function load() {
-  var r;
-
-  try {
-    r = exports.storage.getItem('debug');
-  } catch (error) {} // Swallow
-  // XXX (@Qix-) should we be logging these?
-  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
-
-
-  if (!r && typeof process !== 'undefined' && 'env' in process) {
-    r = process.env.DEBUG;
-  }
-
-  return r;
-}
-/**
- * Localstorage attempts to return the localstorage.
- *
- * This is necessary because safari throws
- * when a user disables cookies/localstorage
- * and you attempt to access it.
- *
- * @return {LocalStorage}
- * @api private
- */
-
-
-function localstorage() {
-  try {
-    // TVMLKit (Apple TV JS Runtime) does not have a window object, just localStorage in the global context
-    // The Browser also has localStorage in the global context.
-    return localStorage;
-  } catch (error) {// Swallow
-    // XXX (@Qix-) should we be logging these?
-  }
-}
-
-module.exports = __nested_webpack_require_140348__(/*! ./common */ "./node_modules/sockjs-client/node_modules/debug/src/common.js")(exports);
-var formatters = module.exports.formatters;
-/**
- * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
- */
-
-formatters.j = function (v) {
-  try {
-    return JSON.stringify(v);
-  } catch (error) {
-    return '[UnexpectedJSONParseError]: ' + error.message;
-  }
-};
-
-/***/ }),
-
-/***/ "./node_modules/sockjs-client/node_modules/debug/src/common.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/sockjs-client/node_modules/debug/src/common.js ***!
-  \*********************************************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_147132__) {
-
-"use strict";
-
-/**
- * This is the common logic for both the Node.js and web browser
- * implementations of `debug()`.
- */
-
-function setup(env) {
-  createDebug.debug = createDebug;
-  createDebug.default = createDebug;
-  createDebug.coerce = coerce;
-  createDebug.disable = disable;
-  createDebug.enable = enable;
-  createDebug.enabled = enabled;
-  createDebug.humanize = __nested_webpack_require_147132__(/*! ms */ "./node_modules/ms/index.js");
-  Object.keys(env).forEach(function (key) {
-    createDebug[key] = env[key];
-  });
-  /**
-  * Active `debug` instances.
-  */
-
-  createDebug.instances = [];
-  /**
-  * The currently active debug mode names, and names to skip.
-  */
-
-  createDebug.names = [];
-  createDebug.skips = [];
-  /**
-  * Map of special "%n" handling functions, for the debug "format" argument.
-  *
-  * Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
-  */
-
-  createDebug.formatters = {};
-  /**
-  * Selects a color for a debug namespace
-  * @param {String} namespace The namespace string for the for the debug instance to be colored
-  * @return {Number|String} An ANSI color code for the given namespace
-  * @api private
-  */
-
-  function selectColor(namespace) {
-    var hash = 0;
-
-    for (var i = 0; i < namespace.length; i++) {
-      hash = (hash << 5) - hash + namespace.charCodeAt(i);
-      hash |= 0; // Convert to 32bit integer
-    }
-
-    return createDebug.colors[Math.abs(hash) % createDebug.colors.length];
-  }
-
-  createDebug.selectColor = selectColor;
-  /**
-  * Create a debugger with the given `namespace`.
-  *
-  * @param {String} namespace
-  * @return {Function}
-  * @api public
-  */
-
-  function createDebug(namespace) {
-    var prevTime;
-
-    function debug() {
-      // Disabled?
-      if (!debug.enabled) {
-        return;
-      }
-
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      var self = debug; // Set `diff` timestamp
-
-      var curr = Number(new Date());
-      var ms = curr - (prevTime || curr);
-      self.diff = ms;
-      self.prev = prevTime;
-      self.curr = curr;
-      prevTime = curr;
-      args[0] = createDebug.coerce(args[0]);
-
-      if (typeof args[0] !== 'string') {
-        // Anything else let's inspect with %O
-        args.unshift('%O');
-      } // Apply any `formatters` transformations
-
-
-      var index = 0;
-      args[0] = args[0].replace(/%([a-zA-Z%])/g, function (match, format) {
-        // If we encounter an escaped % then don't increase the array index
-        if (match === '%%') {
-          return match;
-        }
-
-        index++;
-        var formatter = createDebug.formatters[format];
-
-        if (typeof formatter === 'function') {
-          var val = args[index];
-          match = formatter.call(self, val); // Now we need to remove `args[index]` since it's inlined in the `format`
-
-          args.splice(index, 1);
-          index--;
-        }
-
-        return match;
-      }); // Apply env-specific formatting (colors, etc.)
-
-      createDebug.formatArgs.call(self, args);
-      var logFn = self.log || createDebug.log;
-      logFn.apply(self, args);
-    }
-
-    debug.namespace = namespace;
-    debug.enabled = createDebug.enabled(namespace);
-    debug.useColors = createDebug.useColors();
-    debug.color = selectColor(namespace);
-    debug.destroy = destroy;
-    debug.extend = extend; // Debug.formatArgs = formatArgs;
-    // debug.rawLog = rawLog;
-    // env-specific initialization logic for debug instances
-
-    if (typeof createDebug.init === 'function') {
-      createDebug.init(debug);
-    }
-
-    createDebug.instances.push(debug);
-    return debug;
-  }
-
-  function destroy() {
-    var index = createDebug.instances.indexOf(this);
-
-    if (index !== -1) {
-      createDebug.instances.splice(index, 1);
-      return true;
-    }
-
-    return false;
-  }
-
-  function extend(namespace, delimiter) {
-    return createDebug(this.namespace + (typeof delimiter === 'undefined' ? ':' : delimiter) + namespace);
-  }
-  /**
-  * Enables a debug mode by namespaces. This can include modes
-  * separated by a colon and wildcards.
-  *
-  * @param {String} namespaces
-  * @api public
-  */
-
-
-  function enable(namespaces) {
-    createDebug.save(namespaces);
-    createDebug.names = [];
-    createDebug.skips = [];
-    var i;
-    var split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
-    var len = split.length;
-
-    for (i = 0; i < len; i++) {
-      if (!split[i]) {
-        // ignore empty strings
-        continue;
-      }
-
-      namespaces = split[i].replace(/\*/g, '.*?');
-
-      if (namespaces[0] === '-') {
-        createDebug.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
-      } else {
-        createDebug.names.push(new RegExp('^' + namespaces + '$'));
-      }
-    }
-
-    for (i = 0; i < createDebug.instances.length; i++) {
-      var instance = createDebug.instances[i];
-      instance.enabled = createDebug.enabled(instance.namespace);
-    }
-  }
-  /**
-  * Disable debug output.
-  *
-  * @api public
-  */
-
-
-  function disable() {
-    createDebug.enable('');
-  }
-  /**
-  * Returns true if the given mode name is enabled, false otherwise.
-  *
-  * @param {String} name
-  * @return {Boolean}
-  * @api public
-  */
-
-
-  function enabled(name) {
-    if (name[name.length - 1] === '*') {
-      return true;
-    }
-
-    var i;
-    var len;
-
-    for (i = 0, len = createDebug.skips.length; i < len; i++) {
-      if (createDebug.skips[i].test(name)) {
-        return false;
-      }
-    }
-
-    for (i = 0, len = createDebug.names.length; i < len; i++) {
-      if (createDebug.names[i].test(name)) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-  /**
-  * Coerce `val`.
-  *
-  * @param {Mixed} val
-  * @return {Mixed}
-  * @api private
-  */
-
-
-  function coerce(val) {
-    if (val instanceof Error) {
-      return val.stack || val.message;
-    }
-
-    return val;
-  }
-
-  createDebug.enable(createDebug.load());
-  return createDebug;
-}
-
-module.exports = setup;
-
-/***/ }),
-
-/***/ "./node_modules/url-parse/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/url-parse/index.js ***!
-  \*****************************************/
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_153376__) {
-
-"use strict";
-
-
-var required = __nested_webpack_require_153376__(/*! requires-port */ "./node_modules/requires-port/index.js"),
-    qs = __nested_webpack_require_153376__(/*! querystringify */ "./node_modules/querystringify/index.js"),
-    controlOrWhitespace = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/,
-    CRHTLF = /[\n\r\t]/g,
-    slashes = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//,
-    port = /:\d+$/,
-    protocolre = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i,
-    windowsDriveLetter = /^[a-zA-Z]:/;
-/**
- * Remove control characters and whitespace from the beginning of a string.
- *
- * @param {Object|String} str String to trim.
- * @returns {String} A new string representing `str` stripped of control
- *     characters and whitespace from its beginning.
- * @public
- */
-
-
-function trimLeft(str) {
-  return (str ? str : '').toString().replace(controlOrWhitespace, '');
-}
-/**
- * These are the parse rules for the URL parser, it informs the parser
- * about:
- *
- * 0. The char it Needs to parse, if it's a string it should be done using
- *    indexOf, RegExp using exec and NaN means set as current value.
- * 1. The property we should set when parsing this value.
- * 2. Indication if it's backwards or forward parsing, when set as number it's
- *    the value of extra chars that should be split off.
- * 3. Inherit from location if non existing in the parser.
- * 4. `toLowerCase` the resulting value.
- */
-
-
-var rules = [['#', 'hash'], // Extract from the back.
-['?', 'query'], // Extract from the back.
-function sanitize(address, url) {
-  // Sanitize what is left of the address
-  return isSpecial(url.protocol) ? address.replace(/\\/g, '/') : address;
-}, ['/', 'pathname'], // Extract from the back.
-['@', 'auth', 1], // Extract from the front.
-[NaN, 'host', undefined, 1, 1], // Set left over value.
-[/:(\d*)$/, 'port', undefined, 1], // RegExp the back.
-[NaN, 'hostname', undefined, 1, 1] // Set left over.
-];
-/**
- * These properties should not be copied or inherited from. This is only needed
- * for all non blob URL's as a blob URL does not include a hash, only the
- * origin.
- *
- * @type {Object}
- * @private
- */
-
-var ignore = {
-  hash: 1,
-  query: 1
-};
-/**
- * The location object differs when your code is loaded through a normal page,
- * Worker or through a worker using a blob. And with the blobble begins the
- * trouble as the location object will contain the URL of the blob, not the
- * location of the page where our code is loaded in. The actual origin is
- * encoded in the `pathname` so we can thankfully generate a good "default"
- * location from it so we can generate proper relative URL's again.
- *
- * @param {Object|String} loc Optional default location object.
- * @returns {Object} lolcation object.
- * @public
- */
-
-function lolcation(loc) {
-  var globalVar;
-  if (typeof window !== 'undefined') globalVar = window;else if (typeof __nested_webpack_require_153376__.g !== 'undefined') globalVar = __nested_webpack_require_153376__.g;else if (typeof self !== 'undefined') globalVar = self;else globalVar = {};
-  var location = globalVar.location || {};
-  loc = loc || location;
-  var finaldestination = {},
-      type = typeof loc,
-      key;
-
-  if ('blob:' === loc.protocol) {
-    finaldestination = new Url(unescape(loc.pathname), {});
-  } else if ('string' === type) {
-    finaldestination = new Url(loc, {});
-
-    for (key in ignore) {
-      delete finaldestination[key];
-    }
-  } else if ('object' === type) {
-    for (key in loc) {
-      if (key in ignore) continue;
-      finaldestination[key] = loc[key];
-    }
-
-    if (finaldestination.slashes === undefined) {
-      finaldestination.slashes = slashes.test(loc.href);
-    }
-  }
-
-  return finaldestination;
-}
-/**
- * Check whether a protocol scheme is special.
- *
- * @param {String} The protocol scheme of the URL
- * @return {Boolean} `true` if the protocol scheme is special, else `false`
- * @private
- */
-
-
-function isSpecial(scheme) {
-  return scheme === 'file:' || scheme === 'ftp:' || scheme === 'http:' || scheme === 'https:' || scheme === 'ws:' || scheme === 'wss:';
-}
-/**
- * @typedef ProtocolExtract
- * @type Object
- * @property {String} protocol Protocol matched in the URL, in lowercase.
- * @property {Boolean} slashes `true` if protocol is followed by "//", else `false`.
- * @property {String} rest Rest of the URL that is not part of the protocol.
- */
-
-/**
- * Extract protocol information from a URL with/without double slash ("//").
- *
- * @param {String} address URL we want to extract from.
- * @param {Object} location
- * @return {ProtocolExtract} Extracted information.
- * @private
- */
-
-
-function extractProtocol(address, location) {
-  address = trimLeft(address);
-  address = address.replace(CRHTLF, '');
-  location = location || {};
-  var match = protocolre.exec(address);
-  var protocol = match[1] ? match[1].toLowerCase() : '';
-  var forwardSlashes = !!match[2];
-  var otherSlashes = !!match[3];
-  var slashesCount = 0;
-  var rest;
-
-  if (forwardSlashes) {
-    if (otherSlashes) {
-      rest = match[2] + match[3] + match[4];
-      slashesCount = match[2].length + match[3].length;
-    } else {
-      rest = match[2] + match[4];
-      slashesCount = match[2].length;
-    }
-  } else {
-    if (otherSlashes) {
-      rest = match[3] + match[4];
-      slashesCount = match[3].length;
-    } else {
-      rest = match[4];
-    }
-  }
-
-  if (protocol === 'file:') {
-    if (slashesCount >= 2) {
-      rest = rest.slice(2);
-    }
-  } else if (isSpecial(protocol)) {
-    rest = match[4];
-  } else if (protocol) {
-    if (forwardSlashes) {
-      rest = rest.slice(2);
-    }
-  } else if (slashesCount >= 2 && isSpecial(location.protocol)) {
-    rest = match[4];
-  }
-
-  return {
-    protocol: protocol,
-    slashes: forwardSlashes || isSpecial(protocol),
-    slashesCount: slashesCount,
-    rest: rest
-  };
-}
-/**
- * Resolve a relative URL pathname against a base URL pathname.
- *
- * @param {String} relative Pathname of the relative URL.
- * @param {String} base Pathname of the base URL.
- * @return {String} Resolved pathname.
- * @private
- */
-
-
-function resolve(relative, base) {
-  if (relative === '') return base;
-  var path = (base || '/').split('/').slice(0, -1).concat(relative.split('/')),
-      i = path.length,
-      last = path[i - 1],
-      unshift = false,
-      up = 0;
-
-  while (i--) {
-    if (path[i] === '.') {
-      path.splice(i, 1);
-    } else if (path[i] === '..') {
-      path.splice(i, 1);
-      up++;
-    } else if (up) {
-      if (i === 0) unshift = true;
-      path.splice(i, 1);
-      up--;
-    }
-  }
-
-  if (unshift) path.unshift('');
-  if (last === '.' || last === '..') path.push('');
-  return path.join('/');
-}
-/**
- * The actual URL instance. Instead of returning an object we've opted-in to
- * create an actual constructor as it's much more memory efficient and
- * faster and it pleases my OCD.
- *
- * It is worth noting that we should not use `URL` as class name to prevent
- * clashes with the global URL instance that got introduced in browsers.
- *
- * @constructor
- * @param {String} address URL we want to parse.
- * @param {Object|String} [location] Location defaults for relative paths.
- * @param {Boolean|Function} [parser] Parser for the query string.
- * @private
- */
-
-
-function Url(address, location, parser) {
-  address = trimLeft(address);
-  address = address.replace(CRHTLF, '');
-
-  if (!(this instanceof Url)) {
-    return new Url(address, location, parser);
-  }
-
-  var relative,
-      extracted,
-      parse,
-      instruction,
-      index,
-      key,
-      instructions = rules.slice(),
-      type = typeof location,
-      url = this,
-      i = 0; //
-  // The following if statements allows this module two have compatibility with
-  // 2 different API:
-  //
-  // 1. Node.js's `url.parse` api which accepts a URL, boolean as arguments
-  //    where the boolean indicates that the query string should also be parsed.
-  //
-  // 2. The `URL` interface of the browser which accepts a URL, object as
-  //    arguments. The supplied object will be used as default values / fall-back
-  //    for relative paths.
-  //
-
-  if ('object' !== type && 'string' !== type) {
-    parser = location;
-    location = null;
-  }
-
-  if (parser && 'function' !== typeof parser) parser = qs.parse;
-  location = lolcation(location); //
-  // Extract protocol information before running the instructions.
-  //
-
-  extracted = extractProtocol(address || '', location);
-  relative = !extracted.protocol && !extracted.slashes;
-  url.slashes = extracted.slashes || relative && location.slashes;
-  url.protocol = extracted.protocol || location.protocol || '';
-  address = extracted.rest; //
-  // When the authority component is absent the URL starts with a path
-  // component.
-  //
-
-  if (extracted.protocol === 'file:' && (extracted.slashesCount !== 2 || windowsDriveLetter.test(address)) || !extracted.slashes && (extracted.protocol || extracted.slashesCount < 2 || !isSpecial(url.protocol))) {
-    instructions[3] = [/(.*)/, 'pathname'];
-  }
-
-  for (; i < instructions.length; i++) {
-    instruction = instructions[i];
-
-    if (typeof instruction === 'function') {
-      address = instruction(address, url);
-      continue;
-    }
-
-    parse = instruction[0];
-    key = instruction[1];
-
-    if (parse !== parse) {
-      url[key] = address;
-    } else if ('string' === typeof parse) {
-      index = parse === '@' ? address.lastIndexOf(parse) : address.indexOf(parse);
-
-      if (~index) {
-        if ('number' === typeof instruction[2]) {
-          url[key] = address.slice(0, index);
-          address = address.slice(index + instruction[2]);
-        } else {
-          url[key] = address.slice(index);
-          address = address.slice(0, index);
-        }
-      }
-    } else if (index = parse.exec(address)) {
-      url[key] = index[1];
-      address = address.slice(0, index.index);
-    }
-
-    url[key] = url[key] || (relative && instruction[3] ? location[key] || '' : ''); //
-    // Hostname, host and protocol should be lowercased so they can be used to
-    // create a proper `origin`.
-    //
-
-    if (instruction[4]) url[key] = url[key].toLowerCase();
-  } //
-  // Also parse the supplied query string in to an object. If we're supplied
-  // with a custom parser as function use that instead of the default build-in
-  // parser.
-  //
-
-
-  if (parser) url.query = parser(url.query); //
-  // If the URL is relative, resolve the pathname against the base URL.
-  //
-
-  if (relative && location.slashes && url.pathname.charAt(0) !== '/' && (url.pathname !== '' || location.pathname !== '')) {
-    url.pathname = resolve(url.pathname, location.pathname);
-  } //
-  // Default to a / for pathname if none exists. This normalizes the URL
-  // to always have a /
-  //
-
-
-  if (url.pathname.charAt(0) !== '/' && isSpecial(url.protocol)) {
-    url.pathname = '/' + url.pathname;
-  } //
-  // We should not add port numbers if they are already the default port number
-  // for a given protocol. As the host also contains the port number we're going
-  // override it with the hostname which contains no port number.
-  //
-
-
-  if (!required(url.port, url.protocol)) {
-    url.host = url.hostname;
-    url.port = '';
-  } //
-  // Parse down the `auth` for the username and password.
-  //
-
-
-  url.username = url.password = '';
-
-  if (url.auth) {
-    index = url.auth.indexOf(':');
-
-    if (~index) {
-      url.username = url.auth.slice(0, index);
-      url.username = encodeURIComponent(decodeURIComponent(url.username));
-      url.password = url.auth.slice(index + 1);
-      url.password = encodeURIComponent(decodeURIComponent(url.password));
-    } else {
-      url.username = encodeURIComponent(decodeURIComponent(url.auth));
-    }
-
-    url.auth = url.password ? url.username + ':' + url.password : url.username;
-  }
-
-  url.origin = url.protocol !== 'file:' && isSpecial(url.protocol) && url.host ? url.protocol + '//' + url.host : 'null'; //
-  // The href is just the compiled result.
-  //
-
-  url.href = url.toString();
-}
-/**
- * This is convenience method for changing properties in the URL instance to
- * insure that they all propagate correctly.
- *
- * @param {String} part          Property we need to adjust.
- * @param {Mixed} value          The newly assigned value.
- * @param {Boolean|Function} fn  When setting the query, it will be the function
- *                               used to parse the query.
- *                               When setting the protocol, double slash will be
- *                               removed from the final url if it is true.
- * @returns {URL} URL instance for chaining.
- * @public
- */
-
-
-function set(part, value, fn) {
-  var url = this;
-
-  switch (part) {
-    case 'query':
-      if ('string' === typeof value && value.length) {
-        value = (fn || qs.parse)(value);
-      }
-
-      url[part] = value;
-      break;
-
-    case 'port':
-      url[part] = value;
-
-      if (!required(value, url.protocol)) {
-        url.host = url.hostname;
-        url[part] = '';
-      } else if (value) {
-        url.host = url.hostname + ':' + value;
-      }
-
-      break;
-
-    case 'hostname':
-      url[part] = value;
-      if (url.port) value += ':' + url.port;
-      url.host = value;
-      break;
-
-    case 'host':
-      url[part] = value;
-
-      if (port.test(value)) {
-        value = value.split(':');
-        url.port = value.pop();
-        url.hostname = value.join(':');
-      } else {
-        url.hostname = value;
-        url.port = '';
-      }
-
-      break;
-
-    case 'protocol':
-      url.protocol = value.toLowerCase();
-      url.slashes = !fn;
-      break;
-
-    case 'pathname':
-    case 'hash':
-      if (value) {
-        var char = part === 'pathname' ? '/' : '#';
-        url[part] = value.charAt(0) !== char ? char + value : value;
-      } else {
-        url[part] = value;
-      }
-
-      break;
-
-    case 'username':
-    case 'password':
-      url[part] = encodeURIComponent(value);
-      break;
-
-    case 'auth':
-      var index = value.indexOf(':');
-
-      if (~index) {
-        url.username = value.slice(0, index);
-        url.username = encodeURIComponent(decodeURIComponent(url.username));
-        url.password = value.slice(index + 1);
-        url.password = encodeURIComponent(decodeURIComponent(url.password));
-      } else {
-        url.username = encodeURIComponent(decodeURIComponent(value));
-      }
-
-  }
-
-  for (var i = 0; i < rules.length; i++) {
-    var ins = rules[i];
-    if (ins[4]) url[ins[1]] = url[ins[1]].toLowerCase();
-  }
-
-  url.auth = url.password ? url.username + ':' + url.password : url.username;
-  url.origin = url.protocol !== 'file:' && isSpecial(url.protocol) && url.host ? url.protocol + '//' + url.host : 'null';
-  url.href = url.toString();
-  return url;
-}
-/**
- * Transform the properties back in to a valid and full URL string.
- *
- * @param {Function} stringify Optional query stringify function.
- * @returns {String} Compiled version of the URL.
- * @public
- */
-
-
-function toString(stringify) {
-  if (!stringify || 'function' !== typeof stringify) stringify = qs.stringify;
-  var query,
-      url = this,
-      host = url.host,
-      protocol = url.protocol;
-  if (protocol && protocol.charAt(protocol.length - 1) !== ':') protocol += ':';
-  var result = protocol + (url.protocol && url.slashes || isSpecial(url.protocol) ? '//' : '');
-
-  if (url.username) {
-    result += url.username;
-    if (url.password) result += ':' + url.password;
-    result += '@';
-  } else if (url.password) {
-    result += ':' + url.password;
-    result += '@';
-  } else if (url.protocol !== 'file:' && isSpecial(url.protocol) && !host && url.pathname !== '/') {
-    //
-    // Add back the empty userinfo, otherwise the original invalid URL
-    // might be transformed into a valid one with `url.pathname` as host.
-    //
-    result += '@';
-  } //
-  // Trailing colon is removed from `url.host` when it is parsed. If it still
-  // ends with a colon, then add back the trailing colon that was removed. This
-  // prevents an invalid URL from being transformed into a valid one.
-  //
-
-
-  if (host[host.length - 1] === ':' || port.test(url.hostname) && !url.port) {
-    host += ':';
-  }
-
-  result += host + url.pathname;
-  query = 'object' === typeof url.query ? stringify(url.query) : url.query;
-  if (query) result += '?' !== query.charAt(0) ? '?' + query : query;
-  if (url.hash) result += url.hash;
-  return result;
-}
-
-Url.prototype = {
-  set: set,
-  toString: toString
-}; //
-// Expose the URL parser and some additional properties that might be useful for
-// others or testing.
-//
-
-Url.extractProtocol = extractProtocol;
-Url.location = lolcation;
-Url.trimLeft = trimLeft;
-Url.qs = qs;
-module.exports = Url;
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __nested_webpack_require_170156__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_170156__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__nested_webpack_require_170156__.n = function(module) {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
-/******/ 			__nested_webpack_require_170156__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__nested_webpack_require_170156__.d = function(exports, definition) {
-/******/ 			for(var key in definition) {
-/******/ 				if(__nested_webpack_require_170156__.o(definition, key) && !__nested_webpack_require_170156__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	!function() {
-/******/ 		__nested_webpack_require_170156__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__nested_webpack_require_170156__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
-/******/ 		// define __esModule on exports
-/******/ 		__nested_webpack_require_170156__.r = function(exports) {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/************************************************************************/
-var __nested_webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-!function() {
-"use strict";
-/*!***************************************************!*\
-  !*** ./client-src/modules/sockjs-client/index.js ***!
-  \***************************************************/
-__nested_webpack_require_170156__.r(__nested_webpack_exports__);
-/* harmony export */ __nested_webpack_require_170156__.d(__nested_webpack_exports__, {
-/* harmony export */   "default": function() { return /* reexport default from dynamic */ sockjs_client__WEBPACK_IMPORTED_MODULE_0___default.a; }
-/* harmony export */ });
-/* harmony import */ var sockjs_client__WEBPACK_IMPORTED_MODULE_0__ = __nested_webpack_require_170156__(/*! sockjs-client */ "./node_modules/sockjs-client/lib/entry.js");
-/* harmony import */ var sockjs_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nested_webpack_require_170156__.n(sockjs_client__WEBPACK_IMPORTED_MODULE_0__);
-// eslint-disable-next-line import/no-extraneous-dependencies
-
-}();
-/******/ 	return __nested_webpack_exports__;
-/******/ })()
-;
-});
-
-/***/ }),
-
 /***/ "./node_modules/webpack-dev-server/client/overlay.js":
 /*!***********************************************************!*\
   !*** ./node_modules/webpack-dev-server/client/overlay.js ***!
@@ -43992,7 +38475,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _clients_WebSocketClient_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clients/WebSocketClient.js */ "./node_modules/webpack-dev-server/client/clients/WebSocketClient.js");
 /* harmony import */ var _utils_log_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/log.js */ "./node_modules/webpack-dev-server/client/utils/log.js");
-/* provided dependency */ var __webpack_dev_server_client__ = __webpack_require__(/*! ./node_modules/webpack-dev-server/client/clients/SockJSClient.js */ "./node_modules/webpack-dev-server/client/clients/SockJSClient.js");
+/* provided dependency */ var __webpack_dev_server_client__ = __webpack_require__(/*! ./node_modules/webpack-dev-server/client/clients/WebSocketClient.js */ "./node_modules/webpack-dev-server/client/clients/WebSocketClient.js");
 /* global __webpack_dev_server_client__ */
 
  // this WebsocketClient is here as a default fallback, in case the client is not injected
@@ -44794,6 +39277,4083 @@ if (true) {
 }
 
 
+/***/ }),
+
+/***/ "./node_modules/axios/lib/adapters/adapters.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/adapters.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _http_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.js */ "./node_modules/axios/lib/helpers/null.js");
+/* harmony import */ var _xhr_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./xhr.js */ "./node_modules/axios/lib/adapters/xhr.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+
+
+
+
+
+const knownAdapters = {
+  http: _http_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+  xhr: _xhr_js__WEBPACK_IMPORTED_MODULE_1__["default"]
+}
+
+_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].forEach(knownAdapters, (fn, value) => {
+  if(fn) {
+    try {
+      Object.defineProperty(fn, 'name', {value});
+    } catch (e) {
+      // eslint-disable-next-line no-empty
+    }
+    Object.defineProperty(fn, 'adapterName', {value});
+  }
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAdapter: (adapters) => {
+    adapters = _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isArray(adapters) ? adapters : [adapters];
+
+    const {length} = adapters;
+    let nameOrAdapter;
+    let adapter;
+
+    for (let i = 0; i < length; i++) {
+      nameOrAdapter = adapters[i];
+      if((adapter = _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isString(nameOrAdapter) ? knownAdapters[nameOrAdapter.toLowerCase()] : nameOrAdapter)) {
+        break;
+      }
+    }
+
+    if (!adapter) {
+      if (adapter === false) {
+        throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"](
+          `Adapter ${nameOrAdapter} is not supported by the environment`,
+          'ERR_NOT_SUPPORT'
+        );
+      }
+
+      throw new Error(
+        _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].hasOwnProp(knownAdapters, nameOrAdapter) ?
+          `Adapter '${nameOrAdapter}' is not available in the build` :
+          `Unknown adapter '${nameOrAdapter}'`
+      );
+    }
+
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isFunction(adapter)) {
+      throw new TypeError('adapter is not a function');
+    }
+
+    return adapter;
+  },
+  adapters: knownAdapters
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/adapters/xhr.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+  \************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _core_settle_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../core/settle.js */ "./node_modules/axios/lib/core/settle.js");
+/* harmony import */ var _helpers_cookies_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../helpers/cookies.js */ "./node_modules/axios/lib/helpers/cookies.js");
+/* harmony import */ var _helpers_buildURL_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../helpers/buildURL.js */ "./node_modules/axios/lib/helpers/buildURL.js");
+/* harmony import */ var _core_buildFullPath_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/buildFullPath.js */ "./node_modules/axios/lib/core/buildFullPath.js");
+/* harmony import */ var _helpers_isURLSameOrigin_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../helpers/isURLSameOrigin.js */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
+/* harmony import */ var _defaults_transitional_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../defaults/transitional.js */ "./node_modules/axios/lib/defaults/transitional.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../cancel/CanceledError.js */ "./node_modules/axios/lib/cancel/CanceledError.js");
+/* harmony import */ var _helpers_parseProtocol_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../helpers/parseProtocol.js */ "./node_modules/axios/lib/helpers/parseProtocol.js");
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/browser/index.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+/* harmony import */ var _helpers_speedometer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/speedometer.js */ "./node_modules/axios/lib/helpers/speedometer.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function progressEventReducer(listener, isDownloadStream) {
+  let bytesNotified = 0;
+  const _speedometer = (0,_helpers_speedometer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(50, 250);
+
+  return e => {
+    const loaded = e.loaded;
+    const total = e.lengthComputable ? e.total : undefined;
+    const progressBytes = loaded - bytesNotified;
+    const rate = _speedometer(progressBytes);
+    const inRange = loaded <= total;
+
+    bytesNotified = loaded;
+
+    const data = {
+      loaded,
+      total,
+      progress: total ? (loaded / total) : undefined,
+      bytes: progressBytes,
+      rate: rate ? rate : undefined,
+      estimated: rate && total && inRange ? (total - loaded) / rate : undefined,
+      event: e
+    };
+
+    data[isDownloadStream ? 'download' : 'upload'] = true;
+
+    listener(data);
+  };
+}
+
+const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (isXHRAdapterSupported && function (config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    let requestData = config.data;
+    const requestHeaders = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(config.headers).normalize();
+    const responseType = config.responseType;
+    let onCanceled;
+    function done() {
+      if (config.cancelToken) {
+        config.cancelToken.unsubscribe(onCanceled);
+      }
+
+      if (config.signal) {
+        config.signal.removeEventListener('abort', onCanceled);
+      }
+    }
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isFormData(requestData)) {
+      if (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserWebWorkerEnv) {
+        requestHeaders.setContentType(false); // Let the browser set it
+      } else {
+        requestHeaders.setContentType('multipart/form-data;', false); // mobile/desktop app frameworks
+      }
+    }
+
+    let request = new XMLHttpRequest();
+
+    // HTTP basic authentication
+    if (config.auth) {
+      const username = config.auth.username || '';
+      const password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : '';
+      requestHeaders.set('Authorization', 'Basic ' + btoa(username + ':' + password));
+    }
+
+    const fullPath = (0,_core_buildFullPath_js__WEBPACK_IMPORTED_MODULE_4__["default"])(config.baseURL, config.url);
+
+    request.open(config.method.toUpperCase(), (0,_helpers_buildURL_js__WEBPACK_IMPORTED_MODULE_5__["default"])(fullPath, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    function onloadend() {
+      if (!request) {
+        return;
+      }
+      // Prepare the response
+      const responseHeaders = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(
+        'getAllResponseHeaders' in request && request.getAllResponseHeaders()
+      );
+      const responseData = !responseType || responseType === 'text' || responseType === 'json' ?
+        request.responseText : request.response;
+      const response = {
+        data: responseData,
+        status: request.status,
+        statusText: request.statusText,
+        headers: responseHeaders,
+        config,
+        request
+      };
+
+      (0,_core_settle_js__WEBPACK_IMPORTED_MODULE_6__["default"])(function _resolve(value) {
+        resolve(value);
+        done();
+      }, function _reject(err) {
+        reject(err);
+        done();
+      }, response);
+
+      // Clean up request
+      request = null;
+    }
+
+    if ('onloadend' in request) {
+      // Use onloadend if available
+      request.onloadend = onloadend;
+    } else {
+      // Listen for ready state to emulate onloadend
+      request.onreadystatechange = function handleLoad() {
+        if (!request || request.readyState !== 4) {
+          return;
+        }
+
+        // The request errored out and we didn't get a response, this will be
+        // handled by onerror instead
+        // With one exception: request that using file: protocol, most browsers
+        // will return status as 0 even though it's a successful request
+        if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+          return;
+        }
+        // readystate handler is calling before onerror or ontimeout handlers,
+        // so we should call onloadend on the next 'tick'
+        setTimeout(onloadend);
+      };
+    }
+
+    // Handle browser request cancellation (as opposed to a manual cancellation)
+    request.onabort = function handleAbort() {
+      if (!request) {
+        return;
+      }
+
+      reject(new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__["default"]('Request aborted', _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__["default"].ECONNABORTED, config, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__["default"]('Network Error', _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__["default"].ERR_NETWORK, config, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      let timeoutErrorMessage = config.timeout ? 'timeout of ' + config.timeout + 'ms exceeded' : 'timeout exceeded';
+      const transitional = config.transitional || _defaults_transitional_js__WEBPACK_IMPORTED_MODULE_8__["default"];
+      if (config.timeoutErrorMessage) {
+        timeoutErrorMessage = config.timeoutErrorMessage;
+      }
+      reject(new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__["default"](
+        timeoutErrorMessage,
+        transitional.clarifyTimeoutError ? _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__["default"].ETIMEDOUT : _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__["default"].ECONNABORTED,
+        config,
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserEnv) {
+      // Add xsrf header
+      const xsrfValue = (config.withCredentials || (0,_helpers_isURLSameOrigin_js__WEBPACK_IMPORTED_MODULE_9__["default"])(fullPath))
+        && config.xsrfCookieName && _helpers_cookies_js__WEBPACK_IMPORTED_MODULE_10__["default"].read(config.xsrfCookieName);
+
+      if (xsrfValue) {
+        requestHeaders.set(config.xsrfHeaderName, xsrfValue);
+      }
+    }
+
+    // Remove Content-Type if data is undefined
+    requestData === undefined && requestHeaders.setContentType(null);
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].forEach(requestHeaders.toJSON(), function setRequestHeader(val, key) {
+        request.setRequestHeader(key, val);
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isUndefined(config.withCredentials)) {
+      request.withCredentials = !!config.withCredentials;
+    }
+
+    // Add responseType to request if needed
+    if (responseType && responseType !== 'json') {
+      request.responseType = config.responseType;
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', progressEventReducer(config.onDownloadProgress, true));
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', progressEventReducer(config.onUploadProgress));
+    }
+
+    if (config.cancelToken || config.signal) {
+      // Handle cancellation
+      // eslint-disable-next-line func-names
+      onCanceled = cancel => {
+        if (!request) {
+          return;
+        }
+        reject(!cancel || cancel.type ? new _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_11__["default"](null, config, request) : cancel);
+        request.abort();
+        request = null;
+      };
+
+      config.cancelToken && config.cancelToken.subscribe(onCanceled);
+      if (config.signal) {
+        config.signal.aborted ? onCanceled() : config.signal.addEventListener('abort', onCanceled);
+      }
+    }
+
+    const protocol = (0,_helpers_parseProtocol_js__WEBPACK_IMPORTED_MODULE_12__["default"])(fullPath);
+
+    if (protocol && _platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].protocols.indexOf(protocol) === -1) {
+      reject(new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__["default"]('Unsupported protocol ' + protocol + ':', _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_7__["default"].ERR_BAD_REQUEST, config));
+      return;
+    }
+
+
+    // Send the request
+    request.send(requestData || null);
+  });
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/axios.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/axios.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _helpers_bind_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/bind.js */ "./node_modules/axios/lib/helpers/bind.js");
+/* harmony import */ var _core_Axios_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/Axios.js */ "./node_modules/axios/lib/core/Axios.js");
+/* harmony import */ var _core_mergeConfig_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./core/mergeConfig.js */ "./node_modules/axios/lib/core/mergeConfig.js");
+/* harmony import */ var _defaults_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./defaults/index.js */ "./node_modules/axios/lib/defaults/index.js");
+/* harmony import */ var _helpers_formDataToJSON_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./helpers/formDataToJSON.js */ "./node_modules/axios/lib/helpers/formDataToJSON.js");
+/* harmony import */ var _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cancel/CanceledError.js */ "./node_modules/axios/lib/cancel/CanceledError.js");
+/* harmony import */ var _cancel_CancelToken_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cancel/CancelToken.js */ "./node_modules/axios/lib/cancel/CancelToken.js");
+/* harmony import */ var _cancel_isCancel_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cancel/isCancel.js */ "./node_modules/axios/lib/cancel/isCancel.js");
+/* harmony import */ var _env_data_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./env/data.js */ "./node_modules/axios/lib/env/data.js");
+/* harmony import */ var _helpers_toFormData_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./helpers/toFormData.js */ "./node_modules/axios/lib/helpers/toFormData.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _helpers_spread_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./helpers/spread.js */ "./node_modules/axios/lib/helpers/spread.js");
+/* harmony import */ var _helpers_isAxiosError_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./helpers/isAxiosError.js */ "./node_modules/axios/lib/helpers/isAxiosError.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+/* harmony import */ var _helpers_HttpStatusCode_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./helpers/HttpStatusCode.js */ "./node_modules/axios/lib/helpers/HttpStatusCode.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ *
+ * @returns {Axios} A new instance of Axios
+ */
+function createInstance(defaultConfig) {
+  const context = new _core_Axios_js__WEBPACK_IMPORTED_MODULE_0__["default"](defaultConfig);
+  const instance = (0,_helpers_bind_js__WEBPACK_IMPORTED_MODULE_1__["default"])(_core_Axios_js__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.request, context);
+
+  // Copy axios.prototype to instance
+  _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].extend(instance, _core_Axios_js__WEBPACK_IMPORTED_MODULE_0__["default"].prototype, context, {allOwnKeys: true});
+
+  // Copy context to instance
+  _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].extend(instance, context, null, {allOwnKeys: true});
+
+  // Factory for creating new instances
+  instance.create = function create(instanceConfig) {
+    return createInstance((0,_core_mergeConfig_js__WEBPACK_IMPORTED_MODULE_3__["default"])(defaultConfig, instanceConfig));
+  };
+
+  return instance;
+}
+
+// Create the default instance to be exported
+const axios = createInstance(_defaults_index_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
+
+// Expose Axios class to allow class inheritance
+axios.Axios = _core_Axios_js__WEBPACK_IMPORTED_MODULE_0__["default"];
+
+// Expose Cancel & CancelToken
+axios.CanceledError = _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_5__["default"];
+axios.CancelToken = _cancel_CancelToken_js__WEBPACK_IMPORTED_MODULE_6__["default"];
+axios.isCancel = _cancel_isCancel_js__WEBPACK_IMPORTED_MODULE_7__["default"];
+axios.VERSION = _env_data_js__WEBPACK_IMPORTED_MODULE_8__.VERSION;
+axios.toFormData = _helpers_toFormData_js__WEBPACK_IMPORTED_MODULE_9__["default"];
+
+// Expose AxiosError class
+axios.AxiosError = _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_10__["default"];
+
+// alias for CanceledError for backward compatibility
+axios.Cancel = axios.CanceledError;
+
+// Expose all/spread
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+
+axios.spread = _helpers_spread_js__WEBPACK_IMPORTED_MODULE_11__["default"];
+
+// Expose isAxiosError
+axios.isAxiosError = _helpers_isAxiosError_js__WEBPACK_IMPORTED_MODULE_12__["default"];
+
+// Expose mergeConfig
+axios.mergeConfig = _core_mergeConfig_js__WEBPACK_IMPORTED_MODULE_3__["default"];
+
+axios.AxiosHeaders = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_13__["default"];
+
+axios.formToJSON = thing => (0,_helpers_formDataToJSON_js__WEBPACK_IMPORTED_MODULE_14__["default"])(_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isHTMLForm(thing) ? new FormData(thing) : thing);
+
+axios.HttpStatusCode = _helpers_HttpStatusCode_js__WEBPACK_IMPORTED_MODULE_15__["default"];
+
+axios.default = axios;
+
+// this module should only have a default export
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/CancelToken.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CanceledError_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CanceledError.js */ "./node_modules/axios/lib/cancel/CanceledError.js");
+
+
+
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @param {Function} executor The executor function.
+ *
+ * @returns {CancelToken}
+ */
+class CancelToken {
+  constructor(executor) {
+    if (typeof executor !== 'function') {
+      throw new TypeError('executor must be a function.');
+    }
+
+    let resolvePromise;
+
+    this.promise = new Promise(function promiseExecutor(resolve) {
+      resolvePromise = resolve;
+    });
+
+    const token = this;
+
+    // eslint-disable-next-line func-names
+    this.promise.then(cancel => {
+      if (!token._listeners) return;
+
+      let i = token._listeners.length;
+
+      while (i-- > 0) {
+        token._listeners[i](cancel);
+      }
+      token._listeners = null;
+    });
+
+    // eslint-disable-next-line func-names
+    this.promise.then = onfulfilled => {
+      let _resolve;
+      // eslint-disable-next-line func-names
+      const promise = new Promise(resolve => {
+        token.subscribe(resolve);
+        _resolve = resolve;
+      }).then(onfulfilled);
+
+      promise.cancel = function reject() {
+        token.unsubscribe(_resolve);
+      };
+
+      return promise;
+    };
+
+    executor(function cancel(message, config, request) {
+      if (token.reason) {
+        // Cancellation has already been requested
+        return;
+      }
+
+      token.reason = new _CanceledError_js__WEBPACK_IMPORTED_MODULE_0__["default"](message, config, request);
+      resolvePromise(token.reason);
+    });
+  }
+
+  /**
+   * Throws a `CanceledError` if cancellation has been requested.
+   */
+  throwIfRequested() {
+    if (this.reason) {
+      throw this.reason;
+    }
+  }
+
+  /**
+   * Subscribe to the cancel signal
+   */
+
+  subscribe(listener) {
+    if (this.reason) {
+      listener(this.reason);
+      return;
+    }
+
+    if (this._listeners) {
+      this._listeners.push(listener);
+    } else {
+      this._listeners = [listener];
+    }
+  }
+
+  /**
+   * Unsubscribe from the cancel signal
+   */
+
+  unsubscribe(listener) {
+    if (!this._listeners) {
+      return;
+    }
+    const index = this._listeners.indexOf(listener);
+    if (index !== -1) {
+      this._listeners.splice(index, 1);
+    }
+  }
+
+  /**
+   * Returns an object that contains a new `CancelToken` and a function that, when called,
+   * cancels the `CancelToken`.
+   */
+  static source() {
+    let cancel;
+    const token = new CancelToken(function executor(c) {
+      cancel = c;
+    });
+    return {
+      token,
+      cancel
+    };
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CancelToken);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/CanceledError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CanceledError.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+
+/**
+ * A `CanceledError` is an object that is thrown when an operation is canceled.
+ *
+ * @param {string=} message The message.
+ * @param {Object=} config The config.
+ * @param {Object=} request The request.
+ *
+ * @returns {CanceledError} The created error.
+ */
+function CanceledError(message, config, request) {
+  // eslint-disable-next-line no-eq-null,eqeqeq
+  _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"].call(this, message == null ? 'canceled' : message, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"].ERR_CANCELED, config, request);
+  this.name = 'CanceledError';
+}
+
+_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].inherits(CanceledError, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  __CANCEL__: true
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CanceledError);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/isCancel.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isCancel)
+/* harmony export */ });
+
+
+function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/Axios.js":
+/*!**********************************************!*\
+  !*** ./node_modules/axios/lib/core/Axios.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _helpers_buildURL_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../helpers/buildURL.js */ "./node_modules/axios/lib/helpers/buildURL.js");
+/* harmony import */ var _InterceptorManager_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InterceptorManager.js */ "./node_modules/axios/lib/core/InterceptorManager.js");
+/* harmony import */ var _dispatchRequest_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dispatchRequest.js */ "./node_modules/axios/lib/core/dispatchRequest.js");
+/* harmony import */ var _mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mergeConfig.js */ "./node_modules/axios/lib/core/mergeConfig.js");
+/* harmony import */ var _buildFullPath_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./buildFullPath.js */ "./node_modules/axios/lib/core/buildFullPath.js");
+/* harmony import */ var _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/validator.js */ "./node_modules/axios/lib/helpers/validator.js");
+/* harmony import */ var _AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+
+
+
+
+
+
+
+
+
+
+
+const validators = _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].validators;
+
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ *
+ * @return {Axios} A new instance of Axios
+ */
+class Axios {
+  constructor(instanceConfig) {
+    this.defaults = instanceConfig;
+    this.interceptors = {
+      request: new _InterceptorManager_js__WEBPACK_IMPORTED_MODULE_1__["default"](),
+      response: new _InterceptorManager_js__WEBPACK_IMPORTED_MODULE_1__["default"]()
+    };
+  }
+
+  /**
+   * Dispatch a request
+   *
+   * @param {String|Object} configOrUrl The config specific for this request (merged with this.defaults)
+   * @param {?Object} config
+   *
+   * @returns {Promise} The Promise to be fulfilled
+   */
+  request(configOrUrl, config) {
+    /*eslint no-param-reassign:0*/
+    // Allow for axios('example/url'[, config]) a la fetch API
+    if (typeof configOrUrl === 'string') {
+      config = config || {};
+      config.url = configOrUrl;
+    } else {
+      config = configOrUrl || {};
+    }
+
+    config = (0,_mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"])(this.defaults, config);
+
+    const {transitional, paramsSerializer, headers} = config;
+
+    if (transitional !== undefined) {
+      _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(transitional, {
+        silentJSONParsing: validators.transitional(validators.boolean),
+        forcedJSONParsing: validators.transitional(validators.boolean),
+        clarifyTimeoutError: validators.transitional(validators.boolean)
+      }, false);
+    }
+
+    if (paramsSerializer != null) {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(paramsSerializer)) {
+        config.paramsSerializer = {
+          serialize: paramsSerializer
+        }
+      } else {
+        _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(paramsSerializer, {
+          encode: validators.function,
+          serialize: validators.function
+        }, true);
+      }
+    }
+
+    // Set config.method
+    config.method = (config.method || this.defaults.method || 'get').toLowerCase();
+
+    let contextHeaders;
+
+    // Flatten headers
+    contextHeaders = headers && _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].merge(
+      headers.common,
+      headers[config.method]
+    );
+
+    contextHeaders && _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].forEach(
+      ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+      (method) => {
+        delete headers[method];
+      }
+    );
+
+    config.headers = _AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_4__["default"].concat(contextHeaders, headers);
+
+    // filter out skipped interceptors
+    const requestInterceptorChain = [];
+    let synchronousRequestInterceptors = true;
+    this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+      if (typeof interceptor.runWhen === 'function' && interceptor.runWhen(config) === false) {
+        return;
+      }
+
+      synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
+
+      requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
+    });
+
+    const responseInterceptorChain = [];
+    this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+      responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
+    });
+
+    let promise;
+    let i = 0;
+    let len;
+
+    if (!synchronousRequestInterceptors) {
+      const chain = [_dispatchRequest_js__WEBPACK_IMPORTED_MODULE_5__["default"].bind(this), undefined];
+      chain.unshift.apply(chain, requestInterceptorChain);
+      chain.push.apply(chain, responseInterceptorChain);
+      len = chain.length;
+
+      promise = Promise.resolve(config);
+
+      while (i < len) {
+        promise = promise.then(chain[i++], chain[i++]);
+      }
+
+      return promise;
+    }
+
+    len = requestInterceptorChain.length;
+
+    let newConfig = config;
+
+    i = 0;
+
+    while (i < len) {
+      const onFulfilled = requestInterceptorChain[i++];
+      const onRejected = requestInterceptorChain[i++];
+      try {
+        newConfig = onFulfilled(newConfig);
+      } catch (error) {
+        onRejected.call(this, error);
+        break;
+      }
+    }
+
+    try {
+      promise = _dispatchRequest_js__WEBPACK_IMPORTED_MODULE_5__["default"].call(this, newConfig);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    i = 0;
+    len = responseInterceptorChain.length;
+
+    while (i < len) {
+      promise = promise.then(responseInterceptorChain[i++], responseInterceptorChain[i++]);
+    }
+
+    return promise;
+  }
+
+  getUri(config) {
+    config = (0,_mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"])(this.defaults, config);
+    const fullPath = (0,_buildFullPath_js__WEBPACK_IMPORTED_MODULE_6__["default"])(config.baseURL, config.url);
+    return (0,_helpers_buildURL_js__WEBPACK_IMPORTED_MODULE_7__["default"])(fullPath, config.params, config.paramsSerializer);
+  }
+}
+
+// Provide aliases for supported request methods
+_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request((0,_mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"])(config || {}, {
+      method,
+      url,
+      data: (config || {}).data
+    }));
+  };
+});
+
+_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+
+  function generateHTTPMethod(isForm) {
+    return function httpMethod(url, data, config) {
+      return this.request((0,_mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"])(config || {}, {
+        method,
+        headers: isForm ? {
+          'Content-Type': 'multipart/form-data'
+        } : {},
+        url,
+        data
+      }));
+    };
+  }
+
+  Axios.prototype[method] = generateHTTPMethod();
+
+  Axios.prototype[method + 'Form'] = generateHTTPMethod(true);
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Axios);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/AxiosError.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/core/AxiosError.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [config] The config.
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ *
+ * @returns {Error} The created error.
+ */
+function AxiosError(message, code, config, request, response) {
+  Error.call(this);
+
+  if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  } else {
+    this.stack = (new Error()).stack;
+  }
+
+  this.message = message;
+  this.name = 'AxiosError';
+  code && (this.code = code);
+  config && (this.config = config);
+  request && (this.request = request);
+  response && (this.response = response);
+}
+
+_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(AxiosError, Error, {
+  toJSON: function toJSON() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toJSONObject(this.config),
+      code: this.code,
+      status: this.response && this.response.status ? this.response.status : null
+    };
+  }
+});
+
+const prototype = AxiosError.prototype;
+const descriptors = {};
+
+[
+  'ERR_BAD_OPTION_VALUE',
+  'ERR_BAD_OPTION',
+  'ECONNABORTED',
+  'ETIMEDOUT',
+  'ERR_NETWORK',
+  'ERR_FR_TOO_MANY_REDIRECTS',
+  'ERR_DEPRECATED',
+  'ERR_BAD_RESPONSE',
+  'ERR_BAD_REQUEST',
+  'ERR_CANCELED',
+  'ERR_NOT_SUPPORT',
+  'ERR_INVALID_URL'
+// eslint-disable-next-line func-names
+].forEach(code => {
+  descriptors[code] = {value: code};
+});
+
+Object.defineProperties(AxiosError, descriptors);
+Object.defineProperty(prototype, 'isAxiosError', {value: true});
+
+// eslint-disable-next-line func-names
+AxiosError.from = (error, code, config, request, response, customProps) => {
+  const axiosError = Object.create(prototype);
+
+  _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toFlatObject(error, axiosError, function filter(obj) {
+    return obj !== Error.prototype;
+  }, prop => {
+    return prop !== 'isAxiosError';
+  });
+
+  AxiosError.call(axiosError, error.message, code, config, request, response);
+
+  axiosError.cause = error;
+
+  axiosError.name = error.name;
+
+  customProps && Object.assign(axiosError, customProps);
+
+  return axiosError;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AxiosError);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/AxiosHeaders.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/core/AxiosHeaders.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _helpers_parseHeaders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/parseHeaders.js */ "./node_modules/axios/lib/helpers/parseHeaders.js");
+
+
+
+
+
+const $internals = Symbol('internals');
+
+function normalizeHeader(header) {
+  return header && String(header).trim().toLowerCase();
+}
+
+function normalizeValue(value) {
+  if (value === false || value == null) {
+    return value;
+  }
+
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(value) ? value.map(normalizeValue) : String(value);
+}
+
+function parseTokens(str) {
+  const tokens = Object.create(null);
+  const tokensRE = /([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;
+  let match;
+
+  while ((match = tokensRE.exec(str))) {
+    tokens[match[1]] = match[2];
+  }
+
+  return tokens;
+}
+
+const isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
+
+function matchHeaderValue(context, value, header, filter, isHeaderNameFilter) {
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(filter)) {
+    return filter.call(this, value, header);
+  }
+
+  if (isHeaderNameFilter) {
+    value = header;
+  }
+
+  if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(value)) return;
+
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(filter)) {
+    return value.indexOf(filter) !== -1;
+  }
+
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegExp(filter)) {
+    return filter.test(value);
+  }
+}
+
+function formatHeader(header) {
+  return header.trim()
+    .toLowerCase().replace(/([a-z\d])(\w*)/g, (w, char, str) => {
+      return char.toUpperCase() + str;
+    });
+}
+
+function buildAccessors(obj, header) {
+  const accessorName = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toCamelCase(' ' + header);
+
+  ['get', 'set', 'has'].forEach(methodName => {
+    Object.defineProperty(obj, methodName + accessorName, {
+      value: function(arg1, arg2, arg3) {
+        return this[methodName].call(this, header, arg1, arg2, arg3);
+      },
+      configurable: true
+    });
+  });
+}
+
+class AxiosHeaders {
+  constructor(headers) {
+    headers && this.set(headers);
+  }
+
+  set(header, valueOrRewrite, rewrite) {
+    const self = this;
+
+    function setHeader(_value, _header, _rewrite) {
+      const lHeader = normalizeHeader(_header);
+
+      if (!lHeader) {
+        throw new Error('header name must be a non-empty string');
+      }
+
+      const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(self, lHeader);
+
+      if(!key || self[key] === undefined || _rewrite === true || (_rewrite === undefined && self[key] !== false)) {
+        self[key || _header] = normalizeValue(_value);
+      }
+    }
+
+    const setHeaders = (headers, _rewrite) =>
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(headers, (_value, _header) => setHeader(_value, _header, _rewrite));
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isPlainObject(header) || header instanceof this.constructor) {
+      setHeaders(header, valueOrRewrite)
+    } else if(_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
+      setHeaders((0,_helpers_parseHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"])(header), valueOrRewrite);
+    } else {
+      header != null && setHeader(valueOrRewrite, header, rewrite);
+    }
+
+    return this;
+  }
+
+  get(header, parser) {
+    header = normalizeHeader(header);
+
+    if (header) {
+      const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(this, header);
+
+      if (key) {
+        const value = this[key];
+
+        if (!parser) {
+          return value;
+        }
+
+        if (parser === true) {
+          return parseTokens(value);
+        }
+
+        if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(parser)) {
+          return parser.call(this, value, key);
+        }
+
+        if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegExp(parser)) {
+          return parser.exec(value);
+        }
+
+        throw new TypeError('parser must be boolean|regexp|function');
+      }
+    }
+  }
+
+  has(header, matcher) {
+    header = normalizeHeader(header);
+
+    if (header) {
+      const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(this, header);
+
+      return !!(key && this[key] !== undefined && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
+    }
+
+    return false;
+  }
+
+  delete(header, matcher) {
+    const self = this;
+    let deleted = false;
+
+    function deleteHeader(_header) {
+      _header = normalizeHeader(_header);
+
+      if (_header) {
+        const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(self, _header);
+
+        if (key && (!matcher || matchHeaderValue(self, self[key], key, matcher))) {
+          delete self[key];
+
+          deleted = true;
+        }
+      }
+    }
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(header)) {
+      header.forEach(deleteHeader);
+    } else {
+      deleteHeader(header);
+    }
+
+    return deleted;
+  }
+
+  clear(matcher) {
+    const keys = Object.keys(this);
+    let i = keys.length;
+    let deleted = false;
+
+    while (i--) {
+      const key = keys[i];
+      if(!matcher || matchHeaderValue(this, this[key], key, matcher, true)) {
+        delete this[key];
+        deleted = true;
+      }
+    }
+
+    return deleted;
+  }
+
+  normalize(format) {
+    const self = this;
+    const headers = {};
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(this, (value, header) => {
+      const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(headers, header);
+
+      if (key) {
+        self[key] = normalizeValue(value);
+        delete self[header];
+        return;
+      }
+
+      const normalized = format ? formatHeader(header) : String(header).trim();
+
+      if (normalized !== header) {
+        delete self[header];
+      }
+
+      self[normalized] = normalizeValue(value);
+
+      headers[normalized] = true;
+    });
+
+    return this;
+  }
+
+  concat(...targets) {
+    return this.constructor.concat(this, ...targets);
+  }
+
+  toJSON(asStrings) {
+    const obj = Object.create(null);
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(this, (value, header) => {
+      value != null && value !== false && (obj[header] = asStrings && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(value) ? value.join(', ') : value);
+    });
+
+    return obj;
+  }
+
+  [Symbol.iterator]() {
+    return Object.entries(this.toJSON())[Symbol.iterator]();
+  }
+
+  toString() {
+    return Object.entries(this.toJSON()).map(([header, value]) => header + ': ' + value).join('\n');
+  }
+
+  get [Symbol.toStringTag]() {
+    return 'AxiosHeaders';
+  }
+
+  static from(thing) {
+    return thing instanceof this ? thing : new this(thing);
+  }
+
+  static concat(first, ...targets) {
+    const computed = new this(first);
+
+    targets.forEach((target) => computed.set(target));
+
+    return computed;
+  }
+
+  static accessor(header) {
+    const internals = this[$internals] = (this[$internals] = {
+      accessors: {}
+    });
+
+    const accessors = internals.accessors;
+    const prototype = this.prototype;
+
+    function defineAccessor(_header) {
+      const lHeader = normalizeHeader(_header);
+
+      if (!accessors[lHeader]) {
+        buildAccessors(prototype, _header);
+        accessors[lHeader] = true;
+      }
+    }
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
+
+    return this;
+  }
+}
+
+AxiosHeaders.accessor(['Content-Type', 'Content-Length', 'Accept', 'Accept-Encoding', 'User-Agent', 'Authorization']);
+
+_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].freezeMethods(AxiosHeaders.prototype);
+_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].freezeMethods(AxiosHeaders);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AxiosHeaders);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/InterceptorManager.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+class InterceptorManager {
+  constructor() {
+    this.handlers = [];
+  }
+
+  /**
+   * Add a new interceptor to the stack
+   *
+   * @param {Function} fulfilled The function to handle `then` for a `Promise`
+   * @param {Function} rejected The function to handle `reject` for a `Promise`
+   *
+   * @return {Number} An ID used to remove interceptor later
+   */
+  use(fulfilled, rejected, options) {
+    this.handlers.push({
+      fulfilled,
+      rejected,
+      synchronous: options ? options.synchronous : false,
+      runWhen: options ? options.runWhen : null
+    });
+    return this.handlers.length - 1;
+  }
+
+  /**
+   * Remove an interceptor from the stack
+   *
+   * @param {Number} id The ID that was returned by `use`
+   *
+   * @returns {Boolean} `true` if the interceptor was removed, `false` otherwise
+   */
+  eject(id) {
+    if (this.handlers[id]) {
+      this.handlers[id] = null;
+    }
+  }
+
+  /**
+   * Clear all interceptors from the stack
+   *
+   * @returns {void}
+   */
+  clear() {
+    if (this.handlers) {
+      this.handlers = [];
+    }
+  }
+
+  /**
+   * Iterate over all the registered interceptors
+   *
+   * This method is particularly useful for skipping over any
+   * interceptors that may have become `null` calling `eject`.
+   *
+   * @param {Function} fn The function to call for each interceptor
+   *
+   * @returns {void}
+   */
+  forEach(fn) {
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(this.handlers, function forEachHandler(h) {
+      if (h !== null) {
+        fn(h);
+      }
+    });
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InterceptorManager);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/buildFullPath.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/buildFullPath.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ buildFullPath)
+/* harmony export */ });
+/* harmony import */ var _helpers_isAbsoluteURL_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/isAbsoluteURL.js */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+/* harmony import */ var _helpers_combineURLs_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/combineURLs.js */ "./node_modules/axios/lib/helpers/combineURLs.js");
+
+
+
+
+
+/**
+ * Creates a new URL by combining the baseURL with the requestedURL,
+ * only when the requestedURL is not already an absolute URL.
+ * If the requestURL is absolute, this function returns the requestedURL untouched.
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} requestedURL Absolute or relative URL to combine
+ *
+ * @returns {string} The combined full path
+ */
+function buildFullPath(baseURL, requestedURL) {
+  if (baseURL && !(0,_helpers_isAbsoluteURL_js__WEBPACK_IMPORTED_MODULE_0__["default"])(requestedURL)) {
+    return (0,_helpers_combineURLs_js__WEBPACK_IMPORTED_MODULE_1__["default"])(baseURL, requestedURL);
+  }
+  return requestedURL;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/dispatchRequest.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ dispatchRequest)
+/* harmony export */ });
+/* harmony import */ var _transformData_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./transformData.js */ "./node_modules/axios/lib/core/transformData.js");
+/* harmony import */ var _cancel_isCancel_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../cancel/isCancel.js */ "./node_modules/axios/lib/cancel/isCancel.js");
+/* harmony import */ var _defaults_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../defaults/index.js */ "./node_modules/axios/lib/defaults/index.js");
+/* harmony import */ var _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../cancel/CanceledError.js */ "./node_modules/axios/lib/cancel/CanceledError.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+/* harmony import */ var _adapters_adapters_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../adapters/adapters.js */ "./node_modules/axios/lib/adapters/adapters.js");
+
+
+
+
+
+
+
+
+
+/**
+ * Throws a `CanceledError` if cancellation has been requested.
+ *
+ * @param {Object} config The config that is to be used for the request
+ *
+ * @returns {void}
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+
+  if (config.signal && config.signal.aborted) {
+    throw new _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_0__["default"](null, config);
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ *
+ * @returns {Promise} The Promise to be fulfilled
+ */
+function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  config.headers = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(config.headers);
+
+  // Transform request data
+  config.data = _transformData_js__WEBPACK_IMPORTED_MODULE_2__["default"].call(
+    config,
+    config.transformRequest
+  );
+
+  if (['post', 'put', 'patch'].indexOf(config.method) !== -1) {
+    config.headers.setContentType('application/x-www-form-urlencoded', false);
+  }
+
+  const adapter = _adapters_adapters_js__WEBPACK_IMPORTED_MODULE_3__["default"].getAdapter(config.adapter || _defaults_index_js__WEBPACK_IMPORTED_MODULE_4__["default"].adapter);
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = _transformData_js__WEBPACK_IMPORTED_MODULE_2__["default"].call(
+      config,
+      config.transformResponse,
+      response
+    );
+
+    response.headers = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(response.headers);
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!(0,_cancel_isCancel_js__WEBPACK_IMPORTED_MODULE_5__["default"])(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = _transformData_js__WEBPACK_IMPORTED_MODULE_2__["default"].call(
+          config,
+          config.transformResponse,
+          reason.response
+        );
+        reason.response.headers = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(reason.response.headers);
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/mergeConfig.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/mergeConfig.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ mergeConfig)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+
+
+
+
+
+const headersToObject = (thing) => thing instanceof _AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_0__["default"] ? thing.toJSON() : thing;
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ *
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+function mergeConfig(config1, config2) {
+  // eslint-disable-next-line no-param-reassign
+  config2 = config2 || {};
+  const config = {};
+
+  function getMergedValue(target, source, caseless) {
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isPlainObject(target) && _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isPlainObject(source)) {
+      return _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].merge.call({caseless}, target, source);
+    } else if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isPlainObject(source)) {
+      return _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].merge({}, source);
+    } else if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isArray(source)) {
+      return source.slice();
+    }
+    return source;
+  }
+
+  // eslint-disable-next-line consistent-return
+  function mergeDeepProperties(a, b, caseless) {
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(b)) {
+      return getMergedValue(a, b, caseless);
+    } else if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(a)) {
+      return getMergedValue(undefined, a, caseless);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function valueFromConfig2(a, b) {
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(b)) {
+      return getMergedValue(undefined, b);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function defaultToConfig2(a, b) {
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(b)) {
+      return getMergedValue(undefined, b);
+    } else if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(a)) {
+      return getMergedValue(undefined, a);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function mergeDirectKeys(a, b, prop) {
+    if (prop in config2) {
+      return getMergedValue(a, b);
+    } else if (prop in config1) {
+      return getMergedValue(undefined, a);
+    }
+  }
+
+  const mergeMap = {
+    url: valueFromConfig2,
+    method: valueFromConfig2,
+    data: valueFromConfig2,
+    baseURL: defaultToConfig2,
+    transformRequest: defaultToConfig2,
+    transformResponse: defaultToConfig2,
+    paramsSerializer: defaultToConfig2,
+    timeout: defaultToConfig2,
+    timeoutMessage: defaultToConfig2,
+    withCredentials: defaultToConfig2,
+    adapter: defaultToConfig2,
+    responseType: defaultToConfig2,
+    xsrfCookieName: defaultToConfig2,
+    xsrfHeaderName: defaultToConfig2,
+    onUploadProgress: defaultToConfig2,
+    onDownloadProgress: defaultToConfig2,
+    decompress: defaultToConfig2,
+    maxContentLength: defaultToConfig2,
+    maxBodyLength: defaultToConfig2,
+    beforeRedirect: defaultToConfig2,
+    transport: defaultToConfig2,
+    httpAgent: defaultToConfig2,
+    httpsAgent: defaultToConfig2,
+    cancelToken: defaultToConfig2,
+    socketPath: defaultToConfig2,
+    responseEncoding: defaultToConfig2,
+    validateStatus: mergeDirectKeys,
+    headers: (a, b) => mergeDeepProperties(headersToObject(a), headersToObject(b), true)
+  };
+
+  _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
+    const merge = mergeMap[prop] || mergeDeepProperties;
+    const configValue = merge(config1[prop], config2[prop], prop);
+    (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
+  });
+
+  return config;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/settle.js":
+/*!***********************************************!*\
+  !*** ./node_modules/axios/lib/core/settle.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ settle)
+/* harmony export */ });
+/* harmony import */ var _AxiosError_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+
+
+
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ *
+ * @returns {object} The response.
+ */
+function settle(resolve, reject, response) {
+  const validateStatus = response.config.validateStatus;
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(new _AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"](
+      'Request failed with status code ' + response.status,
+      [_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"].ERR_BAD_REQUEST, _AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"].ERR_BAD_RESPONSE][Math.floor(response.status / 100) - 4],
+      response.config,
+      response.request,
+      response
+    ));
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/transformData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/transformData.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ transformData)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _defaults_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../defaults/index.js */ "./node_modules/axios/lib/defaults/index.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+
+
+
+
+
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Array|Function} fns A single function or Array of functions
+ * @param {?Object} response The response object
+ *
+ * @returns {*} The resulting transformed data
+ */
+function transformData(fns, response) {
+  const config = this || _defaults_index_js__WEBPACK_IMPORTED_MODULE_0__["default"];
+  const context = response || config;
+  const headers = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(context.headers);
+  let data = context.data;
+
+  _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].forEach(fns, function transform(fn) {
+    data = fn.call(config, data, headers.normalize(), response ? response.status : undefined);
+  });
+
+  headers.normalize();
+
+  return data;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/defaults/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/defaults/index.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _transitional_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transitional.js */ "./node_modules/axios/lib/defaults/transitional.js");
+/* harmony import */ var _helpers_toFormData_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/toFormData.js */ "./node_modules/axios/lib/helpers/toFormData.js");
+/* harmony import */ var _helpers_toURLEncodedForm_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/toURLEncodedForm.js */ "./node_modules/axios/lib/helpers/toURLEncodedForm.js");
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/browser/index.js");
+/* harmony import */ var _helpers_formDataToJSON_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/formDataToJSON.js */ "./node_modules/axios/lib/helpers/formDataToJSON.js");
+
+
+
+
+
+
+
+
+
+
+const DEFAULT_CONTENT_TYPE = {
+  'Content-Type': undefined
+};
+
+/**
+ * It takes a string, tries to parse it, and if it fails, it returns the stringified version
+ * of the input
+ *
+ * @param {any} rawValue - The value to be stringified.
+ * @param {Function} parser - A function that parses a string into a JavaScript object.
+ * @param {Function} encoder - A function that takes a value and returns a string.
+ *
+ * @returns {string} A stringified version of the rawValue.
+ */
+function stringifySafely(rawValue, parser, encoder) {
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(rawValue)) {
+    try {
+      (parser || JSON.parse)(rawValue);
+      return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].trim(rawValue);
+    } catch (e) {
+      if (e.name !== 'SyntaxError') {
+        throw e;
+      }
+    }
+  }
+
+  return (encoder || JSON.stringify)(rawValue);
+}
+
+const defaults = {
+
+  transitional: _transitional_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+
+  adapter: ['xhr', 'http'],
+
+  transformRequest: [function transformRequest(data, headers) {
+    const contentType = headers.getContentType() || '';
+    const hasJSONContentType = contentType.indexOf('application/json') > -1;
+    const isObjectPayload = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(data);
+
+    if (isObjectPayload && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isHTMLForm(data)) {
+      data = new FormData(data);
+    }
+
+    const isFormData = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFormData(data);
+
+    if (isFormData) {
+      if (!hasJSONContentType) {
+        return data;
+      }
+      return hasJSONContentType ? JSON.stringify((0,_helpers_formDataToJSON_js__WEBPACK_IMPORTED_MODULE_2__["default"])(data)) : data;
+    }
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArrayBuffer(data) ||
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isBuffer(data) ||
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isStream(data) ||
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFile(data) ||
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isBlob(data)
+    ) {
+      return data;
+    }
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isURLSearchParams(data)) {
+      headers.setContentType('application/x-www-form-urlencoded;charset=utf-8', false);
+      return data.toString();
+    }
+
+    let isFileList;
+
+    if (isObjectPayload) {
+      if (contentType.indexOf('application/x-www-form-urlencoded') > -1) {
+        return (0,_helpers_toURLEncodedForm_js__WEBPACK_IMPORTED_MODULE_3__["default"])(data, this.formSerializer).toString();
+      }
+
+      if ((isFileList = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFileList(data)) || contentType.indexOf('multipart/form-data') > -1) {
+        const _FormData = this.env && this.env.FormData;
+
+        return (0,_helpers_toFormData_js__WEBPACK_IMPORTED_MODULE_4__["default"])(
+          isFileList ? {'files[]': data} : data,
+          _FormData && new _FormData(),
+          this.formSerializer
+        );
+      }
+    }
+
+    if (isObjectPayload || hasJSONContentType ) {
+      headers.setContentType('application/json', false);
+      return stringifySafely(data);
+    }
+
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    const transitional = this.transitional || defaults.transitional;
+    const forcedJSONParsing = transitional && transitional.forcedJSONParsing;
+    const JSONRequested = this.responseType === 'json';
+
+    if (data && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(data) && ((forcedJSONParsing && !this.responseType) || JSONRequested)) {
+      const silentJSONParsing = transitional && transitional.silentJSONParsing;
+      const strictJSONParsing = !silentJSONParsing && JSONRequested;
+
+      try {
+        return JSON.parse(data);
+      } catch (e) {
+        if (strictJSONParsing) {
+          if (e.name === 'SyntaxError') {
+            throw _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_5__["default"].from(e, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_5__["default"].ERR_BAD_RESPONSE, this, null, this.response);
+          }
+          throw e;
+        }
+      }
+    }
+
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+  maxBodyLength: -1,
+
+  env: {
+    FormData: _platform_index_js__WEBPACK_IMPORTED_MODULE_6__["default"].classes.FormData,
+    Blob: _platform_index_js__WEBPACK_IMPORTED_MODULE_6__["default"].classes.Blob
+  },
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  },
+
+  headers: {
+    common: {
+      'Accept': 'application/json, text/plain, */*'
+    }
+  }
+};
+
+_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].merge(DEFAULT_CONTENT_TYPE);
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (defaults);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/defaults/transitional.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/defaults/transitional.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  silentJSONParsing: true,
+  forcedJSONParsing: true,
+  clarifyTimeoutError: false
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/env/data.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/env/data.js ***!
+  \********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   VERSION: () => (/* binding */ VERSION)
+/* harmony export */ });
+const VERSION = "1.4.0";
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/AxiosURLSearchParams.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/AxiosURLSearchParams.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _toFormData_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toFormData.js */ "./node_modules/axios/lib/helpers/toFormData.js");
+
+
+
+
+/**
+ * It encodes a string by replacing all characters that are not in the unreserved set with
+ * their percent-encoded equivalents
+ *
+ * @param {string} str - The string to encode.
+ *
+ * @returns {string} The encoded string.
+ */
+function encode(str) {
+  const charMap = {
+    '!': '%21',
+    "'": '%27',
+    '(': '%28',
+    ')': '%29',
+    '~': '%7E',
+    '%20': '+',
+    '%00': '\x00'
+  };
+  return encodeURIComponent(str).replace(/[!'()~]|%20|%00/g, function replacer(match) {
+    return charMap[match];
+  });
+}
+
+/**
+ * It takes a params object and converts it to a FormData object
+ *
+ * @param {Object<string, any>} params - The parameters to be converted to a FormData object.
+ * @param {Object<string, any>} options - The options object passed to the Axios constructor.
+ *
+ * @returns {void}
+ */
+function AxiosURLSearchParams(params, options) {
+  this._pairs = [];
+
+  params && (0,_toFormData_js__WEBPACK_IMPORTED_MODULE_0__["default"])(params, this, options);
+}
+
+const prototype = AxiosURLSearchParams.prototype;
+
+prototype.append = function append(name, value) {
+  this._pairs.push([name, value]);
+};
+
+prototype.toString = function toString(encoder) {
+  const _encode = encoder ? function(value) {
+    return encoder.call(this, value, encode);
+  } : encode;
+
+  return this._pairs.map(function each(pair) {
+    return _encode(pair[0]) + '=' + _encode(pair[1]);
+  }, '').join('&');
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AxiosURLSearchParams);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/HttpStatusCode.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/HttpStatusCode.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const HttpStatusCode = {
+  Continue: 100,
+  SwitchingProtocols: 101,
+  Processing: 102,
+  EarlyHints: 103,
+  Ok: 200,
+  Created: 201,
+  Accepted: 202,
+  NonAuthoritativeInformation: 203,
+  NoContent: 204,
+  ResetContent: 205,
+  PartialContent: 206,
+  MultiStatus: 207,
+  AlreadyReported: 208,
+  ImUsed: 226,
+  MultipleChoices: 300,
+  MovedPermanently: 301,
+  Found: 302,
+  SeeOther: 303,
+  NotModified: 304,
+  UseProxy: 305,
+  Unused: 306,
+  TemporaryRedirect: 307,
+  PermanentRedirect: 308,
+  BadRequest: 400,
+  Unauthorized: 401,
+  PaymentRequired: 402,
+  Forbidden: 403,
+  NotFound: 404,
+  MethodNotAllowed: 405,
+  NotAcceptable: 406,
+  ProxyAuthenticationRequired: 407,
+  RequestTimeout: 408,
+  Conflict: 409,
+  Gone: 410,
+  LengthRequired: 411,
+  PreconditionFailed: 412,
+  PayloadTooLarge: 413,
+  UriTooLong: 414,
+  UnsupportedMediaType: 415,
+  RangeNotSatisfiable: 416,
+  ExpectationFailed: 417,
+  ImATeapot: 418,
+  MisdirectedRequest: 421,
+  UnprocessableEntity: 422,
+  Locked: 423,
+  FailedDependency: 424,
+  TooEarly: 425,
+  UpgradeRequired: 426,
+  PreconditionRequired: 428,
+  TooManyRequests: 429,
+  RequestHeaderFieldsTooLarge: 431,
+  UnavailableForLegalReasons: 451,
+  InternalServerError: 500,
+  NotImplemented: 501,
+  BadGateway: 502,
+  ServiceUnavailable: 503,
+  GatewayTimeout: 504,
+  HttpVersionNotSupported: 505,
+  VariantAlsoNegotiates: 506,
+  InsufficientStorage: 507,
+  LoopDetected: 508,
+  NotExtended: 510,
+  NetworkAuthenticationRequired: 511,
+};
+
+Object.entries(HttpStatusCode).forEach(([key, value]) => {
+  HttpStatusCode[value] = key;
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HttpStatusCode);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/bind.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/bind.js ***!
+  \************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ bind)
+/* harmony export */ });
+
+
+function bind(fn, thisArg) {
+  return function wrap() {
+    return fn.apply(thisArg, arguments);
+  };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/buildURL.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ buildURL)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _helpers_AxiosURLSearchParams_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/AxiosURLSearchParams.js */ "./node_modules/axios/lib/helpers/AxiosURLSearchParams.js");
+
+
+
+
+
+/**
+ * It replaces all instances of the characters `:`, `$`, `,`, `+`, `[`, and `]` with their
+ * URI encoded counterparts
+ *
+ * @param {string} val The value to be encoded.
+ *
+ * @returns {string} The encoded value.
+ */
+function encode(val) {
+  return encodeURIComponent(val).
+    replace(/%3A/gi, ':').
+    replace(/%24/g, '$').
+    replace(/%2C/gi, ',').
+    replace(/%20/g, '+').
+    replace(/%5B/gi, '[').
+    replace(/%5D/gi, ']');
+}
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @param {?object} options
+ *
+ * @returns {string} The formatted url
+ */
+function buildURL(url, params, options) {
+  /*eslint no-param-reassign:0*/
+  if (!params) {
+    return url;
+  }
+  
+  const _encode = options && options.encode || encode;
+
+  const serializeFn = options && options.serialize;
+
+  let serializedParams;
+
+  if (serializeFn) {
+    serializedParams = serializeFn(params, options);
+  } else {
+    serializedParams = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isURLSearchParams(params) ?
+      params.toString() :
+      new _helpers_AxiosURLSearchParams_js__WEBPACK_IMPORTED_MODULE_1__["default"](params, options).toString(_encode);
+  }
+
+  if (serializedParams) {
+    const hashmarkIndex = url.indexOf("#");
+
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/combineURLs.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ combineURLs)
+/* harmony export */ });
+
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ *
+ * @returns {string} The combined URL
+ */
+function combineURLs(baseURL, relativeURL) {
+  return relativeURL
+    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+    : baseURL;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/cookies.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/browser/index.js");
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].isStandardBrowserEnv ?
+
+// Standard browser envs support document.cookie
+  (function standardBrowserEnv() {
+    return {
+      write: function write(name, value, expires, path, domain, secure) {
+        const cookie = [];
+        cookie.push(name + '=' + encodeURIComponent(value));
+
+        if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isNumber(expires)) {
+          cookie.push('expires=' + new Date(expires).toGMTString());
+        }
+
+        if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(path)) {
+          cookie.push('path=' + path);
+        }
+
+        if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(domain)) {
+          cookie.push('domain=' + domain);
+        }
+
+        if (secure === true) {
+          cookie.push('secure');
+        }
+
+        document.cookie = cookie.join('; ');
+      },
+
+      read: function read(name) {
+        const match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+        return (match ? decodeURIComponent(match[3]) : null);
+      },
+
+      remove: function remove(name) {
+        this.write(name, '', Date.now() - 86400000);
+      }
+    };
+  })() :
+
+// Non standard browser env (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return {
+      write: function write() {},
+      read: function read() { return null; },
+      remove: function remove() {}
+    };
+  })());
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/formDataToJSON.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/formDataToJSON.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+/**
+ * It takes a string like `foo[x][y][z]` and returns an array like `['foo', 'x', 'y', 'z']
+ *
+ * @param {string} name - The name of the property to get.
+ *
+ * @returns An array of strings.
+ */
+function parsePropPath(name) {
+  // foo[x][y][z]
+  // foo.x.y.z
+  // foo-x-y-z
+  // foo x y z
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].matchAll(/\w+|\[(\w*)]/g, name).map(match => {
+    return match[0] === '[]' ? '' : match[1] || match[0];
+  });
+}
+
+/**
+ * Convert an array to an object.
+ *
+ * @param {Array<any>} arr - The array to convert to an object.
+ *
+ * @returns An object with the same keys and values as the array.
+ */
+function arrayToObject(arr) {
+  const obj = {};
+  const keys = Object.keys(arr);
+  let i;
+  const len = keys.length;
+  let key;
+  for (i = 0; i < len; i++) {
+    key = keys[i];
+    obj[key] = arr[key];
+  }
+  return obj;
+}
+
+/**
+ * It takes a FormData object and returns a JavaScript object
+ *
+ * @param {string} formData The FormData object to convert to JSON.
+ *
+ * @returns {Object<string, any> | null} The converted object.
+ */
+function formDataToJSON(formData) {
+  function buildPath(path, value, target, index) {
+    let name = path[index++];
+    const isNumericKey = Number.isFinite(+name);
+    const isLast = index >= path.length;
+    name = !name && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(target) ? target.length : name;
+
+    if (isLast) {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].hasOwnProp(target, name)) {
+        target[name] = [target[name], value];
+      } else {
+        target[name] = value;
+      }
+
+      return !isNumericKey;
+    }
+
+    if (!target[name] || !_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(target[name])) {
+      target[name] = [];
+    }
+
+    const result = buildPath(path, value, target[name], index);
+
+    if (result && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(target[name])) {
+      target[name] = arrayToObject(target[name]);
+    }
+
+    return !isNumericKey;
+  }
+
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFormData(formData) && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(formData.entries)) {
+    const obj = {};
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEachEntry(formData, (name, value) => {
+      buildPath(parsePropPath(name), value, obj, 0);
+    });
+
+    return obj;
+  }
+
+  return null;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (formDataToJSON);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isAbsoluteURL)
+/* harmony export */ });
+
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ *
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isAxiosError)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ *
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+function isAxiosError(payload) {
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(payload) && (payload.isAxiosError === true);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/browser/index.js");
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].isStandardBrowserEnv ?
+
+// Standard browser envs have full support of the APIs needed to test
+// whether the request URL is of the same origin as current location.
+  (function standardBrowserEnv() {
+    const msie = /(msie|trident)/i.test(navigator.userAgent);
+    const urlParsingNode = document.createElement('a');
+    let originURL;
+
+    /**
+    * Parse a URL to discover it's components
+    *
+    * @param {String} url The URL to be parsed
+    * @returns {Object}
+    */
+    function resolveURL(url) {
+      let href = url;
+
+      if (msie) {
+        // IE needs attribute set twice to normalize properties
+        urlParsingNode.setAttribute('href', href);
+        href = urlParsingNode.href;
+      }
+
+      urlParsingNode.setAttribute('href', href);
+
+      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+      return {
+        href: urlParsingNode.href,
+        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+        host: urlParsingNode.host,
+        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+        hostname: urlParsingNode.hostname,
+        port: urlParsingNode.port,
+        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+          urlParsingNode.pathname :
+          '/' + urlParsingNode.pathname
+      };
+    }
+
+    originURL = resolveURL(window.location.href);
+
+    /**
+    * Determine if a URL shares the same origin as the current location
+    *
+    * @param {String} requestURL The URL to test
+    * @returns {boolean} True if URL shares the same origin, otherwise false
+    */
+    return function isURLSameOrigin(requestURL) {
+      const parsed = (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+      return (parsed.protocol === originURL.protocol &&
+          parsed.host === originURL.host);
+    };
+  })() :
+
+  // Non standard browser envs (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return function isURLSameOrigin() {
+      return true;
+    };
+  })());
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/null.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/null.js ***!
+  \************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// eslint-disable-next-line strict
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (null);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+// RawAxiosHeaders whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+const ignoreDuplicateOf = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toObjectSet([
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+]);
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} rawHeaders Headers needing to be parsed
+ *
+ * @returns {Object} Headers parsed into an object
+ */
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rawHeaders => {
+  const parsed = {};
+  let key;
+  let val;
+  let i;
+
+  rawHeaders && rawHeaders.split('\n').forEach(function parser(line) {
+    i = line.indexOf(':');
+    key = line.substring(0, i).trim().toLowerCase();
+    val = line.substring(i + 1).trim();
+
+    if (!key || (parsed[key] && ignoreDuplicateOf[key])) {
+      return;
+    }
+
+    if (key === 'set-cookie') {
+      if (parsed[key]) {
+        parsed[key].push(val);
+      } else {
+        parsed[key] = [val];
+      }
+    } else {
+      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+    }
+  });
+
+  return parsed;
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/parseProtocol.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseProtocol.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ parseProtocol)
+/* harmony export */ });
+
+
+function parseProtocol(url) {
+  const match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);
+  return match && match[1] || '';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/speedometer.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/speedometer.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+
+/**
+ * Calculate data maxRate
+ * @param {Number} [samplesCount= 10]
+ * @param {Number} [min= 1000]
+ * @returns {Function}
+ */
+function speedometer(samplesCount, min) {
+  samplesCount = samplesCount || 10;
+  const bytes = new Array(samplesCount);
+  const timestamps = new Array(samplesCount);
+  let head = 0;
+  let tail = 0;
+  let firstSampleTS;
+
+  min = min !== undefined ? min : 1000;
+
+  return function push(chunkLength) {
+    const now = Date.now();
+
+    const startedAt = timestamps[tail];
+
+    if (!firstSampleTS) {
+      firstSampleTS = now;
+    }
+
+    bytes[head] = chunkLength;
+    timestamps[head] = now;
+
+    let i = tail;
+    let bytesCount = 0;
+
+    while (i !== head) {
+      bytesCount += bytes[i++];
+      i = i % samplesCount;
+    }
+
+    head = (head + 1) % samplesCount;
+
+    if (head === tail) {
+      tail = (tail + 1) % samplesCount;
+    }
+
+    if (now - firstSampleTS < min) {
+      return;
+    }
+
+    const passed = startedAt && now - startedAt;
+
+    return passed ? Math.round(bytesCount * 1000 / passed) : undefined;
+  };
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (speedometer);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/spread.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/spread.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ spread)
+/* harmony export */ });
+
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ *
+ * @returns {Function}
+ */
+function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/toFormData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/toFormData.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _platform_node_classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../platform/node/classes/FormData.js */ "./node_modules/axios/lib/helpers/null.js");
+
+
+
+
+// temporary hotfix to avoid circular references until AxiosURLSearchParams is refactored
+
+
+/**
+ * Determines if the given thing is a array or js object.
+ *
+ * @param {string} thing - The object or array to be visited.
+ *
+ * @returns {boolean}
+ */
+function isVisitable(thing) {
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isPlainObject(thing) || _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(thing);
+}
+
+/**
+ * It removes the brackets from the end of a string
+ *
+ * @param {string} key - The key of the parameter.
+ *
+ * @returns {string} the key without the brackets.
+ */
+function removeBrackets(key) {
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].endsWith(key, '[]') ? key.slice(0, -2) : key;
+}
+
+/**
+ * It takes a path, a key, and a boolean, and returns a string
+ *
+ * @param {string} path - The path to the current key.
+ * @param {string} key - The key of the current object being iterated over.
+ * @param {string} dots - If true, the key will be rendered with dots instead of brackets.
+ *
+ * @returns {string} The path to the current key.
+ */
+function renderKey(path, key, dots) {
+  if (!path) return key;
+  return path.concat(key).map(function each(token, i) {
+    // eslint-disable-next-line no-param-reassign
+    token = removeBrackets(token);
+    return !dots && i ? '[' + token + ']' : token;
+  }).join(dots ? '.' : '');
+}
+
+/**
+ * If the array is an array and none of its elements are visitable, then it's a flat array.
+ *
+ * @param {Array<any>} arr - The array to check
+ *
+ * @returns {boolean}
+ */
+function isFlatArray(arr) {
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(arr) && !arr.some(isVisitable);
+}
+
+const predicates = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toFlatObject(_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"], {}, null, function filter(prop) {
+  return /^is[A-Z]/.test(prop);
+});
+
+/**
+ * Convert a data object to FormData
+ *
+ * @param {Object} obj
+ * @param {?Object} [formData]
+ * @param {?Object} [options]
+ * @param {Function} [options.visitor]
+ * @param {Boolean} [options.metaTokens = true]
+ * @param {Boolean} [options.dots = false]
+ * @param {?Boolean} [options.indexes = false]
+ *
+ * @returns {Object}
+ **/
+
+/**
+ * It converts an object into a FormData object
+ *
+ * @param {Object<any, any>} obj - The object to convert to form data.
+ * @param {string} formData - The FormData object to append to.
+ * @param {Object<string, any>} options
+ *
+ * @returns
+ */
+function toFormData(obj, formData, options) {
+  if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(obj)) {
+    throw new TypeError('target must be an object');
+  }
+
+  // eslint-disable-next-line no-param-reassign
+  formData = formData || new (_platform_node_classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__["default"] || FormData)();
+
+  // eslint-disable-next-line no-param-reassign
+  options = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toFlatObject(options, {
+    metaTokens: true,
+    dots: false,
+    indexes: false
+  }, false, function defined(option, source) {
+    // eslint-disable-next-line no-eq-null,eqeqeq
+    return !_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isUndefined(source[option]);
+  });
+
+  const metaTokens = options.metaTokens;
+  // eslint-disable-next-line no-use-before-define
+  const visitor = options.visitor || defaultVisitor;
+  const dots = options.dots;
+  const indexes = options.indexes;
+  const _Blob = options.Blob || typeof Blob !== 'undefined' && Blob;
+  const useBlob = _Blob && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isSpecCompliantForm(formData);
+
+  if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(visitor)) {
+    throw new TypeError('visitor must be a function');
+  }
+
+  function convertValue(value) {
+    if (value === null) return '';
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isDate(value)) {
+      return value.toISOString();
+    }
+
+    if (!useBlob && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isBlob(value)) {
+      throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__["default"]('Blob is not supported. Use a Buffer instead.');
+    }
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArrayBuffer(value) || _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isTypedArray(value)) {
+      return useBlob && typeof Blob === 'function' ? new Blob([value]) : Buffer.from(value);
+    }
+
+    return value;
+  }
+
+  /**
+   * Default visitor.
+   *
+   * @param {*} value
+   * @param {String|Number} key
+   * @param {Array<String|Number>} path
+   * @this {FormData}
+   *
+   * @returns {boolean} return true to visit the each prop of the value recursively
+   */
+  function defaultVisitor(value, key, path) {
+    let arr = value;
+
+    if (value && !path && typeof value === 'object') {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].endsWith(key, '{}')) {
+        // eslint-disable-next-line no-param-reassign
+        key = metaTokens ? key : key.slice(0, -2);
+        // eslint-disable-next-line no-param-reassign
+        value = JSON.stringify(value);
+      } else if (
+        (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(value) && isFlatArray(value)) ||
+        ((_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFileList(value) || _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].endsWith(key, '[]')) && (arr = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toArray(value))
+        )) {
+        // eslint-disable-next-line no-param-reassign
+        key = removeBrackets(key);
+
+        arr.forEach(function each(el, index) {
+          !(_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isUndefined(el) || el === null) && formData.append(
+            // eslint-disable-next-line no-nested-ternary
+            indexes === true ? renderKey([key], index, dots) : (indexes === null ? key : key + '[]'),
+            convertValue(el)
+          );
+        });
+        return false;
+      }
+    }
+
+    if (isVisitable(value)) {
+      return true;
+    }
+
+    formData.append(renderKey(path, key, dots), convertValue(value));
+
+    return false;
+  }
+
+  const stack = [];
+
+  const exposedHelpers = Object.assign(predicates, {
+    defaultVisitor,
+    convertValue,
+    isVisitable
+  });
+
+  function build(value, path) {
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isUndefined(value)) return;
+
+    if (stack.indexOf(value) !== -1) {
+      throw Error('Circular reference detected in ' + path.join('.'));
+    }
+
+    stack.push(value);
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(value, function each(el, key) {
+      const result = !(_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isUndefined(el) || el === null) && visitor.call(
+        formData, el, _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(key) ? key.trim() : key, path, exposedHelpers
+      );
+
+      if (result === true) {
+        build(el, path ? path.concat(key) : [key]);
+      }
+    });
+
+    stack.pop();
+  }
+
+  if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(obj)) {
+    throw new TypeError('data must be an object');
+  }
+
+  build(obj);
+
+  return formData;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toFormData);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/toURLEncodedForm.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/toURLEncodedForm.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ toURLEncodedForm)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _toFormData_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toFormData.js */ "./node_modules/axios/lib/helpers/toFormData.js");
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/browser/index.js");
+
+
+
+
+
+
+function toURLEncodedForm(data, options) {
+  return (0,_toFormData_js__WEBPACK_IMPORTED_MODULE_0__["default"])(data, new _platform_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].classes.URLSearchParams(), Object.assign({
+    visitor: function(value, key, path, helpers) {
+      if (_platform_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].isNode && _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isBuffer(value)) {
+        this.append(key, value.toString('base64'));
+        return false;
+      }
+
+      return helpers.defaultVisitor.apply(this, arguments);
+    }
+  }, options));
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/validator.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/validator.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _env_data_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../env/data.js */ "./node_modules/axios/lib/env/data.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+
+
+
+
+
+const validators = {};
+
+// eslint-disable-next-line func-names
+['object', 'boolean', 'number', 'function', 'string', 'symbol'].forEach((type, i) => {
+  validators[type] = function validator(thing) {
+    return typeof thing === type || 'a' + (i < 1 ? 'n ' : ' ') + type;
+  };
+});
+
+const deprecatedWarnings = {};
+
+/**
+ * Transitional option validator
+ *
+ * @param {function|boolean?} validator - set to false if the transitional option has been removed
+ * @param {string?} version - deprecated version / removed since version
+ * @param {string?} message - some message with additional info
+ *
+ * @returns {function}
+ */
+validators.transitional = function transitional(validator, version, message) {
+  function formatMessage(opt, desc) {
+    return '[Axios v' + _env_data_js__WEBPACK_IMPORTED_MODULE_0__.VERSION + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
+  }
+
+  // eslint-disable-next-line func-names
+  return (value, opt, opts) => {
+    if (validator === false) {
+      throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"](
+        formatMessage(opt, ' has been removed' + (version ? ' in ' + version : '')),
+        _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"].ERR_DEPRECATED
+      );
+    }
+
+    if (version && !deprecatedWarnings[opt]) {
+      deprecatedWarnings[opt] = true;
+      // eslint-disable-next-line no-console
+      console.warn(
+        formatMessage(
+          opt,
+          ' has been deprecated since v' + version + ' and will be removed in the near future'
+        )
+      );
+    }
+
+    return validator ? validator(value, opt, opts) : true;
+  };
+};
+
+/**
+ * Assert object's properties type
+ *
+ * @param {object} options
+ * @param {object} schema
+ * @param {boolean?} allowUnknown
+ *
+ * @returns {object}
+ */
+
+function assertOptions(options, schema, allowUnknown) {
+  if (typeof options !== 'object') {
+    throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"]('options must be an object', _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"].ERR_BAD_OPTION_VALUE);
+  }
+  const keys = Object.keys(options);
+  let i = keys.length;
+  while (i-- > 0) {
+    const opt = keys[i];
+    const validator = schema[opt];
+    if (validator) {
+      const value = options[opt];
+      const result = value === undefined || validator(value, opt, options);
+      if (result !== true) {
+        throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"]('option ' + opt + ' must be ' + result, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"].ERR_BAD_OPTION_VALUE);
+      }
+      continue;
+    }
+    if (allowUnknown !== true) {
+      throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"]('Unknown option ' + opt, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"].ERR_BAD_OPTION);
+    }
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  assertOptions,
+  validators
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/browser/classes/Blob.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/classes/Blob.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typeof Blob !== 'undefined' ? Blob : null);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/browser/classes/FormData.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/classes/FormData.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typeof FormData !== 'undefined' ? FormData : null);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/browser/classes/URLSearchParams.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/classes/URLSearchParams.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _helpers_AxiosURLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../helpers/AxiosURLSearchParams.js */ "./node_modules/axios/lib/helpers/AxiosURLSearchParams.js");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typeof URLSearchParams !== 'undefined' ? URLSearchParams : _helpers_AxiosURLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/browser/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/index.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes/URLSearchParams.js */ "./node_modules/axios/lib/platform/browser/classes/URLSearchParams.js");
+/* harmony import */ var _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/FormData.js */ "./node_modules/axios/lib/platform/browser/classes/FormData.js");
+/* harmony import */ var _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes/Blob.js */ "./node_modules/axios/lib/platform/browser/classes/Blob.js");
+
+
+
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
+ *
+ * @returns {boolean}
+ */
+const isStandardBrowserEnv = (() => {
+  let product;
+  if (typeof navigator !== 'undefined' && (
+    (product = navigator.product) === 'ReactNative' ||
+    product === 'NativeScript' ||
+    product === 'NS')
+  ) {
+    return false;
+  }
+
+  return typeof window !== 'undefined' && typeof document !== 'undefined';
+})();
+
+/**
+ * Determine if we're running in a standard browser webWorker environment
+ *
+ * Although the `isStandardBrowserEnv` method indicates that
+ * `allows axios to run in a web worker`, the WebWorker will still be
+ * filtered out due to its judgment standard
+ * `typeof window !== 'undefined' && typeof document !== 'undefined'`.
+ * This leads to a problem when axios post `FormData` in webWorker
+ */
+ const isStandardBrowserWebWorkerEnv = (() => {
+  return (
+    typeof WorkerGlobalScope !== 'undefined' &&
+    // eslint-disable-next-line no-undef
+    self instanceof WorkerGlobalScope &&
+    typeof self.importScripts === 'function'
+  );
+})();
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  isBrowser: true,
+  classes: {
+    URLSearchParams: _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+    FormData: _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Blob: _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  isStandardBrowserEnv,
+  isStandardBrowserWebWorkerEnv,
+  protocols: ['http', 'https', 'file', 'blob', 'url', 'data']
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/utils.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/utils.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _helpers_bind_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/bind.js */ "./node_modules/axios/lib/helpers/bind.js");
+
+
+
+
+// utils is a library of generic helper functions non-specific to axios
+
+const {toString} = Object.prototype;
+const {getPrototypeOf} = Object;
+
+const kindOf = (cache => thing => {
+    const str = toString.call(thing);
+    return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
+})(Object.create(null));
+
+const kindOfTest = (type) => {
+  type = type.toLowerCase();
+  return (thing) => kindOf(thing) === type
+}
+
+const typeOfTest = type => thing => typeof thing === type;
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ *
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+const {isArray} = Array;
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+const isUndefined = typeOfTest('undefined');
+
+/**
+ * Determine if a value is a Buffer
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Buffer, otherwise false
+ */
+function isBuffer(val) {
+  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
+    && isFunction(val.constructor.isBuffer) && val.constructor.isBuffer(val);
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+const isArrayBuffer = kindOfTest('ArrayBuffer');
+
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  let result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (isArrayBuffer(val.buffer));
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+const isString = typeOfTest('string');
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {*} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+const isFunction = typeOfTest('function');
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+const isNumber = typeOfTest('number');
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {*} thing The value to test
+ *
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+const isObject = (thing) => thing !== null && typeof thing === 'object';
+
+/**
+ * Determine if a value is a Boolean
+ *
+ * @param {*} thing The value to test
+ * @returns {boolean} True if value is a Boolean, otherwise false
+ */
+const isBoolean = thing => thing === true || thing === false;
+
+/**
+ * Determine if a value is a plain Object
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a plain Object, otherwise false
+ */
+const isPlainObject = (val) => {
+  if (kindOf(val) !== 'object') {
+    return false;
+  }
+
+  const prototype = getPrototypeOf(val);
+  return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in val) && !(Symbol.iterator in val);
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+const isDate = kindOfTest('Date');
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+const isFile = kindOfTest('File');
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+const isBlob = kindOfTest('Blob');
+
+/**
+ * Determine if a value is a FileList
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+const isFileList = kindOfTest('FileList');
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+const isStream = (val) => isObject(val) && isFunction(val.pipe);
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {*} thing The value to test
+ *
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+const isFormData = (thing) => {
+  let kind;
+  return thing && (
+    (typeof FormData === 'function' && thing instanceof FormData) || (
+      isFunction(thing.append) && (
+        (kind = kindOf(thing)) === 'formdata' ||
+        // detect form-data instance
+        (kind === 'object' && isFunction(thing.toString) && thing.toString() === '[object FormData]')
+      )
+    )
+  )
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+const isURLSearchParams = kindOfTest('URLSearchParams');
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ *
+ * @returns {String} The String freed of excess whitespace
+ */
+const trim = (str) => str.trim ?
+  str.trim() : str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ *
+ * @param {Boolean} [allOwnKeys = false]
+ * @returns {any}
+ */
+function forEach(obj, fn, {allOwnKeys = false} = {}) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  let i;
+  let l;
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object') {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    const keys = allOwnKeys ? Object.getOwnPropertyNames(obj) : Object.keys(obj);
+    const len = keys.length;
+    let key;
+
+    for (i = 0; i < len; i++) {
+      key = keys[i];
+      fn.call(null, obj[key], key, obj);
+    }
+  }
+}
+
+function findKey(obj, key) {
+  key = key.toLowerCase();
+  const keys = Object.keys(obj);
+  let i = keys.length;
+  let _key;
+  while (i-- > 0) {
+    _key = keys[i];
+    if (key === _key.toLowerCase()) {
+      return _key;
+    }
+  }
+  return null;
+}
+
+const _global = (() => {
+  /*eslint no-undef:0*/
+  if (typeof globalThis !== "undefined") return globalThis;
+  return typeof self !== "undefined" ? self : (typeof window !== 'undefined' ? window : global)
+})();
+
+const isContextDefined = (context) => !isUndefined(context) && context !== _global;
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ *
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  const {caseless} = isContextDefined(this) && this || {};
+  const result = {};
+  const assignValue = (val, key) => {
+    const targetKey = caseless && findKey(result, key) || key;
+    if (isPlainObject(result[targetKey]) && isPlainObject(val)) {
+      result[targetKey] = merge(result[targetKey], val);
+    } else if (isPlainObject(val)) {
+      result[targetKey] = merge({}, val);
+    } else if (isArray(val)) {
+      result[targetKey] = val.slice();
+    } else {
+      result[targetKey] = val;
+    }
+  }
+
+  for (let i = 0, l = arguments.length; i < l; i++) {
+    arguments[i] && forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ *
+ * @param {Boolean} [allOwnKeys]
+ * @returns {Object} The resulting value of object a
+ */
+const extend = (a, b, thisArg, {allOwnKeys}= {}) => {
+  forEach(b, (val, key) => {
+    if (thisArg && isFunction(val)) {
+      a[key] = (0,_helpers_bind_js__WEBPACK_IMPORTED_MODULE_0__["default"])(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  }, {allOwnKeys});
+  return a;
+}
+
+/**
+ * Remove byte order marker. This catches EF BB BF (the UTF-8 BOM)
+ *
+ * @param {string} content with BOM
+ *
+ * @returns {string} content value without BOM
+ */
+const stripBOM = (content) => {
+  if (content.charCodeAt(0) === 0xFEFF) {
+    content = content.slice(1);
+  }
+  return content;
+}
+
+/**
+ * Inherit the prototype methods from one constructor into another
+ * @param {function} constructor
+ * @param {function} superConstructor
+ * @param {object} [props]
+ * @param {object} [descriptors]
+ *
+ * @returns {void}
+ */
+const inherits = (constructor, superConstructor, props, descriptors) => {
+  constructor.prototype = Object.create(superConstructor.prototype, descriptors);
+  constructor.prototype.constructor = constructor;
+  Object.defineProperty(constructor, 'super', {
+    value: superConstructor.prototype
+  });
+  props && Object.assign(constructor.prototype, props);
+}
+
+/**
+ * Resolve object with deep prototype chain to a flat object
+ * @param {Object} sourceObj source object
+ * @param {Object} [destObj]
+ * @param {Function|Boolean} [filter]
+ * @param {Function} [propFilter]
+ *
+ * @returns {Object}
+ */
+const toFlatObject = (sourceObj, destObj, filter, propFilter) => {
+  let props;
+  let i;
+  let prop;
+  const merged = {};
+
+  destObj = destObj || {};
+  // eslint-disable-next-line no-eq-null,eqeqeq
+  if (sourceObj == null) return destObj;
+
+  do {
+    props = Object.getOwnPropertyNames(sourceObj);
+    i = props.length;
+    while (i-- > 0) {
+      prop = props[i];
+      if ((!propFilter || propFilter(prop, sourceObj, destObj)) && !merged[prop]) {
+        destObj[prop] = sourceObj[prop];
+        merged[prop] = true;
+      }
+    }
+    sourceObj = filter !== false && getPrototypeOf(sourceObj);
+  } while (sourceObj && (!filter || filter(sourceObj, destObj)) && sourceObj !== Object.prototype);
+
+  return destObj;
+}
+
+/**
+ * Determines whether a string ends with the characters of a specified string
+ *
+ * @param {String} str
+ * @param {String} searchString
+ * @param {Number} [position= 0]
+ *
+ * @returns {boolean}
+ */
+const endsWith = (str, searchString, position) => {
+  str = String(str);
+  if (position === undefined || position > str.length) {
+    position = str.length;
+  }
+  position -= searchString.length;
+  const lastIndex = str.indexOf(searchString, position);
+  return lastIndex !== -1 && lastIndex === position;
+}
+
+
+/**
+ * Returns new array from array like object or null if failed
+ *
+ * @param {*} [thing]
+ *
+ * @returns {?Array}
+ */
+const toArray = (thing) => {
+  if (!thing) return null;
+  if (isArray(thing)) return thing;
+  let i = thing.length;
+  if (!isNumber(i)) return null;
+  const arr = new Array(i);
+  while (i-- > 0) {
+    arr[i] = thing[i];
+  }
+  return arr;
+}
+
+/**
+ * Checking if the Uint8Array exists and if it does, it returns a function that checks if the
+ * thing passed in is an instance of Uint8Array
+ *
+ * @param {TypedArray}
+ *
+ * @returns {Array}
+ */
+// eslint-disable-next-line func-names
+const isTypedArray = (TypedArray => {
+  // eslint-disable-next-line func-names
+  return thing => {
+    return TypedArray && thing instanceof TypedArray;
+  };
+})(typeof Uint8Array !== 'undefined' && getPrototypeOf(Uint8Array));
+
+/**
+ * For each entry in the object, call the function with the key and value.
+ *
+ * @param {Object<any, any>} obj - The object to iterate over.
+ * @param {Function} fn - The function to call for each entry.
+ *
+ * @returns {void}
+ */
+const forEachEntry = (obj, fn) => {
+  const generator = obj && obj[Symbol.iterator];
+
+  const iterator = generator.call(obj);
+
+  let result;
+
+  while ((result = iterator.next()) && !result.done) {
+    const pair = result.value;
+    fn.call(obj, pair[0], pair[1]);
+  }
+}
+
+/**
+ * It takes a regular expression and a string, and returns an array of all the matches
+ *
+ * @param {string} regExp - The regular expression to match against.
+ * @param {string} str - The string to search.
+ *
+ * @returns {Array<boolean>}
+ */
+const matchAll = (regExp, str) => {
+  let matches;
+  const arr = [];
+
+  while ((matches = regExp.exec(str)) !== null) {
+    arr.push(matches);
+  }
+
+  return arr;
+}
+
+/* Checking if the kindOfTest function returns true when passed an HTMLFormElement. */
+const isHTMLForm = kindOfTest('HTMLFormElement');
+
+const toCamelCase = str => {
+  return str.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g,
+    function replacer(m, p1, p2) {
+      return p1.toUpperCase() + p2;
+    }
+  );
+};
+
+/* Creating a function that will check if an object has a property. */
+const hasOwnProperty = (({hasOwnProperty}) => (obj, prop) => hasOwnProperty.call(obj, prop))(Object.prototype);
+
+/**
+ * Determine if a value is a RegExp object
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a RegExp object, otherwise false
+ */
+const isRegExp = kindOfTest('RegExp');
+
+const reduceDescriptors = (obj, reducer) => {
+  const descriptors = Object.getOwnPropertyDescriptors(obj);
+  const reducedDescriptors = {};
+
+  forEach(descriptors, (descriptor, name) => {
+    if (reducer(descriptor, name, obj) !== false) {
+      reducedDescriptors[name] = descriptor;
+    }
+  });
+
+  Object.defineProperties(obj, reducedDescriptors);
+}
+
+/**
+ * Makes all methods read-only
+ * @param {Object} obj
+ */
+
+const freezeMethods = (obj) => {
+  reduceDescriptors(obj, (descriptor, name) => {
+    // skip restricted props in strict mode
+    if (isFunction(obj) && ['arguments', 'caller', 'callee'].indexOf(name) !== -1) {
+      return false;
+    }
+
+    const value = obj[name];
+
+    if (!isFunction(value)) return;
+
+    descriptor.enumerable = false;
+
+    if ('writable' in descriptor) {
+      descriptor.writable = false;
+      return;
+    }
+
+    if (!descriptor.set) {
+      descriptor.set = () => {
+        throw Error('Can not rewrite read-only method \'' + name + '\'');
+      };
+    }
+  });
+}
+
+const toObjectSet = (arrayOrString, delimiter) => {
+  const obj = {};
+
+  const define = (arr) => {
+    arr.forEach(value => {
+      obj[value] = true;
+    });
+  }
+
+  isArray(arrayOrString) ? define(arrayOrString) : define(String(arrayOrString).split(delimiter));
+
+  return obj;
+}
+
+const noop = () => {}
+
+const toFiniteNumber = (value, defaultValue) => {
+  value = +value;
+  return Number.isFinite(value) ? value : defaultValue;
+}
+
+const ALPHA = 'abcdefghijklmnopqrstuvwxyz'
+
+const DIGIT = '0123456789';
+
+const ALPHABET = {
+  DIGIT,
+  ALPHA,
+  ALPHA_DIGIT: ALPHA + ALPHA.toUpperCase() + DIGIT
+}
+
+const generateString = (size = 16, alphabet = ALPHABET.ALPHA_DIGIT) => {
+  let str = '';
+  const {length} = alphabet;
+  while (size--) {
+    str += alphabet[Math.random() * length|0]
+  }
+
+  return str;
+}
+
+/**
+ * If the thing is a FormData object, return true, otherwise return false.
+ *
+ * @param {unknown} thing - The thing to check.
+ *
+ * @returns {boolean}
+ */
+function isSpecCompliantForm(thing) {
+  return !!(thing && isFunction(thing.append) && thing[Symbol.toStringTag] === 'FormData' && thing[Symbol.iterator]);
+}
+
+const toJSONObject = (obj) => {
+  const stack = new Array(10);
+
+  const visit = (source, i) => {
+
+    if (isObject(source)) {
+      if (stack.indexOf(source) >= 0) {
+        return;
+      }
+
+      if(!('toJSON' in source)) {
+        stack[i] = source;
+        const target = isArray(source) ? [] : {};
+
+        forEach(source, (value, key) => {
+          const reducedValue = visit(value, i + 1);
+          !isUndefined(reducedValue) && (target[key] = reducedValue);
+        });
+
+        stack[i] = undefined;
+
+        return target;
+      }
+    }
+
+    return source;
+  }
+
+  return visit(obj, 0);
+}
+
+const isAsyncFn = kindOfTest('AsyncFunction');
+
+const isThenable = (thing) =>
+  thing && (isObject(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  isArray,
+  isArrayBuffer,
+  isBuffer,
+  isFormData,
+  isArrayBufferView,
+  isString,
+  isNumber,
+  isBoolean,
+  isObject,
+  isPlainObject,
+  isUndefined,
+  isDate,
+  isFile,
+  isBlob,
+  isRegExp,
+  isFunction,
+  isStream,
+  isURLSearchParams,
+  isTypedArray,
+  isFileList,
+  forEach,
+  merge,
+  extend,
+  trim,
+  stripBOM,
+  inherits,
+  toFlatObject,
+  kindOf,
+  kindOfTest,
+  endsWith,
+  toArray,
+  forEachEntry,
+  matchAll,
+  isHTMLForm,
+  hasOwnProperty,
+  hasOwnProp: hasOwnProperty, // an alias to avoid ESLint no-prototype-builtins detection
+  reduceDescriptors,
+  freezeMethods,
+  toObjectSet,
+  toCamelCase,
+  noop,
+  toFiniteNumber,
+  findKey,
+  global: _global,
+  isContextDefined,
+  ALPHABET,
+  generateString,
+  isSpecCompliantForm,
+  toJSONObject,
+  isAsyncFn,
+  isThenable
+});
+
+
 /***/ })
 
 /******/ 	});
@@ -44884,7 +43444,7 @@ if (true) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("fda1616ff3f20dcd189a")
+/******/ 		__webpack_require__.h = () => ("0f802bd7418655411c7a")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -45951,7 +44511,7 @@ if (true) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	__webpack_require__("./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ReactRefreshEntry.js");
-/******/ 	__webpack_require__("./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=localhost&port=5500&pathname=%2Fws&logging=info&overlay=true&reconnect=10&hot=true&live-reload=false");
+/******/ 	__webpack_require__("./node_modules/webpack-dev-server/client/index.js?protocol=wss%3A&hostname=localhost&port=5500&pathname=%2Fws&logging=info&overlay=true&reconnect=10&hot=true&live-reload=false");
 /******/ 	__webpack_require__("./node_modules/webpack/hot/dev-server.js");
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/pages/content/index.js");
 /******/ 	

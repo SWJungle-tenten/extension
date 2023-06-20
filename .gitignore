@@ -131,4 +131,8 @@ dist
 
 
 .DS_Store
-extension/.DS_Store
+extension/build/
+build/*.*.js
+build/*.*.js.map
+build/*.*.json
+build/*.bundle.js.map

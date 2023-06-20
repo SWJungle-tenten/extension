@@ -1,8 +1,7 @@
-// @ts-nocheck
 import React, { useState, useEffect } from "react";
-import ScrapButton from "../components/ScrapButton";
-import handlePreviewEvent from "../util/handlePreviewEvent";
-import Shortcuts from "../components/Shortcuts";
+import ScrapButton from "./components/ScrapButton";
+import handlePreviewEvent from "./utils/handlePreviewEvent";
+import Shortcuts from "./components/Shortcuts";
 
 function Content() {
   const [previewUrl, setPreviewUrl] = useState(null);
