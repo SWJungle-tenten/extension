@@ -31,7 +31,7 @@ function ScrapButton({ accessToken }) {
             };
 
             const response = await axios({
-              url: `http://localhost:8080/api/saveUserScrap`,
+              url: `http://localhost:8080/api/saveScrap`,
               method: "post",
               headers: {
                 Authorization: `Bearer ${accessToken}`,

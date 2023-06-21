@@ -95,7 +95,7 @@ function Content() {
 
           try {
             const response = await axios.post(
-              "http://localhost:8080/api/saveScrapText",
+              "http://localhost:8080/api/saveScrap",
               { data },
               { headers: { Authorization: `Bearer ${accessToken}` } }
             );
