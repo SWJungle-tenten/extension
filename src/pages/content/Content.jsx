@@ -14,15 +14,12 @@ function Content() {
 
   const handleCaptureClick = () => {
     capturing.current = true;
-    
   };
 
   useEffect(() => {
     const handleMouseDown = (e) => {
       if (!capturing.current) return;
       start.current = { x: e.pageX, y: e.pageY };
-      console.log("x , y" , { x: e.clientX, y: e.clientY })
-
       box.current = document.createElement("div");
       box.current.style.position = "absolute";
       box.current.style.border = "1px solid #ff8080";
@@ -33,7 +30,7 @@ function Content() {
 
     const handleMouseMove = (e) => {
       if (!capturing.current) return;
-      end.current = { x: e.clientX, y: e.clientY };
+      end.current = { x: e.pageX, y: e.pageY };
       box.current.style.width = `${Math.abs(end.current.x - start.current.x)}px`;
       box.current.style.height = `${Math.abs(end.current.y - start.current.y)}px`;
       box.current.style.left = `${Math.min(start.current.x, end.current.x)}px`;
@@ -44,7 +41,7 @@ function Content() {
       if (!capturing.current) return;
 
       capturing.current = false;
-      end.current = { x: e.clientX, y: e.clientY };
+      end.current = { x: e.pageX, y: e.pageY };
       handleCapture();
 
       document.body.removeChild(box.current);
