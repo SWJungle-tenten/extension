@@ -7,6 +7,63 @@ function Content() {
   const [selectedText, setSelectedText] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
+  const [capturing, setCapturing] = useState(false); // 캡처 중인지 여부
+  let startX, startY, endX, endY;
+
+  const handleCaptureClick = () => {
+    setCapturing(true);
+    document.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
+
+  const handleMouseDown = (e) => {
+    startX = e.clientX;
+    startY = e.clientY;
+  };
+
+  const handleMouseUp = (e) => {
+    endX = e.clientX;
+    endY = e.clientY;
+
+    if (capturing) {
+      setCapturing(false);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+      handleCapture();
+    }
+  };
+
+
+  const handleCapture = () => {
+    chrome.runtime.sendMessage({ action: "capture" }, (response) => {
+      const imgData = response.img;
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // 드래그 영역에 대한 정보
+        const width = Math.abs(endX - startX);
+        const height = Math.abs(endY - startY);
+        const x = Math.min(startX, endX);
+        const y = Math.min(startY, endY);
+
+        // Canvas 크기 설정
+        canvas.width = width;
+        canvas.height = height;
+
+        // 이미지를 canvas에 그리고, 드래그 영역만 잘라냄
+        ctx.drawImage(img, x, y, width, height, 0, 0, width, height);
+
+        // 잘라낸 영역을 다시 data URL로 변환
+        const dataUrl = canvas.toDataURL();
+        console.log("dataUrl", dataUrl);
+
+        // 이후 필요한 작업 수행 (예: 서버로 이미지 전송)
+      };
+      img.src = imgData;
+    });
+  };
 
   document.addEventListener(
     "mouseover",
@@ -52,7 +109,7 @@ function Content() {
         setScrapButton(null);
       }
     };
-    
+
     document.addEventListener("mousedown", mouseDownHandler);
     return () => {
       document.removeEventListener("mousedown", mouseDownHandler);
@@ -101,7 +158,7 @@ function Content() {
             );
 
             if (response.status === 200) {
-              console.log("response", response)
+              console.log("response", response);
               button.innerHTML = "Sub Scrap Success";
               button.disabled = true;
               setTimeout(() => {
@@ -142,6 +199,15 @@ function Content() {
           src={previewUrl}
           style={{ width: "100%", height: "100%" }}
         ></iframe>
+        <div
+          style={{
+            marginLeft: "35px",
+            marginTop: "30px",
+            position: "sticky",
+          }}
+        >
+          <button onClick={handleCaptureClick}>Screen Capture</button>
+        </div>
       </div>
     </>
   );

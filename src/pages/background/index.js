@@ -16,3 +16,12 @@ chrome.cookies.onChanged.addListener(({ cause, cookie, removed }) => {
     });
   }
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "capture") {
+      chrome.tabs.captureVisibleTab(null, {format: "png"}, (imgData) => {
+          sendResponse({img: imgData});
+      });
+      return true; // 비동기 응답을 위해 필요함
+  }
+});
