@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ScrapButton from "./components/ScrapButton";
 import axios from "axios";
 
@@ -7,33 +7,61 @@ function Content() {
   const [selectedText, setSelectedText] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
-  const [capturing, setCapturing] = useState(false); // 캡처 중인지 여부
-  let startX, startY, endX, endY;
+  const capturing = useRef(false);
+  const box = useRef(null);
+  const start = useRef({ x: 0, y: 0 });
+  const end = useRef({ x: 0, y: 0 });
 
   const handleCaptureClick = () => {
-    setCapturing(true);
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mouseup", handleMouseUp);
+    capturing.current = true;
+    
   };
 
-  const handleMouseDown = (e) => {
-    startX = e.clientX;
-    startY = e.clientY;
-  };
+  useEffect(() => {
+    const handleMouseDown = (e) => {
+      if (!capturing.current) return;
+      start.current = { x: e.pageX, y: e.pageY };
+      console.log("x , y" , { x: e.clientX, y: e.clientY })
 
-  const handleMouseUp = (e) => {
-    endX = e.clientX;
-    endY = e.clientY;
+      box.current = document.createElement("div");
+      box.current.style.position = "absolute";
+      box.current.style.border = "1px solid #ff8080";
+      box.current.style.left = `${start.current.x}px`;
+      box.current.style.top = `${start.current.y}px`;
+      document.body.appendChild(box.current);
+    };
 
-    if (capturing) {
-      setCapturing(false);
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mouseup', handleMouseUp);
+    const handleMouseMove = (e) => {
+      if (!capturing.current) return;
+      end.current = { x: e.clientX, y: e.clientY };
+      box.current.style.width = `${Math.abs(end.current.x - start.current.x)}px`;
+      box.current.style.height = `${Math.abs(end.current.y - start.current.y)}px`;
+      box.current.style.left = `${Math.min(start.current.x, end.current.x)}px`;
+      box.current.style.top = `${Math.min(start.current.y, end.current.y)}px`;
+    };
+
+    const handleMouseUp = (e) => {
+      if (!capturing.current) return;
+
+      capturing.current = false;
+      end.current = { x: e.clientX, y: e.clientY };
       handleCapture();
-    }
-  };
 
+      document.body.removeChild(box.current);
+      box.current = null;
+    };
 
+    document.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+  
   const handleCapture = () => {
     chrome.runtime.sendMessage({ action: "capture" }, (response) => {
       const imgData = response.img;
@@ -41,24 +69,24 @@ function Content() {
       img.onload = () => {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-
+  
         // 드래그 영역에 대한 정보
-        const width = Math.abs(endX - startX);
-        const height = Math.abs(endY - startY);
-        const x = Math.min(startX, endX);
-        const y = Math.min(startY, endY);
-
+        const width = Math.abs(end.current.x - start.current.x);
+        const height = Math.abs(end.current.y - start.current.y);
+        const x = Math.min(start.current.x, end.current.x);
+        const y = Math.min(start.current.y, end.current.y);
+  
         // Canvas 크기 설정
-        canvas.width = width;
-        canvas.height = height;
-
+        canvas.width = width-1;
+        canvas.height = height-1;
+  
         // 이미지를 canvas에 그리고, 드래그 영역만 잘라냄
         ctx.drawImage(img, x, y, width, height, 0, 0, width, height);
-
+  
         // 잘라낸 영역을 다시 data URL로 변환
         const dataUrl = canvas.toDataURL();
         console.log("dataUrl", dataUrl);
-
+  
         // 이후 필요한 작업 수행 (예: 서버로 이미지 전송)
       };
       img.src = imgData;
