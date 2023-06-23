@@ -80,57 +80,60 @@ function Content() {
     newCanvas2Image(imageData);
   };
 
-  const CHUNK_SIZE = 1000; // 청크의 크기를 설정합니다. 실제 상황에 맞게 조절해야 합니다.
+  const CHUNK_SIZE = 1000; // 청크 크기 설정. 실제 상황에 따라 조절이 필요합니다.
 
   const newCanvas2Image = (imageData) => {
-    // 새로운 canvas를 만들고 잘라낸 이미지를 그립니다.
+    // 새로운 캔버스를 만들고 잘라낸 이미지를 그립니다.
     const newCanvas = document.createElement("canvas");
     newCanvas.width = imageData.width;
     newCanvas.height = imageData.height;
     const newCtx = newCanvas.getContext("2d");
     newCtx.putImageData(imageData, 0, 0);
-
-    // 잘라낸 영역을 data URL로 변환합니다.
+  
+    // 잘라낸 영역을 데이터 URL로 변환합니다.
     const dataUrl = newCanvas.toDataURL();
     document
       .querySelector(".GyAeWb")
       .removeChild(document.getElementById("captureCanvas"));
+  
     // 데이터를 청크로 나눕니다.
     const dataChunks = [];
     for (let i = 0; i < dataUrl.length; i += CHUNK_SIZE) {
       dataChunks.push(dataUrl.slice(i, i + CHUNK_SIZE));
     }
-
-    // 각 청크를 순차적으로 서버에 전송합니다.
-    const sendDataChunk = async (index) => {
+  
+    // 각 청크를 서버로 순차적으로 보냅니다.
+    const sendDataChunk = async(index) => {
       if (index >= dataChunks.length) {
         return;
       }
-
+  
       const dataChunk = dataChunks[index];
       const data = {
         keyWord: document.querySelector("#APjFqb").innerHTML,
         title: document.querySelector("h3").innerText,
         texts: dataChunk,
+        isLastChunk: index === dataChunks.length - 1 // 마지막 청크인지 확인
       };
-
+      console.log("data",data);
+      console.log("chunk",dataChunk)
       try {
         const response = await axios.post(
           "http://localhost:8080/api/textCapture",
           { data },
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
-
+  
         console.log(response);
-
-        // 다음 청크를 전송합니다.
+  
+        // 다음 청크를 보냅니다.
         sendDataChunk(index + 1);
       } catch (error) {
         console.error(error);
       }
     };
-
-    sendDataChunk(0); // 첫 번째 청크를 전송합니다.
+  
+    sendDataChunk(0); // 첫 번째 청크를 보냅니다.
   };
 
   const handleCapture = () => {
