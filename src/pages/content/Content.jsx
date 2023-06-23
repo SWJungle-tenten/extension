@@ -78,27 +78,59 @@ function Content() {
       Math.abs(end.current.y - start.current.y)
     );
     newCanvas2Image(imageData);
-
-    // 이후 필요한 작업 수행 (예: 서버로 이미지 전송)
   };
 
+  const CHUNK_SIZE = 1000; // 청크의 크기를 설정합니다. 실제 상황에 맞게 조절해야 합니다.
+
   const newCanvas2Image = (imageData) => {
-    // 새 canvas를 생성하고 잘라낸 이미지를 그리기
+    // 새로운 canvas를 만들고 잘라낸 이미지를 그립니다.
     const newCanvas = document.createElement("canvas");
     newCanvas.width = imageData.width;
     newCanvas.height = imageData.height;
-    newCanvas.style.top = `${
-      window.scrollY + Math.min(start.current.y, end.current.y)
-    }px`;
     const newCtx = newCanvas.getContext("2d");
     newCtx.putImageData(imageData, 0, 0);
 
-    // 잘라낸 영역을 data URL로 변환
+    // 잘라낸 영역을 data URL로 변환합니다.
     const dataUrl = newCanvas.toDataURL();
-    console.log("Cut out image", dataUrl);
-    document.querySelector(".GyAeWb").removeChild(
-      document.getElementById("captureCanvas")
-    );
+    document
+      .querySelector(".GyAeWb")
+      .removeChild(document.getElementById("captureCanvas"));
+    // 데이터를 청크로 나눕니다.
+    const dataChunks = [];
+    for (let i = 0; i < dataUrl.length; i += CHUNK_SIZE) {
+      dataChunks.push(dataUrl.slice(i, i + CHUNK_SIZE));
+    }
+
+    // 각 청크를 순차적으로 서버에 전송합니다.
+    const sendDataChunk = async (index) => {
+      if (index >= dataChunks.length) {
+        return;
+      }
+
+      const dataChunk = dataChunks[index];
+      const data = {
+        keyWord: document.querySelector("#APjFqb").innerHTML,
+        title: document.querySelector("h3").innerText,
+        texts: dataChunk,
+      };
+
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/api/textCapture",
+          { data },
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+
+        console.log(response);
+
+        // 다음 청크를 전송합니다.
+        sendDataChunk(index + 1);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    sendDataChunk(0); // 첫 번째 청크를 전송합니다.
   };
 
   const handleCapture = () => {
@@ -113,7 +145,6 @@ function Content() {
         canvas.style.top = `${scrollY}px`;
         canvas.style.left = 0;
         canvas.id = "captureCanvas";
-
         const ctx = canvas.getContext("2d");
 
         // Canvas 크기 설정
