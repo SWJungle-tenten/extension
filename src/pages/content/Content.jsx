@@ -3,19 +3,28 @@ import ScrapButton from "./components/ScrapButton";
 import axios from "axios";
 
 function Content() {
-  const [scrapButton, setScrapButton] = useState(null);
-  const [selectedText, setSelectedText] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
   const capturing = useRef(false);
   const box = useRef(null);
   const boxStart = useRef({ x: 0, y: 0 });
   const boxEnd = useRef({ x: 0, y: 0 });
-  const start = useRef({ x: 0, y: 0 });
-  const end = useRef({ x: 0, y: 0 });
+  const dragStart = useRef({ x: 0, y: 0 });
+  const dragEnd = useRef({ x: 0, y: 0 });
+  const CHUNK_SIZE = 10000;
+  const overlay = useRef(null);
 
-  const handleCaptureClick = (e) => {
+  const handleCaptureClick = () => {
     capturing.current = true;
+    overlay.current = document.createElement("div");
+    overlay.current.style.position = "fixed";
+    overlay.current.style.top = "0";
+    overlay.current.style.left = "0";
+    overlay.current.style.width = "100vw";
+    overlay.current.style.height = "100vh";
+    overlay.current.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+    overlay.current.style.zIndex = "9999";
+    document.body.appendChild(overlay.current);
     document.body.style.overflow = "hidden";
     handleCapture();
 
@@ -25,22 +34,22 @@ function Content() {
   };
 
   const handleMouseDown = (e) => {
-    if (!capturing.current) return;
-    start.current = { x: e.clientX, y: e.clientY };
+    if (!capturing.current || !overlay.current) return;
+    dragStart.current = { x: e.clientX, y: e.clientY };
     boxStart.current = { x: e.pageX, y: e.pageY };
     box.current = document.createElement("div");
     box.current.style.position = "absolute";
-    box.current.style.border = "1px solid #ff8080";
+    box.current.style.border = "0.1px solid white";
     box.current.style.left = `${boxStart.current.x}px`;
     box.current.style.top = `${boxStart.current.y}px`;
-    box.current.style.backgroundColor = "rgba(255, 128, 128, 0.3)";
+    box.current.style.backgroundColor = "rgba(200, 200, 200, 0.1)";
     box.current.style.zIndex = 99999;
     document.body.appendChild(box.current);
   };
 
   const handleMouseMove = (e) => {
     if (!capturing.current || !box.current) return;
-    end.current = { x: e.clientX, y: e.clientY };
+    dragEnd.current = { x: e.clientX, y: e.clientY };
     boxEnd.current = { x: e.pageX, y: e.pageY };
     box.current.style.width = `${Math.abs(
       boxEnd.current.x - boxStart.current.x
@@ -62,78 +71,83 @@ function Content() {
     if (!capturing.current) return;
 
     capturing.current = false;
-    end.current = { x: e.clientX, y: e.clientY };
+    dragEnd.current = { x: e.clientX, y: e.clientY };
 
+    if (
+      Math.abs(dragStart.current.x - dragEnd.current.x) < 1 ||
+      Math.abs(dragStart.current.y - dragEnd.current.y) < 1
+    ) {
+      if (document.getElementById("captureCanvas")) {
+        document
+          .querySelector(".GyAeWb")
+          .removeChild(document.getElementById("captureCanvas"));
+      }
+      document.body.removeChild(box.current);
+      box.current = null;
+      document.body.style.overflow = "auto";
+      document.body.removeChild(overlay.current);
+      return;
+    }
+
+    capturing.current = false;
     document.body.removeChild(box.current);
     box.current = null;
     document.body.style.overflow = "auto";
+    document.body.removeChild(overlay.current);
 
-    // 캡처된 이미지에서 선택된 부분을 잘라내기
     const canvas = document.getElementById("captureCanvas");
     const ctx = canvas.getContext("2d");
     const imageData = ctx.getImageData(
-      Math.min(start.current.x, end.current.x),
-      Math.min(start.current.y, end.current.y),
-      Math.abs(end.current.x - start.current.x),
-      Math.abs(end.current.y - start.current.y)
+      Math.min(dragStart.current.x, dragEnd.current.x),
+      Math.min(dragStart.current.y, dragEnd.current.y),
+      Math.abs(dragEnd.current.x - dragStart.current.x),
+      Math.abs(dragEnd.current.y - dragStart.current.y)
     );
     newCanvas2Image(imageData);
   };
 
-  const CHUNK_SIZE = 1000; // 청크 크기 설정. 실제 상황에 따라 조절이 필요합니다.
-
   const newCanvas2Image = (imageData) => {
-    // 새로운 캔버스를 만들고 잘라낸 이미지를 그립니다.
     const newCanvas = document.createElement("canvas");
     newCanvas.width = imageData.width;
     newCanvas.height = imageData.height;
     const newCtx = newCanvas.getContext("2d");
     newCtx.putImageData(imageData, 0, 0);
-  
-    // 잘라낸 영역을 데이터 URL로 변환합니다.
+
     const dataUrl = newCanvas.toDataURL();
     document
       .querySelector(".GyAeWb")
       .removeChild(document.getElementById("captureCanvas"));
-  
-    // 데이터를 청크로 나눕니다.
+
     const dataChunks = [];
     for (let i = 0; i < dataUrl.length; i += CHUNK_SIZE) {
       dataChunks.push(dataUrl.slice(i, i + CHUNK_SIZE));
     }
-  
-    // 각 청크를 서버로 순차적으로 보냅니다.
-    const sendDataChunk = async(index) => {
+    const sendDataChunk = async (index) => {
       if (index >= dataChunks.length) {
         return;
       }
-  
+
       const dataChunk = dataChunks[index];
       const data = {
         keyWord: document.querySelector("#APjFqb").innerHTML,
         title: document.querySelector("h3").innerText,
         texts: dataChunk,
-        isLastChunk: index === dataChunks.length - 1 // 마지막 청크인지 확인
+        isLastChunk: index === dataChunks.length - 1,
       };
-      console.log("data",data);
-      console.log("chunk",dataChunk)
+
       try {
         const response = await axios.post(
           "http://localhost:8080/api/textCapture",
-          { data },
+          data,
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
-  
         console.log(response);
-  
-        // 다음 청크를 보냅니다.
         sendDataChunk(index + 1);
       } catch (error) {
         console.error(error);
       }
     };
-  
-    sendDataChunk(0); // 첫 번째 청크를 보냅니다.
+    sendDataChunk(0);
   };
 
   const handleCapture = () => {
@@ -143,18 +157,16 @@ function Content() {
       img.onload = () => {
         const canvas = document.createElement("canvas");
         canvas.style.position = "absolute";
-        canvas.style.zIndex = 99995;
+        canvas.style.zIndex = 9999;
         const scrollY = window.scrollY;
         canvas.style.top = `${scrollY}px`;
-        canvas.style.left = 0;
+        // canvas.style.left = 0;
         canvas.id = "captureCanvas";
         const ctx = canvas.getContext("2d");
 
-        // Canvas 크기 설정
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        // 이미지를 canvas에 그리기
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         document.querySelector(".GyAeWb").appendChild(canvas);
       };
@@ -195,87 +207,6 @@ function Content() {
       setAccessToken(message.accessToken);
     }
   });
-
-  useEffect(() => {
-    const mouseDownHandler = function (e) {
-      if (!scrapButton) {
-        return;
-      }
-      if (e.target !== scrapButton || selectedText === null) {
-        document.body.removeChild(scrapButton);
-        setScrapButton(null);
-      }
-    };
-
-    document.addEventListener("mousedown", mouseDownHandler);
-    return () => {
-      document.removeEventListener("mousedown", mouseDownHandler);
-    };
-  }, [scrapButton, selectedText]);
-
-  useEffect(() => {
-    const mouseUpHandler = async function (e) {
-      if (e.target === scrapButton || e.target === selectedText) {
-        return;
-      }
-      const sel = document.getSelection();
-      if (
-        sel.isCollapsed ||
-        (sel.toString().length < 6 && sel.toString().includes("\n")) ||
-        sel.toString() === selectedText
-      ) {
-        return;
-      } else {
-        const direction = sel.anchorOffset - sel.focusOffset < 0;
-        const divTop = direction ? e.pageY + 10 : e.pageY - 40;
-        const divLeft = direction ? e.pageX + 10 : e.pageX - 40;
-
-        const button = document.createElement("button");
-        button.innerHTML = "Sub Scrap";
-        button.style.position = "absolute";
-        button.style.top = `${divTop}px`;
-        button.style.left = `${divLeft}px`;
-        document.body.appendChild(button);
-        setScrapButton(button);
-        setSelectedText(sel.toString());
-
-        button.addEventListener("click", async function () {
-          const data = {
-            keyWord: document.querySelector("#APjFqb").innerHTML,
-            url: window.location.href,
-            title: document.title,
-            texts: [sel.toString()],
-          };
-
-          try {
-            const response = await axios.post(
-              "http://localhost:8080/api/saveScrap",
-              { data },
-              { headers: { Authorization: `Bearer ${accessToken}` } }
-            );
-
-            if (response.status === 200) {
-              console.log("response", response);
-              button.innerHTML = "Sub Scrap Success";
-              button.disabled = true;
-              setTimeout(() => {
-                button.style.display = "none";
-              }, 1000);
-            } else {
-              alert("Sub Scrap Failed");
-            }
-          } catch (error) {
-            alert("Sub Scrap Failed");
-          }
-        });
-      }
-    };
-
-    document.addEventListener("mouseup", mouseUpHandler);
-    return () => {
-      document.removeEventListener("mouseup", mouseUpHandler);
-    };
-  }, [scrapButton, selectedText, accessToken]);
 
   return (
     <>

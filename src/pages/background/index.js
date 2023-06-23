@@ -22,6 +22,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       chrome.tabs.captureVisibleTab(null, {format: "png"}, (imgData) => {
           sendResponse({img: imgData});
       });
-      return true; // 비동기 응답을 위해 필요함
+      return true;
   }
 });
