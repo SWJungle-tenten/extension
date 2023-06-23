@@ -14,7 +14,7 @@ function ScrapButton({ accessToken }) {
     };
 
     axios({
-      url: `${SERVER_ADDR}/saveUserScrap`,
+      url: `${SERVER_ADDR}/saveScrap`,
       method: "post",
       headers: {
         Authorization: `Bearer ${accessToken}`,
