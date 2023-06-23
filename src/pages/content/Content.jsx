@@ -5,25 +5,28 @@ import Shortcuts from "./components/Shortcuts";
 
 function Content() {
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [previewTitle, setPreviewTitle] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
 
   document.addEventListener(
     "mouseover",
     async (e) => {
-      setPreviewUrl(await handlePreviewEvent(e, 700));
+      const [url, title] = await handlePreviewEvent(e, 500);
+      setPreviewUrl(url);
+      setPreviewTitle(title);
     },
     { capture: true }
   );
 
   useEffect(() => {
-    chrome.runtime.sendMessage({ action: "getToken" }, (response) => {
+    chrome.runtime?.sendMessage({ action: "getToken" }, (response) => {
       if (response.accessToken) {
         setAccessToken(response.accessToken);
       }
     });
   }, []);
 
-  chrome.runtime.onMessage.addListener((message, ..._) => {
+  chrome.runtime?.onMessage.addListener((message, ..._) => {
     if (message.action === "updateToken" && !message.variable) {
       setAccessToken(message.accessToken);
     }
@@ -32,7 +35,7 @@ function Content() {
   return (
     <>
       <Shortcuts setPreviewUrl={setPreviewUrl} />
-      {accessToken && <ScrapButton accessToken={accessToken} />}
+
       <div
         style={{
           width: "40vw",
@@ -43,7 +46,8 @@ function Content() {
           position: "sticky",
         }}
       >
-        <iframe id="previewer" title="previewer" src={previewUrl} style={{ width: "100%", height: "100%" }}></iframe>
+        <iframe id="previewer" title={previewTitle} src={previewUrl} style={{ width: "100%", height: "100%" }}></iframe>
+        {accessToken && previewUrl && <ScrapButton accessToken={accessToken} />}
       </div>
     </>
   );
