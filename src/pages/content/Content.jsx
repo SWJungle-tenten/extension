@@ -12,8 +12,10 @@ function Content() {
   const start = useRef({ x: 0, y: 0 });
   const end = useRef({ x: 0, y: 0 });
 
-  const handleCaptureClick = () => {
+  const handleCaptureClick = (e) => {
     capturing.current = true;
+    document.body.style.overflow = "hidden";
+    handleCapture();
   };
 
   useEffect(() => {
@@ -31,8 +33,12 @@ function Content() {
     const handleMouseMove = (e) => {
       if (!capturing.current) return;
       end.current = { x: e.pageX, y: e.pageY };
-      box.current.style.width = `${Math.abs(end.current.x - start.current.x)}px`;
-      box.current.style.height = `${Math.abs(end.current.y - start.current.y)}px`;
+      box.current.style.width = `${Math.abs(
+        end.current.x - start.current.x
+      )}px`;
+      box.current.style.height = `${Math.abs(
+        end.current.y - start.current.y
+      )}px`;
       box.current.style.left = `${Math.min(start.current.x, end.current.x)}px`;
       box.current.style.top = `${Math.min(start.current.y, end.current.y)}px`;
     };
@@ -42,10 +48,11 @@ function Content() {
 
       capturing.current = false;
       end.current = { x: e.pageX, y: e.pageY };
-      handleCapture();
 
       document.body.removeChild(box.current);
       box.current = null;
+      document.body.style.overflow = "auto";
+      // document.body.removeChild(document.querySelector("#captureImg"));
     };
 
     document.addEventListener("mousedown", handleMouseDown);
@@ -58,33 +65,42 @@ function Content() {
       document.removeEventListener("mouseup", handleMouseUp);
     };
   }, []);
-  
+
   const handleCapture = () => {
     chrome.runtime.sendMessage({ action: "capture" }, (response) => {
       const imgData = response.img;
+      console.log("imgData", imgData);
       const img = new Image();
+
+      img.style.width = "100vw";
+      img.style.height = "100vh";
+      img.style.position = "absolute";
+      img.style.zIndex = 99995;
+      const scrollY = window.scrollY;
+      img.style.top = `${scrollY}px`;
+      img.style.left = 0;
+      img.id = "captureImg";
+
       img.onload = () => {
         const canvas = document.createElement("canvas");
+        canvas.style.zIndex = 9999996;
+        document.querySelector(".GyAeWb").appendChild(img);
+
         const ctx = canvas.getContext("2d");
-  
+        ctx.style.zIndex = 9999999;
         // 드래그 영역에 대한 정보
         const width = Math.abs(end.current.x - start.current.x);
         const height = Math.abs(end.current.y - start.current.y);
         const x = Math.min(start.current.x, end.current.x);
         const y = Math.min(start.current.y, end.current.y);
-  
+
         // Canvas 크기 설정
-        canvas.width = width-1;
-        canvas.height = height-1;
-  
+        canvas.width = width - 1;
+        canvas.height = height - 1;
+
         // 이미지를 canvas에 그리고, 드래그 영역만 잘라냄
         ctx.drawImage(img, x, y, width, height, 0, 0, width, height);
-  
-        // 잘라낸 영역을 다시 data URL로 변환
-        const dataUrl = canvas.toDataURL();
-        console.log("dataUrl", dataUrl);
-  
-        // 이후 필요한 작업 수행 (예: 서버로 이미지 전송)
+
       };
       img.src = imgData;
     });
@@ -209,6 +225,7 @@ function Content() {
     <>
       {accessToken && <ScrapButton accessToken={accessToken} />}
       <div
+        id="previewer-container"
         style={{
           width: "40vw",
           marginLeft: "35px",
@@ -216,6 +233,7 @@ function Content() {
           height: "78vh",
           top: "60px",
           position: "sticky",
+          zIndex: "1px",
         }}
       >
         <iframe
@@ -227,8 +245,9 @@ function Content() {
         <div
           style={{
             marginLeft: "35px",
-            marginTop: "30px",
+            marginTop: "-700px",
             position: "sticky",
+            zIndex: "100",
           }}
         >
           <button onClick={handleCaptureClick}>Screen Capture</button>
