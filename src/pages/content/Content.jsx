@@ -3,6 +3,7 @@ import ScrapButton from "./components/ScrapButton";
 import handlePreviewEvent from "./utils/handlePreviewEvent";
 import Shortcuts from "./components/Shortcuts";
 import axios from "axios";
+import { SERVER_ADDR } from "../../../utils/env";
 
 function Content() {
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -20,13 +21,15 @@ function Content() {
   const handleCaptureClick = () => {
     capturing.current = true;
     overlay.current = document.createElement("div");
-    overlay.current.style.position = "fixed";
-    overlay.current.style.top = "0";
-    overlay.current.style.left = "0";
-    overlay.current.style.width = "100vw";
-    overlay.current.style.height = "100vh";
-    overlay.current.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-    overlay.current.style.zIndex = "9999";
+    Object.assign(overlay.current.style, {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      width: "100vw",
+      height: "100vh",
+      backgroundColor: "rgba(0, 0, 0, 0.4)",
+      zIndex: "9999",
+    });
     document.body.appendChild(overlay.current);
     document.body.style.overflow = "hidden";
     handleCapture();
@@ -41,12 +44,14 @@ function Content() {
     dragStart.current = { x: e.clientX, y: e.clientY };
     boxStart.current = { x: e.pageX, y: e.pageY };
     box.current = document.createElement("div");
-    box.current.style.position = "absolute";
-    box.current.style.border = "0.1px solid white";
-    box.current.style.left = `${boxStart.current.x}px`;
-    box.current.style.top = `${boxStart.current.y}px`;
-    box.current.style.backgroundColor = "rgba(200, 200, 200, 0.1)";
-    box.current.style.zIndex = 99999;
+    Object.assign(box.current.style, {
+      position: "absolute",
+      border: "0.1px solid white",
+      left: `${boxStart.current.x}px`,
+      top: `${boxStart.current.y}px`,
+      backgroundColor: "rgba(200, 200, 200, 0.1)",
+      zIndex: 99999,
+    });
     document.body.appendChild(box.current);
   };
 
@@ -54,20 +59,12 @@ function Content() {
     if (!capturing.current || !box.current) return;
     dragEnd.current = { x: e.clientX, y: e.clientY };
     boxEnd.current = { x: e.pageX, y: e.pageY };
-    box.current.style.width = `${Math.abs(
-      boxEnd.current.x - boxStart.current.x
-    )}px`;
-    box.current.style.height = `${Math.abs(
-      boxEnd.current.y - boxStart.current.y
-    )}px`;
-    box.current.style.left = `${Math.min(
-      boxStart.current.x,
-      boxEnd.current.x
-    )}px`;
-    box.current.style.top = `${Math.min(
-      boxStart.current.y,
-      boxEnd.current.y
-    )}px`;
+    Object.assign(box.current.style, {
+      width: `${Math.abs(boxEnd.current.x - boxStart.current.x)}px`,
+      height: `${Math.abs(boxEnd.current.y - boxStart.current.y)}px`,
+      left: `${Math.min(boxStart.current.x, boxEnd.current.x)}px`,
+      top: `${Math.min(boxStart.current.y, boxEnd.current.y)}px`,
+    });
   };
 
   const handleMouseUp = (e) => {
@@ -139,11 +136,9 @@ function Content() {
       };
 
       try {
-        const response = await axios.post(
-          "http://localhost:8080/api/textCapture",
-          data,
-          { headers: { Authorization: `Bearer ${accessToken}` } }
-        );
+        const response = await axios.post(`${SERVER_ADDR}/textCapture`, data, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
         console.log(response);
         sendDataChunk(index + 1);
       } catch (error) {
@@ -159,11 +154,11 @@ function Content() {
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement("canvas");
-        canvas.style.position = "absolute";
-        canvas.style.zIndex = 9999;
-        const scrollY = window.scrollY;
-        canvas.style.top = `${scrollY}px`;
-        // canvas.style.left = 0;
+        Object.assign(canvas.style, {
+          position: "absolute",
+          zIndex: "9999",
+          top: `${window.scrollY}px`,
+        });
         canvas.id = "captureCanvas";
         const ctx = canvas.getContext("2d");
 
@@ -201,24 +196,33 @@ function Content() {
     }
   });
 
+  const previewerContainerStyle = {
+    width: "40vw",
+    marginLeft: "35px",
+    marginTop: "-30px",
+    height: "78vh",
+    top: "72px",
+    position: "sticky",
+    zIndex: "1px",
+  };
+
   return (
     <>
       <Shortcuts setPreviewUrl={setPreviewUrl} />
 
-      <div
-        id="previewer-container"
-        style={{
-          width: "40vw",
-          marginLeft: "35px",
-          marginTop: "-30px",
-          height: "78vh",
-          top: "72px",
-          position: "sticky",
-          zIndex: "1px",
-        }}
-      >
-        <iframe id="previewer" title={previewTitle} src={previewUrl} style={{ width: "100%", height: "100%" }}></iframe>
+      <div id="previewer-container" style={previewerContainerStyle}>
+        <iframe
+          id="previewer"
+          title={previewTitle}
+          src={previewUrl}
+          style={{ width: "100%", height: "100%" }}
+        ></iframe>
         {accessToken && previewUrl && <ScrapButton accessToken={accessToken} />}
+        {accessToken && previewUrl && (
+          <button style={{ marginLeft: "5px" }} onClick={handleCaptureClick}>
+            화면캡처하기
+          </button>
+        )}
       </div>
     </>
   );
