@@ -9,6 +9,8 @@ function Content() {
   const [accessToken, setAccessToken] = useState(null);
   const capturing = useRef(false);
   const box = useRef(null);
+  const boxStart = useRef({ x: 0, y: 0 });
+  const boxEnd = useRef({ x: 0, y: 0 });
   const start = useRef({ x: 0, y: 0 });
   const end = useRef({ x: 0, y: 0 });
 
@@ -16,91 +18,111 @@ function Content() {
     capturing.current = true;
     document.body.style.overflow = "hidden";
     handleCapture();
-  };
-
-  useEffect(() => {
-    const handleMouseDown = (e) => {
-      if (!capturing.current) return;
-      start.current = { x: e.pageX, y: e.pageY };
-      box.current = document.createElement("div");
-      box.current.style.position = "absolute";
-      box.current.style.border = "1px solid #ff8080";
-      box.current.style.left = `${start.current.x}px`;
-      box.current.style.top = `${start.current.y}px`;
-      document.body.appendChild(box.current);
-    };
-
-    const handleMouseMove = (e) => {
-      if (!capturing.current) return;
-      end.current = { x: e.pageX, y: e.pageY };
-      box.current.style.width = `${Math.abs(
-        end.current.x - start.current.x
-      )}px`;
-      box.current.style.height = `${Math.abs(
-        end.current.y - start.current.y
-      )}px`;
-      box.current.style.left = `${Math.min(start.current.x, end.current.x)}px`;
-      box.current.style.top = `${Math.min(start.current.y, end.current.y)}px`;
-    };
-
-    const handleMouseUp = (e) => {
-      if (!capturing.current) return;
-
-      capturing.current = false;
-      end.current = { x: e.pageX, y: e.pageY };
-
-      document.body.removeChild(box.current);
-      box.current = null;
-      document.body.style.overflow = "auto";
-      // document.body.removeChild(document.querySelector("#captureImg"));
-    };
 
     document.addEventListener("mousedown", handleMouseDown);
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
+  };
 
-    return () => {
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, []);
+  const handleMouseDown = (e) => {
+    if (!capturing.current) return;
+    start.current = { x: e.clientX, y: e.clientY };
+    boxStart.current = { x: e.pageX, y: e.pageY };
+    box.current = document.createElement("div");
+    box.current.style.position = "absolute";
+    box.current.style.border = "1px solid #ff8080";
+    box.current.style.left = `${boxStart.current.x}px`;
+    box.current.style.top = `${boxStart.current.y}px`;
+    box.current.style.backgroundColor = "rgba(255, 128, 128, 0.3)";
+    box.current.style.zIndex = 99999;
+    document.body.appendChild(box.current);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!capturing.current || !box.current) return;
+    end.current = { x: e.clientX, y: e.clientY };
+    boxEnd.current = { x: e.pageX, y: e.pageY };
+    box.current.style.width = `${Math.abs(
+      boxEnd.current.x - boxStart.current.x
+    )}px`;
+    box.current.style.height = `${Math.abs(
+      boxEnd.current.y - boxStart.current.y
+    )}px`;
+    box.current.style.left = `${Math.min(
+      boxStart.current.x,
+      boxEnd.current.x
+    )}px`;
+    box.current.style.top = `${Math.min(
+      boxStart.current.y,
+      boxEnd.current.y
+    )}px`;
+  };
+
+  const handleMouseUp = (e) => {
+    if (!capturing.current) return;
+
+    capturing.current = false;
+    end.current = { x: e.clientX, y: e.clientY };
+
+    document.body.removeChild(box.current);
+    box.current = null;
+    document.body.style.overflow = "auto";
+
+    // 캡처된 이미지에서 선택된 부분을 잘라내기
+    const canvas = document.getElementById("captureCanvas");
+    const ctx = canvas.getContext("2d");
+    const imageData = ctx.getImageData(
+      Math.min(start.current.x, end.current.x),
+      Math.min(start.current.y, end.current.y),
+      Math.abs(end.current.x - start.current.x),
+      Math.abs(end.current.y - start.current.y)
+    );
+    newCanvas2Image(imageData);
+
+    // 이후 필요한 작업 수행 (예: 서버로 이미지 전송)
+  };
+
+  const newCanvas2Image = (imageData) => {
+    // 새 canvas를 생성하고 잘라낸 이미지를 그리기
+    const newCanvas = document.createElement("canvas");
+    newCanvas.width = imageData.width;
+    newCanvas.height = imageData.height;
+    newCanvas.style.top = `${
+      window.scrollY + Math.min(start.current.y, end.current.y)
+    }px`;
+    const newCtx = newCanvas.getContext("2d");
+    newCtx.putImageData(imageData, 0, 0);
+
+    // 잘라낸 영역을 data URL로 변환
+    const dataUrl = newCanvas.toDataURL();
+    console.log("Cut out image", dataUrl);
+    document.querySelector(".GyAeWb").removeChild(
+      document.getElementById("captureCanvas")
+    );
+  };
 
   const handleCapture = () => {
     chrome.runtime.sendMessage({ action: "capture" }, (response) => {
       const imgData = response.img;
-      console.log("imgData", imgData);
       const img = new Image();
-
-      img.style.width = "100vw";
-      img.style.height = "100vh";
-      img.style.position = "absolute";
-      img.style.zIndex = 99995;
-      const scrollY = window.scrollY;
-      img.style.top = `${scrollY}px`;
-      img.style.left = 0;
-      img.id = "captureImg";
-
       img.onload = () => {
         const canvas = document.createElement("canvas");
-        canvas.style.zIndex = 9999996;
-        document.querySelector(".GyAeWb").appendChild(img);
+        canvas.style.position = "absolute";
+        canvas.style.zIndex = 99995;
+        const scrollY = window.scrollY;
+        canvas.style.top = `${scrollY}px`;
+        canvas.style.left = 0;
+        canvas.id = "captureCanvas";
 
         const ctx = canvas.getContext("2d");
-        ctx.style.zIndex = 9999999;
-        // 드래그 영역에 대한 정보
-        const width = Math.abs(end.current.x - start.current.x);
-        const height = Math.abs(end.current.y - start.current.y);
-        const x = Math.min(start.current.x, end.current.x);
-        const y = Math.min(start.current.y, end.current.y);
 
         // Canvas 크기 설정
-        canvas.width = width - 1;
-        canvas.height = height - 1;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        // 이미지를 canvas에 그리고, 드래그 영역만 잘라냄
-        ctx.drawImage(img, x, y, width, height, 0, 0, width, height);
-
+        // 이미지를 canvas에 그리기
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        document.querySelector(".GyAeWb").appendChild(canvas);
       };
       img.src = imgData;
     });
