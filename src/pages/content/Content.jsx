@@ -21,50 +21,34 @@ function Content() {
 
   useEffect(() => {
     if (scrapButtonClicked && accessToken && previewUrl) {
-    
-        const iframe = document.querySelector("#previewer");
-        const data = {
-          keyWord: document.querySelector("#APjFqb").innerHTML,
-          url: iframe.src,
-          title: iframe.title,
-        };
-    
-        axios({
-          url: `${SERVER_ADDR}/saveScrap`,
-          method: "post",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          data,
+      const iframe = document.querySelector("#previewer");
+      const data = {
+        keyWord: document.querySelector("#APjFqb").innerHTML,
+        url: iframe.src,
+        title: iframe.title,
+      };
+
+      axios({
+        url: `${SERVER_ADDR}/saveScrap`,
+        method: "post",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        data,
+      })
+        .then((response) => {
+          console.log(response);
         })
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            alert("스크랩 실패", error);
-          });
+        .catch((error) => {
+          alert("스크랩 실패", error);
+        });
       setScrapButtonClicked(false);
-    }}, [scrapButtonClicked, accessToken, previewUrl]);
+    }
+  }, [scrapButtonClicked, accessToken, previewUrl]);
 
   const handleCaptureClick = () => {
     capturing.current = true;
-    overlay.current = document.createElement("div");
-    Object.assign(overlay.current.style, {
-      position: "fixed",
-      top: "0",
-      left: "0",
-      width: "100vw",
-      height: "100vh",
-      backgroundColor: "rgba(0, 0, 0, 0.4)",
-      zIndex: "9999",
-    });
-    document.body.appendChild(overlay.current);
-    document.body.style.overflow = "hidden";
     handleCapture();
-
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
   };
 
   const handleMouseDown = (e) => {
@@ -140,36 +124,41 @@ function Content() {
     const newCtx = newCanvas.getContext("2d");
     newCtx.putImageData(imageData, 0, 0);
 
-    document.querySelector(".GyAeWb").removeChild(document.getElementById("captureCanvas"));
+    document
+      .querySelector(".GyAeWb")
+      .removeChild(document.getElementById("captureCanvas"));
 
     newCanvas.toBlob(async (blob) => {
-        // Blob 내용 확인
-        // const reader = new FileReader();
-        // reader.onloadend = () => console.log(reader.result);
-        // reader.readAsDataURL(blob);  
+      // Blob 내용 확인
+      const reader = new FileReader();
+      reader.onloadend = () => console.log(reader.result);
+      reader.readAsDataURL(blob);
 
-        const formData = new FormData();
-        
-        formData.append('image', blob);
-        formData.append('keyWord', document.querySelector("#APjFqb").innerHTML);
-        formData.append('title', document.querySelector("h3").innerText);
+      const formData = new FormData();
 
-        // FormData 내용 확인
-        // for (let [key, value] of formData.entries()) {
-        //     console.log(`${key}: ${value}`);
-        // }
+      formData.append("image", blob);
+      formData.append("keyWord", document.querySelector("#APjFqb").innerHTML);
+      formData.append("title", document.querySelector("h3").innerText);
 
-        try {
-            const response = await axios.post(`${SERVER_ADDR}/textCapture`, formData, {
-                headers: { Authorization: `Bearer ${accessToken}` },
-            });
-            console.log(response);
-        } catch (error) {
-            console.error(error);
-        }
+      // FormData 내용 확인
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+
+      try {
+        const response = await axios.post(
+          `${SERVER_ADDR}/textCapture`,
+          formData,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        );
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
     });
-};
-
+  };
 
   const handleCapture = () => {
     chrome.runtime.sendMessage({ action: "capture" }, (response) => {
@@ -190,6 +179,22 @@ function Content() {
 
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         document.querySelector(".GyAeWb").appendChild(canvas);
+        overlay.current = document.createElement("div");
+        Object.assign(overlay.current.style, {
+          position: "fixed",
+          top: "0",
+          left: "0",
+          width: "100vw",
+          height: "100vh",
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          zIndex: "9999",
+        });
+        document.body.appendChild(overlay.current);
+        document.body.style.overflow = "hidden";
+
+        document.addEventListener("mousedown", handleMouseDown);
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
       };
       img.src = imgData;
     });
@@ -231,9 +236,9 @@ function Content() {
 
   return (
     <>
-      <Shortcuts 
-        setPreviewUrl={setPreviewUrl} 
-        handleCaptureClick={handleCaptureClick} 
+      <Shortcuts
+        setPreviewUrl={setPreviewUrl}
+        handleCaptureClick={handleCaptureClick}
         setScrapButtonClicked={setScrapButtonClicked}
       />
 
