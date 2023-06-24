@@ -240,6 +240,7 @@ function Content() {
         setPreviewUrl={setPreviewUrl}
         handleCaptureClick={handleCaptureClick}
         setScrapButtonClicked={setScrapButtonClicked}
+        setPreviewTitle={setPreviewTitle}
       />
 
       <div id="previewer-container" style={previewerContainerStyle}>

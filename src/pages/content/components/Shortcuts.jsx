@@ -5,6 +5,7 @@ function Shortcuts({
   setPreviewUrl,
   handleCaptureClick,
   setScrapButtonClicked,
+  setPreviewTitle
 }) {
   const focusable = document.querySelectorAll(".LC20lb");
 
@@ -68,6 +69,7 @@ function Shortcuts({
     async (e) => {
       const [url, title] = await handlePreviewEvent(e);
       setPreviewUrl(url);
+      setPreviewTitle(title);
     },
     { capture: true }
   );

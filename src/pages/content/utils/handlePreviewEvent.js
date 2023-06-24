@@ -6,12 +6,12 @@ const handlePreviewEvent = (event, time) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (
-        eventTarget.parentElement?.tagName === "A" &&
+        eventTarget?.parentElement?.tagName === "A" &&
         !avoidClassName.includes(eventTarget.parentElement.className) &&
         !avoidId.includes(eventTarget.parentElement.id)
       ) {
-        if (eventTarget.parentElement.jaName === "gXWYVe") return;
-        resolve([eventTarget.parentElement.href, eventTarget.innerText]);
+        if (eventTarget?.parentElement.jaName === "gXWYVe") return;
+        resolve([eventTarget?.parentElement.href, eventTarget.parentElement.querySelector("h3")?.innerText]);
       }
 
       // if (eventTarget?.className === "LC20lb MBeuO DKV0Md") {
