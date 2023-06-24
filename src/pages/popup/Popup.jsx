@@ -13,7 +13,6 @@ const Popup = () => {
 
   useEffect(() => {
     chrome.runtime.sendMessage({ action: "getToken" }, (response) => {
-      console.log("got accessToken", response.accessToken);
       setAccessToken(response.accessToken);
     });
   }, [setAccessToken]);
