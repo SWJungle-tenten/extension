@@ -62,7 +62,8 @@ function Shortcuts({
   document.addEventListener(
     "focus",
     async (e) => {
-      setPreviewUrl(await handlePreviewEvent(e));
+      const [url, title] = await handlePreviewEvent(e);
+      setPreviewUrl(url);
     },
     { capture: true }
   );
