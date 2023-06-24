@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import handlePreviewEvent from "../utils/handlePreviewEvent";
 
-function Shortcuts({ setPreviewUrl }) {
+function Shortcuts({
+  setPreviewUrl,
+  handleCaptureClick,
+  setScrapButtonClicked,
+}) {
   const focusable = document.querySelectorAll(".LC20lb");
 
   useEffect(() => {
@@ -21,21 +25,39 @@ function Shortcuts({ setPreviewUrl }) {
         }
         focusable[nextFocus].setAttribute("tabindex", "0");
         focusable[nextFocus].focus();
-        focusable[curFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty(
+        focusable[
+          curFocus
+        ].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty(
           "border"
         );
-        focusable[curFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty(
+        focusable[
+          curFocus
+        ].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty(
           "top"
         );
-        focusable[nextFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.border =
+        focusable[
+          nextFocus
+        ].parentElement.parentElement.parentElement.parentElement.parentElement.style.border =
           "solid 1px";
-        focusable[curFocus].parentElement.parentElement.parentElement.parentElement.parentElement.style.top = "-2px";
+        focusable[
+          curFocus
+        ].parentElement.parentElement.parentElement.parentElement.parentElement.style.top =
+          "-2px";
+      }
+
+      if (e.code === "KeyT") {
+        e.preventDefault();
+        handleCaptureClick();
+      }
+      if (e.code === "Space") {
+        e.preventDefault();
+        setScrapButtonClicked(true);
       }
     };
     document.addEventListener("keypress", handleKeyPress);
 
     return () => document.removeEventListener("keypress", handleKeyPress);
-  }, [focusable]);
+  }, [focusable, handleCaptureClick, setScrapButtonClicked]);
 
   document.addEventListener(
     "focus",
