@@ -17,6 +17,7 @@ function Content() {
   const dragEnd = useRef({ x: 0, y: 0 });
   const overlay = useRef(null);
   const [scrapButtonClicked, setScrapButtonClicked] = useState(false);
+  let type = null;
 
   useEffect(() => {
     if (scrapButtonClicked && accessToken && previewUrl) {
@@ -47,11 +48,14 @@ function Content() {
 
   const handleImageCaptureClick = () => {
     capturing.current = true;
-    handleCapture("image");
+    type = "image";
+    handleCapture();
   };
   const handleTextsCaptureClick = () => {
     capturing.current = true;
-    handleCapture("text");
+    type = "text";
+    console.log("texCapture clicked");
+    handleCapture();
   };
 
   const handleMouseDown = (e) => {
@@ -82,8 +86,7 @@ function Content() {
     });
   };
 
-  const handleMouseUp = (e,type) => {
-    console.log("e", e)
+  const handleMouseUp = (e) => {
     if (!capturing.current) return;
 
     capturing.current = false;
@@ -119,10 +122,10 @@ function Content() {
       Math.abs(dragEnd.current.x - dragStart.current.x),
       Math.abs(dragEnd.current.y - dragStart.current.y)
     );
-    newCanvas2Image(imageData, type);
+    newCanvas2Image(imageData);
   };
 
-  const newCanvas2Image = async (imageData, type) => {
+  const newCanvas2Image = async (imageData) => {
     const newCanvas = document.createElement("canvas");
     newCanvas.width = imageData.width;
     newCanvas.height = imageData.height;
@@ -134,10 +137,10 @@ function Content() {
       .removeChild(document.getElementById("captureCanvas"));
 
     newCanvas.toBlob(async (blob) => {
-      // Blob 내용 확인
-      const reader = new FileReader();
-      reader.onloadend = () => console.log(reader.result);
-      reader.readAsDataURL(blob);
+      // // Blob 내용 확인
+      // const reader = new FileReader();
+      // reader.onloadend = () => console.log(reader.result);
+      // reader.readAsDataURL(blob);
 
       const formData = new FormData();
 
@@ -145,32 +148,32 @@ function Content() {
       formData.append("keyWord", document.querySelector("#APjFqb").innerHTML);
       formData.append("title", document.querySelector("h3").innerText);
 
-      // FormData 내용 확인
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
+      // // FormData 내용 확인
+      // for (let [key, value] of formData.entries()) {
+      //   console.log(`${key}: ${value}`);
+      // }
 
-      type === "text" ? sendImage(formData , "textCapture") : sendImage(formData ,"imgCapture");
-  
+        sendImage(formData);
+      document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
     });
   };
 
-  const sendImage = async (formData, path) => {
+
+  const sendImage = async (formData) => {
+    const path = type === "image" ? "imgCapture" : "textCapture";
     try {
-      const response = await axios.post(
-        `${SERVER_ADDR}/${path}`,
-        formData,
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
-      );
+      const response = await axios.post(`${SERVER_ADDR}/${path}`, formData, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
       console.log(response);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleCapture = (type) => {
+  const handleCapture = () => {
     chrome.runtime.sendMessage({ action: "capture" }, (response) => {
       const imgData = response.img;
       const img = new Image();
@@ -204,7 +207,7 @@ function Content() {
 
         document.addEventListener("mousedown", handleMouseDown);
         document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseup", (e)=>{handleMouseUp(e,type)});
+        document.addEventListener("mouseup", handleMouseUp);
       };
       img.src = imgData;
     });
@@ -264,20 +267,18 @@ function Content() {
         {accessToken && previewUrl && <ScrapButton accessToken={accessToken} />}
         {accessToken && previewUrl && (
           <div>
-          <button
-            id="texts"
-            style={{ marginLeft: "5px" }}
-            onClick={handleTextsCaptureClick}
-          >
-            텍스트 캡처하기
-          </button>
-          <button
-            id="image"
-            style={{ marginLeft: "5px" }}
-            onClick={handleImageCaptureClick}
-          >
-            이미지 캡처하기
-          </button>
+            <button
+              style={{ marginLeft: "5px" }}
+              onClick={handleTextsCaptureClick}
+            >
+              텍스트 캡처하기
+            </button>
+            <button
+              style={{ marginLeft: "5px" }}
+              onClick={handleImageCaptureClick}
+            >
+              이미지 캡처하기
+            </button>
           </div>
         )}
       </div>

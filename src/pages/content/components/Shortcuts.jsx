@@ -24,48 +24,64 @@ function Shortcuts({
 
         const currentElement = document.activeElement;
         let curFocus = focusable.indexOf(currentElement);
-        if (curFocus === -1) {
-          curFocus = 0; // Set to the first element if the currentElement is not in the focusable array
-        }
+
         let nextFocus;
+        console.log("curFocus", curFocus);
+        console.log("focusable.length", focusable.length);
 
         do {
-          if (curFocusElement) {
-            curFocusElement.style.removeProperty("border");
-            curFocusElement.style.removeProperty("top");
+          if (curFocus === -1) {
+            if (e.code === "KeyW") return;
+            nextFocus = 0;
           }
           if (e.code === "KeyS") {
             nextFocus = curFocus < focusable.length - 1 ? curFocus + 1 : 0;
           } else {
             nextFocus = curFocus > 0 ? curFocus - 1 : focusable.length - 1;
           }
+
           if (nextFocus < 0 || nextFocus >= focusable.length) {
             return;
           }
-          curFocusElement =
-            focusable[curFocus].parentElement.parentElement.parentElement
-              .parentElement.parentElement;
-          curFocus = nextFocus;
-        } while (focusable[nextFocus].closest(".Wt5Tfe"));
 
-        focusable[nextFocus].setAttribute("tabindex", "0");
-        focusable[nextFocus].focus();
-        focusable[nextFocus].scrollIntoView({
+          const curFocusElementParent =
+            focusable[curFocus]?.parentElement?.parentElement?.parentElement
+              ?.parentElement;
+          if (curFocusElementParent) {
+            curFocusElement = curFocusElementParent.parentElement.parentElement;
+          }
+          if (curFocusElement) {
+            curFocusElement.style.removeProperty("border");
+            curFocusElement.style.removeProperty("top");
+
+          }
+          curFocus = nextFocus;
+        } while (focusable[nextFocus]?.closest(".Wt5Tfe"));
+
+        focusable[nextFocus]?.setAttribute("tabindex", "0");
+        focusable[nextFocus]?.focus();
+        focusable[nextFocus]?.scrollIntoView({
           behavior: "smooth",
           block: "center",
         });
+
+        const nextFocusElementParent =
+          focusable[nextFocus]?.parentElement?.parentElement?.parentElement
+            ?.parentElement;
         const nextFocusElement =
-          focusable[nextFocus].parentElement.parentElement.parentElement
-            .parentElement.parentElement;
-        nextFocusElement.style.border = "solid 1px";
-        nextFocusElement.style.top = "-4px";
+          nextFocusElementParent?.parentElement.parentElement;
+        if (nextFocusElement) {
+          nextFocusElement.style.border = "solid 1px";
+          nextFocusElement.style.top = "-4px";
+          nextFocusElement.style.padding = "2px";
+        }
       }
 
       if (e.code === "KeyT") {
         e.preventDefault();
         handleTextsCaptureClick();
       }
-      
+
       if (e.code === "KeyC") {
         e.preventDefault();
         handleImageCaptureClick();
@@ -76,6 +92,7 @@ function Shortcuts({
         setScrapButtonClicked(true);
       }
     };
+
     document.addEventListener("keypress", handleKeyPress);
 
     return () => document.removeEventListener("keypress", handleKeyPress);
