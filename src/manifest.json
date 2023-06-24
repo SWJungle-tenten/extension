@@ -12,7 +12,7 @@
       "js": ["contentScript.bundle.js"]
     }
   ],
-  "permissions": ["cookies", "nativeMessaging", "tabs", "activeTab", "declarativeNetRequest"],
+  "permissions": ["cookies", "nativeMessaging", "declarativeNetRequest", "declarativeNetRequestFeedback"],
   "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html"
@@ -29,7 +29,7 @@
   "declarative_net_request": {
     "rule_resources": [
       {
-        "id": "staticRules",
+        "id": "iframeRules",
         "enabled": true,
         "path": "netrequestRules.json"
       }

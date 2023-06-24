@@ -25,3 +25,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       return true;
   }
 });
+
+chrome.declarativeNetRequest.onRuleMatchedDebug?.addListener((e) => {
+  console.log("e", e);
+});
