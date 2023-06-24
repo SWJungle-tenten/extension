@@ -3,17 +3,20 @@ import handlePreviewEvent from "../utils/handlePreviewEvent";
 
 function Shortcuts({
   setPreviewUrl,
-  handleCaptureClick,
+  handleTextsCaptureClick,
+  handleImageCaptureClick,
   setScrapButtonClicked,
-  setPreviewTitle
+  setPreviewTitle,
 }) {
-  const focusable = document.querySelectorAll(".LC20lb");
-
   useEffect(() => {
+    let curFocusElement = null;
+
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
 
-      const focusableElements = document.querySelectorAll('div.yuRUbf > a > h3');
+      const focusableElements = document.querySelectorAll(
+        "div.yuRUbf > a > h3"
+      );
       const focusable = Array.from(focusableElements);
 
       if (e.code === "KeyS" || e.code === "KeyW") {
@@ -21,39 +24,53 @@ function Shortcuts({
 
         const currentElement = document.activeElement;
         let curFocus = focusable.indexOf(currentElement);
+        if (curFocus === -1) {
+          curFocus = 0; // Set to the first element if the currentElement is not in the focusable array
+        }
         let nextFocus;
+
         do {
+          if (curFocusElement) {
+            curFocusElement.style.removeProperty("border");
+            curFocusElement.style.removeProperty("top");
+          }
           if (e.code === "KeyS") {
             nextFocus = curFocus < focusable.length - 1 ? curFocus + 1 : 0;
           } else {
             nextFocus = curFocus > 0 ? curFocus - 1 : focusable.length - 1;
           }
-          curFocus = nextFocus;
-        } while (focusable[nextFocus].closest('.Wt5Tfe'));
-        
-        if (curFocus !== -1) {
-          const curFocusElement =
+          if (nextFocus < 0 || nextFocus >= focusable.length) {
+            return;
+          }
+          curFocusElement =
             focusable[curFocus].parentElement.parentElement.parentElement
               .parentElement.parentElement;
-          curFocusElement.style.removeProperty("border");
-          curFocusElement.style.removeProperty("top");
-        }
+          curFocus = nextFocus;
+        } while (focusable[nextFocus].closest(".Wt5Tfe"));
 
         focusable[nextFocus].setAttribute("tabindex", "0");
         focusable[nextFocus].focus();
-        focusable[nextFocus].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        focusable[nextFocus].scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
         const nextFocusElement =
           focusable[nextFocus].parentElement.parentElement.parentElement
             .parentElement.parentElement;
         nextFocusElement.style.border = "solid 1px";
         nextFocusElement.style.top = "-4px";
-
       }
 
       if (e.code === "KeyT") {
         e.preventDefault();
-        handleCaptureClick();
+        handleTextsCaptureClick();
       }
+      
+      if (e.code === "KeyC") {
+        e.preventDefault();
+        handleImageCaptureClick();
+      }
+
       if (e.code === "Space") {
         e.preventDefault();
         setScrapButtonClicked(true);
@@ -62,7 +79,7 @@ function Shortcuts({
     document.addEventListener("keypress", handleKeyPress);
 
     return () => document.removeEventListener("keypress", handleKeyPress);
-  }, [handleCaptureClick, setScrapButtonClicked]);
+  }, [handleImageCaptureClick, handleTextsCaptureClick, setScrapButtonClicked]);
 
   document.addEventListener(
     "focus",

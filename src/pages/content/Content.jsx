@@ -15,7 +15,6 @@ function Content() {
   const boxEnd = useRef({ x: 0, y: 0 });
   const dragStart = useRef({ x: 0, y: 0 });
   const dragEnd = useRef({ x: 0, y: 0 });
-  const CHUNK_SIZE = 10000;
   const overlay = useRef(null);
   const [scrapButtonClicked, setScrapButtonClicked] = useState(false);
 
@@ -46,9 +45,13 @@ function Content() {
     }
   }, [scrapButtonClicked, accessToken, previewUrl]);
 
-  const handleCaptureClick = () => {
+  const handleImageCaptureClick = () => {
     capturing.current = true;
-    handleCapture();
+    handleCapture("image");
+  };
+  const handleTextsCaptureClick = () => {
+    capturing.current = true;
+    handleCapture("text");
   };
 
   const handleMouseDown = (e) => {
@@ -79,7 +82,8 @@ function Content() {
     });
   };
 
-  const handleMouseUp = (e) => {
+  const handleMouseUp = (e,type) => {
+    console.log("e", e)
     if (!capturing.current) return;
 
     capturing.current = false;
@@ -115,9 +119,10 @@ function Content() {
       Math.abs(dragEnd.current.x - dragStart.current.x),
       Math.abs(dragEnd.current.y - dragStart.current.y)
     );
-    newCanvas2Image(imageData);
+    newCanvas2Image(imageData, type);
   };
-  const newCanvas2Image = async (imageData) => {
+
+  const newCanvas2Image = async (imageData, type) => {
     const newCanvas = document.createElement("canvas");
     newCanvas.width = imageData.width;
     newCanvas.height = imageData.height;
@@ -145,22 +150,27 @@ function Content() {
         console.log(`${key}: ${value}`);
       }
 
-      try {
-        const response = await axios.post(
-          `${SERVER_ADDR}/textCapture`,
-          formData,
-          {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          }
-        );
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
+      type === "text" ? sendImage(formData , "textCapture") : sendImage(formData ,"imgCapture");
+  
     });
   };
 
-  const handleCapture = () => {
+  const sendImage = async (formData, path) => {
+    try {
+      const response = await axios.post(
+        `${SERVER_ADDR}/${path}`,
+        formData,
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCapture = (type) => {
     chrome.runtime.sendMessage({ action: "capture" }, (response) => {
       const imgData = response.img;
       const img = new Image();
@@ -194,7 +204,7 @@ function Content() {
 
         document.addEventListener("mousedown", handleMouseDown);
         document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseup", handleMouseUp);
+        document.addEventListener("mouseup", (e)=>{handleMouseUp(e,type)});
       };
       img.src = imgData;
     });
@@ -238,7 +248,8 @@ function Content() {
     <>
       <Shortcuts
         setPreviewUrl={setPreviewUrl}
-        handleCaptureClick={handleCaptureClick}
+        handleImageCaptureClick={handleImageCaptureClick}
+        handleTextsCaptureClick={handleTextsCaptureClick}
         setScrapButtonClicked={setScrapButtonClicked}
         setPreviewTitle={setPreviewTitle}
       />
@@ -252,9 +263,22 @@ function Content() {
         ></iframe>
         {accessToken && previewUrl && <ScrapButton accessToken={accessToken} />}
         {accessToken && previewUrl && (
-          <button style={{ marginLeft: "5px" }} onClick={handleCaptureClick}>
-            화면캡처하기
+          <div>
+          <button
+            id="texts"
+            style={{ marginLeft: "5px" }}
+            onClick={handleTextsCaptureClick}
+          >
+            텍스트 캡처하기
           </button>
+          <button
+            id="image"
+            style={{ marginLeft: "5px" }}
+            onClick={handleImageCaptureClick}
+          >
+            이미지 캡처하기
+          </button>
+          </div>
         )}
       </div>
     </>
