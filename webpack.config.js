@@ -92,6 +92,11 @@ var options = {
             );
           },
         },
+        {
+          from: "src/assets/netRequestRules.json",
+          to: path.join(__dirname, "build"),
+          force: true,
+        },
       ],
     }),
     new CopyWebpackPlugin({

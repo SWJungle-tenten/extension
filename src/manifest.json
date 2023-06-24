@@ -12,7 +12,7 @@
       "js": ["contentScript.bundle.js"]
     }
   ],
-  "permissions": ["cookies", "nativeMessaging", "tabs", "activeTab"],
+  "permissions": ["cookies", "nativeMessaging", "tabs", "activeTab", "declarativeNetRequest"],
   "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html"
@@ -25,5 +25,14 @@
       "resources": ["icon.png"],
       "matches": []
     }
-  ]
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "staticRules",
+        "enabled": true,
+        "path": "netrequestRules.json"
+      }
+    ]
+  }
 }
