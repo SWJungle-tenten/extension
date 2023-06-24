@@ -12,37 +12,41 @@ function Shortcuts({
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
 
+      const focusableElements = document.querySelectorAll('div.yuRUbf > a > h3');
+      const focusable = Array.from(focusableElements);
+
       if (e.code === "KeyS" || e.code === "KeyW") {
         e.preventDefault();
 
         const currentElement = document.activeElement;
-        const curFocus = Array.from(focusable).indexOf(currentElement);
+        let curFocus = focusable.indexOf(currentElement);
         let nextFocus;
-        if (e.code === "KeyS") {
-          nextFocus = curFocus < focusable.length - 1 ? curFocus + 1 : 0;
-        } else {
-          nextFocus = curFocus > 0 ? curFocus - 1 : focusable.length - 1;
+        do {
+          if (e.code === "KeyS") {
+            nextFocus = curFocus < focusable.length - 1 ? curFocus + 1 : 0;
+          } else {
+            nextFocus = curFocus > 0 ? curFocus - 1 : focusable.length - 1;
+          }
+          curFocus = nextFocus;
+        } while (focusable[nextFocus].closest('.Wt5Tfe'));
+        
+        if (curFocus !== -1) {
+          const curFocusElement =
+            focusable[curFocus].parentElement.parentElement.parentElement
+              .parentElement.parentElement;
+          curFocusElement.style.removeProperty("border");
+          curFocusElement.style.removeProperty("top");
         }
+
         focusable[nextFocus].setAttribute("tabindex", "0");
         focusable[nextFocus].focus();
-        focusable[
-          curFocus
-        ].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty(
-          "border"
-        );
-        focusable[
-          curFocus
-        ].parentElement.parentElement.parentElement.parentElement.parentElement.style.removeProperty(
-          "top"
-        );
-        focusable[
-          nextFocus
-        ].parentElement.parentElement.parentElement.parentElement.parentElement.style.border =
-          "solid 1px";
-        focusable[
-          curFocus
-        ].parentElement.parentElement.parentElement.parentElement.parentElement.style.top =
-          "-2px";
+        focusable[nextFocus].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const nextFocusElement =
+          focusable[nextFocus].parentElement.parentElement.parentElement
+            .parentElement.parentElement;
+        nextFocusElement.style.border = "solid 1px";
+        nextFocusElement.style.top = "-4px";
+
       }
 
       if (e.code === "KeyT") {
@@ -57,7 +61,7 @@ function Shortcuts({
     document.addEventListener("keypress", handleKeyPress);
 
     return () => document.removeEventListener("keypress", handleKeyPress);
-  }, [focusable, handleCaptureClick, setScrapButtonClicked]);
+  }, [handleCaptureClick, setScrapButtonClicked]);
 
   document.addEventListener(
     "focus",

@@ -133,48 +133,43 @@ function Content() {
     );
     newCanvas2Image(imageData);
   };
-
-  const newCanvas2Image = (imageData) => {
+  const newCanvas2Image = async (imageData) => {
     const newCanvas = document.createElement("canvas");
     newCanvas.width = imageData.width;
     newCanvas.height = imageData.height;
     const newCtx = newCanvas.getContext("2d");
     newCtx.putImageData(imageData, 0, 0);
 
-    const dataUrl = newCanvas.toDataURL();
-    document
-      .querySelector(".GyAeWb")
-      .removeChild(document.getElementById("captureCanvas"));
+    document.querySelector(".GyAeWb").removeChild(document.getElementById("captureCanvas"));
 
-    const dataChunks = [];
-    for (let i = 0; i < dataUrl.length; i += CHUNK_SIZE) {
-      dataChunks.push(dataUrl.slice(i, i + CHUNK_SIZE));
-    }
-    const sendDataChunk = async (index) => {
-      if (index >= dataChunks.length) {
-        return;
-      }
+    newCanvas.toBlob(async (blob) => {
+        // Blob 내용 확인
+        // const reader = new FileReader();
+        // reader.onloadend = () => console.log(reader.result);
+        // reader.readAsDataURL(blob);  
 
-      const dataChunk = dataChunks[index];
-      const data = {
-        keyWord: document.querySelector("#APjFqb").innerHTML,
-        title: document.querySelector("h3").innerText,
-        texts: dataChunk,
-        isLastChunk: index === dataChunks.length - 1,
-      };
+        const formData = new FormData();
+        
+        formData.append('image', blob);
+        formData.append('keyWord', document.querySelector("#APjFqb").innerHTML);
+        formData.append('title', document.querySelector("h3").innerText);
 
-      try {
-        const response = await axios.post(`${SERVER_ADDR}/textCapture`, data, {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        });
-        console.log(response);
-        sendDataChunk(index + 1);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    sendDataChunk(0);
-  };
+        // FormData 내용 확인
+        // for (let [key, value] of formData.entries()) {
+        //     console.log(`${key}: ${value}`);
+        // }
+
+        try {
+            const response = await axios.post(`${SERVER_ADDR}/textCapture`, formData, {
+                headers: { Authorization: `Bearer ${accessToken}` },
+            });
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    });
+};
+
 
   const handleCapture = () => {
     chrome.runtime.sendMessage({ action: "capture" }, (response) => {
