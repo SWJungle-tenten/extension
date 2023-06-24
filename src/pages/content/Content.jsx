@@ -17,6 +17,34 @@ function Content() {
   const dragEnd = useRef({ x: 0, y: 0 });
   const CHUNK_SIZE = 10000;
   const overlay = useRef(null);
+  const [scrapButtonClicked, setScrapButtonClicked] = useState(false);
+
+  useEffect(() => {
+    if (scrapButtonClicked && accessToken && previewUrl) {
+    
+        const iframe = document.querySelector("#previewer");
+        const data = {
+          keyWord: document.querySelector("#APjFqb").innerHTML,
+          url: iframe.src,
+          title: iframe.title,
+        };
+    
+        axios({
+          url: `${SERVER_ADDR}/saveScrap`,
+          method: "post",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          data,
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            alert("스크랩 실패", error);
+          });
+      setScrapButtonClicked(false);
+    }}, [scrapButtonClicked, accessToken, previewUrl]);
 
   const handleCaptureClick = () => {
     capturing.current = true;
@@ -208,7 +236,11 @@ function Content() {
 
   return (
     <>
-      <Shortcuts setPreviewUrl={setPreviewUrl} />
+      <Shortcuts 
+        setPreviewUrl={setPreviewUrl} 
+        handleCaptureClick={handleCaptureClick} 
+        setScrapButtonClicked={setScrapButtonClicked}
+      />
 
       <div id="previewer-container" style={previewerContainerStyle}>
         <iframe
