@@ -147,11 +147,12 @@ function Content() {
       formData.append("image", blob);
       formData.append("keyWord", document.querySelector("#APjFqb").innerHTML);
       formData.append("title", document.querySelector("h3").innerText);
-
-      // // FormData 내용 확인
-      // for (let [key, value] of formData.entries()) {
-      //   console.log(`${key}: ${value}`);
-      // }
+      formData.append("url", document.querySelector("#previewer").src);
+      
+      // FormData 내용 확인
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
 
         sendImage(formData);
       document.removeEventListener("mousedown", handleMouseDown);
