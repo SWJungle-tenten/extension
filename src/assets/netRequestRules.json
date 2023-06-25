@@ -12,9 +12,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "*",
       "resourceTypes": ["sub_frame"],
-      "initiatorDomains": ["www.google.com", "googlingHelper.shop", "localhost:3000"]
+      "initiatorDomains": ["www.google.com", "googlingHelper.shop"]
     }
   },
   {
@@ -30,9 +29,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "*",
       "resourceTypes": ["sub_frame"],
-      "initiatorDomains": ["www.google.com", "googlingHelper.shop", "localhost:3000"]
+      "initiatorDomains": ["www.google.com", "googlingHelper.shop"]
     }
   },
   {
@@ -48,9 +46,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "*",
       "resourceTypes": ["sub_frame"],
-      "initiatorDomains": ["www.google.com", "googlingHelper.shop", "localhost:3000"]
+      "initiatorDomains": ["www.google.com", "googlingHelper.shop"]
     }
   }
 ]

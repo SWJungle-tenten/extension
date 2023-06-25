@@ -19,13 +19,9 @@ chrome.cookies.onChanged.addListener(({ cause, cookie, removed }) => {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "capture") {
-      chrome.tabs.captureVisibleTab(null, {format: "png"}, (imgData) => {
-          sendResponse({img: imgData});
-      });
-      return true;
+    chrome.tabs.captureVisibleTab(null, { format: "png" }, (imgData) => {
+      sendResponse({ img: imgData });
+    });
+    return true;
   }
-});
-
-chrome.declarativeNetRequest.onRuleMatchedDebug?.addListener((e) => {
-  console.log("e", e);
 });
