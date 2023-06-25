@@ -13,7 +13,7 @@
     },
     "condition": {
       "resourceTypes": ["sub_frame"],
-      "initiatorDomains": ["https://*.google.com/search*", "https://*.google.co.kr/search*", "googlingHelper.shop"]
+      "initiatorDomains": ["www.google.com", "www.google.co.kr", "googlingHelper.shop"]
     }
   },
   {
@@ -30,7 +30,7 @@
     },
     "condition": {
       "resourceTypes": ["sub_frame"],
-      "initiatorDomains": ["https://*.google.com/search*", "https://*.google.co.kr/search*", "googlingHelper.shop"]
+      "initiatorDomains": ["www.google.com", "www.google.co.kr", "googlingHelper.shop"]
     }
   },
   {
@@ -47,7 +47,7 @@
     },
     "condition": {
       "resourceTypes": ["sub_frame"],
-      "initiatorDomains": ["https://*.google.com/search*", "https://*.google.co.kr/search*", "googlingHelper.shop"]
+      "initiatorDomains": ["www.google.com", "www.google.co.kr", "googlingHelper.shop"]
     }
   }
 ]
