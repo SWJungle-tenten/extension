@@ -21,13 +21,15 @@
   },
   "scripts": {
     "build": "node utils/build.js",
+    "deploy": "node utils/deploy.js",
     "start": "node utils/webserver.js",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "dependencies": {
     "axios": "^1.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sweetalert2": "^11.7.12"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
