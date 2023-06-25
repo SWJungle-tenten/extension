@@ -1,6 +1,6 @@
 {
   "name": "Googling Helper",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "We help you googling by previewing websites and archieve them easily",
   "manifest_version": 3,
   "icons": {
@@ -12,7 +12,7 @@
       "js": ["contentScript.bundle.js"]
     }
   ],
-  "permissions": ["cookies", "nativeMessaging", "tabs", "activeTab", "declarativeNetRequest"],
+  "permissions": ["cookies", "nativeMessaging", "declarativeNetRequest"],
   "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html"
@@ -20,16 +20,10 @@
   "background": {
     "service_worker": "background.bundle.js"
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["icon.png"],
-      "matches": []
-    }
-  ],
   "declarative_net_request": {
     "rule_resources": [
       {
-        "id": "staticRules",
+        "id": "iframeRules",
         "enabled": true,
         "path": "netrequestRules.json"
       }
