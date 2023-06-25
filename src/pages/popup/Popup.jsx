@@ -25,7 +25,7 @@ const Popup = () => {
     if (accessToken) {
       const getUserName = async (accessToken) => {
         try {
-          const response = await fetch(`${SERVER_ADDR}/giveUserName`, {
+          const response = await fetch(`${SERVER_ADDR}/api/giveUserName`, {
             method: "post",
             headers: new Headers({
               Authorization: `Bearer ${accessToken}`,
