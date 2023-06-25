@@ -146,7 +146,7 @@ function Content() {
 
       formData.append("image", blob);
       formData.append("keyWord", document.querySelector("#APjFqb").innerHTML);
-      formData.append("title", document.querySelector("h3").innerText);
+      formData.append("title", document.querySelector("#previewer").title);
       formData.append("url", document.querySelector("#previewer").src);
       
       // FormData 내용 확인
