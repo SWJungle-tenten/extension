@@ -15,56 +15,47 @@ function Content() {
   const boxEnd = useRef({ x: 0, y: 0 });
   const dragStart = useRef({ x: 0, y: 0 });
   const dragEnd = useRef({ x: 0, y: 0 });
-  const CHUNK_SIZE = 10000;
   const overlay = useRef(null);
   const [scrapButtonClicked, setScrapButtonClicked] = useState(false);
+  let type = null;
 
   useEffect(() => {
     if (scrapButtonClicked && accessToken && previewUrl) {
-    
-        const iframe = document.querySelector("#previewer");
-        const data = {
-          keyWord: document.querySelector("#APjFqb").innerHTML,
-          url: iframe.src,
-          title: iframe.title,
-        };
-    
-        axios({
-          url: `${SERVER_ADDR}/saveScrap`,
-          method: "post",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          data,
+      const iframe = document.querySelector("#previewer");
+      const data = {
+        keyWord: document.querySelector("#APjFqb").innerHTML,
+        url: iframe.src,
+        title: iframe.title,
+      };
+
+      axios({
+        url: `${SERVER_ADDR}/saveScrap`,
+        method: "post",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        data,
+      })
+        .then((response) => {
+          console.log(response);
         })
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            alert("스크랩 실패", error);
-          });
+        .catch((error) => {
+          alert("스크랩 실패", error);
+        });
       setScrapButtonClicked(false);
-    }}, [scrapButtonClicked, accessToken, previewUrl]);
+    }
+  }, [scrapButtonClicked, accessToken, previewUrl]);
 
-  const handleCaptureClick = () => {
+  const handleImageCaptureClick = () => {
     capturing.current = true;
-    overlay.current = document.createElement("div");
-    Object.assign(overlay.current.style, {
-      position: "fixed",
-      top: "0",
-      left: "0",
-      width: "100vw",
-      height: "100vh",
-      backgroundColor: "rgba(0, 0, 0, 0.4)",
-      zIndex: "9999",
-    });
-    document.body.appendChild(overlay.current);
-    document.body.style.overflow = "hidden";
+    type = "image";
     handleCapture();
-
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+  };
+  const handleTextsCaptureClick = () => {
+    capturing.current = true;
+    type = "text";
+    console.log("texCapture clicked");
+    handleCapture();
   };
 
   const handleMouseDown = (e) => {
@@ -134,46 +125,53 @@ function Content() {
     newCanvas2Image(imageData);
   };
 
-  const newCanvas2Image = (imageData) => {
+  const newCanvas2Image = async (imageData) => {
     const newCanvas = document.createElement("canvas");
     newCanvas.width = imageData.width;
     newCanvas.height = imageData.height;
     const newCtx = newCanvas.getContext("2d");
     newCtx.putImageData(imageData, 0, 0);
 
-    const dataUrl = newCanvas.toDataURL();
     document
       .querySelector(".GyAeWb")
       .removeChild(document.getElementById("captureCanvas"));
 
-    const dataChunks = [];
-    for (let i = 0; i < dataUrl.length; i += CHUNK_SIZE) {
-      dataChunks.push(dataUrl.slice(i, i + CHUNK_SIZE));
+    newCanvas.toBlob(async (blob) => {
+      // // Blob 내용 확인
+      // const reader = new FileReader();
+      // reader.onloadend = () => console.log(reader.result);
+      // reader.readAsDataURL(blob);
+
+      const formData = new FormData();
+
+      formData.append("image", blob);
+      formData.append("keyWord", document.querySelector("#APjFqb").innerHTML);
+      formData.append("title", document.querySelector("#previewer").title);
+      formData.append("url", document.querySelector("#previewer").src);
+      
+      // FormData 내용 확인
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+
+        sendImage(formData);
+      document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    });
+  };
+
+
+  const sendImage = async (formData) => {
+    const path = type === "image" ? "imgCapture" : "textCapture";
+    try {
+      const response = await axios.post(`${SERVER_ADDR}/${path}`, formData, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
     }
-    const sendDataChunk = async (index) => {
-      if (index >= dataChunks.length) {
-        return;
-      }
-
-      const dataChunk = dataChunks[index];
-      const data = {
-        keyWord: document.querySelector("#APjFqb").innerHTML,
-        title: document.querySelector("h3").innerText,
-        texts: dataChunk,
-        isLastChunk: index === dataChunks.length - 1,
-      };
-
-      try {
-        const response = await axios.post(`${SERVER_ADDR}/textCapture`, data, {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        });
-        console.log(response);
-        sendDataChunk(index + 1);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    sendDataChunk(0);
   };
 
   const handleCapture = () => {
@@ -195,6 +193,22 @@ function Content() {
 
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         document.querySelector(".GyAeWb").appendChild(canvas);
+        overlay.current = document.createElement("div");
+        Object.assign(overlay.current.style, {
+          position: "fixed",
+          top: "0",
+          left: "0",
+          width: "100vw",
+          height: "100vh",
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          zIndex: "9999",
+        });
+        document.body.appendChild(overlay.current);
+        document.body.style.overflow = "hidden";
+
+        document.addEventListener("mousedown", handleMouseDown);
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
       };
       img.src = imgData;
     });
@@ -236,10 +250,12 @@ function Content() {
 
   return (
     <>
-      <Shortcuts 
-        setPreviewUrl={setPreviewUrl} 
-        handleCaptureClick={handleCaptureClick} 
+      <Shortcuts
+        setPreviewUrl={setPreviewUrl}
+        handleImageCaptureClick={handleImageCaptureClick}
+        handleTextsCaptureClick={handleTextsCaptureClick}
         setScrapButtonClicked={setScrapButtonClicked}
+        setPreviewTitle={setPreviewTitle}
       />
 
       <div id="previewer-container" style={previewerContainerStyle}>
@@ -251,9 +267,20 @@ function Content() {
         ></iframe>
         {accessToken && previewUrl && <ScrapButton accessToken={accessToken} />}
         {accessToken && previewUrl && (
-          <button style={{ marginLeft: "5px" }} onClick={handleCaptureClick}>
-            화면캡처하기
-          </button>
+          <div>
+            <button
+              style={{ marginLeft: "5px" }}
+              onClick={handleTextsCaptureClick}
+            >
+              텍스트 캡처하기
+            </button>
+            <button
+              style={{ marginLeft: "5px" }}
+              onClick={handleImageCaptureClick}
+            >
+              이미지 캡처하기
+            </button>
+          </div>
         )}
       </div>
     </>
