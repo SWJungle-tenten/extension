@@ -8,11 +8,11 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/*"],
+      "matches": ["https://*.google.com/search*", "https://*.google.co.kr/search*"],
       "js": ["contentScript.bundle.js"]
     }
   ],
-  "permissions": ["cookies", "nativeMessaging", "declarativeNetRequest"],
+  "permissions": ["cookies", "declarativeNetRequest"],
   "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html"

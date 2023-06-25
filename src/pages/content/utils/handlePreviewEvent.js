@@ -1,6 +1,6 @@
 const handlePreviewEvent = (event, time) => {
   const eventTarget = event.target;
-  const avoidClassName = ["k8XOCe R0xfCb VCOFK s8bAkb", "fl", "zItAnd", "gb_d gb_Fa gb_x"];
+  const avoidClassName = ["k8XOCe R0xfCb VCOFK s8bAkb", "fl", "zItAnd", "gb_d gb_Fa gb_x", "zItAnd"];
   const avoidId = ["logo", "pnnext", "pnprev"];
 
   return new Promise((resolve, reject) => {
