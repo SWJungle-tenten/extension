@@ -8,7 +8,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/*"],
+      "matches": ["https://*.google.com/search*", "https://*.google.co.kr/search*"],
       "js": ["contentScript.bundle.js"]
     }
   ],
