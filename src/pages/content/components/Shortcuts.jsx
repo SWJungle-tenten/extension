@@ -1,98 +1,71 @@
 import { useEffect } from "react";
-import handlePreviewEvent from "../utils/handlePreviewEvent";
+import setPreviewAttributes from "../utils/setPreviewAttributes";
+import moveFocusBox from "../utils/moveFocusBox";
 
-function Shortcuts({ setPreviewUrl, handleCapture, setScrapButtonClicked, setPreviewTitle }) {
+function Shortcuts({ setPreviewUrl, handleCapture, setScrapButtonClicked, setPreviewTitle, previousContainer }) {
   useEffect(() => {
-    let curFocusElement = null;
-
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
-
-      const focusableElements = document.querySelectorAll("div.yuRUbf > a > h3");
-      const focusable = Array.from(focusableElements);
 
       if (e.code === "KeyS" || e.code === "KeyW") {
         e.preventDefault();
 
-        const currentElement = document.activeElement;
-        let curFocus = focusable.indexOf(currentElement);
-
-        let nextFocus;
-        console.log("curFocus", curFocus);
-        console.log("focusable.length", focusable.length);
-
-        do {
-          if (curFocus === -1) {
-            if (e.code === "KeyW") return;
-            nextFocus = 0;
-          }
+        const curPreview = document.querySelector("#previewer").src;
+        if (!curPreview) {
           if (e.code === "KeyS") {
-            nextFocus = curFocus < focusable.length - 1 ? curFocus + 1 : 0;
+            document.querySelector(".MjjYud:first-child").querySelector("a").focus();
           } else {
-            nextFocus = curFocus > 0 ? curFocus - 1 : focusable.length - 1;
+            document.querySelector(".MjjYud:last-child").querySelector("a").focus();
           }
+        } else {
+          const curFocus = document.querySelector(`a[href="${curPreview}"]`);
+          const topLevelContainer = curFocus.closest(".hlcw0c")
+            ? curFocus.closest(".hlcw0c")
+            : curFocus.closest(".MjjYud");
 
-          if (nextFocus < 0 || nextFocus >= focusable.length) {
-            return;
+          let nextFocus = topLevelContainer;
+          if (e.code === "KeyS") {
+            while (nextFocus.nextElementSibling) {
+              nextFocus = nextFocus.nextElementSibling;
+              if (nextFocus.querySelector("a")) break;
+            }
+          } else {
+            while (nextFocus.previousElementSibling) {
+              nextFocus = nextFocus.previousElementSibling;
+              if (nextFocus.querySelector("a")) break;
+            }
           }
-
-          const curFocusElementParent = focusable[curFocus]?.parentElement?.parentElement?.parentElement?.parentElement;
-          if (curFocusElementParent) {
-            curFocusElement = curFocusElementParent.parentElement.parentElement;
-          }
-          if (curFocusElement) {
-            curFocusElement.style.removeProperty("border");
-            curFocusElement.style.removeProperty("top");
-          }
-          curFocus = nextFocus;
-        } while (focusable[nextFocus]?.closest(".Wt5Tfe"));
-
-        focusable[nextFocus]?.setAttribute("tabindex", "0");
-        focusable[nextFocus]?.focus();
-        focusable[nextFocus]?.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-
-        const nextFocusElementParent = focusable[nextFocus]?.parentElement?.parentElement?.parentElement?.parentElement;
-        const nextFocusElement = nextFocusElementParent?.parentElement.parentElement;
-        if (nextFocusElement) {
-          nextFocusElement.style.border = "solid 1px";
-          nextFocusElement.style.top = "-4px";
-          nextFocusElement.style.padding = "2px";
+          nextFocus.querySelector("a")?.focus();
         }
       }
 
-      if (e.code === "KeyT") {
+      if (e.code === "KeyT" || e.code === "KeyC" || e.code === "Space") {
         e.preventDefault();
-        handleCapture("text");
-      }
-
-      if (e.code === "KeyC") {
-        e.preventDefault();
-        handleCapture("image");
-      }
-
-      if (e.code === "Space") {
-        e.preventDefault();
-        setScrapButtonClicked(true);
+        e.code === "KeyT"
+          ? handleCapture("text")
+          : e.code === "KeyC"
+          ? handleCapture("image")
+          : setScrapButtonClicked(true);
       }
     };
 
     document.addEventListener("keypress", handleKeyPress);
 
-    return () => document.removeEventListener("keypress", handleKeyPress);
-  }, [handleCapture, setScrapButtonClicked]);
+    const handleFocus = async (e) => {
+      const [url, title] = await setPreviewAttributes(e, 500, "keyboard");
+      if (url && title) {
+        moveFocusBox(previousContainer, e.target, true);
+        setPreviewUrl(url);
+        setPreviewTitle(title);
+      }
+    };
+    document.addEventListener("focus", handleFocus, { capture: true });
 
-  document.addEventListener(
-    "focus",
-    async (e) => {
-      const [url, title] = await handlePreviewEvent(e);
-      setPreviewUrl(url);
-      setPreviewTitle(title);
-    },
-    { capture: true }
-  );
+    return () => {
+      document.removeEventListener("keypress", handleKeyPress);
+      document.removeEventListener("focus", handleFocus, { capture: true });
+    };
+  }, []);
 }
 
 export default Shortcuts;

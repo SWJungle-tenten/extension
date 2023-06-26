@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import ScrapButton from "./components/ScrapButton";
-import handlePreviewEvent from "./utils/handlePreviewEvent";
+import setPreviewAttributes from "./utils/setPreviewAttributes";
 import Shortcuts from "./components/Shortcuts";
 import axios from "axios";
 import { SERVER_ADDR } from "/utils/env";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import moveFocusBox from "./utils/moveFocusBox";
 
 function Content() {
+  const previousContainer = useRef(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [previewTitle, setPreviewTitle] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
@@ -205,9 +207,12 @@ function Content() {
   document.addEventListener(
     "mouseover",
     async (e) => {
-      const [url, title] = await handlePreviewEvent(e, 500);
-      setPreviewUrl(url);
-      setPreviewTitle(title);
+      const [url, title] = await setPreviewAttributes(e, 600, "mouse");
+      if (url && url !== document.querySelector("#previewer").src) {
+        moveFocusBox(previousContainer, e.target, false);
+        setPreviewUrl(url);
+        setPreviewTitle(title);
+      }
     },
     { capture: true }
   );
@@ -233,6 +238,7 @@ function Content() {
         handleCapture={handleCapture}
         setScrapButtonClicked={setScrapButtonClicked}
         setPreviewTitle={setPreviewTitle}
+        previousContainer={previousContainer}
       />
       <div id="previewer-container">
         <iframe id="previewer" title={previewTitle} src={previewUrl}></iframe>
