@@ -1,5 +1,6 @@
 import axios from "axios";
-import { SERVER_ADDR } from "../../../../utils/env";
+import { SERVER_ADDR } from "/utils/env";
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 
 function ScrapButton({ accessToken }) {
   const scrapHandler = (event) => {
@@ -30,12 +31,17 @@ function ScrapButton({ accessToken }) {
   };
   return (
     <button
-      style={{ zIndex: "5" }}
+      className="btn"
+      style={{
+        "--btn-color": "var(--red-400)",
+        "--btn-focus-color": "var(--red-300)",
+      }}
+      title="링크 스크랩"
       onClick={(e) => {
         scrapHandler(e);
       }}
     >
-      스크랩하기
+      <BookmarkAddOutlinedIcon />
     </button>
   );
 }

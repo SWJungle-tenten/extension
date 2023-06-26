@@ -1,0 +1,60 @@
+:root {
+  --red-500: #ef4444;
+  --red-400: #f87171;
+  --red-300: #fca5a5;
+  --green-500: #10b981;
+  --green-400: #34d399;
+  --green-300: #6ee7b7;
+  --blue-500: #3b82f6;
+  --blue-400: #60a5fa;
+  --blue-300: #93c5fd;
+  --yellow-500: #f59e0b;
+  --yellow-400: #fbbf24;
+  --yellow-300: #fcd34d;
+  --yellow-100: #fef9c3;
+}
+
+#previewer-container {
+  width: 40vw;
+  margin-left: 35px;
+  height: 78vh;
+  top: 72px;
+  position: sticky;
+}
+
+#previewer {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 100%;
+  height: 100%;
+  border-width: 0;
+}
+
+.btn {
+  transition-duration: 200ms;
+  color: #fff;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  font-weight: normal;
+  font-size: 0.875rem;
+  background-color: var(--btn-color);
+  opacity: 0.3;
+  &:hover {
+    opacity: 0.9;
+  }
+  &:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0px #fff, 0 0 0 calc(4px + 0px) var(--btn-focus-color), 0 0 #0000;
+  }
+  padding: 0.375rem 0.825rem;
+  cursor: pointer;
+}
+
+.focusBox {
+  background-color: var(--yellow-100);
+  border-width: 0;
+  border-radius: 5px;
+}
