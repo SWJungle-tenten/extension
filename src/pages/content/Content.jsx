@@ -235,7 +235,7 @@ function Content() {
         setPreviewTitle={setPreviewTitle}
       />
       <div id="previewer-container">
-        <iframe id="previewer" title={previewTitle} src={previewUrl} style={{ width: "100%", height: "100%" }}></iframe>
+        <iframe id="previewer" title={previewTitle} src={previewUrl}></iframe>
         <div style={{ display: "flex", flexDirection: "column", position: "absolute", top: "0px", right: "10px" }}>
           {accessToken && previewUrl && (
             <>
