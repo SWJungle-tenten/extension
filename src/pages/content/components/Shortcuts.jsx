@@ -1,22 +1,14 @@
 import { useEffect } from "react";
 import handlePreviewEvent from "../utils/handlePreviewEvent";
 
-function Shortcuts({
-  setPreviewUrl,
-  handleTextsCaptureClick,
-  handleImageCaptureClick,
-  setScrapButtonClicked,
-  setPreviewTitle,
-}) {
+function Shortcuts({ setPreviewUrl, handleCapture, setScrapButtonClicked, setPreviewTitle }) {
   useEffect(() => {
     let curFocusElement = null;
 
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
 
-      const focusableElements = document.querySelectorAll(
-        "div.yuRUbf > a > h3"
-      );
+      const focusableElements = document.querySelectorAll("div.yuRUbf > a > h3");
       const focusable = Array.from(focusableElements);
 
       if (e.code === "KeyS" || e.code === "KeyW") {
@@ -44,16 +36,13 @@ function Shortcuts({
             return;
           }
 
-          const curFocusElementParent =
-            focusable[curFocus]?.parentElement?.parentElement?.parentElement
-              ?.parentElement;
+          const curFocusElementParent = focusable[curFocus]?.parentElement?.parentElement?.parentElement?.parentElement;
           if (curFocusElementParent) {
             curFocusElement = curFocusElementParent.parentElement.parentElement;
           }
           if (curFocusElement) {
             curFocusElement.style.removeProperty("border");
             curFocusElement.style.removeProperty("top");
-
           }
           curFocus = nextFocus;
         } while (focusable[nextFocus]?.closest(".Wt5Tfe"));
@@ -65,11 +54,8 @@ function Shortcuts({
           block: "center",
         });
 
-        const nextFocusElementParent =
-          focusable[nextFocus]?.parentElement?.parentElement?.parentElement
-            ?.parentElement;
-        const nextFocusElement =
-          nextFocusElementParent?.parentElement.parentElement;
+        const nextFocusElementParent = focusable[nextFocus]?.parentElement?.parentElement?.parentElement?.parentElement;
+        const nextFocusElement = nextFocusElementParent?.parentElement.parentElement;
         if (nextFocusElement) {
           nextFocusElement.style.border = "solid 1px";
           nextFocusElement.style.top = "-4px";
@@ -79,12 +65,12 @@ function Shortcuts({
 
       if (e.code === "KeyT") {
         e.preventDefault();
-        handleTextsCaptureClick();
+        handleCapture("text");
       }
 
       if (e.code === "KeyC") {
         e.preventDefault();
-        handleImageCaptureClick();
+        handleCapture("image");
       }
 
       if (e.code === "Space") {
@@ -96,7 +82,7 @@ function Shortcuts({
     document.addEventListener("keypress", handleKeyPress);
 
     return () => document.removeEventListener("keypress", handleKeyPress);
-  }, [handleImageCaptureClick, handleTextsCaptureClick, setScrapButtonClicked]);
+  }, [handleCapture, setScrapButtonClicked]);
 
   document.addEventListener(
     "focus",

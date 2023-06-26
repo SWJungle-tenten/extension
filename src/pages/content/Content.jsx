@@ -3,7 +3,9 @@ import ScrapButton from "./components/ScrapButton";
 import handlePreviewEvent from "./utils/handlePreviewEvent";
 import Shortcuts from "./components/Shortcuts";
 import axios from "axios";
-import { SERVER_ADDR } from "../../../utils/env";
+import { SERVER_ADDR } from "/utils/env";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 function Content() {
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -46,16 +48,15 @@ function Content() {
     }
   }, [scrapButtonClicked, accessToken, previewUrl]);
 
-  const handleImageCaptureClick = () => {
-    capturing.current = true;
-    type = "image";
-    handleCapture();
+  const toggleToolBtns = (power) => {
+    document.querySelectorAll(".btn").forEach((btn) => {
+      btn.style.display = power === "off" ? "none" : "";
+    });
   };
-  const handleTextsCaptureClick = () => {
+  const handleCapture = (captureType) => {
     capturing.current = true;
-    type = "text";
-    console.log("texCapture clicked");
-    handleCapture();
+    type = captureType;
+    capture();
   };
 
   const handleMouseDown = (e) => {
@@ -97,9 +98,7 @@ function Content() {
       Math.abs(dragStart.current.y - dragEnd.current.y) < 1
     ) {
       if (document.getElementById("captureCanvas")) {
-        document
-          .querySelector(".GyAeWb")
-          .removeChild(document.getElementById("captureCanvas"));
+        document.querySelector(".GyAeWb").removeChild(document.getElementById("captureCanvas"));
       }
       document.body.removeChild(box.current);
       box.current = null;
@@ -132,40 +131,27 @@ function Content() {
     const newCtx = newCanvas.getContext("2d");
     newCtx.putImageData(imageData, 0, 0);
 
-    document
-      .querySelector(".GyAeWb")
-      .removeChild(document.getElementById("captureCanvas"));
+    document.querySelector(".GyAeWb").removeChild(document.getElementById("captureCanvas"));
 
     newCanvas.toBlob(async (blob) => {
-      // // Blob 내용 확인
-      // const reader = new FileReader();
-      // reader.onloadend = () => console.log(reader.result);
-      // reader.readAsDataURL(blob);
-
       const formData = new FormData();
-
       formData.append("image", blob);
       formData.append("keyWord", document.querySelector("#APjFqb").innerHTML);
       formData.append("title", document.querySelector("#previewer").title);
       formData.append("url", document.querySelector("#previewer").src);
-      
-      // FormData 내용 확인
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
 
-        sendImage(formData);
+      sendImage(formData);
+      toggleToolBtns("on");
       document.removeEventListener("mousedown", handleMouseDown);
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     });
   };
 
-
   const sendImage = async (formData) => {
     const path = type === "image" ? "imgCapture" : "textCapture";
     try {
-      const response = await axios.post(`${SERVER_ADDR}/${path}`, formData, {
+      const response = await axios.post(`${SERVER_ADDR}/api/${path}`, formData, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       console.log(response);
@@ -174,7 +160,8 @@ function Content() {
     }
   };
 
-  const handleCapture = () => {
+  const capture = () => {
+    toggleToolBtns("off");
     chrome.runtime.sendMessage({ action: "capture" }, (response) => {
       const imgData = response.img;
       const img = new Image();
@@ -202,6 +189,7 @@ function Content() {
           height: "100vh",
           backgroundColor: "rgba(0, 0, 0, 0.4)",
           zIndex: "9999",
+          cursor: "crosshair",
         });
         document.body.appendChild(overlay.current);
         document.body.style.overflow = "hidden";
@@ -238,43 +226,45 @@ function Content() {
     }
   });
 
-
   return (
     <>
       <Shortcuts
         setPreviewUrl={setPreviewUrl}
-        handleImageCaptureClick={handleImageCaptureClick}
-        handleTextsCaptureClick={handleTextsCaptureClick}
+        handleCapture={handleCapture}
         setScrapButtonClicked={setScrapButtonClicked}
         setPreviewTitle={setPreviewTitle}
       />
       <div id="previewer-container">
         <iframe id="previewer" title={previewTitle} src={previewUrl} style={{ width: "100%", height: "100%" }}></iframe>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          {accessToken && previewUrl && <ScrapButton accessToken={accessToken} />}
+        <div style={{ display: "flex", flexDirection: "column", position: "absolute", top: "0px", right: "10px" }}>
           {accessToken && previewUrl && (
             <>
+              <ScrapButton accessToken={accessToken} />
               <button
                 className="btn"
+                title="텍스트 스크랩"
                 style={{
                   "--btn-color": "var(--green-400)",
-                  "--btn-hover-color": "var(--green-500)",
                   "--btn-focus-color": "var(--green-300)",
                 }}
-                onClick={handleTextsCaptureClick}
+                onClick={() => {
+                  handleCapture("text");
+                }}
               >
-                텍스트 캡처하기
+                <PostAddIcon />
               </button>
               <button
                 className="btn"
+                title="이미지 스크랩"
                 style={{
                   "--btn-color": "var(--blue-400)",
-                  "--btn-hover-color": "var(--blue-500)",
                   "--btn-focus-color": "var(--blue-300)",
                 }}
-                onClick={handleImageCaptureClick}
+                onClick={() => {
+                  handleCapture("image");
+                }}
               >
-                이미지 캡처하기
+                <AddPhotoAlternateIcon />
               </button>
             </>
           )}
