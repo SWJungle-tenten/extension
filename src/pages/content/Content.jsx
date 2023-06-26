@@ -238,15 +238,6 @@ function Content() {
     }
   });
 
-  const previewerContainerStyle = {
-    width: "40vw",
-    marginLeft: "35px",
-    marginTop: "-30px",
-    height: "78vh",
-    top: "72px",
-    position: "sticky",
-    zIndex: "1px",
-  };
 
   return (
     <>
@@ -257,31 +248,37 @@ function Content() {
         setScrapButtonClicked={setScrapButtonClicked}
         setPreviewTitle={setPreviewTitle}
       />
-
-      <div id="previewer-container" style={previewerContainerStyle}>
-        <iframe
-          id="previewer"
-          title={previewTitle}
-          src={previewUrl}
-          style={{ width: "100%", height: "100%" }}
-        ></iframe>
-        {accessToken && previewUrl && <ScrapButton accessToken={accessToken} />}
-        {accessToken && previewUrl && (
-          <div>
-            <button
-              style={{ marginLeft: "5px" }}
-              onClick={handleTextsCaptureClick}
-            >
-              텍스트 캡처하기
-            </button>
-            <button
-              style={{ marginLeft: "5px" }}
-              onClick={handleImageCaptureClick}
-            >
-              이미지 캡처하기
-            </button>
-          </div>
-        )}
+      <div id="previewer-container">
+        <iframe id="previewer" title={previewTitle} src={previewUrl} style={{ width: "100%", height: "100%" }}></iframe>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          {accessToken && previewUrl && <ScrapButton accessToken={accessToken} />}
+          {accessToken && previewUrl && (
+            <>
+              <button
+                className="btn"
+                style={{
+                  "--btn-color": "var(--green-400)",
+                  "--btn-hover-color": "var(--green-500)",
+                  "--btn-focus-color": "var(--green-300)",
+                }}
+                onClick={handleTextsCaptureClick}
+              >
+                텍스트 캡처하기
+              </button>
+              <button
+                className="btn"
+                style={{
+                  "--btn-color": "var(--blue-400)",
+                  "--btn-hover-color": "var(--blue-500)",
+                  "--btn-focus-color": "var(--blue-300)",
+                }}
+                onClick={handleImageCaptureClick}
+              >
+                이미지 캡처하기
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </>
   );

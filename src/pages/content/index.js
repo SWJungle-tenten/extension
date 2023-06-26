@@ -2,6 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Content from "./Content";
+import "./content.style.css";
 
 const rootElement = document.createElement("div");
 rootElement.id = "react-chrome-app";

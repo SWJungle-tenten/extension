@@ -1,7 +1,9 @@
 var webpack = require("webpack"),
   path = require("path"),
+  env = require("./utils/env"),
   CopyWebpackPlugin = require("copy-webpack-plugin"),
-  HtmlWebpackPlugin = require("html-webpack-plugin");
+  HtmlWebpackPlugin = require("html-webpack-plugin"),
+  TerserPlugin = require("terser-webpack-plugin");
 var { CleanWebpackPlugin } = require("clean-webpack-plugin");
 var ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
@@ -11,7 +13,6 @@ var fileExtensions = ["png", "svg"];
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 var options = {
-  devtool: "cheap-module-source-map",
   mode: process.env.NODE_ENV || "development",
   entry: {
     popup: path.join(__dirname, "src", "pages", "popup", "index.jsx"),
@@ -102,6 +103,15 @@ var options = {
     new CopyWebpackPlugin({
       patterns: [
         {
+          from: "src/pages/content/content.styles.css",
+          to: path.join(__dirname, "build"),
+          force: true,
+        },
+      ],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
           from: "src/assets/img/icon.png",
           to: path.join(__dirname, "build"),
           force: true,
@@ -119,5 +129,17 @@ var options = {
     level: "info",
   },
 };
+if (env.NODE_ENV === "development") {
+  options.devtool = "cheap-module-source-map";
+} else {
+  options.optimization = {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+      }),
+    ],
+  };
+}
 
 module.exports = options;

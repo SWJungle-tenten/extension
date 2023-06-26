@@ -10,7 +10,7 @@ const handlePreviewEvent = (event, time) => {
         !avoidClassName.includes(eventTarget.parentElement.className) &&
         !avoidId.includes(eventTarget.parentElement.id)
       ) {
-        if (eventTarget?.parentElement.jaName === "gXWYVe") return;
+        if (eventTarget?.parentElement === document.querySelector('a[jsname="gXWYVe"]')) return;
         resolve([eventTarget?.parentElement.href, eventTarget.parentElement.querySelector("h3")?.innerText]);
       }
 

@@ -30,7 +30,12 @@ function ScrapButton({ accessToken }) {
   };
   return (
     <button
-      style={{ zIndex: "5" }}
+      className="btn"
+      style={{
+        "--btn-color": "var(--red-400)",
+        "--btn-hover-color": "var(--red-500)",
+        "--btn-focus-color": "var(--red-300)",
+      }}
       onClick={(e) => {
         scrapHandler(e);
       }}
