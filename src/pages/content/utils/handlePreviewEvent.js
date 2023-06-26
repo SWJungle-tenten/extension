@@ -1,6 +1,6 @@
 const handlePreviewEvent = (event, time) => {
   const eventTarget = event.target;
-  const avoidClassName = ["k8XOCe R0xfCb VCOFK s8bAkb", "fl", "zItAnd", "gb_d gb_Fa gb_x", "zItAnd"];
+  const avoidClassName = ["k8XOCe R0xfCb VCOFK s8bAkb", "fl", "zItAnd", "zItAnd FOU1zf", "gb_d gb_Fa gb_x", "zItAnd"];
   const avoidId = ["logo", "pnnext", "pnprev"];
 
   return new Promise((resolve, reject) => {
@@ -13,15 +13,6 @@ const handlePreviewEvent = (event, time) => {
         if (eventTarget?.parentElement === document.querySelector('a[jsname="gXWYVe"]')) return;
         resolve([eventTarget?.parentElement.href, eventTarget.parentElement.querySelector("h3")?.innerText]);
       }
-
-      // if (eventTarget?.className === "LC20lb MBeuO DKV0Md") {
-      //   resolve(eventTarget.parentElement.href);
-      // } else if (
-      //   (eventTarget.tagName === "A") &
-      //   (((eventTarget.className === "") & (eventTarget.id === "")) | (eventTarget.className === "l"))
-      // ) {
-      //   resolve([eventTarget.href, eventTarget.querySelector("h3").innerText]);
-      // }
     }, time);
   });
 };
