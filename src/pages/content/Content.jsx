@@ -56,6 +56,7 @@ function Content() {
     });
   };
   const handleCapture = (captureType) => {
+    if (capturing.current) return;
     capturing.current = true;
     type = captureType;
     capture();
