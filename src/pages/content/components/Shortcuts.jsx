@@ -2,7 +2,13 @@ import { useEffect } from "react";
 import setPreviewAttributes from "../utils/setPreviewAttributes";
 import moveFocusBox from "../utils/moveFocusBox";
 
-function Shortcuts({ setPreviewUrl, handleCapture, setScrapButtonClicked, setPreviewTitle, previousContainer }) {
+function Shortcuts({
+  setPreviewUrl,
+  handleCapture,
+  setScrapButtonClicked,
+  setPreviewTitle,
+  previousContainer,
+}) {
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
@@ -13,9 +19,15 @@ function Shortcuts({ setPreviewUrl, handleCapture, setScrapButtonClicked, setPre
         const curPreview = document.querySelector("#previewer").src;
         if (!curPreview) {
           if (e.code === "KeyS") {
-            document.querySelector(".MjjYud:first-child").querySelector("a").focus();
+            document
+              .querySelector(".MjjYud:first-child")
+              .querySelector("a")
+              .focus();
           } else {
-            document.querySelector(".MjjYud:last-child").querySelector("a").focus();
+            document
+              .querySelector(".MjjYud:last-child")
+              .querySelector("a")
+              .focus();
           }
         } else {
           const curFocus = document.querySelector(`a[href="${curPreview}"]`);

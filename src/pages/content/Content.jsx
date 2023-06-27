@@ -33,7 +33,7 @@ function Content() {
       };
 
       axios({
-        url: `${SERVER_ADDR}/saveScrap`,
+        url: `${SERVER_ADDR}/api/saveScrap`,
         method: "post",
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -41,7 +41,7 @@ function Content() {
         data,
       })
         .then((response) => {
-          console.log(response);
+          alert("스크랩 완료");
         })
         .catch((error) => {
           alert("스크랩 실패", error);
@@ -56,6 +56,7 @@ function Content() {
     });
   };
   const handleCapture = (captureType) => {
+    if (capturing.current) return;
     capturing.current = true;
     type = captureType;
     capture();
@@ -66,14 +67,24 @@ function Content() {
     dragStart.current = { x: e.clientX, y: e.clientY };
     boxStart.current = { x: e.pageX, y: e.pageY };
     box.current = document.createElement("div");
+    if (type === "image") {
     Object.assign(box.current.style, {
       position: "absolute",
-      border: "0.1px solid white",
+      border: "0.1px solid blue",
       left: `${boxStart.current.x}px`,
       top: `${boxStart.current.y}px`,
-      backgroundColor: "rgba(200, 200, 200, 0.1)",
+      backgroundColor: "rgba(0, 0, 128, 0.1)",
       zIndex: 99999,
     });
+  } else {
+    Object.assign(box.current.style, {
+      position: "absolute",
+      border: "0.1px solid green",
+      left: `${boxStart.current.x}px`,
+      top: `${boxStart.current.y}px`,
+      backgroundColor: "rgba(0, 128, 0, 0.1)",
+      zIndex: 99999,
+    })};
     document.body.appendChild(box.current);
   };
 
@@ -100,7 +111,9 @@ function Content() {
       Math.abs(dragStart.current.y - dragEnd.current.y) < 1
     ) {
       if (document.getElementById("captureCanvas")) {
-        document.querySelector(".GyAeWb").removeChild(document.getElementById("captureCanvas"));
+        document
+          .querySelector(".GyAeWb")
+          .removeChild(document.getElementById("captureCanvas"));
       }
       document.body.removeChild(box.current);
       box.current = null;
@@ -133,7 +146,9 @@ function Content() {
     const newCtx = newCanvas.getContext("2d");
     newCtx.putImageData(imageData, 0, 0);
 
-    document.querySelector(".GyAeWb").removeChild(document.getElementById("captureCanvas"));
+    document
+      .querySelector(".GyAeWb")
+      .removeChild(document.getElementById("captureCanvas"));
 
     newCanvas.toBlob(async (blob) => {
       const formData = new FormData();
@@ -156,8 +171,10 @@ function Content() {
       const response = await axios.post(`${SERVER_ADDR}/api/${path}`, formData, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
+      alert("스크랩 완료");
       console.log(response);
     } catch (error) {
+      alert("스크랩 실패");
       console.error(error);
     }
   };
@@ -242,7 +259,15 @@ function Content() {
       />
       <div id="previewer-container">
         <iframe id="previewer" title={previewTitle} src={previewUrl}></iframe>
-        <div style={{ display: "flex", flexDirection: "column", position: "absolute", top: "0px", right: "10px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            position: "absolute",
+            top: "0px",
+            right: "10px",
+          }}
+        >
           {accessToken && previewUrl && (
             <>
               <ScrapButton accessToken={accessToken} />
