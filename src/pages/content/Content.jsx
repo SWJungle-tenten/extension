@@ -119,6 +119,7 @@ function Content() {
       box.current = null;
       document.body.style.overflow = "auto";
       document.body.removeChild(overlay.current);
+      toggleToolBtns("on");
       return;
     }
 
@@ -158,7 +159,6 @@ function Content() {
       formData.append("url", document.querySelector("#previewer").src);
 
       sendImage(formData);
-      toggleToolBtns("on");
       document.removeEventListener("mousedown", handleMouseDown);
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
