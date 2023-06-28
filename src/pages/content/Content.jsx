@@ -224,7 +224,7 @@ function Content() {
   document.addEventListener(
     "mouseover",
     async (e) => {
-      const [url, title] = await setPreviewAttributes(e, 600, "mouse");
+      const [url, title] = await setPreviewAttributes(e, 700, "mouse");
       if (url && url !== document.querySelector("#previewer").src) {
         moveFocusBox(previousContainer, e.target, false);
         setPreviewUrl(url);
