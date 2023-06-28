@@ -128,6 +128,7 @@ function Content() {
     box.current = null;
     document.body.style.overflow = "auto";
     document.body.removeChild(overlay.current);
+    toggleToolBtns("on");
 
     const canvas = document.getElementById("captureCanvas");
     const ctx = canvas.getContext("2d");
