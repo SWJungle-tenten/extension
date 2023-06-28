@@ -1,6 +1,6 @@
 import Swal from "sweetalert2"
 
-const alertSweetBeum = (sweet) => {
+const alertSweetBeum = (sweet, type) => {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -16,13 +16,13 @@ const alertSweetBeum = (sweet) => {
 
         Toast.fire({
           icon: 'success',
-          title: '스크랩 완료!'
+          title: `${type} 스크랩 완료!`
         })
     }
     else{
         Toast.fire({
             icon: 'error',
-            title: '스크랩 실패!'
+            title: `${type} 스크랩 실패!`
           })
     }  
 }
