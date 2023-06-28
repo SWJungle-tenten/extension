@@ -31,6 +31,7 @@ function Content() {
         url: iframe.src,
         title: iframe.title,
       };
+      console.log("스크랩", accessToken);
 
       axios({
         url: `${SERVER_ADDR}/api/saveScrap`,
@@ -55,12 +56,6 @@ function Content() {
       btn.style.display = power === "off" ? "none" : "";
     });
   };
-  const handleCapture = (captureType) => {
-    if (capturing.current) return;
-    capturing.current = true;
-    type = captureType;
-    capture();
-  };
 
   const handleMouseDown = (e) => {
     if (!capturing.current || !overlay.current) return;
@@ -68,23 +63,26 @@ function Content() {
     boxStart.current = { x: e.pageX, y: e.pageY };
     box.current = document.createElement("div");
     if (type === "image") {
-    Object.assign(box.current.style, {
-      position: "absolute",
-      border: "0.1px solid blue",
-      left: `${boxStart.current.x}px`,
-      top: `${boxStart.current.y}px`,
-      backgroundColor: "rgba(0, 0, 128, 0.1)",
-      zIndex: 99999,
-    });
-  } else {
-    Object.assign(box.current.style, {
-      position: "absolute",
-      border: "0.1px solid green",
-      left: `${boxStart.current.x}px`,
-      top: `${boxStart.current.y}px`,
-      backgroundColor: "rgba(0, 128, 0, 0.1)",
-      zIndex: 99999,
-    })};
+      Object.assign(box.current.style, {
+        position: "absolute",
+        border: "0.1px solid blue",
+        left: `${boxStart.current.x}px`,
+        top: `${boxStart.current.y}px`,
+        backgroundColor: "rgba(0, 0, 128, 0.1)",
+        zIndex: 99999,
+        brightness: 125,
+      });
+    } else {
+      Object.assign(box.current.style, {
+        position: "absolute",
+        border: "0.1px solid green",
+        left: `${boxStart.current.x}px`,
+        top: `${boxStart.current.y}px`,
+        backgroundColor: "rgba(0, 128, 0, 0.1)",
+        zIndex: 99999,
+        brightness: 125,
+      });
+    }
     document.body.appendChild(box.current);
   };
 
@@ -111,9 +109,7 @@ function Content() {
       Math.abs(dragStart.current.y - dragEnd.current.y) < 1
     ) {
       if (document.getElementById("captureCanvas")) {
-        document
-          .querySelector(".GyAeWb")
-          .removeChild(document.getElementById("captureCanvas"));
+        document.querySelector(".GyAeWb").removeChild(document.getElementById("captureCanvas"));
       }
       document.body.removeChild(box.current);
       box.current = null;
@@ -146,9 +142,7 @@ function Content() {
     const newCtx = newCanvas.getContext("2d");
     newCtx.putImageData(imageData, 0, 0);
 
-    document
-      .querySelector(".GyAeWb")
-      .removeChild(document.getElementById("captureCanvas"));
+    document.querySelector(".GyAeWb").removeChild(document.getElementById("captureCanvas"));
 
     newCanvas.toBlob(async (blob) => {
       const formData = new FormData();
@@ -247,12 +241,39 @@ function Content() {
       setAccessToken(message.accessToken);
     }
   });
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (document.activeElement?.tagName === "TEXTAREA") return;
 
+      if (e.code === "KeyT" || e.code === "KeyC" || e.code === "Space") {
+        console.log("keyPress", accessToken);
+        e.preventDefault();
+        e.code === "KeyT"
+          ? handleCapture("text")
+          : e.code === "KeyC"
+          ? handleCapture("image")
+          : setScrapButtonClicked(true);
+      }
+    };
+
+    const handleCapture = (captureType) => {
+      console.log("handleCapture", accessToken);
+      if (capturing.current) return;
+      capturing.current = true;
+      type = captureType;
+      capture();
+    };
+
+    document.addEventListener("keypress", handleKeyPress);
+    return () => {
+      document.removeEventListener("keypress", handleKeyPress);
+    };
+  }, [accessToken]);
   return (
     <>
       <Shortcuts
         setPreviewUrl={setPreviewUrl}
-        handleCapture={handleCapture}
+        // handleCapture={handleCapture}
         setScrapButtonClicked={setScrapButtonClicked}
         setPreviewTitle={setPreviewTitle}
         previousContainer={previousContainer}
@@ -278,9 +299,9 @@ function Content() {
                   "--btn-color": "var(--green-400)",
                   "--btn-focus-color": "var(--green-300)",
                 }}
-                onClick={() => {
-                  handleCapture("text");
-                }}
+                // onClick={() => {
+                //   handleCapture("text");
+                // }}
               >
                 <PostAddIcon />
               </button>
@@ -291,9 +312,9 @@ function Content() {
                   "--btn-color": "var(--blue-400)",
                   "--btn-focus-color": "var(--blue-300)",
                 }}
-                onClick={() => {
-                  handleCapture("image");
-                }}
+                // onClick={() => {
+                //   handleCapture("image");
+                // }}
               >
                 <AddPhotoAlternateIcon />
               </button>
