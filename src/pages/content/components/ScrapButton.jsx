@@ -1,6 +1,7 @@
 import axios from "axios";
 import { SERVER_ADDR } from "/utils/env";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
+import alertSweetBeum from "../utils/alertSweetBeum";
 
 function ScrapButton({ accessToken }) {
   const scrapHandler = (event) => {
@@ -24,9 +25,12 @@ function ScrapButton({ accessToken }) {
     })
       .then((response) => {
         console.log(response);
+        // alert("스크랩 성공");
+        alertSweetBeum("성공");
       })
       .catch((error) => {
-        alert("스크랩 실패", error);
+        // alert("스크랩 실패", error);
+        alertSweetBeum("실패");
       });
   };
   return (
