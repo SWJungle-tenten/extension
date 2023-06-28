@@ -9,6 +9,8 @@ const setPreviewAttributes = (event, time, trigger) => {
     "zItAnd",
     "CHn7Qb pYouzb",
     "Fx4vi wHYlTd ZYHQ7e",
+    "hisnlb M6Nvye",
+    "jRKCUd",
   ];
   const avoidId = ["logo", "pnnext", "pnprev"];
 
