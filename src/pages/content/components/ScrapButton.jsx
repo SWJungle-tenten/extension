@@ -26,11 +26,11 @@ function ScrapButton({ accessToken }) {
       .then((response) => {
         console.log(response);
         // alert("스크랩 성공");
-        alertSweetBeum("성공");
+        alertSweetBeum("성공","링크");
       })
       .catch((error) => {
         // alert("스크랩 실패", error);
-        alertSweetBeum("실패");
+        alertSweetBeum("실패","링크");
       });
   };
   return (

@@ -43,12 +43,12 @@ function Content() {
       })
         .then((response) => {
           // alert("스크랩 완료");
-          alertSweetBeum("성공");
+          alertSweetBeum("성공","링크");
 
         })
         .catch((error) => {
           // alert("스크랩 실패", error);
-        alertSweetBeum("실패");
+        alertSweetBeum("실패","링크");
 
         });
       setScrapButtonClicked(false);
@@ -173,16 +173,17 @@ function Content() {
 
   const sendImage = async (formData) => {
     const path = type === "image" ? "imgCapture" : "textCapture";
+    const alertType = type === "image" ? "이미지" : "텍스트";
     try {
       const response = await axios.post(`${SERVER_ADDR}/api/${path}`, formData, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       // alert("스크랩 완료");
-      alertSweetBeum("성공");
+      alertSweetBeum("성공",alertType);
       console.log(response);
     } catch (error) {
       // alert("스크랩 실패");
-      alertSweetBeum("실패");
+      alertSweetBeum("실패",alertType);
       console.error(error);
     }
   };
