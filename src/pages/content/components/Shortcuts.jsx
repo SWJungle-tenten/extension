@@ -4,7 +4,7 @@ import moveFocusBox from "../utils/moveFocusBox";
 
 function Shortcuts({
   setPreviewUrl,
-  handleCapture,
+  // handleCapture,
   setScrapButtonClicked,
   setPreviewTitle,
   previousContainer,
@@ -19,18 +19,13 @@ function Shortcuts({
         const curPreview = document.querySelector("#previewer").src;
         if (!curPreview) {
           if (e.code === "KeyS") {
-            document
-              .querySelector(".MjjYud:first-child")
-              .querySelector("a")
-              .focus();
+            document.querySelector(".MjjYud:first-child").querySelector("a").focus();
           } else {
-            document
-              .querySelector(".MjjYud:last-child")
-              .querySelector("a")
-              .focus();
+            document.querySelector(".MjjYud:last-child").querySelector("a").focus();
           }
         } else {
           const curFocus = document.querySelector(`a[href="${curPreview}"]`);
+
           const topLevelContainer = curFocus.closest(".hlcw0c")
             ? curFocus.closest(".hlcw0c")
             : curFocus.closest(".MjjYud");
@@ -39,7 +34,9 @@ function Shortcuts({
           if (e.code === "KeyS") {
             while (nextFocus.nextElementSibling) {
               nextFocus = nextFocus.nextElementSibling;
-              if (nextFocus.querySelector("a")) break;
+              if (nextFocus.querySelector("a")) {
+                break;
+              }
             }
           } else {
             while (nextFocus.previousElementSibling) {
@@ -51,14 +48,14 @@ function Shortcuts({
         }
       }
 
-      if (e.code === "KeyT" || e.code === "KeyC" || e.code === "Space") {
-        e.preventDefault();
-        e.code === "KeyT"
-          ? handleCapture("text")
-          : e.code === "KeyC"
-          ? handleCapture("image")
-          : setScrapButtonClicked(true);
-      }
+      // if (e.code === "KeyT" || e.code === "KeyC" || e.code === "Space") {
+      //   e.preventDefault();
+      //   e.code === "KeyT"
+      //     ? handleCapture("text")
+      //     : e.code === "KeyC"
+      //     ? handleCapture("image")
+      //     : setScrapButtonClicked(true);
+      // }
     };
 
     document.addEventListener("keypress", handleKeyPress);
@@ -66,7 +63,7 @@ function Shortcuts({
     const handleFocus = async (e) => {
       const [url, title] = await setPreviewAttributes(e, 500, "keyboard");
       if (url && title) {
-        moveFocusBox(previousContainer, e.target, true);
+        moveFocusBox(previousContainer, e.target.parentElement, true);
         setPreviewUrl(url);
         setPreviewTitle(title);
       }
