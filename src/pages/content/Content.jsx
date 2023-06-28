@@ -7,6 +7,7 @@ import { SERVER_ADDR } from "/utils/env";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import moveFocusBox from "./utils/moveFocusBox";
+import alertSweetBeum from "./utils/alertSweetBeum";
 
 function Content() {
   const previousContainer = useRef(null);
@@ -41,10 +42,14 @@ function Content() {
         data,
       })
         .then((response) => {
-          alert("스크랩 완료");
+          // alert("스크랩 완료");
+          alertSweetBeum("성공");
+
         })
         .catch((error) => {
-          alert("스크랩 실패", error);
+          // alert("스크랩 실패", error);
+        alertSweetBeum("실패");
+
         });
       setScrapButtonClicked(false);
     }
@@ -172,10 +177,12 @@ function Content() {
       const response = await axios.post(`${SERVER_ADDR}/api/${path}`, formData, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
-      alert("스크랩 완료");
+      // alert("스크랩 완료");
+      alertSweetBeum("성공");
       console.log(response);
     } catch (error) {
-      alert("스크랩 실패");
+      // alert("스크랩 실패");
+      alertSweetBeum("실패");
       console.error(error);
     }
   };
