@@ -106,27 +106,15 @@ const Popup = () => {
       <p style={{ textAlign: "center", fontSize: "18px" }}>
         {accessToken ? `환영합니다 ${userName}님!` : "스크랩하려면 로그인해주세요."}
       </p>
-      {accessToken ? (
-        <button
-          style={btnSytle}
-          onClick={() => {
-            gotoHomepage(HOMEPAGE_ADDR + "/storage");
-          }}
-        >
-          보관함 바로가기
-          <BookmarksIcon style={{ verticalAlign: "top", padding: "2px 0 0 3px" }} />
-        </button>
-      ) : (
-        <button
-          style={btnSytle}
-          onClick={() => {
-            gotoHomepage(HOMEPAGE_ADDR);
-          }}
-        >
-          로그인 하러가기
-          <LaunchIcon style={{ verticalAlign: "top", padding: "2px 0 0 3px" }} />
-        </button>
-      )}
+      <button
+        style={btnSytle}
+        onClick={() => {
+          gotoHomepage(HOMEPAGE_ADDR);
+        }}
+      >
+        {accessToken ? "보관함 바로가기" : "로그인 하러가기"}
+        <BookmarksIcon style={{ verticalAlign: "top", padding: "2px 0 0 3px" }} />
+      </button>
     </div>
   );
 };
