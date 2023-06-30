@@ -1,7 +1,7 @@
 import { useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import alertSweetBeum from "../utils/alertSweetBeum";
-import { SERVER_ADDR } from "../../../../utils/env";
+import { SERVER_ADDR } from "/utils/env";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
