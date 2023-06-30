@@ -56,5 +56,5 @@
 .focusBox {
   background-color: var(--yellow-100)!important;
   border-width: 0!important;
-  border-radius: 5px!important;
+  border-radius: 10px!important;
 }
