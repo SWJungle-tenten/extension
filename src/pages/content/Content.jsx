@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import ScrapButton from "./components/ScrapButton";
 import setPreviewAttributes from "./utils/setPreviewAttributes";
 import Shortcuts from "./components/Shortcuts";
@@ -32,7 +32,6 @@ function Content() {
         url: iframe.src,
         title: iframe.title,
       };
-      console.log("스크랩", accessToken);
 
       axios({
         url: `${SERVER_ADDR}/api/saveScrap`,
@@ -43,14 +42,11 @@ function Content() {
         data,
       })
         .then((response) => {
-          // alert("스크랩 완료");
-          alertSweetBeum("성공","링크");
-
+          alertSweetBeum("성공", "링크");
         })
         .catch((error) => {
-          // alert("스크랩 실패", error);
-        alertSweetBeum("실패","링크");
-
+          alertSweetBeum("실패", "링크");
+          console.error(error);
         });
       setScrapButtonClicked(false);
     }
@@ -172,12 +168,9 @@ function Content() {
       const response = await axios.post(`${SERVER_ADDR}/api/${path}`, formData, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
-      // alert("스크랩 완료");
-      alertSweetBeum("성공",alertType);
-      console.log(response);
+      alertSweetBeum("성공", alertType);
     } catch (error) {
-      // alert("스크랩 실패");
-      alertSweetBeum("실패",alertType);
+      alertSweetBeum("실패", alertType);
       console.error(error);
     }
   };
@@ -250,12 +243,21 @@ function Content() {
       setAccessToken(message.accessToken);
     }
   });
+
+  const handleCapture = useCallback(
+    (captureType) => {
+      if (capturing.current) return;
+      capturing.current = true;
+      type = captureType;
+      capture();
+    },
+    [accessToken]
+  );
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
 
       if (e.code === "KeyT" || e.code === "KeyC" || e.code === "Space") {
-        console.log("keyPress", accessToken);
         e.preventDefault();
         e.code === "KeyT"
           ? handleCapture("text")
@@ -264,26 +266,16 @@ function Content() {
           : setScrapButtonClicked(true);
       }
     };
-
-    const handleCapture = (captureType) => {
-      console.log("handleCapture", accessToken);
-      if (capturing.current) return;
-      capturing.current = true;
-      type = captureType;
-      capture();
-    };
-
     document.addEventListener("keypress", handleKeyPress);
     return () => {
       document.removeEventListener("keypress", handleKeyPress);
     };
-  }, [accessToken]);
+  }, [handleCapture]);
+
   return (
     <>
       <Shortcuts
         setPreviewUrl={setPreviewUrl}
-        // handleCapture={handleCapture}
-        setScrapButtonClicked={setScrapButtonClicked}
         setPreviewTitle={setPreviewTitle}
         previousContainer={previousContainer}
       />
@@ -308,9 +300,9 @@ function Content() {
                   "--btn-color": "var(--green-400)",
                   "--btn-focus-color": "var(--green-300)",
                 }}
-                // onClick={() => {
-                //   handleCapture("text");
-                // }}
+                onClick={() => {
+                  handleCapture("text");
+                }}
               >
                 <PostAddIcon />
               </button>
@@ -321,9 +313,9 @@ function Content() {
                   "--btn-color": "var(--blue-400)",
                   "--btn-focus-color": "var(--blue-300)",
                 }}
-                // onClick={() => {
-                //   handleCapture("image");
-                // }}
+                onClick={() => {
+                  handleCapture("image");
+                }}
               >
                 <AddPhotoAlternateIcon />
               </button>
