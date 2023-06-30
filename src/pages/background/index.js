@@ -6,6 +6,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       sendResponse({ accessToken: response?.value });
     });
   }
+  if (message.action === "capture") {
+    chrome.tabs.captureVisibleTab(null, { format: "png" }, (imgData) => {
+      sendResponse({ img: imgData });
+    });
+  }
   return true;
 });
 
@@ -14,14 +19,5 @@ chrome.cookies.onChanged.addListener(({ cause, cookie, removed }) => {
     chrome.cookies.get({ url: HOMEPAGE_ADDR, name: "accessToken" }).then((response) => {
       chrome.runtime.sendMessage({ action: "updateToken", accessToken: response?.value });
     });
-  }
-});
-
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "capture") {
-    chrome.tabs.captureVisibleTab(null, { format: "png" }, (imgData) => {
-      sendResponse({ img: imgData });
-    });
-    return true;
   }
 });

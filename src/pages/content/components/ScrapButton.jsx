@@ -2,10 +2,10 @@ import axios from "axios";
 import { SERVER_ADDR } from "/utils/env";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import alertSweetBeum from "../utils/alertSweetBeum";
+import { useEffect } from "react";
 
 function ScrapButton({ accessToken }) {
   const scrapHandler = (event) => {
-    // event.stopPropagation();
     event.preventDefault();
 
     const iframe = document.querySelector("#previewer");
@@ -24,15 +24,27 @@ function ScrapButton({ accessToken }) {
       data,
     })
       .then((response) => {
+        alertSweetBeum("성공", "링크");
         console.log(response);
-        // alert("스크랩 성공");
-        alertSweetBeum("성공","링크");
       })
       .catch((error) => {
-        // alert("스크랩 실패", error);
-        alertSweetBeum("실패","링크");
+        alertSweetBeum("실패", "링크");
+        console.error(error);
       });
   };
+
+  useEffect(() => {
+    const keypressHandler = (e) => {
+      if (!document.activeElement?.tagName === "TEXTAREA" && e.code === "Space") {
+        scrapHandler(e);
+      }
+    };
+    document.addEventListener("onKeypress", keypressHandler);
+    return () => {
+      document.removeEventListener("onKeypress", keypressHandler);
+    };
+  }, []);
+
   return (
     <button
       className="btn"
@@ -41,9 +53,7 @@ function ScrapButton({ accessToken }) {
         "--btn-focus-color": "var(--red-300)",
       }}
       title="링크 스크랩"
-      onClick={(e) => {
-        scrapHandler(e);
-      }}
+      onClick={scrapHandler}
     >
       <BookmarkAddOutlinedIcon />
     </button>

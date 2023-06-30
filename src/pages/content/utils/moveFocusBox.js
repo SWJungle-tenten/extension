@@ -16,8 +16,6 @@ const moveFocusBox = (previousContainer, currentTarget, isKeyboard) => {
     container = currentTarget.closest(".v1uiFd");
   }
 
-  console.log("target:", currentTarget);
-  console.log("현재 하이라이팅되는 박스:", container);
   if (!container) return;
 
   container.classList.add("focusBox");
@@ -28,7 +26,6 @@ const moveFocusBox = (previousContainer, currentTarget, isKeyboard) => {
     });
   }
   if (previousContainer.current && previousContainer.current !== container) {
-    console.log("하이라이팅 지우는 박스:", previousContainer.current);
     previousContainer.current.classList.remove("focusBox");
   }
 

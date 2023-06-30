@@ -2,13 +2,7 @@ import { useEffect } from "react";
 import setPreviewAttributes from "../utils/setPreviewAttributes";
 import moveFocusBox from "../utils/moveFocusBox";
 
-function Shortcuts({
-  setPreviewUrl,
-  // handleCapture,
-  setScrapButtonClicked,
-  setPreviewTitle,
-  previousContainer,
-}) {
+function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
@@ -47,15 +41,6 @@ function Shortcuts({
           nextFocus.querySelector("a")?.focus();
         }
       }
-
-      // if (e.code === "KeyT" || e.code === "KeyC" || e.code === "Space") {
-      //   e.preventDefault();
-      //   e.code === "KeyT"
-      //     ? handleCapture("text")
-      //     : e.code === "KeyC"
-      //     ? handleCapture("image")
-      //     : setScrapButtonClicked(true);
-      // }
     };
 
     document.addEventListener("keypress", handleKeyPress);
@@ -77,4 +62,4 @@ function Shortcuts({
   }, []);
 }
 
-export default Shortcuts;
+export default MoveShortcuts;

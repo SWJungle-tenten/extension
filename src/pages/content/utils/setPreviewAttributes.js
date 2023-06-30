@@ -1,3 +1,5 @@
+import { SERVER_ADDR } from "/utils/env";
+
 const setPreviewAttributes = (event, time, trigger) => {
   const avoidClassName = [
     "k8XOCe R0xfCb VCOFK s8bAkb",
@@ -24,6 +26,9 @@ const setPreviewAttributes = (event, time, trigger) => {
           avoidId.includes(eventTarget.id)
         )
           return;
+        if (eventTarget.href.split("://")[0] === "http") {
+          resolve([`${SERVER_ADDR}/http-request`], "wrong request");
+        }
 
         resolve([eventTarget.href, eventTarget.querySelector("h3")?.innerText]);
       }

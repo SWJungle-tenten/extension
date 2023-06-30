@@ -36,7 +36,7 @@ const Popup = () => {
           const data = await response.json();
           setUserName(data.username);
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       };
       getUserName(accessToken);
