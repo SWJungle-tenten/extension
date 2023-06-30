@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import setPreviewAttributes from "../utils/setPreviewAttributes";
 import moveFocusBox from "../utils/moveFocusBox";
 
-function Shortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
+function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (document.activeElement?.tagName === "TEXTAREA") return;
@@ -62,4 +62,4 @@ function Shortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
   }, []);
 }
 
-export default Shortcuts;
+export default MoveShortcuts;
