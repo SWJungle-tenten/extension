@@ -2,7 +2,7 @@ import setPreviewAttributes from "../utils/setPreviewAttributes";
 import moveFocusBox from "../utils/moveFocusBox";
 
 function Previewer({ accessToken, previewUrl, setPreviewUrl, previewTitle, setPreviewTitle, previousContainer }) {
-  document.addEventListener(
+  document.querySelector("#search").addEventListener(
     "mouseover",
     async (e) => {
       const [url, title] = await setPreviewAttributes(e, 700, "mouse");
