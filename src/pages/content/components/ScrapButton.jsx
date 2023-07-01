@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 function ScrapButton({ accessToken }) {
   const scrapHandler = (event) => {
-    event.preventDefault();
 
     const iframe = document.querySelector("#previewer");
     const data = {
@@ -25,7 +24,6 @@ function ScrapButton({ accessToken }) {
     })
       .then((response) => {
         alertSweetBeum("성공", "링크");
-        console.log(response);
       })
       .catch((error) => {
         alertSweetBeum("실패", "링크");
@@ -35,7 +33,8 @@ function ScrapButton({ accessToken }) {
 
   useEffect(() => {
     const keypressHandler = (e) => {
-      if (!document.activeElement?.tagName === "TEXTAREA" && e.code === "Space") {
+      if (!document.activeElement?.tagName === "TEXTAREA" && e.code === "Space" && document.querySelector("#previewer").src !== `${SERVER_ADDR}/http-request` ) {
+        e.preventDefault();
         scrapHandler(e);
       }
     };

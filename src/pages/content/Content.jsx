@@ -49,7 +49,7 @@ function Content() {
             right: "10px",
           }}
         >
-          {accessToken && previewUrl && previewTitle !== "wrong request" && (
+          {accessToken && previewUrl && previewTitle !== undefined && (
             <>
               <ScrapButton accessToken={accessToken} />
               <CaptureButtons accessToken={accessToken} />

@@ -190,7 +190,7 @@ function CaptureButtons({ accessToken }) {
 
   useEffect(() => {
     const keypressHandler = (e) => {
-      if (document.activeElement?.tagName === "TEXTAREA") return;
+      if (document.activeElement?.tagName === "TEXTAREA" || document.querySelector("#previewer").title === `${SERVER_ADDR}/http-request`) return;
       if (e.code === "KeyT") {
         e.preventDefault();
         handleCapture("text");
