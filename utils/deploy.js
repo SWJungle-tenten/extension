@@ -11,7 +11,7 @@ var webpack = require("webpack"),
 
 delete config.chromeExtensionBoilerplate;
 
-config.mode = "production";
+config.mode = "development";
 
 var packageInfo = JSON.parse(fs.readFileSync("package.json", "utf-8"));
 
