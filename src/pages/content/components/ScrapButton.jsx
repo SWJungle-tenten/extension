@@ -25,7 +25,6 @@ function ScrapButton({ accessToken }) {
     })
       .then((response) => {
         alertSweetBeum("성공", "링크");
-        console.log(response);
       })
       .catch((error) => {
         alertSweetBeum("실패", "링크");

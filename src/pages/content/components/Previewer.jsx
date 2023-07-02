@@ -16,6 +16,16 @@ function Previewer({ accessToken, previewUrl, setPreviewUrl, previewTitle, setPr
     { capture: true }
   );
 
-  return <iframe id="previewer" title={previewTitle} src={previewUrl}></iframe>;
+  return (
+    <iframe
+      id="previewer"
+      title={previewTitle}
+      src={previewUrl}
+      onLoad={() => {
+        // console.log("loaded", document.querySelector("#search"));
+        // document.querySelector("#search").focus();
+      }}
+    ></iframe>
+  );
 }
 export default Previewer;

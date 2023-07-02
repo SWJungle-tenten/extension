@@ -1,6 +1,5 @@
 const moveFocusBox = (previousContainer, currentTarget, isKeyboard) => {
   let container;
-  console.log(currentTarget);
 
   if (currentTarget.closest(".IJl0Z")) {
     // 주요 뉴스, "윤석열"

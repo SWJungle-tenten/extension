@@ -47,7 +47,6 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
 
             const getNextFocus = (next) => {
               if (next.classList.contains("hlcw0c")) {
-                console.log("next:", next);
                 return getNextFocus(next.querySelector(".MjjYud"));
               } else if (next.classList.contains("ULSxyf")) {
                 if (next.querySelector(".IJl0Z")) {
@@ -82,9 +81,7 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
                 : topLevelContainer.previousElementSibling;
             };
             const nextContainer = getNextContainer(curFocus);
-            console.log("nextContainer", nextContainer);
             nextFocus = getNextFocus(nextContainer);
-            console.log("nextFocus", nextFocus);
           }
           nextFocus.querySelector("a").focus(); // 마우스랑 setAttribute를 따로 쓰면 작은 a태그도 처리 가능할 듯?
         }
@@ -95,7 +92,7 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
 
     const handleFocus = async (e) => {
       const { url, title, originalUrl } = await setPreviewAttributes(e, 500, "keyboard");
-      console.log("gotton url after setPreviewAttributes", url, title);
+
       if (url && title) {
         moveFocusBox(previousContainer, e.target.parentElement, true);
         setPreviewUrl(url);

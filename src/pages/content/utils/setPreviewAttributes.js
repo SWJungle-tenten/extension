@@ -8,13 +8,7 @@ const setPreviewAttributes = (event, time, trigger) => {
     "ekf0x hSQtef",
     "ZkkK1e yUTMj k1U36b", // 관련 이미지
   ];
-  trigger === "keyboard" &&
-    console.log(
-      "event.target in setPreview: ",
-      event.target,
-      "event.target.closest('a') in setPreview:",
-      event.target.closest("a")
-    );
+
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let targetContent;
@@ -27,7 +21,7 @@ const setPreviewAttributes = (event, time, trigger) => {
         if (targetContent.href.split("://")[0] === "http") {
           resolve({ url: `${SERVER_ADDR}/http-request`, title: "wrong request", originalUrl: targetContent.href });
         }
-        console.log(targetContent.querySelector(".cHaqb"), targetContent.querySelector(".cHaqb").innerText);
+
         const title = targetContent.querySelector("h3")
           ? targetContent.querySelector("h3").innerText // 일반적 제목
           : targetContent.querySelector(".cHaqb")
