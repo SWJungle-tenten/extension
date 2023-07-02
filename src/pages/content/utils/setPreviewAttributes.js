@@ -7,6 +7,7 @@ const setPreviewAttributes = (event, time, trigger) => {
     "jRKCUd", // 뉴스 더보기
     "ekf0x hSQtef",
     "ZkkK1e yUTMj k1U36b", // 관련 이미지
+    "XEKxtf",
   ];
 
   return new Promise((resolve, reject) => {
@@ -15,7 +16,8 @@ const setPreviewAttributes = (event, time, trigger) => {
       if ((targetContent = event.target.closest("a"))) {
         if (
           targetContent === document.querySelector('a[jsname="gXWYVe"]') ||
-          avoidClassName.includes(targetContent.className)
+          avoidClassName.includes(targetContent.className) ||
+          targetContent.href.includes("https://support.google.com")
         )
           return;
         if (targetContent.href.split("://")[0] === "http") {
