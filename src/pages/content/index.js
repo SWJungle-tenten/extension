@@ -21,7 +21,7 @@ const selectRoot = () => {
     const leftSide = document.querySelector("#center_col");
     wrapper.appendChild(leftSide);
     if (rightSide) {
-      body.removeChild(rightSide);
+      rightSide.style.display = "none";
     }
     wrapper.appendChild(rootElement);
     body.appendChild(wrapper);
