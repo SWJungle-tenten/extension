@@ -24,14 +24,13 @@ const setPreviewAttributes = (event, time, trigger) => {
         )
           return;
         if (eventTarget.href.split("://")[0] === "http") {
-          resolve([`${SERVER_ADDR}/http-request`], "wrong request");
+          resolve({ url: `${SERVER_ADDR}/http-request`, title: "wrong request", originalUrl: eventTarget.href });
         }
 
         const title = eventTarget.querySelector("h3")
           ? eventTarget.querySelector("h3").innerText // 일반적 제목
           : eventTarget.querySelector("div[role='heading']"); // 뉴스
-
-        resolve([eventTarget.href, title]);
+        resolve({ url: eventTarget.href, title: title });
       }
     }, time);
   });

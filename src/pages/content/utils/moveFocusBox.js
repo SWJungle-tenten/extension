@@ -1,5 +1,6 @@
 const moveFocusBox = (previousContainer, currentTarget, isKeyboard) => {
   let container;
+
   if (currentTarget.closest(".IJl0Z")) {
     // 주요 뉴스, "윤석열"
     container = currentTarget.closest(".IJl0Z");
@@ -17,6 +18,9 @@ const moveFocusBox = (previousContainer, currentTarget, isKeyboard) => {
     container = currentTarget.closest(".WlydOe");
   } else if (currentTarget.closest(".v1uiFd")) {
     container = currentTarget.closest(".v1uiFd");
+  } else if (currentTarget.closest(".dFd2Tb")) {
+    //g dFd2Tb PhX2wd
+    container = currentTarget.closest(".dFd2Tb");
   }
 
   if (!container) return;

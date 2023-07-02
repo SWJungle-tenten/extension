@@ -5,11 +5,12 @@ function Previewer({ accessToken, previewUrl, setPreviewUrl, previewTitle, setPr
   document.querySelector("#search").addEventListener(
     "mouseover",
     async (e) => {
-      const [url, title] = await setPreviewAttributes(e, 700, "mouse");
+      const { url, title, originalUrl } = await setPreviewAttributes(e, 700, "mouse");
       if (url && url !== document.querySelector("#previewer").src) {
         moveFocusBox(previousContainer, e.target, false);
         setPreviewUrl(url);
         setPreviewTitle(title);
+        document.querySelector("#previewer").dataset.originalUrl = originalUrl;
       }
     },
     { capture: true }

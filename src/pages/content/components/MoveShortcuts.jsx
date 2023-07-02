@@ -9,10 +9,9 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
 
       if (e.code === "KeyS" || e.code === "KeyW") {
         e.preventDefault();
-
         const curPreview = document.querySelector("#previewer").src;
         const searchContainer = document.querySelector("#rso");
-        let nextFocus;
+
         // 인물 검색
         if (searchContainer.querySelector("#kp-wp-tab-overview")) {
           if (!curPreview) {
@@ -33,33 +32,22 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
               searchContainer.querySelector(".v7W49e > div:last-child").querySelector("a").focus();
             }
           } else {
-            const curFocus = document.querySelector(`a[href="${curPreview}"]`);
-
+            let curFocus = document.querySelector(`a[href="${curPreview}"]`);
+            if (!curFocus)
+              curFocus = document.querySelector(
+                `a[href="${document.querySelector("#previewer").dataset.originalUrl}"]`
+              );
             const topLevelContainer = curFocus.closest(".hlcw0c")
               ? curFocus.closest(".hlcw0c")
-                ? curFocus.closest(".ULSxyf")
-                : curFocus.closest(".ULSxyf")
+              : curFocus.closest(".ULSxyf")
+              ? curFocus.closest(".ULSxyf")
               : curFocus.closest(".MjjYud");
 
-            console.log(topLevelContainer);
-
-              // let nextFocus = topLevelContainer;
-              if (e.code === "KeyS") {
-                topLevelContainer.nextElementSibling.querySelector("a").focus();
-                // while (nextFocus.nextElementSibling) {
-                //   nextFocus = nextFocus.nextElementSibling;
-                //   if (nextFocus.querySelector("a")) {
-                //     break;
-                //   }
-                // }
-              } else {
-                topLevelContainer.previousElementSibling.querySelector("a").focus();
-                // while (nextFocus.previousElementSibling) {
-                //   nextFocus = nextFocus.previousElementSibling;
-                //   if (nextFocus.querySelector("a")) break;
-                // }
-              }
-            // nextFocus.querySelector("a")?.focus();
+            if (e.code === "KeyS") {
+              topLevelContainer.nextElementSibling?.querySelector("a").focus();
+            } else {
+              topLevelContainer.previousElementSibling?.querySelector("a").focus();
+            }
           }
         }
       }
@@ -68,11 +56,12 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
     document.addEventListener("keypress", handleKeyPress);
 
     const handleFocus = async (e) => {
-      moveFocusBox(previousContainer, e.target.parentElement, true);
-      const [url, title] = await setPreviewAttributes(e, 500, "keyboard");
+      const { url, title, originalUrl } = await setPreviewAttributes(e, 500, "keyboard");
       if (url && title) {
+        moveFocusBox(previousContainer, e.target.parentElement, true);
         setPreviewUrl(url);
         setPreviewTitle(title);
+        document.querySelector("#previewer").dataset.originalUrl = originalUrl;
       }
     };
     document.addEventListener("focus", handleFocus, { capture: true });
