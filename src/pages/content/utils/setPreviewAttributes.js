@@ -2,35 +2,32 @@ import { SERVER_ADDR } from "/utils/env";
 
 const setPreviewAttributes = (event, time, trigger) => {
   const avoidClassName = [
-    "k8XOCe R0xfCb VCOFK s8bAkb",
-    "fl",
-    "zItAnd",
-    "zItAnd FOU1zf",
-    "gb_d gb_Fa gb_x",
-    "gb_d",
-    "zItAnd",
     "CHn7Qb pYouzb",
-    "Fx4vi wHYlTd ZYHQ7e",
     "hisnlb M6Nvye",
-    "jRKCUd",
+    "jRKCUd", // 뉴스 더보기
+    "ekf0x hSQtef",
+    "ZkkK1e yUTMj k1U36b", // 관련 이미지
   ];
-  const avoidId = ["logo", "pnnext", "pnprev"];
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let eventTarget;
-      if ((eventTarget = event.target.closest("a"))) {
+      let targetContent;
+      if ((targetContent = event.target.closest("a"))) {
         if (
-          eventTarget === document.querySelector('a[jsname="gXWYVe"]') ||
-          avoidClassName.includes(eventTarget.className) ||
-          avoidId.includes(eventTarget.id)
+          targetContent === document.querySelector('a[jsname="gXWYVe"]') ||
+          avoidClassName.includes(targetContent.className)
         )
           return;
-        if (eventTarget.href.split("://")[0] === "http") {
-          resolve([`${SERVER_ADDR}/http-request`], "wrong request");
+        if (targetContent.href.split("://")[0] === "http") {
+          resolve({ url: `${SERVER_ADDR}/http-request`, title: "wrong request", originalUrl: targetContent.href });
         }
 
-        resolve([eventTarget.href, eventTarget.querySelector("h3")?.innerText]);
+        const title = targetContent.querySelector("h3")
+          ? targetContent.querySelector("h3").innerText // 일반적 제목
+          : targetContent.querySelector(".cHaqb")
+          ? targetContent.querySelector(".cHaqb").innerText // 동영상
+          : targetContent.querySelector("div[role='heading']"); // 뉴스
+        resolve({ url: targetContent.href, title: title });
       }
     }, time);
   });

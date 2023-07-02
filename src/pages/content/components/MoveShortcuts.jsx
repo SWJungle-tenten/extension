@@ -9,36 +9,81 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
 
       if (e.code === "KeyS" || e.code === "KeyW") {
         e.preventDefault();
-
         const curPreview = document.querySelector("#previewer").src;
-        if (!curPreview) {
-          if (e.code === "KeyS") {
-            document.querySelector(".MjjYud:first-child").querySelector("a").focus();
+        const searchContainer = document.querySelector("#rso");
+
+        let nextFocus;
+        // 인물 검색
+        if (searchContainer.querySelector("#kp-wp-tab-overview")) {
+          if (!curPreview) {
+            if (e.code === "KeyS") {
+              searchContainer.querySelector("#kp-wp-tab-overview > .cLjAic:first-child").querySelector("a").focus();
+            } else {
+              // searchContainer.querySelector("#kp-wp-tab-overview > .cLjAic:last-child").querySelector("a").focus();
+            }
           } else {
-            document.querySelector(".MjjYud:last-child").querySelector("a").focus();
+            // previewer에 있을 때
           }
         } else {
-          const curFocus = document.querySelector(`a[href="${curPreview}"]`);
-
-          const topLevelContainer = curFocus.closest(".hlcw0c")
-            ? curFocus.closest(".hlcw0c")
-            : curFocus.closest(".MjjYud");
-
-          let nextFocus = topLevelContainer;
-          if (e.code === "KeyS") {
-            while (nextFocus.nextElementSibling) {
-              nextFocus = nextFocus.nextElementSibling;
-              if (nextFocus.querySelector("a")) {
-                break;
+          // 인물검색 외
+          if (!curPreview) {
+            if (e.code === "KeyS") {
+              nextFocus = searchContainer.querySelector(".v7W49e > div:first-child");
+              while (nextFocus.className === "ULSxyf") {
+                nextFocus = nextFocus.nextElementSibling;
+              }
+            } else {
+              nextFocus = searchContainer.querySelector(".v7W49e > div:last-child");
+              while (nextFocus.className === "ULSxyf") {
+                nextFocus = nextFocus.previousElementSibling;
               }
             }
           } else {
-            while (nextFocus.previousElementSibling) {
-              nextFocus = nextFocus.previousElementSibling;
-              if (nextFocus.querySelector("a")) break;
-            }
+            let curFocus = document.querySelector(`a[href="${curPreview}"]`);
+            if (!curFocus)
+              curFocus = document.querySelector(
+                `a[href="${document.querySelector("#previewer").dataset.originalUrl}"]`
+              );
+
+            const getNextFocus = (next) => {
+              if (next.classList.contains("hlcw0c")) {
+                return getNextFocus(next.querySelector(".MjjYud"));
+              } else if (next.classList.contains("ULSxyf")) {
+                if (next.querySelector(".IJl0Z")) {
+                  return next.querySelector("IJl0Z");
+                } else {
+                  return getNextFocus(getNextContainer(next));
+                }
+              } else {
+                if (
+                  next.querySelector(".T6zPgb")?.querySelector("span").innerText === "관련 질문" ||
+                  next.querySelector(".T6zPgb")?.querySelector("span").innerText === "관련 검색어"
+                ) {
+                  return getNextFocus(getNextContainer(next));
+                } else if (next.querySelector(".DhN8Cf")) {
+                  return next.querySelector(".DhN8Cf"); // 일단은 첫번째 영상만
+                } else if (next.querySelector(".yuRUbf")) {
+                  return next.querySelector(".yuRUbf"); // 일단은 미니사이트 빼고 첫번째만
+                }
+              }
+            };
+
+            // 일단은 대분류 내에서만 다음거 찾기, 뉴스나 동영상 내에서 next 찾는건 나중에
+            const getNextContainer = (cur) => {
+              let topLevelContainer;
+              if ((topLevelContainer = cur.closest(".hlcw0c"))) {
+              } else if ((topLevelContainer = cur.closest(".ULSxyf"))) {
+              } else {
+                topLevelContainer = cur.closest(".MjjYud");
+              }
+              return e.code === "KeyS"
+                ? topLevelContainer.nextElementSibling
+                : topLevelContainer.previousElementSibling;
+            };
+            const nextContainer = getNextContainer(curFocus);
+            nextFocus = getNextFocus(nextContainer);
           }
-          nextFocus.querySelector("a")?.focus();
+          nextFocus.querySelector("a").focus(); // 마우스랑 setAttribute를 따로 쓰면 작은 a태그도 처리 가능할 듯?
         }
       }
     };
@@ -46,11 +91,13 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
     document.addEventListener("keypress", handleKeyPress);
 
     const handleFocus = async (e) => {
-      const [url, title] = await setPreviewAttributes(e, 500, "keyboard");
+      const { url, title, originalUrl } = await setPreviewAttributes(e, 500, "keyboard");
+
       if (url && title) {
         moveFocusBox(previousContainer, e.target.parentElement, true);
         setPreviewUrl(url);
         setPreviewTitle(title);
+        document.querySelector("#previewer").dataset.originalUrl = originalUrl;
       }
     };
     document.addEventListener("focus", handleFocus, { capture: true });
