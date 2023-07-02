@@ -26,11 +26,19 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
         } else {
           // 인물검색 외
           if (!curPreview) {
+            let nextFocus;
             if (e.code === "KeyS") {
-              searchContainer.querySelector(".v7W49e > div:first-child").querySelector("a").focus(); // 마우스랑 setAttribute를 따로 쓰면 작은 a태그도 처리 가능할 듯?
+              nextFocus = searchContainer.querySelector(".v7W49e > div:first-child");
+              while (nextFocus.className === "ULSxyf") {
+                nextFocus = nextFocus.nextElementSibling;
+              }
             } else {
-              searchContainer.querySelector(".v7W49e > div:last-child").querySelector("a").focus();
+              nextFocus = searchContainer.querySelector(".v7W49e > div:last-child");
+              while (nextFocus.className === "ULSxyf") {
+                nextFocus = nextFocus.previousElementSibling;
+              }
             }
+            nextFocus.querySelector("a").focus(); // 마우스랑 setAttribute를 따로 쓰면 작은 a태그도 처리 가능할 듯?
           } else {
             let curFocus = document.querySelector(`a[href="${curPreview}"]`);
             if (!curFocus)
