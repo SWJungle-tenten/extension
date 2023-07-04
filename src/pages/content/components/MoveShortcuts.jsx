@@ -11,9 +11,8 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
         e.preventDefault();
         const curPreview = document.querySelector("#previewer").src;
         const searchContainer = document.querySelector("#rso");
-
         let nextFocus;
-        // 인물 검색
+
         if (searchContainer.querySelector("#kp-wp-tab-overview")) {
           if (!curPreview) {
             if (e.code === "KeyS") {
@@ -25,30 +24,38 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
             // previewer에 있을 때
           }
         } else {
-          // 인물검색 외
           if (!curPreview) {
             if (e.code === "KeyS") {
               nextFocus = searchContainer.querySelector(".v7W49e > div:first-of-type");
               console.log("nextFocus:", nextFocus);
 
               while (
-                nextFocus.className === "ULSxyf" &&
-                !nextFocus.querySelector("h2").innerText.includes("추천 스니펫")
+                nextFocus.classList.contains("ULSxyf") &&
+                !nextFocus.querySelector("h2")?.innerText.includes("추천 스니펫") &&
+                !nextFocus.querySelector("[jsname='wRSfy']")
               ) {
                 nextFocus = nextFocus.nextElementSibling;
               }
+              if (nextFocus.querySelector("[jsname='wRSfy']")) {
+                nextFocus = nextFocus.querySelector(".RzdJxc");
+              }
             } else {
               nextFocus = searchContainer.querySelector(".v7W49e > div:last-child");
-              while (nextFocus.className === "ULSxyf") {
+              while (nextFocus.classList.contains("ULSxyf")) {
                 nextFocus = nextFocus.previousElementSibling;
               }
             }
           } else {
             let curFocus = searchContainer.querySelector(`a[href="${curPreview}"]`);
-            if (!curFocus)
+            if (!curFocus) {
+              // http 사이트일 때
               curFocus = document.querySelector(
                 `a[href="${document.querySelector("#previewer").dataset.originalUrl}"]`
               );
+            }
+            if (!curFocus) {
+              curFocus = document.querySelector(`a[href="#${curPreview.split("#")[1]}"]`);
+            }
             // 일단은 대분류 내에서만 다음거 찾기, 뉴스나 동영상 내에서 next 찾는건 나중에
             const getNextContainer = (cur) => {
               let topLevelContainer;
@@ -70,6 +77,8 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
                   return next.querySelector("IJl0Z");
                 } else if (next.querySelector("h2")?.innerText.includes("추천 스니펫")) {
                   return next.querySelector(".yuRUbf");
+                } else if (next.querySelector("[jsname='wRSfy']")) {
+                  return next.querySelector(".RzdJxc");
                 } else {
                   return getNextFocus(getNextContainer(next));
                 }
