@@ -29,6 +29,9 @@ const selectRoot = () => {
     body.append(rootElement);
     body.style.flexWrap = "nowrap";
   }
+  document.querySelector("#center_col").style.marginLeft = "40px";
+  document.querySelector("#appbar").style.paddingLeft = "40px";
+
   return <Content />;
 };
 
