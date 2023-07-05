@@ -100,7 +100,7 @@ const Popup = () => {
           <span style={{ color: "#34A853" }}>l</span>
           <span style={{ color: "#000" }}>ing Helper</span>
         </div>
-        <p style={{ fontWeight: "400px", fontSize: "12px", color: "#adb5bd" }}>v 1.0.3</p>
+        <p style={{ fontWeight: "400px", fontSize: "12px", color: "#adb5bd" }}>v 1.0.5</p>
       </header>
 
       <p style={{ textAlign: "center", fontSize: "18px" }}>

@@ -109,7 +109,7 @@ function MoveShortcuts({ setPreviewUrl, setPreviewTitle, previousContainer }) {
     document.addEventListener("keypress", handleKeyPress);
 
     const handleFocus = async (e) => {
-      const { url, title, originalUrl } = await setPreviewAttributes(e, 100, "keyboard");
+      const { url, title, originalUrl } = await setPreviewAttributes(e, 300, "keyboard");
 
       if (url && title) {
         moveFocusBox(previousContainer, e.target.parentElement, true);
